@@ -33,7 +33,11 @@ export function Footer() {
           <NavLink href="/tech">Tech</NavLink>
           <div className="flex-1"></div>
           <FlightButton country={country} />
-          <Link href="https://magicspace.ae">
+          <Link
+            href="https://magicspace.ae"
+            aria-label="MagicSpace"
+            title="MagicSpace"
+          >
             <Sparkles className="h-4 w-4" />
           </Link>
         </nav>

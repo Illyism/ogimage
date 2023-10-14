@@ -60,7 +60,12 @@ export async function Header() {
           <NavLink href="/money">Money</NavLink>
           <NavLink href="/tech">Tech</NavLink>
           <div className="m-2 h-full w-px border-l border-border">&nbsp;</div>
-          <Link href="https://stardrop.ch" className="hover:text-primary">
+          <Link
+            href="https://magicspace.ae"
+            className="hover:text-primary"
+            aria-label="MagicSpace"
+            title="MagicSpace"
+          >
             <Sparkles className="h-4 w-4" />
           </Link>
         </nav>
