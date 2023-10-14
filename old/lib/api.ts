@@ -1,25 +1,5 @@
 const API_URL = process.env.WORDPRESS_API_URL
 
-type Post = {
-  node: {
-    title: string
-    excerpt: string
-    slug: string
-    date: string
-    featuredImage: null | string // Assuming featuredImage can be a string
-    author: {
-      node: {
-        name: string
-        firstName: string
-        lastName: string
-        avatar: {
-          url: string
-        }
-      }
-    }
-  }
-}
-
 async function fetchAPI(query = '', { variables }: Record<string, any> = {}) {
   const headers = { 'Content-Type': 'application/json' }
 
@@ -37,9 +17,6 @@ async function fetchAPI(query = '', { variables }: Record<string, any> = {}) {
       query,
       variables,
     }),
-    next: {
-      revalidate: 10,
-    },
   })
 
   const json = await res.json()
@@ -62,7 +39,7 @@ export async function getPreviewPost(id, idType = 'DATABASE_ID') {
     }`,
     {
       variables: { id, idType },
-    },
+    }
   )
   return data.post
 }
@@ -82,7 +59,7 @@ export async function getAllPostsWithSlug() {
   return data?.posts
 }
 
-export async function getAllPostsForHome(preview = false) {
+export async function getAllPostsForHome(preview) {
   const data = await fetchAPI(
     `
     query AllPosts {
@@ -118,10 +95,10 @@ export async function getAllPostsForHome(preview = false) {
         onlyEnabled: !preview,
         preview,
       },
-    },
+    }
   )
 
-  return data?.posts.edges as Post[]
+  return data?.posts
 }
 
 export async function getPostAndMorePosts(slug, preview, previewData) {
@@ -213,7 +190,7 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
         id: isDraft ? postPreview.id : slug,
         idType: isDraft ? 'DATABASE_ID' : 'SLUG',
       },
-    },
+    }
   )
 
   // Draft posts may not have an slug
