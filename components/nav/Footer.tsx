@@ -1,24 +1,13 @@
 import { cn } from '@/lib/utils'
-import { ArrowRight, Plane, Sparkle, Sparkles } from 'lucide-react'
-import { headers } from 'next/headers'
+import { Sparkle, Sparkles } from 'lucide-react'
 import Link from 'next/link'
-
-const getCity = () => {
-  const headersList = headers()
-
-  const _city =
-    headersList.get('x-vercel-ip-city') ??
-    headersList.get('x-vercel-ip-country') ??
-    'My City'
-  return decodeURIComponent(_city)
-}
+import { useCountry } from '../local/useCountry'
+import { FlightButton } from './FlightButton'
 
 export function Footer() {
   const now = new Date()
-  const city = getCity()
 
-  const headersList = headers()
-  const _country = headersList.get('x-vercel-ip-country') ?? 'US'
+  const country = useCountry()
 
   return (
     <footer className="mt-16 w-full">
@@ -43,13 +32,7 @@ export function Footer() {
           <NavLink href="/money">Money</NavLink>
           <NavLink href="/tech">Tech</NavLink>
           <div className="flex-1"></div>
-          <NavLink
-            href={`https://www.kiwi.com/deep?affilid=tanarallcswissflights&departure=anytime&destination=CH&origin=${_country}&pageName=tilesPage&return=anytime&returnFromDifferentAirport=false&returnToDifferentAirport=false`}
-            className="flex items-center gap-1"
-          >
-            <Plane className="h-4 w-4" aria-label="Flights from" /> {city}{' '}
-            <ArrowRight className="h-4 w-4" aria-label="to" /> Switzerland
-          </NavLink>
+          <FlightButton country={country} />
           <Link href="https://stardrop.ch">
             <Sparkles className="h-4 w-4" />
           </Link>

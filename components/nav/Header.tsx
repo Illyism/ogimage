@@ -1,6 +1,5 @@
 import { cn } from '@/lib/utils'
-import { ArrowRight, Plane, Sparkles } from 'lucide-react'
-import { headers } from 'next/headers'
+import { Sparkles } from 'lucide-react'
 import Link from 'next/link'
 
 export const getRates = async () => {
@@ -21,36 +20,14 @@ export const getRates = async () => {
   return data.rates
 }
 
-const getCity = () => {
-  const headersList = headers()
-
-  const _city =
-    headersList.get('x-vercel-ip-city') ??
-    headersList.get('x-vercel-ip-country') ??
-    'My City'
-  return decodeURIComponent(_city)
-}
-
 export async function Header() {
   const now = new Date()
   const rates = await getRates()
-  const city = getCity()
-
-  const headersList = headers()
-  const _country = headersList.get('x-vercel-ip-country') ?? 'US'
 
   return (
-    <header className="w-full">
-      <div className="contain grid grid-cols-4 items-center justify-between border-b py-2">
-        <time dateTime={now.toISOString()} className="text-xs font-bold">
-          {now.toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
-        </time>
-        <div className="col-span-2 flex items-center justify-center">
+    <header className="contain w-full">
+      <div className="grid grid-cols-4 items-center justify-between gap-4 border-b py-4">
+        <div className="col-span-4 flex items-center justify-center sm:order-2 sm:col-span-2">
           <Link
             href="/"
             className="font-display text-xl font-black lg:text-5xl"
@@ -58,12 +35,23 @@ export async function Header() {
             The Swiss Observer
           </Link>
         </div>
-        <div className="flex items-center justify-end text-[10px] font-medium">
+        <time
+          dateTime={now.toISOString()}
+          className="col-span-2 text-xs font-bold sm:order-1 sm:col-span-1"
+        >
+          {now.toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+          })}
+        </time>
+        <div className="col-span-2 flex items-center justify-end text-[10px] font-medium sm:order-3 sm:col-span-1">
           {rates['CHF'].toFixed(2)} CHF = 1 EUR
         </div>
       </div>
-      <div>
-        <nav className="contain flex items-center border-b-2 border-double text-xs">
+      <div className="border-b border-black pb-0.5">
+        <nav className="flex items-center justify-center border-b border-black text-xs">
           <NavLink href="/" className="-ml-2">
             Swiss
           </NavLink>
@@ -71,14 +59,7 @@ export async function Header() {
           <NavLink href="/business">Business</NavLink>
           <NavLink href="/money">Money</NavLink>
           <NavLink href="/tech">Tech</NavLink>
-          <div className="flex-1"></div>
-          <NavLink
-            href={`https://www.kiwi.com/deep?affilid=tanarallcswissflights&departure=anytime&destination=CH&origin=${_country}&pageName=tilesPage&return=anytime&returnFromDifferentAirport=false&returnToDifferentAirport=false`}
-            className="flex items-center gap-1"
-          >
-            <Plane className="h-4 w-4" aria-label="Flights from" /> {city}{' '}
-            <ArrowRight className="h-4 w-4" aria-label="to" /> Switzerland
-          </NavLink>
+          <div className="m-2 h-full w-px border-l border-border">&nbsp;</div>
           <Link href="https://stardrop.ch" className="hover:text-primary">
             <Sparkles className="h-4 w-4" />
           </Link>

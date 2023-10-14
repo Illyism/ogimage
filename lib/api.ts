@@ -6,7 +6,16 @@ type Post = {
     excerpt: string
     slug: string
     date: string
-    featuredImage: null | string // Assuming featuredImage can be a string
+    isSticky: boolean
+    readingTime: string
+    featuredImage?: {
+      node: {
+        altText: string
+        sourceUrl: string
+        srcSet: string
+        caption: string
+      }
+    }
     author: {
       node: {
         name: string
@@ -93,16 +102,19 @@ export async function getAllPostsForHome(preview = false) {
             excerpt
             slug
             date
+            isSticky
+            readingTime
             featuredImage {
               node {
-                sourceUrl
+                altText
+              	sourceUrl
+                srcSet
+                caption
               }
             }
             author {
               node {
                 name
-                firstName
-                lastName
                 avatar {
                   url
                 }
