@@ -88,7 +88,13 @@ export async function getAllPostsWithSlug() {
       }
     }
   `)
-  return data?.posts
+  return data?.posts as {
+    edges: {
+      node: {
+        slug: string
+      }
+    }[]
+  }
 }
 
 export async function getAllPostsForHome(preview = false) {
@@ -136,13 +142,30 @@ export async function getAllPostsForHome(preview = false) {
   return data?.posts.edges as Post[]
 }
 
-export async function getPostAndMorePosts(slug, preview, previewData) {
+export async function getPostAndMorePosts(
+  slug: string,
+  preview?: boolean,
+  previewData?: {
+    post: {
+      id: string | number
+      slug?: string
+      status?: 'draft' | 'publish'
+    }
+  },
+): Promise<{
+  post: Post['node'] & { content: string }
+  posts: {
+    edges: {
+      node: Post['node']
+    }[]
+  }
+}> {
   const postPreview = preview && previewData?.post
   // The slug may be the id of an unpublished post
   const isId = Number.isInteger(Number(slug))
   const isSamePost = isId
-    ? Number(slug) === postPreview.id
-    : slug === postPreview.slug
+    ? Number(slug) === postPreview?.id
+    : slug === postPreview?.slug
   const isDraft = isSamePost && postPreview?.status === 'draft'
   const isRevision = isSamePost && postPreview?.status === 'publish'
   const data = await fetchAPI(
@@ -244,4 +267,57 @@ export async function getPostAndMorePosts(slug, preview, previewData) {
   if (data.posts.edges.length > 2) data.posts.edges.pop()
 
   return data
+}
+
+/**
+ * only get metadata for SEO
+ */
+export async function getPostMetadata(slug) {
+  const data = await fetchAPI(
+    `
+    query PostBySlug($id: ID!, $idType: PostIdType!) {
+      post(id: $id, idType: $idType) {
+        title
+        excerpt
+        slug
+        date
+        featuredImage {
+          node {
+            sourceUrl
+            altText
+          }
+        }
+        author {
+          node {
+            name
+          }
+        }
+      }
+    }
+  `,
+    {
+      variables: {
+        id: slug,
+        idType: 'SLUG',
+      },
+    },
+  )
+
+  return data?.post as {
+    title: string
+    excerpt: string
+    slug: string
+    date: string
+    featuredImage?: {
+      node: {
+        sourceUrl: string
+        altText: string
+      }
+    }
+    author: {
+      node: {
+        name: string
+      }
+    }
+  }
 }

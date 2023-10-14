@@ -42,7 +42,7 @@ export default async function Home() {
                 {post.node.featuredImage && (
                   <figure className="group -mx-6 sm:mx-0 sm:w-1/2">
                     <Link
-                      href={`/post/${post.node.slug}`}
+                      href={`/${post.node.slug}`}
                       className="relative block"
                     >
                       <picture>

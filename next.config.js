@@ -19,6 +19,7 @@ const nextConfig = {
       'i.ytimg.com',
       'ssl.gstatic.com',
       'secure.gravatar.com',
+      'bpswissobserve.wpenginepowered.com',
     ],
   },
   async headers() {
