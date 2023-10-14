@@ -2,6 +2,7 @@
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { getAllPostsForHome } from '@/lib/api'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata = generatePageMeta({
@@ -76,20 +77,29 @@ export default async function Home() {
             Last Articles
           </h2>
           {posts.map((post, index) => (
-            <article key={index} className="mb-4">
-              <h3 className="font-serif font-medium text-gray-800">
-                {post.node.author.node.name}
-              </h3>
-              <h3 className="mb-3 font-display text-xl font-bold leading-tight tracking-tight text-gray-900">
-                {post.node.title}
-              </h3>
-              <div className="text-[10px] font-medium uppercase tracking-wider text-gray-500">
-                {new Date(post.node.date).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric',
-                })}
+            <article key={index} className="mb-4 flex gap-4">
+              <div>
+                <h3 className="font-serif font-medium text-gray-800">
+                  {post.node.author.node.name}
+                </h3>
+                <h3 className="mb-3 font-display text-xl font-bold leading-tight tracking-tight text-gray-900">
+                  {post.node.title}
+                </h3>
+                <div className="text-[10px] font-medium uppercase tracking-wider text-gray-500">
+                  {new Date(post.node.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </div>
               </div>
+              <Image
+                src={post.node.author.node.avatar.url}
+                alt={post.node.author.node.name}
+                width={48}
+                height={48}
+                className="h-12 w-12 rounded-full"
+              />
             </article>
           ))}
         </div>

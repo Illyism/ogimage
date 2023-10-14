@@ -18,6 +18,7 @@ const nextConfig = {
       'img.youtube.com',
       'i.ytimg.com',
       'ssl.gstatic.com',
+      'secure.gravatar.com',
     ],
   },
   async headers() {
