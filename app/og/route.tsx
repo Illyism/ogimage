@@ -3,7 +3,7 @@ import { generateImage } from './screenshot'
 
 export const runtime = 'edge'
 
-const base = 'https://il.ly'
+const base = 'https://swissobserver.com'
 export const GET = async (req: NextRequest) => {
   const slug = req.nextUrl.searchParams.get('url') ?? '/'
 

@@ -24,7 +24,7 @@ export const rootTwitter: Twitter = {
 }
 
 export const rootMetadata: Metadata = {
-  metadataBase: new URL('https://il.ly'),
+  metadataBase: new URL('https://swissobserver.com'),
   title,
   description,
   applicationName: 'the Swiss Observer',

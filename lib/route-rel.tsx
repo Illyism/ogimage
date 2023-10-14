@@ -1,5 +1,6 @@
 const APPROVED = [
   'il.ly',
+  'swissobserver.com',
   'gradient.page',
   'magicbuddy.chat',
   'magicspace.ae',

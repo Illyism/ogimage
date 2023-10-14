@@ -13,14 +13,17 @@ export function takeScreenshot({
   const base = `https://api.screenshotone.com/take`
   const query = new URLSearchParams()
   query.append('access_key', 'qZM9LSWLkPFQ0w')
-  query.append('url', url.includes('http') ? url : `https://il.ly${url}`)
+  query.append(
+    'url',
+    url.includes('http') ? url : `https://swissobserver.com${url}`,
+  )
   query.append('viewport_width', width.toString())
   query.append('viewport_height', height.toString())
   query.append('device_scale_factor', '1')
   query.append('format', 'jpg')
   query.append(
     'user_agent',
-    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36 Google Favicon'
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36 Google Favicon',
   )
   query.append('time_zone', 'Europe/Berlin')
   query.append('block_ads', 'true')
@@ -51,7 +54,7 @@ export async function generateImage({
   })
 
   const Satoshi = await fetch(
-    new URL('@/styles/Satoshi-Black.ttf', import.meta.url)
+    new URL('@/styles/Satoshi-Black.ttf', import.meta.url),
   ).then((res) => res.arrayBuffer())
 
   const textBefore = alt ? alt.split('*')[0] : ''
@@ -107,6 +110,6 @@ export async function generateImage({
           data: Satoshi,
         },
       ],
-    }
+    },
   )
 }

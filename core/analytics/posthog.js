@@ -84,7 +84,7 @@ export function initPosthog() {
           (p.src = s.api_host + '/static/array.js'),
           (r = t.getElementsByTagName('script')[0]).parentNode.insertBefore(
             p,
-            r
+            r,
           )
         var u = e
         for (
@@ -99,7 +99,7 @@ export function initPosthog() {
             },
             o =
               'capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys'.split(
-                ' '
+                ' ',
               ),
             n = 0;
           n < o.length;
@@ -111,7 +111,7 @@ export function initPosthog() {
       (e.__SV = 1))
   })(document, window.posthog || [])
 
-  window.posthog.init('phc_aIjjz8bKWgzmkjYBGIG7PkVNO84Vos3Irfsyckro8dl', {
+  window.posthog.init('phc_gNjlHknGKZYPutxMnnRKuADhIkE2Qx72U5a3uCVj4wv', {
     api_host: 'https://magichog.il.ly',
     ui_host: 'https://eu.posthog.com',
     loaded: () => {

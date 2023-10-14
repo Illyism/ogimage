@@ -10,7 +10,7 @@ import { getRouteRel } from './lib/route-rel'
 
 const ResponsiveImage = (props: any) => {
   const src = props.src?.src ?? props.src ?? ''
-  const abs = src.startsWith('/') ? `https://il.ly${src}` : src
+  const abs = src.startsWith('/') ? `https://swissobserver.com${src}` : src
   return (
     <span itemProp="image" itemScope itemType="https://schema.org/ImageObject">
       <Image
