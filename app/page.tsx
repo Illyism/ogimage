@@ -10,7 +10,6 @@ export const metadata = generatePageMeta({
 
 export default async function Home() {
   const posts = await getAllPostsForHome()
-  const post = posts[0]
   return (
     <PageLayout>
       <div className="contain">
