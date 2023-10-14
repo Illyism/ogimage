@@ -3,14 +3,15 @@ import { type OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types'
 import { type Twitter } from 'next/dist/lib/metadata/types/twitter-types'
 import { type StaticImageData } from 'next/image'
 
-const title = 'Ilias Ism (@illyism) - Designing Tomorrow, Building Today'
-const description = `Hi, I'm Ilias, an internet entrepreneur and creative. Find out more about me and what I'm doing now.`
+const title =
+  'News, Business, Money and Tech from Switzerland - The Swiss Observer'
+const description = `Latest Switzerland news, comment and analysis from the Swiss Observer, the world's trusted business perspective.`
 
 export const rootOpenGraph: OpenGraph = {
   locale: 'en',
   type: 'website',
-  url: 'https://il.ly',
-  siteName: 'Ilias Ism',
+  url: 'https://swissobserver.com',
+  siteName: 'The Swiss Observer',
   title,
   description,
 }
@@ -19,14 +20,14 @@ export const rootTwitter: Twitter = {
   title,
   description,
   card: 'summary_large_image',
-  creator: '@illyism',
+  creator: '@swissobserver',
 }
 
 export const rootMetadata: Metadata = {
   metadataBase: new URL('https://il.ly'),
   title,
   description,
-  applicationName: 'Ilias Ism',
+  applicationName: 'the Swiss Observer',
   openGraph: rootOpenGraph,
   twitter: rootTwitter,
   themeColor: '#020817',
@@ -55,8 +56,8 @@ function getImage(image?: StaticImageData | string, alt?: string) {
 }
 
 export function generatePageMeta({
-  title = 'Ilias Ism (@illyism) - Designing Tomorrow, Building Today',
-  description = `Hi, I'm Ilias, an internet entrepreneur and creative. Find out more about me and what I'm doing now.`,
+  title = 'News, Business, Money and Tech from Switzerland - The Swiss Observer',
+  description = `Latest Switzerland news, comment and analysis from the Swiss Observer, the world's trusted business perspective.`,
   url,
   image,
   image_alt,

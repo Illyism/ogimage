@@ -26,10 +26,10 @@ const ResponsiveImage = (props: any) => {
       <span className="hidden" aria-hidden>
         <link itemProp="contentUrl" href={abs} />
         <span itemProp="creator" itemType="https://schema.org/Person" itemScope>
-          <meta itemProp="name" content="Ilias Ism" />
+          <meta itemProp="name" content="The Swiss Observer" />
         </span>
-        <span itemProp="copyrightNotice">&copy; Ilias Ism</span>
-        <span itemProp="creditText">Ilias Ism</span>
+        <span itemProp="copyrightNotice">&copy; The Swiss Observer</span>
+        <span itemProp="creditText">The Swiss Observer</span>
       </span>
     </span>
   )
