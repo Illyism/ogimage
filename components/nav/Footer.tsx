@@ -1,5 +1,11 @@
 import { cn } from '@/lib/utils'
-import { Sparkle, Sparkles } from 'lucide-react'
+import {
+  Facebook,
+  MessageCircle,
+  Sparkle,
+  Sparkles,
+  Twitter,
+} from 'lucide-react'
 import Link from 'next/link'
 import { useCountry } from '../local/useCountry'
 import { FlightButton } from './FlightButton'
@@ -43,7 +49,34 @@ export function Footer() {
         </nav>
       </div>
       <div className="contain flex items-center justify-between border-double text-xs">
-        <div>© {now.getFullYear()} The Swiss Observer</div>
+        <div className="flex-1">© {now.getFullYear()} The Swiss Observer</div>
+        <Link
+          href="https://t.me/TheSwissObserver"
+          className="px-2 py-2 hover:bg-card/50"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Telegram"
+        >
+          <MessageCircle className="h-4 w-4" />
+        </Link>
+        <Link
+          href="https://twitter.com/MySwissObserver"
+          className="px-2 py-2 hover:bg-card/50"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Twitter"
+        >
+          <Twitter className="h-4 w-4" />
+        </Link>
+        <Link
+          href="https://facebook.com/TheSwissObserver"
+          className="px-2 py-2 hover:bg-card/50"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+        >
+          <Facebook className="h-4 w-4" />
+        </Link>
         <NavLink href="/contact">Contact Us</NavLink>
       </div>
     </footer>
