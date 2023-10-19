@@ -18,6 +18,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: any) {
   const post = await getPostMetadata(params.slug)
+  if (!post) return
 
   return generatePageMeta({
     title: post.title,
@@ -32,9 +33,11 @@ export async function generateMetadata({ params }: any) {
 
 export default async function BlogArticle({ params }: any) {
   const post = await getPostAndMorePosts(params.slug)
-  if (!post) {
-    notFound()
+  if (!post.post) {
+    return notFound()
   }
+
+  console.log(post)
 
   return (
     <article className="flex min-h-screen flex-col justify-between">
