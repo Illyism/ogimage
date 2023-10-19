@@ -2,19 +2,24 @@ import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 
 export const metadata = generatePageMeta({
-  title: `Contact Us - The Swiss Observer`,
-  description: `Contact us for any questions or suggestions.`,
-  url: `/contact`,
+  title: `Imprint - The Swiss Observer`,
+  description: `Impressum für The Swiss Observer.`,
+  url: `/imprint`,
 })
 
 export default async function Home() {
   return (
     <PageLayout>
       <div className="contain">
-        <h1 className="py-4 text-xs font-bold tracking-wide">Contact Us</h1>
+        <h1 className="py-4 text-xs font-bold tracking-wide">Impressum</h1>
         <div>
           <p className="pb-4 text-sm">
-            If you have any questions or suggestions, please contact us at{' '}
+            Publisher: <br />
+            Swiss Observer <br />
+            Bahnhofstrasse 21, <br />
+            6300 Zug, <br />
+            Switzerland <br />
+            Email:{' '}
             <a href="mailto:contact@swissobserver.com">
               contact@swissobserver.com
             </a>
