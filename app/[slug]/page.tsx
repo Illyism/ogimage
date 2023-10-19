@@ -37,8 +37,6 @@ export default async function BlogArticle({ params }: any) {
     return notFound()
   }
 
-  console.log(post)
-
   return (
     <article className="flex min-h-screen flex-col justify-between">
       <header className="contain pt-16 lg:max-w-5xl">
