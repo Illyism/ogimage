@@ -49,7 +49,10 @@ export function Footer() {
         </nav>
       </div>
       <div className="contain flex items-center justify-between border-double text-xs">
-        <div className="flex-1">© {now.getFullYear()} The Swiss Observer</div>
+        <div>© {now.getFullYear()} The Swiss Observer</div>
+        <NavLink href="/imprint">Imprint</NavLink>
+        <NavLink href="/privacy-policy">Privacy</NavLink>
+        <div className="flex-1"></div>
         <Link
           href="https://t.me/TheSwissObserver"
           className="px-2 py-2 hover:bg-card/50"

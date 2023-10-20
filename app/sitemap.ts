@@ -1,17 +1,17 @@
-import { getAllPostsForHome } from '@/lib/api'
+import { getAllPostsAndPagesForSitemap } from '@/lib/api/sitemap'
 
 const domain = `swissobserver.com`
 
 export default async function Sitemap() {
-  const posts = await getAllPostsForHome()
+  const articles = await getAllPostsAndPagesForSitemap()
   return [
     {
       url: `https://${domain}`,
       lastModified: new Date(),
     },
-    ...posts.map((post) => ({
-      url: `https://${domain}/${post.node.slug}`,
-      lastModified: new Date(post.node.date),
+    ...articles.map((p) => ({
+      url: `https://${domain}/${p.slug}`,
+      lastModified: new Date(p.date),
     })),
   ]
 }
