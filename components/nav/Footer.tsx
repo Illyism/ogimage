@@ -63,7 +63,7 @@ export function Footer() {
           <MessageCircle className="h-4 w-4" />
         </Link>
         <Link
-          href="https://twitter.com/MySwissObserver"
+          href="https://typefully.com/MySwissObserver"
           className="px-2 py-2 hover:bg-card/50"
           target="_blank"
           rel="noopener noreferrer"
