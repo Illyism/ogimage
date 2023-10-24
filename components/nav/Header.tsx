@@ -55,10 +55,7 @@ export async function Header() {
           <NavLink href="/" className="-ml-2">
             Swiss
           </NavLink>
-          <NavLink href="/international">World</NavLink>
-          <NavLink href="/business">Business</NavLink>
-          <NavLink href="/money">Money</NavLink>
-          <NavLink href="/tech">Tech</NavLink>
+          
           <div className="m-2 h-full w-px border-l border-border">&nbsp;</div>
           <Link
             href="https://magicspace.ae"
