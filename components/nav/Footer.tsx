@@ -33,10 +33,6 @@ export function Footer() {
           <NavLink href="/" className="-ml-2">
             Swiss
           </NavLink>
-          <NavLink href="/international">World</NavLink>
-          <NavLink href="/business">Business</NavLink>
-          <NavLink href="/money">Money</NavLink>
-          <NavLink href="/tech">Tech</NavLink>
           <div className="flex-1"></div>
           <FlightButton country={country} />
           <Link
