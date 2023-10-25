@@ -113,6 +113,7 @@ export function generatePageMeta({
       description,
     } as Twitter,
     publisher: siteName,
+    other: {},
   } as Metadata
 
   if (publishedAt && author) {
@@ -126,7 +127,6 @@ export function generatePageMeta({
       section: siteName,
       tags: [siteName],
     }
-    if (!metadata.other) metadata.other = {}
   }
 
   const img = getImage(image, image_alt || title, image_width, image_height)
