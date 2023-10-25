@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata = generatePageMeta({
-  title: `News, Business, Money and Tech from Switzerland - The Swiss Observer`,
+  title: `Swiss Observer: News, Work, Money & Tech from Switzerland`,
   description: `Latest Switzerland news, comment and analysis from the Swiss Observer, the world's trusted business perspective.`,
   url: `/`,
 })

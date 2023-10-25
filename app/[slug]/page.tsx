@@ -18,6 +18,8 @@ export async function generateMetadata({ params }: any) {
   const post = await getPostOrPageMetadata(params.slug)
   if (!post) return
 
+  console.log(post.publishedAt, post.updatedAt)
+
   return generatePageMeta({
     title: post.title,
     description: post.description,

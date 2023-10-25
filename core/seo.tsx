@@ -3,8 +3,7 @@ import { type OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types'
 import { type Twitter } from 'next/dist/lib/metadata/types/twitter-types'
 import { type StaticImageData } from 'next/image'
 
-const title =
-  'News, Business, Money and Tech from Switzerland - The Swiss Observer'
+const title = 'Swiss Observer: News, Work, Money & Tech from Switzerland'
 const description = `Latest Switzerland news, comment and analysis from the Swiss Observer, the world's trusted business perspective.`
 
 export const rootOpenGraph: OpenGraph = {
@@ -56,7 +55,7 @@ function getImage(image?: StaticImageData | string, alt?: string) {
 }
 
 export function generatePageMeta({
-  title = 'News, Business, Money and Tech from Switzerland - The Swiss Observer',
+  title = 'Swiss Observer: News, Work, Money & Tech from Switzerland',
   description = `Latest Switzerland news, comment and analysis from the Swiss Observer, the world's trusted business perspective.`,
   url,
   image,

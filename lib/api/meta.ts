@@ -90,7 +90,7 @@ export async function getPostOrPageMetadata(slug: string) {
   }
 
   return {
-    title: data.title,
+    title: data.seo.title || data.title,
     description: data.seo.metaDesc,
     image: data.featuredImage?.node?.sourceUrl,
     image_alt: data.featuredImage?.node?.altText,
