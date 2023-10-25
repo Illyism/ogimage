@@ -2,6 +2,7 @@ import { fetchAPI } from '.'
 
 interface MetaReturn {
   title: string
+  excerpt?: string
   seo: {
     title: string
     metaDesc: string
@@ -14,6 +15,11 @@ interface MetaReturn {
     node: {
       altText: string
       sourceUrl: string
+    }
+  }
+  author: {
+    node: {
+      name: string
     }
   }
 }
@@ -34,6 +40,11 @@ const commonQuery = `
       sourceUrl
     }
   }
+  author {
+    node {
+      name
+    }
+  }
 `
 
 /**
@@ -45,6 +56,7 @@ async function getPost(slug: string) {
       query PostBySlug($id: ID!) {
         post: post(id: $id, idType: SLUG) {
           ${commonQuery}
+          excerpt
         }
       }
     `,
@@ -91,12 +103,16 @@ export async function getPostOrPageMetadata(slug: string) {
 
   return {
     title: data.seo.title || data.title,
-    description: data.seo.metaDesc,
+    description: stripHTML(data.seo.metaDesc || data.excerpt || ''),
     image: data.featuredImage?.node?.sourceUrl,
     image_alt: data.featuredImage?.node?.altText,
     url: data.seo.canonical,
     publishedAt: data.seo.opengraphPublishedTime,
     updatedAt: data.seo.opengraphModifiedTime,
-    author: data.seo.opengraphAuthor,
+    author: data.seo.opengraphAuthor || data.author?.node?.name,
   }
+}
+
+function stripHTML(html: string) {
+  return html.replace(/<[^>]*>?/gm, '')
 }

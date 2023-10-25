@@ -5,6 +5,15 @@ const pageQuery = `
   slug
   date
   content
+  seo {
+    title
+    metaDesc
+    canonical
+    opengraphPublishedTime
+    opengraphModifiedTime
+    opengraphAuthor
+    fullHead
+  }
   featuredImage {
     node {
       sourceUrl

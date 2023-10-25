@@ -101,6 +101,7 @@ export function generatePageMeta({
     metadata.openGraph = {
       ...metadata.openGraph,
       type: 'article',
+      locale: 'en',
       publishedTime: publishedAt,
       modifiedTime: updatedAt ?? publishedAt,
       authors: ['Ilias Ism'],

@@ -3,6 +3,7 @@ import { getPostOrPageMetadata } from '@/lib/api/meta'
 import { getAllPostsAndPagesForSitemap } from '@/lib/api/sitemap'
 import { getPostAndMorePosts } from '@/lib/api/slug'
 import { notFound } from 'next/navigation'
+import { Product, WithContext } from 'schema-dts'
 import { BlogTemplate } from './BlogTemplate'
 
 export async function generateStaticParams() {
@@ -17,8 +18,6 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: any) {
   const post = await getPostOrPageMetadata(params.slug)
   if (!post) return
-
-  console.log(post.publishedAt, post.updatedAt)
 
   return generatePageMeta({
     title: post.title,
@@ -38,5 +37,22 @@ export default async function BlogArticle({ params }: any) {
     return notFound()
   }
 
-  if (post.post) return <BlogTemplate post={post.post} posts={post.posts} />
+  const jsonLd: WithContext<Product> = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Next.js Sticker',
+    image: 'https://nextjs.org/imgs/sticker.png',
+    description: 'Dynamic at the speed of static.',
+  }
+
+  return (
+    <>
+      <div dangerouslySetInnerHTML={{ __html: post.post.seo.fullHead }}></div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BlogTemplate post={post.post} posts={post.posts} />
+    </>
+  )
 }
