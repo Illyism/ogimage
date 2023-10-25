@@ -1,6 +1,5 @@
-import { type Metadata } from 'next'
+import { Metadata } from 'next'
 import { type OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types'
-import { type Twitter } from 'next/dist/lib/metadata/types/twitter-types'
 import { type StaticImageData } from 'next/image'
 
 const title = 'Swiss Observer: News, Work, Money & Tech from Switzerland'
@@ -87,14 +86,14 @@ export function generatePageMeta({
     openGraph: {
       ...rootOpenGraph,
       url,
-      title: `${title} - ${siteName ?? rootOpenGraph.siteName}`,
+      title: title,
       description,
     } as OpenGraph,
     twitter: {
       ...rootTwitter,
-      title: `${title} - ${siteName ?? rootOpenGraph.siteName}`,
+      title: title,
       description,
-    } as Twitter,
+    },
   } as Metadata
 
   if (publishedAt && author) {
