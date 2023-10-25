@@ -95,6 +95,7 @@ export function generatePageMeta({
       title: title,
       description,
     } as Twitter,
+    publisher: siteName,
   } as Metadata
 
   if (publishedAt && author) {
@@ -104,7 +105,7 @@ export function generatePageMeta({
       locale: 'en',
       publishedTime: publishedAt,
       modifiedTime: updatedAt ?? publishedAt,
-      authors: ['Ilias Ism'],
+      authors: ['https://www.facebook.com/TheSwissObserver'],
       section: siteName,
       tags: [siteName],
     }
