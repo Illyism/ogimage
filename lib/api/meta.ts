@@ -3,6 +3,7 @@ import { fetchAPI } from '.'
 interface MetaReturn {
   title: string
   excerpt?: string
+  readingTime?: string
   seo: {
     title: string
     metaDesc: string
@@ -73,6 +74,7 @@ async function getPost(slug: string) {
         post: post(id: $id, idType: SLUG) {
           ${commonQuery}
           excerpt
+          readingTime
         }
       }
     `,
@@ -128,6 +130,7 @@ export async function getPostOrPageMetadata(slug: string) {
     publishedAt: data.seo.opengraphPublishedTime,
     updatedAt: data.seo.opengraphModifiedTime,
     author: data.seo.opengraphAuthor || data.author?.node?.name,
+    readingTime: data.readingTime,
   }
 }
 

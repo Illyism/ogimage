@@ -19,7 +19,8 @@ export const rootTwitter: Twitter = {
   title,
   description,
   card: 'summary_large_image',
-  creator: '@swissobserver',
+  creator: '@MySwissObserver',
+  site: '@MySwissObserver',
 }
 
 export const rootMetadata: Metadata = {
@@ -76,6 +77,7 @@ export function generatePageMeta({
   author,
   siteName,
   feed,
+  readingTime,
 }: {
   title?: string
   description?: string
@@ -89,11 +91,13 @@ export function generatePageMeta({
   author?: string
   siteName?: string
   feed?: string
+  readingTime?: string
 } = {}): Metadata {
   const metadata = {
     ...rootMetadata,
     title,
     description,
+    authors: author ? [author] : undefined,
     alternates: {
       canonical: url,
     },
@@ -122,6 +126,7 @@ export function generatePageMeta({
       section: siteName,
       tags: [siteName],
     }
+    if (!metadata.other) metadata.other = {}
   }
 
   const img = getImage(image, image_alt || title, image_width, image_height)
@@ -145,6 +150,15 @@ export function generatePageMeta({
       metadata.alternates!.types = {}
     }
     metadata.alternates!.types['application/rss+xml'] = feed
+  }
+
+  if (author) {
+    metadata.other['twitter:label1'] = 'Written by'
+    metadata.other['twitter:data1'] = author
+  }
+  if (readingTime) {
+    metadata.other['twitter:label2'] = 'Est. reading time'
+    metadata.other['twitter:data2'] = readingTime
   }
 
   return metadata

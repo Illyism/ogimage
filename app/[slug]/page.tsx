@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: any) {
     publishedAt: post.publishedAt,
     updatedAt: post.updatedAt,
     author: post.author,
+    readingTime: post.readingTime,
   })
 }
 
