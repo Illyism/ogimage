@@ -46,6 +46,7 @@ export function Footer() {
       </div>
       <div className="contain flex items-center justify-between border-double text-xs">
         <div>© {now.getFullYear()} The Swiss Observer</div>
+        <NavLink href="/about">About</NavLink>
         <NavLink href="/imprint">Imprint</NavLink>
         <NavLink href="/privacy-policy">Privacy</NavLink>
         <div className="flex-1"></div>
