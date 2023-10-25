@@ -24,6 +24,8 @@ export async function generateMetadata({ params }: any) {
     description: post.description,
     image: post.image,
     image_alt: post.image_alt,
+    image_width: post.image_width,
+    image_height: post.image_height,
     url: post.url,
     publishedAt: post.publishedAt,
     updatedAt: post.updatedAt,

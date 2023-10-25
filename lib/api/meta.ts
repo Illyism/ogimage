@@ -10,6 +10,14 @@ interface MetaReturn {
     opengraphPublishedTime: string
     opengraphModifiedTime: string
     opengraphAuthor: string
+    opengraphImage: {
+      sourceUrl: string
+      altText: string
+      mediaDetails: {
+        width: number
+        height: number
+      }
+    }
   }
   featuredImage: {
     node: {
@@ -33,6 +41,14 @@ const commonQuery = `
     opengraphPublishedTime
     opengraphModifiedTime
     opengraphAuthor
+    opengraphImage {
+      sourceUrl
+      altText
+      mediaDetails {
+        width
+        height
+      }
+    }
   }
   featuredImage {
     node {
@@ -104,8 +120,10 @@ export async function getPostOrPageMetadata(slug: string) {
   return {
     title: data.seo.title || data.title,
     description: stripHTML(data.seo.metaDesc || data.excerpt || ''),
-    image: data.featuredImage?.node?.sourceUrl,
-    image_alt: data.featuredImage?.node?.altText,
+    image: data.seo.opengraphImage?.sourceUrl,
+    image_alt: data.seo.opengraphImage?.altText,
+    image_width: data.seo.opengraphImage?.mediaDetails?.width,
+    image_height: data.seo.opengraphImage?.mediaDetails?.height,
     url: data.seo.canonical,
     publishedAt: data.seo.opengraphPublishedTime,
     updatedAt: data.seo.opengraphModifiedTime,

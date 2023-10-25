@@ -34,7 +34,12 @@ export const rootMetadata: Metadata = {
     'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large',
 }
 
-function getImage(image?: StaticImageData | string, alt?: string) {
+function getImage(
+  image?: StaticImageData | string,
+  alt?: string,
+  width?: number,
+  height?: number,
+) {
   if (!image) {
     return null
   }
@@ -43,6 +48,9 @@ function getImage(image?: StaticImageData | string, alt?: string) {
     return {
       url: image,
       alt,
+      width,
+      height,
+      type: image.endsWith('.png') ? 'image/png' : 'image/jpeg',
     }
   }
 
@@ -51,6 +59,7 @@ function getImage(image?: StaticImageData | string, alt?: string) {
     width: image.width,
     height: image.height,
     alt,
+    type: image.src.endsWith('.png') ? 'image/png' : 'image/jpeg',
   }
 }
 
@@ -60,6 +69,8 @@ export function generatePageMeta({
   url,
   image,
   image_alt,
+  image_width,
+  image_height,
   publishedAt,
   updatedAt,
   author,
@@ -71,6 +82,8 @@ export function generatePageMeta({
   url?: string
   image?: StaticImageData | string
   image_alt?: string
+  image_width?: number
+  image_height?: number
   publishedAt?: string
   updatedAt?: string
   author?: string
@@ -111,7 +124,7 @@ export function generatePageMeta({
     }
   }
 
-  const img = getImage(image, image_alt || title)
+  const img = getImage(image, image_alt || title, image_width, image_height)
   const screenshot = {
     url: `${metadata.metadataBase}og?url=${encodeURIComponent(url || '/')}`,
     width: 1200,
