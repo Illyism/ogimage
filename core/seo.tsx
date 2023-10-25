@@ -158,7 +158,7 @@ export function generatePageMeta({
   }
   if (readingTime) {
     metadata.other['twitter:label2'] = 'Est. reading time'
-    metadata.other['twitter:data2'] = readingTime
+    metadata.other['twitter:data2'] = `${readingTime} min`
   }
 
   return metadata
