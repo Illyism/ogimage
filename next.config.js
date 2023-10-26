@@ -3,9 +3,6 @@ const nextConfig = {
   reactStrictMode: false,
   trailingSlash: true,
   experimental: {
-    useDeploymentId: true,
-    serverActions: true,
-    useDeploymentIdServerActions: true,
     mdxRs: true,
   },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
