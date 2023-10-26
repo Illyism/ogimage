@@ -13,6 +13,9 @@ const pageQuery = `
     opengraphModifiedTime
     opengraphAuthor
     fullHead
+    schema {
+      raw
+    }
   }
   featuredImage {
     node {

@@ -3,7 +3,6 @@ import { getPostOrPageMetadata } from '@/lib/api/meta'
 import { getAllPostsAndPagesForSitemap } from '@/lib/api/sitemap'
 import { getPostAndMorePosts } from '@/lib/api/slug'
 import { notFound } from 'next/navigation'
-import { Product, WithContext } from 'schema-dts'
 import { BlogTemplate } from './BlogTemplate'
 
 export async function generateStaticParams() {
@@ -40,20 +39,16 @@ export default async function BlogArticle({ params }: any) {
     return notFound()
   }
 
-  const jsonLd: WithContext<Product> = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: 'Next.js Sticker',
-    image: 'https://nextjs.org/imgs/sticker.png',
-    description: 'Dynamic at the speed of static.',
-  }
-
+  // replace all https://bpswissobserve.wpenginepowered.com with https://swissobserver.com
+  const schema = post.post.seo.schema?.raw.replaceAll(
+    'https://bpswissobserve.wpenginepowered.com',
+    'https://swissobserver.com',
+  )
   return (
     <>
-      <div dangerouslySetInnerHTML={{ __html: post.post.seo.fullHead }}></div>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: schema }}
       />
       <BlogTemplate post={post.post} posts={post.posts} />
     </>

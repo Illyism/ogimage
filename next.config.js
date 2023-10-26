@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  trailingSlash: true, 
+  trailingSlash: true,
   experimental: {
     useDeploymentId: true,
     serverActions: true,
@@ -37,6 +37,15 @@ const nextConfig = {
             value: 'on',
           },
         ],
+      },
+    ]
+  },
+  rewrites() {
+    return [
+      {
+        source: '/wp-content/:path*',
+        destination:
+          'https://bpswissobserve.wpenginepowered.com/wp-content/:path*',
       },
     ]
   },
