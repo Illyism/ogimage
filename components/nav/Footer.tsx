@@ -56,6 +56,7 @@ export function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Telegram"
+          title="Telegram"
         >
           <MessageCircle className="h-4 w-4" />
         </Link>
@@ -65,6 +66,7 @@ export function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Twitter"
+          title="Twitter"
         >
           <Twitter className="h-4 w-4" />
         </Link>
@@ -74,6 +76,7 @@ export function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Facebook"
+          title="Facebook"
         >
           <Facebook className="h-4 w-4" />
         </Link>
