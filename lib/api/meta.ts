@@ -121,7 +121,7 @@ export async function getPostOrPageMetadata(slug: string) {
 
   return {
     title: data.seo.title || data.title,
-    description: stripHTML(data.seo.metaDesc || data.excerpt || ''),
+    description: getDescription(data),
     image: data.seo.opengraphImage?.sourceUrl,
     image_alt: data.seo.opengraphImage?.altText,
     image_width: data.seo.opengraphImage?.mediaDetails?.width,
@@ -134,6 +134,18 @@ export async function getPostOrPageMetadata(slug: string) {
   }
 }
 
-function stripHTML(html: string) {
-  return html.replace(/<[^>]*>?/gm, '')
+export function getDescription(post: {
+  title?: string
+  excerpt?: string
+  seo?: {
+    metaDesc?: string
+  }
+}) {
+  if (post.seo?.metaDesc) {
+    return post.seo.metaDesc
+  }
+  if (!post.excerpt) {
+    return post.title || ''
+  }
+  return post.excerpt.replace(/<[^>]*>?/gm, '')
 }

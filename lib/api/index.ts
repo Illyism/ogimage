@@ -8,6 +8,10 @@ type Post = {
     date: string
     isSticky: boolean
     readingTime: string
+    seo: {
+      title: string
+      metaDesc: string
+    }
     featuredImage?: {
       node: {
         altText: string
@@ -75,6 +79,10 @@ export async function getAllPostsForHome(preview = false) {
             date
             isSticky
             readingTime
+            seo {
+              title
+              metaDesc
+            }
             featuredImage {
               node {
                 altText

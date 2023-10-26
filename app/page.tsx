@@ -2,6 +2,7 @@
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { getAllPostsForHome } from '@/lib/api'
+import { getDescription } from '@/lib/api/meta'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -32,10 +33,9 @@ export default async function Home() {
                     <h3 className="mb-2 font-display text-3xl font-bold tracking-tight text-gray-800">
                       {post.node.title}
                     </h3>
-                    <div
-                      className="mb-1 text-sm text-gray-800"
-                      dangerouslySetInnerHTML={{ __html: post.node.excerpt }}
-                    ></div>
+                    <div className="mb-1 text-sm text-gray-800">
+                      {getDescription(post.node)}
+                    </div>
                     <div className="text-[10px] font-medium uppercase tracking-wider text-gray-500">
                       {post.node.readingTime} min read
                     </div>

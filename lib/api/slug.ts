@@ -12,7 +12,6 @@ const pageQuery = `
     opengraphPublishedTime
     opengraphModifiedTime
     opengraphAuthor
-    fullHead
     schema {
       raw
     }
