@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 export const SiteBox = ({
   src,
   alt,
@@ -5,14 +6,14 @@ export const SiteBox = ({
   description,
   hostname,
 }: {
-  src: string;
-  alt: string;
-  title: string;
-  description: string;
-  hostname?: string;
+  src: string
+  alt: string
+  title: string
+  description: string
+  hostname?: string
 }) => {
   const hasDescription =
-    description && description.length > 0 && description != "No description";
+    description && description.length > 0 && description != 'No description'
   return (
     <div className="group relative overflow-hidden rounded-md border border-gray-300 bg-white shadow">
       <img
@@ -28,5 +29,5 @@ export const SiteBox = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
