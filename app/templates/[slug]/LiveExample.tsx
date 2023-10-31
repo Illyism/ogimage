@@ -20,7 +20,7 @@ export const LiveExample = ({ slug, defaultURL }) => {
     title: string | null
     description: string | null
     image: string | null
-  }>(debouncedUrl && `/api/edge/metatags?url=${debouncedUrl}`, fetcher, {
+  }>(debouncedUrl && `/metatags?url=${debouncedUrl}`, fetcher, {
     revalidateOnFocus: false,
   })
 
