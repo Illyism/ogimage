@@ -5,11 +5,11 @@ const domain = `ogimage.org`
 export default async function Sitemap() {
   return [
     {
-      url: `https://${domain}/`,
+      url: `https://${domain}`,
       lastModified: new Date(),
     },
     {
-      url: `https://${domain}/templates/`,
+      url: `https://${domain}/templates`,
       lastModified: new Date(),
     },
     ...allTemplateMeta.map((t) => ({
