@@ -1,23 +1,23 @@
-import { ImageResponse } from "@vercel/og";
+import { ImageResponse } from '@vercel/og'
 
-const Satoshi = fetch(new URL("./Satoshi-Black.ttf", import.meta.url)).then(
+const Satoshi = fetch(new URL('./Satoshi-Black.ttf', import.meta.url)).then(
   (res) => res.arrayBuffer(),
-);
+)
 
 export async function generateImage({
   width,
   height,
   url,
 }: {
-  width: number;
-  height: number;
-  url: string;
+  width: number
+  height: number
+  url: string
 }) {
-  const satoshi = await Satoshi;
+  const satoshi = await Satoshi
 
   const { title, image } = await fetch(
-    `https://api.ogimage.org/metatags?url=${url}`,
-  ).then((res) => res.json());
+    `https://ogimage.org/metatags?url=${url}`,
+  ).then((res) => res.json())
 
   return new ImageResponse(
     (
@@ -27,7 +27,7 @@ export async function generateImage({
           tw="absolute left-0 bottom-0 h-2/3 w-full"
           style={{
             background:
-              "linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%)",
+              'linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%)',
           }}
         ></div>
         {title && (
@@ -42,10 +42,10 @@ export async function generateImage({
       height,
       fonts: [
         {
-          name: "Satoshi",
+          name: 'Satoshi',
           data: satoshi,
         },
       ],
     },
-  );
+  )
 }

@@ -1,45 +1,39 @@
 import { LOCALHOST_IP } from '@/lib/constants'
-import { ratelimit, recordMetatags } from '@/lib/upstash'
+import { ratelimit } from '@/lib/upstash'
 import { isValidUrl } from '@/lib/utils'
 import { ipAddress } from '@vercel/edge'
 import { getToken } from 'next-auth/jwt'
-import { NextFetchEvent, NextRequest } from 'next/server'
+import { NextRequest } from 'next/server'
 import { parse } from 'node-html-parser'
 
-export const config = {
-  runtime: 'edge',
-}
+export const runtime = 'edge'
 
-export default async function handler(req: NextRequest, ev: NextFetchEvent) {
-  if (req.method === 'GET') {
-    const url = req.nextUrl.searchParams.get('url')
-    if (!url || !isValidUrl(url)) {
-      return new Response('Invalid URL', { status: 400 })
-    }
-
-    // Rate limit if user is not logged in
-    const session = await getToken({
-      req,
-      secret: process.env.NEXTAUTH_SECRET,
-    })
-    if (!session?.email) {
-      const ip = ipAddress(req) || LOCALHOST_IP
-      const { success } = await ratelimit().limit(ip)
-      if (!success) {
-        return new Response("Don't DDoS me pls 🥺", { status: 429 })
-      }
-    }
-
-    const metatags = await getMetaTags(url, ev)
-    return new Response(JSON.stringify(metatags), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-  } else {
-    return new Response(`Method ${req.method} Not Allowed`, { status: 405 })
+export const GET = async (req: NextRequest) => {
+  const url = req.nextUrl.searchParams.get('url')
+  if (!url || !isValidUrl(url)) {
+    return new Response('Invalid URL', { status: 400 })
   }
+
+  // Rate limit if user is not logged in
+  const session = await getToken({
+    req,
+    secret: process.env.NEXTAUTH_SECRET,
+  })
+  if (!session?.email) {
+    const ip = ipAddress(req) || LOCALHOST_IP
+    const { success } = await ratelimit().limit(ip)
+    if (!success) {
+      return new Response("Don't DDoS me pls 🥺", { status: 429 })
+    }
+  }
+
+  const metatags = await getMetaTags(url)
+  return new Response(JSON.stringify(metatags), {
+    status: 200,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  })
 }
 
 const getHtml = async (url: string) => {
@@ -50,6 +44,9 @@ const getHtml = async (url: string) => {
       signal: controller.signal,
       headers: {
         'User-Agent': 'dub-bot/1.0',
+      },
+      next: {
+        revalidate: 60, // revalidate once per minute
       },
     })
     clearTimeout(timeoutId)
@@ -99,7 +96,7 @@ const getRelativeUrl = (url: string, imageUrl: string) => {
   return new URL(imageUrl, baseURL).toString()
 }
 
-export const getMetaTags = async (url: string, ev?: NextFetchEvent) => {
+export const getMetaTags = async (url: string) => {
   const html = await getHtml(url)
   if (!html) {
     return {
@@ -137,12 +134,6 @@ export const getMetaTags = async (url: string, ev?: NextFetchEvent) => {
     object['image_src'] ||
     object['icon'] ||
     object['shortcut icon']
-
-  if (ev) {
-    ev.waitUntil(
-      recordMetatags(url, title && description && image ? false : true),
-    )
-  }
 
   return {
     title: title || url,
