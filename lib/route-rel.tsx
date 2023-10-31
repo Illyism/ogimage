@@ -1,6 +1,6 @@
 const APPROVED = [
   'il.ly',
-  'swissobserver.com',
+  'ogimage.org',
   'gradient.page',
   'magicbuddy.chat',
   'magicspace.ae',
@@ -14,6 +14,7 @@ const APPROVED = [
   'apnews.com',
   'typefully.com',
   'buildinpublic.community',
+  'storychief.io',
 ]
 
 /*

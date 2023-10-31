@@ -1,7 +1,7 @@
 import { generateImage } from '@/core/og'
 
 export const runtime = 'edge'
-export const alt = 'The Swiss Observer'
+export const alt = 'OgImage.Org'
 export const size = { width: 1200, height: 600 }
 export const contentType = 'image/png'
 

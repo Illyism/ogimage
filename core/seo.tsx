@@ -3,14 +3,14 @@ import { type OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types'
 import { Twitter } from 'next/dist/lib/metadata/types/twitter-types'
 import { type StaticImageData } from 'next/image'
 
-const title = 'Swiss Observer: News, Work, Money & Tech from Switzerland'
-const description = `Latest Switzerland news, comment and analysis from the Swiss Observer, the world's trusted business perspective.`
+const title = 'OgImage.Org: Open Graph Image Generator'
+const description = `Generate open graph images with ease using OgImage.Org, your reliable open graph image generator.`
 
 export const rootOpenGraph: OpenGraph = {
   locale: 'en',
   type: 'website',
-  url: 'https://swissobserver.com',
-  siteName: 'The Swiss Observer',
+  url: 'https://ogimage.org',
+  siteName: 'OgImage.Org',
   title,
   description,
 }
@@ -24,13 +24,12 @@ export const rootTwitter: Twitter = {
 }
 
 export const rootMetadata: Metadata = {
-  metadataBase: new URL('https://swissobserver.com'),
+  metadataBase: new URL('https://ogimage.org'),
   title,
   description,
-  applicationName: 'the Swiss Observer',
+  applicationName: 'Swiss Observer',
   openGraph: rootOpenGraph,
   twitter: rootTwitter,
-  themeColor: '#020817',
   robots:
     'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large',
 }
@@ -65,8 +64,8 @@ function getImage(
 }
 
 export function generatePageMeta({
-  title = 'Swiss Observer: News, Work, Money & Tech from Switzerland',
-  description = `Latest Switzerland news, comment and analysis from the Swiss Observer, the world's trusted business perspective.`,
+  title = 'OgImage.Org: Open Graph Image Generator',
+  description = `Generate open graph images for your website with OgImage.Org, the trusted open graph image generator.`,
   url,
   image,
   image_alt,
@@ -125,7 +124,7 @@ export function generatePageMeta({
       modifiedTime: updatedAt ?? publishedAt,
       authors: ['https://www.facebook.com/TheSwissObserver'],
       section: siteName,
-      tags: [siteName],
+      tags: [siteName ?? ''],
     }
   }
 
@@ -153,12 +152,12 @@ export function generatePageMeta({
   }
 
   if (author) {
-    metadata.other['twitter:label1'] = 'Written by'
-    metadata.other['twitter:data1'] = author
+    metadata.other!['twitter:label1'] = 'Written by'
+    metadata.other!['twitter:data1'] = author
   }
   if (readingTime) {
-    metadata.other['twitter:label2'] = 'Est. reading time'
-    metadata.other['twitter:data2'] = `${readingTime} min`
+    metadata.other!['twitter:label2'] = 'Est. reading time'
+    metadata.other!['twitter:data2'] = `${readingTime} min`
   }
 
   return metadata

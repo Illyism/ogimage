@@ -10,7 +10,7 @@ import { getRouteRel } from './lib/route-rel'
 
 const ResponsiveImage = (props: any) => {
   const src = props.src?.src ?? props.src ?? ''
-  const abs = src.startsWith('/') ? `https://swissobserver.com${src}` : src
+  const abs = src.startsWith('/') ? `https://ogimage.org${src}` : src
   return (
     <span itemProp="image" itemScope itemType="https://schema.org/ImageObject">
       <Image
@@ -26,10 +26,10 @@ const ResponsiveImage = (props: any) => {
       <span className="hidden" aria-hidden>
         <link itemProp="contentUrl" href={abs} />
         <span itemProp="creator" itemType="https://schema.org/Person" itemScope>
-          <meta itemProp="name" content="The Swiss Observer" />
+          <meta itemProp="name" content="OgImage.Org" />
         </span>
-        <span itemProp="copyrightNotice">&copy; The Swiss Observer</span>
-        <span itemProp="creditText">The Swiss Observer</span>
+        <span itemProp="copyrightNotice">&copy; OgImage.Org</span>
+        <span itemProp="creditText">OgImage.Org</span>
       </span>
     </span>
   )

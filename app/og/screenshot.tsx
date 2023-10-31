@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { ImageResponse } from 'next/server'
+import { ImageResponse } from 'next/og'
 
 export interface props {
   version: string
@@ -28,7 +28,7 @@ export async function generateImage(props: props) {
       headers: {
         'Cache-Control': 'public, max-age=86400, immutable',
       },
-    }
+    },
   )
 }
 
@@ -43,7 +43,7 @@ function getScreenshotURL({ url, accessKey, width, height }: props) {
   query.append('format', 'png')
   query.append(
     'user_agent',
-    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36 Google Favicon'
+    'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36 Google Favicon',
   )
   query.append('time_zone', 'Europe/Berlin')
   query.append('block_ads', 'true')

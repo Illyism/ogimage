@@ -1,6 +1,6 @@
 import { getAllPostsAndPagesForSitemap } from '@/lib/api/sitemap'
 
-const domain = `swissobserver.com`
+const domain = `ogimage.org`
 
 export default async function Sitemap() {
   const articles = await getAllPostsAndPagesForSitemap()

@@ -84,10 +84,8 @@ export function MobileNavigation(props: any) {
             </div>
             <nav className="mt-6">
               <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-                <MobileNavItem href="/me">About Me</MobileNavItem>
-                <MobileNavItem href="/blog">Blog</MobileNavItem>
-                <MobileNavItem href="/projects">Projects</MobileNavItem>
-                <MobileNavItem href="/contact">Contact</MobileNavItem>
+                <MobileNavItem href="/">Home</MobileNavItem>
+                <MobileNavItem href="/templates">Templates</MobileNavItem>
               </ul>
             </nav>
           </Popover.Panel>

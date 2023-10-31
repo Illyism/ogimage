@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: https://swissobserver.com/sitemap.xml
+Sitemap: https://ogimage.org/sitemap.xml

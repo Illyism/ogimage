@@ -11,8 +11,8 @@ export function NavItem({ href, children }: any) {
       className={clsx(
         'px-3 py-2 transition',
         isActive
-          ? 'rounded-2xl text-yellow-500 dark:bg-yellow-500/5 dark:text-yellow-400'
-          : 'hover:text-yellow-500 dark:hover:text-yellow-400'
+          ? 'rounded-2xl text-red-500 dark:bg-red-500/5 dark:text-red-400'
+          : 'hover:text-red-500 dark:hover:text-red-400',
       )}
     >
       {children}

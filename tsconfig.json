@@ -15,14 +15,11 @@
     "jsx": "preserve",
     "incremental": true,
     "allowImportingTsExtensions": true,
-
     // linting
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
     "baseUrl": ".",
-
     "plugins": [
       {
         "name": "next"
@@ -35,11 +32,13 @@
       "@/core/*": ["core/*"],
       "@/lib/*": ["lib/*"],
       "@/prompts/*": ["prompts/*"],
+      "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
       "@/images/*": ["images/*"],
       "~/*": ["public/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
-    }
+    },
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
@@ -47,7 +46,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "types/**/*.ts",
-    "dist/types/**/*.ts"
+    "dist/types/**/*.ts",
+    ".contentlayer/generated"
   ],
   "exclude": ["node_modules"]
 }

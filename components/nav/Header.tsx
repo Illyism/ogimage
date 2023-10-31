@@ -1,91 +1,56 @@
+'use client'
 import { cn } from '@/lib/utils'
-import { Sparkles } from 'lucide-react'
 import Link from 'next/link'
+import { Button } from '../ui/button'
+import { MobileNavigation } from './MobileNavigation'
+import { NavItem } from './NavItem'
 
-export const getRates = async () => {
-  const res = await fetch(
-    'http://api.exchangeratesapi.io/v1/latest?access_key=3fd70494645f72915a83cc5b6cab4337',
-    {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      next: {
-        revalidate: 86400,
-        tags: ['rates'],
-      },
-    },
-  )
-  const data = await res.json()
-  return data.rates
-}
-
-export async function Header() {
-  const now = new Date()
-  const rates = await getRates()
-
+export function Header() {
   return (
-    <header className="contain w-full">
-      <div className="grid grid-cols-4 items-center justify-between gap-4 border-b py-4">
-        <div className="col-span-4 flex items-center justify-center sm:order-2 sm:col-span-2">
-          <Link
-            href="/"
-            className="font-display text-xl font-black lg:text-5xl"
-          >
-            The Swiss Observer
-          </Link>
-        </div>
-        <time
-          dateTime={now.toISOString()}
-          className="col-span-2 text-xs font-bold sm:order-1 sm:col-span-1"
-        >
-          {now.toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-          })}
-        </time>
-        <div className="col-span-2 flex items-center justify-end text-[10px] font-medium sm:order-3 sm:col-span-1">
-          {rates['CHF'].toFixed(2)} CHF = 1 EUR
-        </div>
+    <>
+      <div className="py-4" aria-hidden>
+        &nbsp;
       </div>
-      <div className="border-b border-black pb-0.5">
-        <nav className="flex items-center justify-center border-b border-black text-xs">
-          <NavLink href="/" className="-ml-2">
-            Swiss
-          </NavLink>
-          
-          <div className="m-2 h-full w-px border-l border-border">&nbsp;</div>
-          <Link
-            href="https://magicspace.ae"
-            className="hover:text-primary"
-            aria-label="MagicSpace"
-            title="MagicSpace"
-          >
-            <Sparkles className="h-4 w-4" />
-          </Link>
-        </nav>
-      </div>
-    </header>
+      <header className="fixed top-0 z-20 w-full">
+        <div className="relative overflow-hidden border px-3 py-2 text-sm font-medium text-zinc-800 shadow-zinc-800/5 backdrop-blur dark:text-zinc-200">
+          <div className="contain">
+            <div className="grid grid-cols-2 items-center justify-between gap-2 sm:grid-cols-5">
+              <Link href="/" className="flex flex-1 items-center gap-2">
+                <span className="whitespace-nowrap font-bold md:text-xl">
+                  OgImage.Org
+                </span>
+              </Link>
+
+              <div className="flex items-center justify-end sm:hidden">
+                <MobileNavigation className="pointer-events-auto" />
+              </div>
+              <div className="pointer-events-auto col-span-4 hidden items-center justify-end sm:flex md:col-span-3 md:justify-center">
+                <NavItem href="/">Home</NavItem>
+                <NavItem href="/templates">Templates</NavItem>
+                <ContactButton className="md:hidden" />
+              </div>
+
+              <div className="hidden items-center justify-end md:flex">
+                <ContactButton />
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+    </>
   )
 }
 
-const NavLink = ({
-  href,
-  children,
-  className,
-}: {
-  href: string
-  children: React.ReactNode
-  className?: string
-}) => {
+const ContactButton = ({ className }: any) => {
   return (
-    <Link
-      href={href}
-      className={cn('px-2 py-2 font-medium hover:bg-card/50', className)}
+    <Button
+      className={cn(
+        'h-auto w-fit cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-2xl border border-primary bg-primary px-4 py-2.5 text-sm font-bold leading-none text-primary-foreground shadow-xl outline outline-1 outline-offset-[-2px] outline-primary-foreground/30 transition-all duration-150 ease-in-out hover:bg-primary/90',
+        className,
+      )}
+      asChild
     >
-      {children}
-    </Link>
+      <Link href="https://magicspace.ae/buy/strategy">Get Started</Link>
+    </Button>
   )
 }

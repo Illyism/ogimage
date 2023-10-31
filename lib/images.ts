@@ -3,7 +3,7 @@ export async function getBlurDataURL(url: string) {
     return 'data:image/webp;base64,AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA='
   }
   try {
-    const _url = url.startsWith('/') ? `https://swissobserver.com${url}` : url
+    const _url = url.startsWith('/') ? `https://ogimage.org${url}` : url
     const response = await fetch(
       `https://wsrv.nl/?url=${_url}&w=50&h=50&blur=5`,
     )

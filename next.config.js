@@ -1,3 +1,5 @@
+const { withContentlayer } = require('next-contentlayer')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
@@ -9,6 +11,7 @@ const nextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     domains: [
+      'ogimage.org',
       'lh3.googleusercontent.com',
       'res.cloudinary.com',
       'images.unsplash.com',
@@ -16,9 +19,19 @@ const nextConfig = {
       'img.youtube.com',
       'i.ytimg.com',
       'ssl.gstatic.com',
+      'il.ly',
       'secure.gravatar.com',
       'bpswissobserve.wpenginepowered.com',
     ],
+  },
+  redirects() {
+    return [
+      {
+        source: '/buy',
+        destination: 'https://magicspace.ae/buy/strategy',
+        permanent: false,
+      },
+    ]
   },
   async headers() {
     return [
@@ -37,15 +50,6 @@ const nextConfig = {
       },
     ]
   },
-  rewrites() {
-    return [
-      {
-        source: '/wp-content/:path*',
-        destination:
-          'https://bpswissobserve.wpenginepowered.com/wp-content/:path*',
-      },
-    ]
-  },
 }
 
-module.exports = nextConfig
+module.exports = withContentlayer(nextConfig)
