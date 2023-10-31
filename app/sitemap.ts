@@ -1,17 +1,20 @@
-import { getAllPostsAndPagesForSitemap } from '@/lib/api/sitemap'
+import { allTemplateMeta } from 'contentlayer/generated'
 
 const domain = `ogimage.org`
 
 export default async function Sitemap() {
-  const articles = await getAllPostsAndPagesForSitemap()
   return [
     {
       url: `https://${domain}/`,
       lastModified: new Date(),
     },
-    ...articles.map((p) => ({
-      url: `https://${domain}/${p.slug}/`,
-      lastModified: new Date(p.date),
+    {
+      url: `https://${domain}/templates/`,
+      lastModified: new Date(),
+    },
+    ...allTemplateMeta.map((t) => ({
+      url: `https://${domain}/templates/${t.slug}`,
+      lastModified: t.createdAt,
     })),
   ]
 }

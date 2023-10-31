@@ -6,7 +6,8 @@ import { useParams } from 'next/navigation'
 import BLOG_CATEGORIES from './categories.json'
 
 export default function BlogLayoutHero() {
-  const { category } = useParams()
+  const params = useParams()
+  const category = params?.category
 
   const data = BLOG_CATEGORIES.find((c) => c.slug === category)
 
