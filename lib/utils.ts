@@ -78,7 +78,7 @@ export async function fetcher<JSON = any>(
 
   if (!res.ok) {
     const error = await res.text()
-    const err = new Error(error) as SWRError
+    const err = new Error(error) as any
     err.status = res.status
     throw err
   }
