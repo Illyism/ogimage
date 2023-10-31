@@ -12,7 +12,7 @@ export function takeScreenshot({
 }) {
   const base = `https://api.screenshotone.com/take`
   const query = new URLSearchParams()
-  query.append('access_key', 'qZM9LSWLkPFQ0w')
+  query.append('access_key', 'Ln1wiuBTbTQexA')
   query.append('url', url.includes('http') ? url : `https://ogimage.org${url}`)
   query.append('viewport_width', width.toString())
   query.append('viewport_height', height.toString())

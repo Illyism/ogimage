@@ -10,7 +10,7 @@ export const GET = async (req: NextRequest) => {
   const url = slug.includes('http') ? slug : `${base}${slug}`
 
   const image = await generateImage({
-    accessKey: 'qZM9LSWLkPFQ0w',
+    accessKey: 'Ln1wiuBTbTQexA',
     url,
     version: 'v1',
     width: 1200,
