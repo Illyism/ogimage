@@ -16,7 +16,7 @@ export const LiveExample = ({ slug, defaultURL }) => {
     return getDomainWithoutWWW(debouncedUrl || '')
   }, [debouncedUrl])
 
-  const { data, isValidating } = useSWR<{
+  const { data } = useSWR<{
     title: string | null
     description: string | null
     image: string | null
