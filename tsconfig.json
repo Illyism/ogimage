@@ -47,7 +47,8 @@
     ".next/types/**/*.ts",
     "types/**/*.ts",
     "dist/types/**/*.ts",
-    ".contentlayer/generated"
+    ".contentlayer/generated",
+    "node_modules/@directus/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }
