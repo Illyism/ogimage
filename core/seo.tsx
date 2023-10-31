@@ -19,15 +19,15 @@ export const rootTwitter: Twitter = {
   title,
   description,
   card: 'summary_large_image',
-  creator: '@MySwissObserver',
-  site: '@MySwissObserver',
+  creator: '@illyism',
+  site: '@illyism',
 }
 
 export const rootMetadata: Metadata = {
   metadataBase: new URL('https://ogimage.org'),
   title,
   description,
-  applicationName: 'Swiss Observer',
+  applicationName: 'OgImage.Org',
   openGraph: rootOpenGraph,
   twitter: rootTwitter,
   robots:

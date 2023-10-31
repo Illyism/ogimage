@@ -21,7 +21,6 @@ const nextConfig = {
       'ssl.gstatic.com',
       'il.ly',
       'secure.gravatar.com',
-      'bpswissobserve.wpenginepowered.com',
     ],
   },
   redirects() {
