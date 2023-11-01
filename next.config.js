@@ -26,7 +26,7 @@ const nextConfig = {
     return [
       {
         source: '/buy',
-        destination: 'https://magicspace.ae/buy/strategy',
+        destination: 'https://magicspace.ae/buy/ogimage',
         permanent: false,
       },
     ]

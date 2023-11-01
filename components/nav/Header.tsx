@@ -43,7 +43,7 @@ export function Header() {
 const ContactButton = ({ className }: any) => {
   return (
     <Button variant="outline" className={className} asChild>
-      <Link href="https://magicspace.ae/buy/strategy">Get Started</Link>
+      <Link href="/buy">Get Started</Link>
     </Button>
   )
 }

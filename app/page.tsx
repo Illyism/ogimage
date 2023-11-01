@@ -25,7 +25,7 @@ const Hero = () => {
         <div className="hero-content mx-auto flex max-w-4xl flex-col items-center justify-center px-10 py-14 text-center lg:py-20 xl:max-w-5xl">
           <div className="mx-auto mb-2 text-lg font-bold text-violet-500">
             How to Increase Social Clicks by{' '}
-            <b className="font-black text-violet-600">213%</b> Almost
+            <b className="text-xl font-black text-violet-700">213%</b> Almost
             Overnight...
           </div>
           <h1 className="mx-auto max-w-4xl text-3xl font-bold leading-[1.4] tracking-[-0.015em] md:max-w-[39rem] md:text-5xl lg:max-w-4xl lg:text-7xl">
