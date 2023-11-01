@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
+import directus from '@/lib/directus'
+import { readItem } from '@directus/sdk'
 import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 
@@ -11,9 +13,24 @@ export const metadata = generatePageMeta({
 })
 
 export default async function Page() {
+  const home = await directus.request(
+    readItem('pages', 1, {
+      fields: ['content'],
+    }),
+  )
+  const content = home.content
   return (
     <PageLayout>
       <Hero />
+
+      <div
+        className="prose prose-sm mx-auto"
+        dangerouslySetInnerHTML={{ __html: content }}
+      ></div>
+
+      <div className="contain max-w-xl">
+        <CTA />
+      </div>
     </PageLayout>
   )
 }
@@ -39,41 +56,29 @@ const Hero = () => {
               page on your website.
             </p>
           </div>
-          <div className="hero-button flex gap-x-5 py-4">
-            <Link
-              href="/buy"
-              className="flex h-[40px] w-40 items-center justify-center rounded-full bg-violet-500 text-base font-bold text-white hover:shadow-lg hover:drop-shadow-lg lg:h-[50px] lg:w-44 lg:text-lg"
-            >
-              <span className="tracking-tight">Get Started</span>
-              <ArrowRightIcon className="ml-2" />
-            </Link>
-            <Link
-              href="/templates"
-              className="flex h-[40px] w-40 items-center justify-center rounded-full border border-violet-500 bg-white text-base font-bold text-black transition duration-200 hover:bg-slate-500/20 hover:shadow-lg hover:drop-shadow-lg lg:h-[50px] lg:w-44 lg:text-lg"
-            >
-              <span className="tracking-tight">See Templates</span>
-            </Link>
-          </div>
+          <CTA />
         </div>
       </div>
-      <div className="hero-video -mt-1 border-0">
-        <div className="hero-section-video relative mx-auto max-w-4xl rounded-lg px-10 py-2 md:px-14 lg:px-10 xl:max-w-5xl xl:px-2 ">
-          <div className="image-container">
-            <img
-              className="rounded-xl shadow-md drop-shadow-md"
-              src="/assets/hero-video-image-3b4e60e3.jpg"
-              alt=""
-            />
-          </div>
-          <div className="absolute bottom-0 left-0 right-0 top-0 flex items-center justify-center ">
-            <img
-              className="h-20 w-20 lg:h-auto lg:w-auto"
-              src="/assets/play-button-86c12f68.svg"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
+    </div>
+  )
+}
+
+const CTA = () => {
+  return (
+    <div className="hero-button flex gap-x-5 py-4">
+      <Link
+        href="/buy"
+        className="flex h-[40px] w-40 items-center justify-center rounded-full bg-violet-500 text-base font-bold text-white hover:shadow-lg hover:drop-shadow-lg lg:h-[50px] lg:w-44 lg:text-lg"
+      >
+        <span className="tracking-tight">Get Started</span>
+        <ArrowRightIcon className="ml-2" />
+      </Link>
+      <Link
+        href="/templates"
+        className="flex h-[40px] w-40 items-center justify-center rounded-full border border-violet-500 bg-white text-base font-bold text-black transition duration-200 hover:bg-slate-500/20 hover:shadow-lg hover:drop-shadow-lg lg:h-[50px] lg:w-44 lg:text-lg"
+      >
+        <span className="tracking-tight">See Templates</span>
+      </Link>
     </div>
   )
 }
