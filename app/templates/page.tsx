@@ -66,7 +66,7 @@ export default function Templates() {
               <img
                 src={`/templates/${post.slug}/example`}
                 alt="Preview"
-                className="aspect-video w-full border-b border-gray-300 object-cover"
+                className="aspect-[12/6] w-full border-b border-gray-300 object-cover"
               />
               <div className="grid gap-1 bg-white p-3 text-left">
                 <h3 className="truncate text-sm font-medium text-[#0f1419]">

@@ -9,10 +9,10 @@ export function NavItem({ href, children }: any) {
     <Link
       href={href}
       className={clsx(
-        'px-3 py-2 transition',
+        'px-3 py-2 font-medium transition',
         isActive
-          ? 'rounded-2xl text-red-500 dark:bg-red-500/5 dark:text-red-400'
-          : 'hover:text-red-500 dark:hover:text-red-400',
+          ? 'rounded-2xl text-primary dark:bg-primary/5 dark:text-primary'
+          : 'hover:text-primary dark:hover:text-primary',
       )}
     >
       {children}
