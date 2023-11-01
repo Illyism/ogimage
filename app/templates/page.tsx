@@ -16,14 +16,14 @@ export default function Templates() {
   )
   return (
     <div>
-      <div className="bg-gray-100 px-4 py-2 text-xs text-gray-500">
+      <div className="rounded-lg bg-violet-500 px-4 py-2 text-xs font-bold text-violet-50">
         <div className="md:max-w-3xl xl:max-w-[68rem]">
-          These standard OG image templates work for every website, blog, or
-          social media. Get a{' '}
-          <Link href="/buy" className="font-medium underline">
+          Our basic OG image templates work for every website, blog, or social
+          media. Get a{' '}
+          <Link href="/buy" className="font-black underline">
             custom template
           </Link>{' '}
-          for your brand, for <b>100% free</b>.
+          for your brand, <b>100% free</b>.
         </div>
       </div>
       <div className="md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
