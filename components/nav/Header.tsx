@@ -1,5 +1,4 @@
 'use client'
-import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { Button } from '../ui/button'
 import { MobileNavigation } from './MobileNavigation'
@@ -12,12 +11,12 @@ export function Header() {
         &nbsp;
       </div>
       <header className="fixed top-0 z-20 w-full">
-        <div className="relative overflow-hidden border px-3 py-2 text-sm font-medium text-zinc-800 shadow-zinc-800/5 backdrop-blur dark:text-zinc-200">
+        <div className="relative overflow-hidden px-3 py-2 text-sm font-medium text-gray-800 shadow-gray-800/5 backdrop-blur dark:text-gray-200">
           <div className="contain">
             <div className="grid grid-cols-2 items-center justify-between gap-2 sm:grid-cols-5">
               <Link href="/" className="flex flex-1 items-center gap-2">
                 <span className="whitespace-nowrap font-bold md:text-xl">
-                  OgImage.Org
+                  ogimage<span className="font-black text-primary">.</span>org
                 </span>
               </Link>
 
@@ -43,13 +42,7 @@ export function Header() {
 
 const ContactButton = ({ className }: any) => {
   return (
-    <Button
-      className={cn(
-        'h-auto w-fit cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-2xl border border-primary bg-primary px-4 py-2.5 text-sm font-bold leading-none text-primary-foreground shadow-xl outline outline-1 outline-offset-[-2px] outline-primary-foreground/30 transition-all duration-150 ease-in-out hover:bg-primary/90',
-        className,
-      )}
-      asChild
-    >
+    <Button variant="outline" className={className} asChild>
       <Link href="https://magicspace.ae/buy/strategy">Get Started</Link>
     </Button>
   )

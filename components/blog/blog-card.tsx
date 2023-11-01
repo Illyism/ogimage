@@ -20,7 +20,7 @@ export default function BlogCard({
       href={`/${data.category}/${data.slug}`}
       className="group relative flex h-full flex-col rounded-2xl border border-border/50 bg-card/50 transition hover:border-transparent hover:bg-card"
     >
-      <div className="absolute inset-0 z-0 scale-95 rounded-2xl bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50" />
+      <div className="absolute inset-0 z-0 scale-95 rounded-2xl bg-gray-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-gray-800/50" />
       <div className="relative z-0 flex h-full flex-1 flex-col">
         <div className="relative aspect-[1200/630] w-full">
           <BlurImage
@@ -34,7 +34,7 @@ export default function BlogCard({
           />
         </div>
         <div className="flex flex-1 flex-col rounded-b-2xl p-6">
-          <h2 className="line-clamp-4 font-display text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+          <h2 className="line-clamp-4 font-display text-2xl font-bold text-gray-900 dark:text-gray-100">
             {data.h1 || data.title}
           </h2>
           <p className="mt-2 flex-1 text-foreground/90">{data.summary}</p>
