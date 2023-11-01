@@ -38,14 +38,6 @@ const Hero = () => {
               <b className="font-black text-violet-500">OG images</b> for every
               page on your website.
             </p>
-            <p>
-              Optimized OG images have been proven to boost engagement across
-              all social platforms.
-            </p>
-            <p>
-              But who has time to create custom images for every page or post?
-            </p>
-            <p>Our intelligent app makes it easy...</p>
           </div>
           <div className="hero-button flex gap-x-5 py-4">
             <Link

@@ -17,7 +17,7 @@ export default function Templates() {
   return (
     <div>
       <div className="rounded-lg bg-violet-500 px-4 py-2 text-xs font-bold text-violet-50">
-        <div className="md:max-w-3xl xl:max-w-[68rem]">
+        <div className="mx-auto md:max-w-3xl xl:max-w-[68rem]">
           Our basic OG image templates work for every website, blog, or social
           media. Get a{' '}
           <Link href="/buy" className="font-black underline">
@@ -26,7 +26,7 @@ export default function Templates() {
           for your brand, <b>100% free</b>.
         </div>
       </div>
-      <div className="md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
+      <div className="mx-auto md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
         <header className="relative border-b border-gray-200 py-8">
           <h1 className="mb-4 flex-1 font-display text-3xl font-bold tracking-tighter text-gray-800 md:text-4xl">
             The Best Open Graph Image Templates for {new Date().getFullYear()}

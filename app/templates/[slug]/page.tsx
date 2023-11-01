@@ -59,18 +59,18 @@ export default async function TemplateDetail({
 
   return (
     <div>
-      <div className="bg-gray-100 py-2 text-xs text-gray-500">
-        <div className="md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
-          Our OG image templates are <b>100% free</b> and open source. Connect
-          your website with our{' '}
-          <Link href="/buy" className="font-medium underline">
-            paid plan
+      <div className="rounded-lg bg-violet-500 px-4 py-2 text-xs font-bold text-violet-50">
+        <div className="mx-auto md:max-w-3xl xl:max-w-[68rem]">
+          Our basic OG image templates work for every website, blog, or social
+          media. Get a{' '}
+          <Link href="/buy" className="font-black underline">
+            custom template
           </Link>{' '}
-          to support our business.
+          for your brand, <b>100% free</b>.
         </div>
       </div>
 
-      <div className="md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
+      <div className="mx-auto md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
         <header className="relative border-b border-gray-200 py-8">
           <Link href="/templates" className="mb-3 block text-sm text-gray-500">
             ← Back to Templates
