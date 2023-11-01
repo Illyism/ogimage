@@ -7,8 +7,7 @@ export async function GET(req: NextRequest) {
   const slug = req.nextUrl.pathname.split('/')[2]
   const template = generators[slug]
 
-  const url =
-    req.nextUrl.searchParams.get('url') || `https://ogimage.org/${slug}`
+  const url = req.nextUrl.searchParams.get('url') || `https://google.com`
 
   const { generateImage } = template
   const image = await generateImage({
