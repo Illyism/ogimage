@@ -16,14 +16,14 @@ export default function Templates() {
   )
   return (
     <div>
-      <div className="bg-gray-100 py-2 text-xs text-gray-500">
-        <div className="md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
-          Our OG image templates are <b>100% free</b> and open source. Connect
-          your website with our{' '}
+      <div className="bg-gray-100 px-4 py-2 text-xs text-gray-500">
+        <div className="md:max-w-3xl xl:max-w-[68rem]">
+          These standard OG image templates work for every website, blog, or
+          social media. Get a{' '}
           <Link href="/buy" className="font-medium underline">
-            paid plan
+            custom template
           </Link>{' '}
-          to support our business.
+          for your brand, for <b>100% free</b>.
         </div>
       </div>
       <div className="md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
