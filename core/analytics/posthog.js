@@ -111,7 +111,7 @@ export function initPosthog() {
       (e.__SV = 1))
   })(document, window.posthog || [])
 
-  window.posthog.init('phc_gNjlHknGKZYPutxMnnRKuADhIkE2Qx72U5a3uCVj4wv', {
+  window.posthog.init('phc_shUEtlslpYfP6b4sucDAjcr2qLmIWgk2nYZzzsuNVrd', {
     api_host: 'https://magichog.il.ly',
     ui_host: 'https://eu.posthog.com',
     loaded: () => {
