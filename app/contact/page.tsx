@@ -10,7 +10,7 @@ import { ContactCard } from './ContactCard'
 export const metadata = generatePageMeta({
   title: 'Contact OgImage.org',
   description:
-    'Contact OgImage.org, the trusted open graph image generator. We are MagicSpace, a growth partner to profitable internet businesses. We help businesses grow to $1M+ ARR.',
+    'Contact OgImage.org, the trusted open graph image generator. We are OgImage.org, the trusted open graph image generator.',
   url: '/contact',
 })
 
