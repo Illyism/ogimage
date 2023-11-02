@@ -60,7 +60,7 @@ export default async function BlogArticle({ params }: any) {
   return <BlogTemplate post={post} />
 }
 
-export const BlogTemplate = ({ post }: { post: Page }) => {
+const BlogTemplate = ({ post }: { post: Page }) => {
   return (
     <article className="flex min-h-screen flex-col justify-between">
       <header className="contain pt-16 lg:max-w-5xl">
