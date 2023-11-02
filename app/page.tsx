@@ -24,7 +24,7 @@ export default async function Page() {
       <Hero />
 
       <div
-        className="prose prose-sm mx-auto"
+        className="contain prose prose-sm mx-auto sm:prose-base"
         dangerouslySetInnerHTML={{ __html: content }}
       ></div>
 
@@ -65,7 +65,7 @@ const Hero = () => {
 
 const CTA = () => {
   return (
-    <div className="hero-button flex gap-x-5 py-4">
+    <div className="hero-button flex flex-col gap-5 py-4 sm:flex-row">
       <Link
         href="/buy"
         className="flex h-[40px] w-40 items-center justify-center rounded-full bg-violet-500 text-base font-bold text-white hover:shadow-lg hover:drop-shadow-lg lg:h-[50px] lg:w-44 lg:text-lg"
