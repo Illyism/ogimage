@@ -27,6 +27,7 @@ export function Header() {
                 <NavItem href="/">Home</NavItem>
                 <NavItem href="/templates">Templates</NavItem>
                 <NavItem href="/pricing">Pricing</NavItem>
+                <NavItem href="/contact">Contact</NavItem>
                 <ContactButton className="md:hidden" />
               </div>
 
