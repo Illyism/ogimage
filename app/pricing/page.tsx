@@ -1,6 +1,5 @@
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
-import Link from 'next/link'
 import Pricing from './pricing'
 
 export const metadata = generatePageMeta({
@@ -39,16 +38,5 @@ const Hero = () => {
         </div>
       </div>
     </div>
-  )
-}
-
-const CTA = () => {
-  return (
-    <Link
-      href="/buy"
-      className="flex h-[40px] w-40 items-center justify-center rounded-full bg-violet-500 text-base font-bold text-white hover:shadow-lg hover:drop-shadow-lg lg:h-[50px] lg:w-44 lg:text-lg"
-    >
-      <span className="tracking-tight">Order Today</span>
-    </Link>
   )
 }
