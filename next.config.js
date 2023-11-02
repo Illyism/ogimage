@@ -20,6 +20,7 @@ const nextConfig = {
       'ssl.gstatic.com',
       'il.ly',
       'secure.gravatar.com',
+      'senja-io.s3.us-west-1.amazonaws.com',
     ],
   },
   redirects() {
@@ -27,6 +28,11 @@ const nextConfig = {
       {
         source: '/buy',
         destination: 'https://clients.magicspace.ae/order/ogimage',
+        permanent: false,
+      },
+      {
+        source: '/buy/call',
+        destination: 'https://cal.com/illyism/free',
         permanent: false,
       },
     ]

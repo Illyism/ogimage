@@ -38,7 +38,9 @@ export function Footer() {
       <div className="contain flex items-center justify-between border-double text-xs">
         <div>© {now.getFullYear()} OgImage.Org</div>
         <NavLink href="/about">About Us</NavLink>
+        <NavLink href="/privacy">Privacy Policy</NavLink>
         <div className="flex-1"></div>
+        <NavLink href="/contact">Contact Us</NavLink>
       </div>
     </footer>
   )
