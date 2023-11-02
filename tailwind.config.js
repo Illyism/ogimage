@@ -22,8 +22,7 @@ module.exports = {
         DEFAULT: '150ms',
       },
       fontFamily: {
-        serif: ['var(--font-lora)', 'serif'],
-        display: ['var(--font-playfair)', 'var(--font-lora)', 'serif'],
+        display: ['var(--font-satoshi)', 'system-ui', 'sans-serif'],
         sans: ['var(--font-inter)', 'sans-serif'],
       },
       colors: {

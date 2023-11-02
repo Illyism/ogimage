@@ -26,6 +26,7 @@ export function Header() {
               <div className="pointer-events-auto col-span-4 hidden items-center justify-end sm:flex md:col-span-3 md:justify-center">
                 <NavItem href="/">Home</NavItem>
                 <NavItem href="/templates">Templates</NavItem>
+                <NavItem href="/pricing">Pricing</NavItem>
                 <ContactButton className="md:hidden" />
               </div>
 

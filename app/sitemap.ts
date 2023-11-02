@@ -12,6 +12,10 @@ export default async function Sitemap() {
       url: `https://${domain}/templates`,
       lastModified: new Date(),
     },
+    {
+      url: `https://${domain}/pricing`,
+      lastModified: new Date(),
+    },
     ...allTemplateMeta.map((t) => ({
       url: `https://${domain}/templates/${t.slug}`,
       lastModified: t.createdAt,
