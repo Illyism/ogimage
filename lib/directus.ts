@@ -6,11 +6,18 @@ type GlobalSettings = {
 
 interface Schema {
   global: GlobalSettings[]
-  pages: {
-    id: number
-    slug: string
-    content: string
-  }[]
+  pages: Page[]
+}
+
+export interface Page {
+  id: number
+  slug: string
+  content: string
+  block: string
+  title: string
+  description: string
+  createdAt: string
+  updatedAt: string
 }
 
 const directus = createDirectus<Schema>('https://db.ogimage.org').with(rest())
