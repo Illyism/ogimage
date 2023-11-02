@@ -5,12 +5,8 @@
 /*  Tooltip Contents  */
 import useMediaQuery from '@/components/hooks/use-media-query'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
-import { HelpCircle } from 'lucide-react'
-import Link from 'next/link'
-import Script from 'next/script'
-import { ReactNode, useState } from 'react'
+import { ReactNode } from 'react'
 import { Drawer } from 'vaul'
-import { Button } from './button'
 
 export default function Tooltip({
   children,
@@ -80,105 +76,5 @@ export default function Tooltip({
         </TooltipPrimitive.Content>
       </TooltipPrimitive.Root>
     </TooltipPrimitive.Provider>
-  )
-}
-
-export function TooltipContent({
-  title,
-  cta,
-  href,
-  target,
-  onClick,
-}: {
-  title: string
-  cta?: string
-  href?: string
-  target?: string
-  onClick?: () => void
-}) {
-  return (
-    <div className="flex flex-col items-center space-y-3 p-4 text-center md:max-w-xs">
-      <p className="text-sm text-gray-700">{title}</p>
-      {cta &&
-        (href ? (
-          <Link
-            href={href}
-            {...(target ? { target } : {})}
-            className="mt-4 w-full rounded-md border border-black bg-black px-3 py-1.5 text-center text-sm text-white transition-all hover:bg-white hover:text-black"
-          >
-            {cta}
-          </Link>
-        ) : onClick ? (
-          <button
-            type="button"
-            className="mt-4 w-full rounded-md border border-black bg-black px-3 py-1.5 text-center text-sm text-white transition-all hover:bg-white hover:text-black"
-            onClick={onClick}
-          >
-            {cta}
-          </button>
-        ) : null)}
-    </div>
-  )
-}
-
-export function SimpleTooltipContent({
-  title,
-  cta,
-  href,
-}: {
-  title: string
-  cta: string
-  href: string
-}) {
-  return (
-    <div className="max-w-xs px-4 py-2 text-center text-sm text-gray-700">
-      {title}{' '}
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex text-gray-500 underline underline-offset-4 hover:text-gray-800"
-      >
-        {cta}
-      </a>
-    </div>
-  )
-}
-
-export function InfoTooltip({ content }: { content: ReactNode | string }) {
-  return (
-    <Tooltip content={content}>
-      <HelpCircle className="h-4 w-4 text-gray-500" />
-    </Tooltip>
-  )
-}
-
-export function SSOWaitlist() {
-  const [opening, setOpening] = useState(false)
-  return (
-    <>
-      <Script src="https://tally.so/widgets/embed.js" strategy="lazyOnload" />
-
-      <div className="flex max-w-sm flex-col items-center space-y-3 p-4 text-center">
-        <h3 className="font-semibold text-gray-800">SAML/SSO</h3>
-        <p className="text-sm text-gray-600">
-          SAML/SSO is coming soon. Interested in early access? Join the
-          waitlist.
-        </p>
-
-        <Button
-          text="Join waitlist"
-          loading={opening}
-          onClick={() => {
-            setOpening(true)
-            // @ts-ignore
-            window.Tally?.openPopup('waexqB', {
-              width: 540,
-              onOpen: () => setOpening(false),
-            })
-          }}
-        />
-      </div>
-    </>
   )
 }
