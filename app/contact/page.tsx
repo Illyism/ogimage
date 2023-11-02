@@ -67,7 +67,7 @@ export default function Page() {
       </div>
 
       <div className="mt-32"></div>
-      <TestimonialMasonry limit={9999} showContact={false} />
+      <TestimonialMasonry limit={12} showContact={false} />
     </PageLayout>
   )
 }
