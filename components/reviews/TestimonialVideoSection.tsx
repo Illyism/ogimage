@@ -1,7 +1,6 @@
 import { ArrowRightIcon, Star } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Container } from '../Container'
 import { FadeIn } from '../FadeIn'
 import { FlagOnly } from '../ux/flag'
 import { RankCard } from './RankCard'
@@ -10,7 +9,7 @@ import { getReview } from './reviews'
 export const TestimonialVideoSection = () => {
   const bankG = getReview('bank-green')
   return (
-    <Container className="mb-8 mt-16 lg:mb-16 lg:mt-32">
+    <div className="contain mb-8 mt-16 lg:mb-16 lg:mt-32">
       <div className="mx-auto text-center">
         <div className="mx-auto mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/5 bg-primary/5">
           <FlagOnly className="text-xl" />
@@ -153,6 +152,6 @@ export const TestimonialVideoSection = () => {
           </div>
         </div>
       </div>
-    </Container>
+    </div>
   )
 }
