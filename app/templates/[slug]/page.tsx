@@ -34,6 +34,7 @@ export async function generateMetadata({
   return generatePageMeta({
     title,
     description,
+    url: `/templates/${post.slug}`,
   })
 }
 
