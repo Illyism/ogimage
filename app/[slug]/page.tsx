@@ -1,5 +1,5 @@
 import { generatePageMeta } from '@/core/seo'
-import directus, { Page } from '@/lib/directus'
+import directus, { Page, getPost } from '@/lib/directus'
 import { cn, formatDate } from '@/lib/utils'
 import { readItems } from '@directus/sdk'
 import { notFound } from 'next/navigation'
@@ -18,24 +18,6 @@ export async function generateStaticParams() {
       slug,
     })),
   ]
-}
-
-async function getPost(slug: string) {
-  const posts = await directus.request(
-    readItems('pages', {
-      filter: {
-        slug: {
-          _eq: slug,
-        },
-      },
-      limit: 1,
-      fields: ['*'],
-    }),
-  )
-  if (posts.length === 0) {
-    return null
-  }
-  return posts[0]
 }
 
 export async function generateMetadata({ params }: any) {

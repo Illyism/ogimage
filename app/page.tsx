@@ -7,8 +7,7 @@ import {
 } from '@/components/reviews/TestimonialVideoSection'
 import { TestimonialMasonry } from '@/components/reviews/testimonial-masonry'
 import { generatePageMeta } from '@/core/seo'
-import directus from '@/lib/directus'
-import { readItem } from '@directus/sdk'
+import { getPost } from '@/lib/directus'
 import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 
@@ -19,20 +18,17 @@ export const metadata = generatePageMeta({
 })
 
 export default async function Page() {
-  const home = await directus.request(
-    readItem('pages', 1, {
-      fields: ['content'],
-    }),
-  )
-  const content = home.content
+  const home = await getPost('home')
   return (
     <PageLayout>
       <Hero />
 
-      <div
-        className="contain prose prose-sm mx-auto sm:prose-base"
-        dangerouslySetInnerHTML={{ __html: content }}
-      ></div>
+      {home && (
+        <div
+          className="contain prose prose-sm mx-auto sm:prose-base"
+          dangerouslySetInnerHTML={{ __html: home.content }}
+        ></div>
+      )}
 
       <div className="contain max-w-xl">
         <CTA />
