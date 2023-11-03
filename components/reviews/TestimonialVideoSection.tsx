@@ -145,8 +145,11 @@ const BankGreenSection = () => {
                 Bank.Green
               </Link>{' '}
               grow by creating a{' '}
-              <Link href="/seo/strategy" className="font-bold underline">
-                strategy
+              <Link
+                href="https://magicspace.ae/seo/strategy"
+                className="font-bold underline"
+              >
+                SEO strategy
               </Link>{' '}
               to reduce climate change. Our goal was to get customers to use
               eco-friendly banks that don&apos;t invest in fossil fuels. This
@@ -165,10 +168,10 @@ const BankGreenSection = () => {
               <b className="block text-lg">We boost website traffic.</b>
               We did it for Bank.Green, we can do it for you.
               <Link
-                href="/buy/strategy"
+                href="/buy"
                 className="mt-4 flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-lg border border-primary bg-primary px-4 py-2 text-sm font-bold text-primary-foreground shadow-md outline outline-1 outline-offset-[-2px] outline-primary-foreground/30 transition-all duration-150 ease-in-out hover:bg-primary/90 hover:shadow-lg"
               >
-                Order SEO audit <ArrowRightIcon className="h-4 w-4" />
+                Order Today <ArrowRightIcon className="h-4 w-4" />
               </Link>
             </div>
           </div>
@@ -286,8 +289,11 @@ const OscarStoriesSection = () => {
                 Oscar Stories
               </Link>{' '}
               grow by creating a{' '}
-              <Link href="/seo/strategy" className="font-bold underline">
-                strategy
+              <Link
+                href="https://magicspace.ae/seo/strategy"
+                className="font-bold underline"
+              >
+                SEO strategy
               </Link>{' '}
               to get more kids using their app for AI-generated bedtime stories.
               Our goal was to boost downloads and daily active users. This would
@@ -308,11 +314,10 @@ const OscarStoriesSection = () => {
               </b>
               We did it for Oscar Stories, we can do it for you.
               <Link
-                href="/buy/strategy"
+                href="/buy"
                 className="mt-4 flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-lg border border-primary bg-primary px-4 py-2 text-sm font-bold text-primary-foreground shadow-md outline outline-1 outline-offset-[-2px] outline-primary-foreground/30 transition-all duration-150 ease-in-out hover:bg-primary/90 hover:shadow-lg"
               >
-                Order a custom SEO and ASO audit{' '}
-                <ArrowRightIcon className="h-4 w-4" />
+                Order Now <ArrowRightIcon className="h-4 w-4" />
               </Link>
             </div>
           </div>

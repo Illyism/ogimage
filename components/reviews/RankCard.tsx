@@ -35,7 +35,7 @@ export const RankCard = ({
               <span>{keyword}</span>
             </span>
           </div>
-          <div className="flex h-6 w-6  items-center justify-center rounded-full border border-green-500 text-xs font-black text-white">
+          <div className="flex h-6 w-6  items-center justify-center rounded-full border border-green-500 bg-green-50 text-xs font-black text-green-800 dark:bg-green-500/10 dark:text-white">
             {position}
           </div>
         </div>

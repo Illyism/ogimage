@@ -1,5 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
+import {
+  TestimonialVideoSecondSection,
+  TestimonialVideoSection,
+  TestimonialVideoThirdSection,
+} from '@/components/reviews/TestimonialVideoSection'
+import { TestimonialMasonry } from '@/components/reviews/testimonial-masonry'
 import { generatePageMeta } from '@/core/seo'
 import directus from '@/lib/directus'
 import { readItem } from '@directus/sdk'
@@ -27,6 +33,17 @@ export default async function Page() {
         className="contain prose prose-sm mx-auto sm:prose-base"
         dangerouslySetInnerHTML={{ __html: content }}
       ></div>
+
+      <div className="contain max-w-xl">
+        <CTA />
+      </div>
+
+      <TestimonialVideoSection />
+      <TestimonialMasonry limit={6} showContact={false} />
+      <TestimonialVideoSecondSection />
+      <TestimonialMasonry skip={6} limit={12} showContact={false} />
+      <TestimonialVideoThirdSection />
+      <TestimonialMasonry skip={12} limit={18} />
 
       <div className="contain max-w-xl">
         <CTA />
