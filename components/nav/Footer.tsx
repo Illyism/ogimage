@@ -43,6 +43,9 @@ export function Footer() {
         <NavLink href="/about">About Us</NavLink>
         <NavLink href="/privacy">Privacy Policy</NavLink>
         <div className="flex-1"></div>
+        <NavLink href="/how-to-change-link-preview-image-facebook">
+          Facebook
+        </NavLink>
         <NavLink href="/contact">Contact Us</NavLink>
       </div>
     </footer>
