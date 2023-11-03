@@ -1,7 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
+import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
+import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
 import { formatDate } from '@/lib/utils'
 import { allTemplateMeta } from 'contentlayer/generated'
+import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 
 export const metadata = generatePageMeta({
@@ -84,6 +87,29 @@ export default function Templates() {
               </div>
             </Link>
           ))}
+        </div>
+      </div>
+      <div className="contain my-8 lg:my-16">
+        <div className="mx-auto text-center">
+          <h2 className="text-xl font-bold tracking-tight sm:mb-6 md:text-4xl">
+            Worth every single penny.
+          </h2>
+          <div className="mb-6 font-bold md:text-xl lg:mb-12">
+            Custom templates are{' '}
+            <Link href="/pricing" className="underline">
+              100% free
+            </Link>{' '}
+            as part of our plans.
+          </div>
+        </div>
+        <TestimonialMarquee />
+        <div className="mt-4 text-center">
+          <Button asChild>
+            <Link href="/buy">
+              <span className="tracking-tight">Get a Custom Template</span>
+              <ArrowRightIcon className="ml-2" />
+            </Link>
+          </Button>
         </div>
       </div>
     </div>
