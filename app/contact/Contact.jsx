@@ -15,7 +15,7 @@ export default function TallyContact() {
         data-tally-src="https://forms.magicspace.ae/ogimage?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
         loading="lazy"
         width="100%"
-        height="505"
+        height="565"
         title="Contact OgImage.org"
       ></iframe>
       <Script
