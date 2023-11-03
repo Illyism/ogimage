@@ -30,6 +30,36 @@ export const rootMetadata: Metadata = {
   applicationName: 'OgImage.Org',
   openGraph: rootOpenGraph,
   twitter: rootTwitter,
+  themeColor: '#fbfaf9',
+  icons: [
+    {
+      rel: 'apple-touch-icon',
+      sizes: '180x180',
+      url: '/_static/favicons/apple-touch-icon.png',
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '32x32',
+      url: '/_static/favicons/favicon-32x32.png',
+    },
+    {
+      rel: 'icon',
+      type: 'image/png',
+      sizes: '16x16',
+      url: '/_static/favicons/favicon-16x16.png',
+    },
+    {
+      rel: 'manifest',
+      url: '/site.webmanifest',
+    },
+    {
+      rel: 'mask-icon',
+      url: '/_static/favicons/safari-pinned-tab.svg',
+      color: '#172e40',
+    },
+  ],
+  manifest: '/site.webmanifest',
   robots:
     'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large',
 }
