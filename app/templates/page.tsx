@@ -11,6 +11,7 @@ export const metadata = generatePageMeta({
   title: 'OG Image Templates - Open Graph Image Templates for your Website',
   description:
     'Generate beautiful Open Graph Images for your website, blog, or social media.',
+  url: '/templates',
 })
 
 export default function Templates() {
