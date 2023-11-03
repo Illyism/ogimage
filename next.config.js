@@ -20,6 +20,7 @@ const nextConfig = {
       'ssl.gstatic.com',
       'il.ly',
       'secure.gravatar.com',
+      'senjaio.b-cdn.net',
       'senja-io.s3.us-west-1.amazonaws.com',
     ],
   },

@@ -7,21 +7,19 @@ import { useMemo } from 'react'
 import { Review, reviews } from './reviews'
 
 export const TestimonialMasonry = ({
+  skip = 0,
   limit = 6,
   showContact = true,
 }: {
+  skip?: number
   limit?: number
   showContact?: boolean
 } = {}) => {
-  const sliceMax = useMemo(() => {
-    const max = Math.min(limit, reviews.length)
-    if (showContact) return max - 1
-    return max
-  }, [limit, showContact])
+  const sliceMax = useMemo(() => Math.min(limit, reviews.length), [limit])
   return (
     <div className="contain">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {reviews.slice(0, sliceMax).map((review, index) => (
+        {reviews.slice(skip, sliceMax).map((review, index) => (
           <ReviewCard key={index} review={review} />
         ))}
 
@@ -61,7 +59,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
         <Star fill="currentColor" className="h-4 w-4 text-yellow-500" />
       </div>
       <header className="mb-2 font-bold">{review.title}</header>
-      <blockquote className="text-sm">
+      <blockquote className="whitespace-pre-line text-sm">
         {parts.map((part, index) =>
           // For every second element in the array (the marked text), wrap it in a <mark> tag
           index % 2 === 0 ? (
@@ -69,7 +67,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
           ) : (
             <mark
               key={index}
-              className="bg-sky-500/10 font-medium text-inherit dark:bg-violet-500/10 dark:text-violet-100"
+              className="bg-yellow-400/50 font-bold text-inherit text-orange-900 dark:bg-violet-700/20 dark:text-violet-400"
             >
               {part}
             </mark>
