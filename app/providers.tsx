@@ -2,6 +2,7 @@
 
 import { Analytics } from '@/core/analytics/Analytics'
 import { usePathname } from 'next/navigation'
+import Script from 'next/script'
 import { createContext, useEffect, useRef } from 'react'
 
 function usePrevious(value: any) {
@@ -24,6 +25,10 @@ export function Providers({ children }: any) {
     <AppContext.Provider value={{ previousPathname }}>
       {children}
       <Analytics />
+      <Script
+        src="https://code.jivosite.com/widget/aNN6BnR31Q"
+        strategy="lazyOnload"
+      />
     </AppContext.Provider>
   )
 }
