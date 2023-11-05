@@ -29,6 +29,11 @@ export function Providers({ children }: any) {
         src="https://code.jivosite.com/widget/aNN6BnR31Q"
         strategy="lazyOnload"
       />
+      <Script
+        data-domain="ogimage.org"
+        src="https://p.il.ly/js/script.js"
+        strategy="lazyOnload"
+      />
     </AppContext.Provider>
   )
 }
