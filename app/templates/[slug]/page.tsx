@@ -51,7 +51,7 @@ export default async function TemplateDetail({
   }
 
   const examples = post.examples || [
-    'https://magicspace.ae',
+    'https://magicspace.agency',
     'https://il.ly',
     'https://en.wikipedia.org/wiki/Special:Random',
     'https://reddit.com',
@@ -94,7 +94,10 @@ export default async function TemplateDetail({
               {authors[post.author].name}
             </Link>{' '}
             &{' '}
-            <Link href="https://magicspace.ae" className="font-bold underline">
+            <Link
+              href="https://magicspace.agency"
+              className="font-bold underline"
+            >
               contributors
             </Link>
           </div>

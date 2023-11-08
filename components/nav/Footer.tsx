@@ -30,7 +30,7 @@ export function Footer() {
           <NavLink href="/sizes">Image Sizes</NavLink>
           <div className="flex-1"></div>
           <Link
-            href="https://magicspace.ae"
+            href="https://magicspace.agency"
             aria-label="MagicSpace"
             title="MagicSpace"
           >

@@ -26,7 +26,7 @@ export const TestimonialReviews = ({ className }: any) => {
         <div
           className={cn(
             'inline-flex items-center justify-center gap-4 sm:flex-row-reverse',
-            className
+            className,
           )}
         >
           <div className="flex">
@@ -70,7 +70,7 @@ export const TestimonialReviews = ({ className }: any) => {
         <DialogContent className="p-0">
           <iframe
             className="h-[500px] w-full overflow-hidden sm:rounded-lg"
-            src="https://love.magicspace.ae/r/share?mode=embed"
+            src="https://love.magicspace.agency/r/share?mode=embed"
           />
         </DialogContent>
       </Dialog>

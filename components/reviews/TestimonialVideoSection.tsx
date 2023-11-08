@@ -146,7 +146,7 @@ const BankGreenSection = () => {
               </Link>{' '}
               grow by creating a{' '}
               <Link
-                href="https://magicspace.ae/seo/strategy"
+                href="https://magicspace.agency/seo/strategy"
                 className="font-bold underline"
               >
                 SEO strategy
@@ -290,7 +290,7 @@ const OscarStoriesSection = () => {
               </Link>{' '}
               grow by creating a{' '}
               <Link
-                href="https://magicspace.ae/seo/strategy"
+                href="https://magicspace.agency/seo/strategy"
                 className="font-bold underline"
               >
                 SEO strategy

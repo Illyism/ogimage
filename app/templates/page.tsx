@@ -48,7 +48,10 @@ export default function Templates() {
               Ilias Ism
             </Link>{' '}
             &{' '}
-            <Link href="https://magicspace.ae" className="font-bold underline">
+            <Link
+              href="https://magicspace.agency"
+              className="font-bold underline"
+            >
               contributors
             </Link>
           </div>

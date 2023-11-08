@@ -224,7 +224,7 @@ const Coupon = () => {
         </div>
         {showCoupon ? (
           <Button className="w-full py-3" variant="outline" asChild>
-            <Link href="https://clients.magicspace.ae/order/ogimage?coupon=BLACKFRIDAY">
+            <Link href="https://clients.magicspace.agency/order/ogimage?coupon=BLACKFRIDAY">
               <Gift className="mr-2 inline-block h-5 w-5" />
               BLACKFRIDAY
             </Link>

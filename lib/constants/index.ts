@@ -144,7 +144,7 @@ export const SPECIAL_APEX_DOMAINS = new Set([
 
 export const DEFAULT_LINK_PROPS = {
   key: 'github',
-  url: 'https://magicspace.ae',
+  url: 'https://magicspace.agency',
   domain: 'ogimage.org',
   archived: false,
   expiresAt: null,
