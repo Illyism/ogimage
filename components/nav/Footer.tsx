@@ -28,6 +28,7 @@ export function Footer() {
           <NavLink href="/faq">FAQ</NavLink>
           <NavLink href="/best-practices">Best Practices</NavLink>
           <NavLink href="/sizes">Image Sizes</NavLink>
+          <NavLink href="/for-blog">For blogs</NavLink>
           <div className="flex-1"></div>
           <Link
             href="https://magicspace.agency"
