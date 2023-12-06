@@ -190,7 +190,7 @@ const Coupon = () => {
       </div>
       <div className="p-5">
         <h3 className="my-3 text-center font-display text-3xl font-bold">
-          🍁 November Special 🍂
+          🍁 December Special 🍂
         </h3>
         <p className="text-gray-500">Our biggest sale of the year is here!</p>
         <p className="my-5 font-display text-6xl font-semibold">40% off</p>
