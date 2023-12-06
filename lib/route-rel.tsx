@@ -15,6 +15,7 @@ const APPROVED = [
   'typefully.com',
   'buildinpublic.community',
   'storychief.io',
+  'screenshotone.com',
 ]
 
 /*
