@@ -8,7 +8,7 @@ import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 
 export const metadata = generatePageMeta({
-  title: '3 Best Open Graph Image Templates for 2023 - OG Image Generator',
+  title: '3 Best Open Graph Image Templates for 2023 - OGimage.org',
   description:
     'Generate beautiful Open Graph Images for your website, blog, or social media.',
   url: '/templates',
