@@ -1,13 +1,10 @@
 'use client'
 
 import { CheckCircleFill, XCircleFill } from '@/components/icons'
-import { Button } from '@/components/ui/button'
 import Tooltip from '@/components/ui/tooltip'
 import { nFormatter } from '@/lib/utils'
-import { DollarSign, Gift, GiftIcon, HelpCircle } from 'lucide-react'
+import { DollarSign, HelpCircle } from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
-import Confetti from 'react-dom-confetti'
 
 const PLANS = [
   {
@@ -168,76 +165,6 @@ const Pricing = () => {
             </div>
           )
         })}
-        <Coupon />
-      </div>
-    </div>
-  )
-}
-
-const Coupon = () => {
-  const [showCoupon, setShowCoupon] = useState(false)
-
-  const promotionalItems = [
-    { text: '$0 setup fee' },
-    { text: 'Free competitor OG Image analysis' },
-    { text: 'Free 30-min SEO strategy session' },
-  ]
-
-  return (
-    <div className="relative mt-12 gap-5 rounded-2xl border-2 border-orange-700 bg-white shadow-lg shadow-orange-200">
-      <div className="absolute -top-5 left-0 right-0 mx-auto w-32 rounded-full bg-gradient-to-r from-orange-600 to-red-600 px-3 py-2 text-sm font-medium text-white">
-        SALE
-      </div>
-      <div className="p-5">
-        <h3 className="my-3 text-center font-display text-3xl font-bold">
-          🍁 December Special 🍂
-        </h3>
-        <p className="text-gray-500">Our biggest sale of the year is here!</p>
-        <p className="my-5 font-display text-6xl font-semibold">40% off</p>
-        <p className="text-gray-500">first month</p>
-      </div>
-      <div className="flex h-20 items-center justify-center border-b border-t border-gray-200 bg-gray-50">
-        <div className="flex items-center space-x-1">
-          <p className="text-gray-600">
-            Over <b>$500</b> in value
-          </p>
-        </div>
-      </div>
-
-      <ul className="my-10 space-y-5 px-8">
-        {promotionalItems.map(({ text }) => (
-          <li key={text} className="flex space-x-5">
-            <div className="flex-shrink-0">
-              <GiftIcon className="text-violet-700" />
-            </div>
-            <p className="text-gray-600">{text}</p>
-          </li>
-        ))}
-      </ul>
-      <div className="border-t border-gray-200" />
-      <div className="p-5">
-        <div className="mx-auto inline-block text-center">
-          <Confetti
-            active={showCoupon}
-            config={{ elementCount: 200, spread: 90 }}
-          />
-        </div>
-        {showCoupon ? (
-          <Button className="w-full py-3" variant="outline" asChild>
-            <Link href="https://clients.magicspace.agency/order/ogimage?coupon=BLACKFRIDAY">
-              <Gift className="mr-2 inline-block h-5 w-5" />
-              BLACKFRIDAY
-            </Link>
-          </Button>
-        ) : (
-          <Button
-            onClick={() => setShowCoupon(!showCoupon)}
-            className="w-full py-3"
-          >
-            <Gift className="mr-2 inline-block h-5 w-5" />
-            Unlock Coupon
-          </Button>
-        )}
       </div>
     </div>
   )
