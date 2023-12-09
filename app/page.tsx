@@ -1,12 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { GeneratorForm } from '@/components/generator/GeneratorForm'
 import { PageLayout } from '@/components/nav/PageLayout'
-import {
-  TestimonialVideoSecondSection,
-  TestimonialVideoSection,
-  TestimonialVideoThirdSection,
-} from '@/components/reviews/TestimonialVideoSection'
-import { TestimonialMasonry } from '@/components/reviews/testimonial-masonry'
+import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
+import { TestimonialReviews } from '@/components/reviews/testimonial-reviews'
 import { generatePageMeta } from '@/core/seo'
 import { getPost } from '@/lib/directus'
 import { ArrowRightIcon } from 'lucide-react'
@@ -31,20 +27,11 @@ export default async function Page() {
         ></div>
       )}
 
-      <div className="contain max-w-xl">
+      <div className="contain mb-12 max-w-xl">
         <CTA />
       </div>
 
-      <TestimonialVideoSection />
-      <TestimonialMasonry limit={6} showContact={false} />
-      <TestimonialVideoSecondSection />
-      <TestimonialMasonry skip={6} limit={12} showContact={false} />
-      <TestimonialVideoThirdSection />
-      <TestimonialMasonry skip={12} limit={18} />
-
-      <div className="contain max-w-xl">
-        <CTA />
-      </div>
+      <TestimonialMarquee />
     </PageLayout>
   )
 }
@@ -62,6 +49,8 @@ const Hero = () => {
             every page on your website. No design skills required.
           </p>
           <GeneratorForm />
+
+          <TestimonialReviews className="mt-8" />
         </div>
       </div>
     </div>

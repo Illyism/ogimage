@@ -11,7 +11,7 @@ export const GeneratorForm = () => {
 
   return (
     <form
-      className="flex flex-col gap-4 rounded-lg bg-blue-200 p-4 sm:flex-row sm:gap-6 sm:p-6"
+      className="flex w-full max-w-xl flex-col gap-2 rounded-full bg-black p-2 sm:flex-row"
       onSubmit={onSubmit}
     >
       <label htmlFor="url" className="sr-only">
@@ -25,10 +25,10 @@ export const GeneratorForm = () => {
       />
       <button
         type="submit"
-        className="flex h-[40px] w-40 items-center justify-center rounded-full bg-violet-500 text-base font-bold text-white hover:shadow-lg hover:drop-shadow-lg lg:h-[50px] lg:w-44 lg:text-lg"
+        className="flex items-center justify-center rounded-full bg-violet-500 px-4 text-sm font-bold text-white"
       >
         <span className="tracking-tight">Generate</span>
-        <Wand2 className="ml-2" />
+        <Wand2 className="ml-2" size={16} />
       </button>
     </form>
   )
