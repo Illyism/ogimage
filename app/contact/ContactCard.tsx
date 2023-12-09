@@ -7,7 +7,7 @@ export const ContactCard = ({ className }: { className?: string }) => {
   return (
     <FadeIn
       className={cn(
-        'not-prose flex flex-col items-center justify-center rounded-md bg-background/5 p-4 text-center text-card-foreground shadow',
+        'not-prose flex flex-col items-center justify-center rounded-md p-4 text-center text-card-foreground shadow',
         className,
       )}
     >
