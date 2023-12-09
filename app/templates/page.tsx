@@ -33,7 +33,7 @@ export default function Templates() {
       <div className="mx-auto md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
         <header className="relative border-b border-gray-200 py-8">
           <h1 className="mb-4 flex-1 font-display text-3xl font-bold tracking-tighter text-gray-800 md:text-4xl">
-            The Best Open Graph Image Templates for {new Date().getFullYear()}
+            Open Graph Image Templates For Every Website
           </h1>
           <p className="text-md">
             If you&apos;re looking to build a website and share it, these
