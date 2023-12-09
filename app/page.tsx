@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { GeneratorForm } from '@/components/generator/GeneratorForm'
 import { PageLayout } from '@/components/nav/PageLayout'
 import {
   TestimonialVideoSecondSection,
@@ -53,23 +54,14 @@ const Hero = () => {
     <div className="hero">
       <div className="hero-section border-0">
         <div className="hero-content mx-auto flex max-w-4xl flex-col items-center justify-center px-10 py-14 text-center lg:py-20 xl:max-w-5xl">
-          <div className="mx-auto mb-2 text-lg font-bold text-violet-500">
-            How to Increase Social Clicks by{' '}
-            <b className="text-xl font-black text-violet-700">213%</b> Almost
-            Overnight...
-          </div>
-          <h1 className="mx-auto max-w-4xl text-3xl font-bold leading-[1.4] tracking-[-0.015em] md:max-w-[39rem] md:text-5xl lg:max-w-4xl lg:text-7xl">
-            Create Beautiful OG Images in Minutes
+          <h1 className="mx-auto max-w-4xl text-3xl font-black leading-[1.4] tracking-[-0.015em] md:max-w-[46rem] md:text-5xl">
+            The Only OG Image Generator That Doesn’t Waste Your Time
           </h1>
-          <div className="mx-auto max-w-sm space-y-4 px-5 py-5 text-left text-lg text-gray-800 md:max-w-lg lg:px-0 lg:text-xl">
-            <p>
-              <b className="font-bold">Finally</b> - A simple way to create
-              high-converting{' '}
-              <b className="font-black text-violet-500">OG images</b> for every
-              page on your website.
-            </p>
-          </div>
-          <CTA />
+          <p className="mx-auto max-w-sm space-y-4 px-5 py-5 text-lg text-gray-800 md:max-w-lg lg:px-0 lg:text-xl">
+            Create <b className="font-bold">OG images</b> automatically for
+            every page on your website. No design skills required.
+          </p>
+          <GeneratorForm />
         </div>
       </div>
     </div>
