@@ -3,14 +3,14 @@ import { type OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types'
 import { Twitter } from 'next/dist/lib/metadata/types/twitter-types'
 import { type StaticImageData } from 'next/image'
 
-const title = 'OgImage.Org: Open Graph Image Generator'
-const description = `Generate open graph images with ease using OgImage.Org, your reliable open graph image generator.`
+const title = 'OGimage.org: Open Graph Image Generator'
+const description = `Generate open graph images with ease using OGimage.org, your reliable open graph image generator.`
 
 export const rootOpenGraph: OpenGraph = {
   locale: 'en',
   type: 'website',
   url: 'https://ogimage.org',
-  siteName: 'OgImage.Org',
+  siteName: 'OGimage.org',
   title,
   description,
 }
@@ -27,10 +27,9 @@ export const rootMetadata: Metadata = {
   metadataBase: new URL('https://ogimage.org'),
   title,
   description,
-  applicationName: 'OgImage.Org',
+  applicationName: 'OGimage.org',
   openGraph: rootOpenGraph,
   twitter: rootTwitter,
-  themeColor: '#fbfaf9',
   icons: [
     {
       rel: 'apple-touch-icon',
@@ -94,8 +93,8 @@ function getImage(
 }
 
 export function generatePageMeta({
-  title = 'OgImage.Org: Open Graph Image Generator',
-  description = `Generate open graph images for your website with OgImage.Org, the trusted open graph image generator.`,
+  title = 'OGimage.org: Open Graph Image Generator',
+  description = `Generate open graph images for your website with OGimage.org, the trusted open graph image generator.`,
   url,
   image,
   image_alt,

@@ -35,6 +35,7 @@
       "@/pages/*": ["pages/*"],
       "@/styles/*": ["styles/*"],
       "@/images/*": ["images/*"],
+      "@/jobs/*": ["jobs/*"],
       "~/*": ["public/*"],
       "contentlayer/generated": ["./.contentlayer/generated"]
     },

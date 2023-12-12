@@ -1,4 +1,10 @@
-import { createDirectus, readItems, rest } from '@directus/sdk'
+import {
+  createDirectus,
+  readItem,
+  readItems,
+  rest,
+  staticToken,
+} from '@directus/sdk'
 
 type GlobalSettings = {
   title: string
@@ -7,6 +13,7 @@ type GlobalSettings = {
 interface Schema {
   global: GlobalSettings[]
   pages: Page[]
+  inspiration: Inspiration[]
 }
 
 export interface Page {
@@ -20,7 +27,22 @@ export interface Page {
   updatedAt: string
 }
 
-const directus = createDirectus<Schema>('https://db.ogimage.org').with(rest())
+export interface Inspiration {
+  slug: string
+  date_created: Date
+  date_updated: Date
+  domain: string
+  URL: string
+  name: string
+  category: string[]
+  description: string
+  image: string
+  color: string[]
+}
+
+const directus = createDirectus<Schema>('https://db.ogimage.org')
+  .with(staticToken(process.env.DIRECTUS_TOKEN!))
+  .with(rest())
 
 export async function getPost(slug: string) {
   const posts = await directus.request(
@@ -38,6 +60,14 @@ export async function getPost(slug: string) {
     return null
   }
   return posts[0]
+}
+
+export async function getInspiration(slug: string) {
+  try {
+    return await directus.request(readItem('inspiration', slug))
+  } catch (error) {
+    return null
+  }
 }
 
 export default directus

@@ -100,7 +100,13 @@ export const getMetaTags = async (url: string) => {
     object['icon'] ||
     object['shortcut icon']
 
+  const name =
+    object['og:site_name'] ||
+    object['twitter:site'] ||
+    object['twitter:creator']
+
   return {
+    name,
     title: title || url,
     description: description || 'No description',
     image: getRelativeUrl(url, image),

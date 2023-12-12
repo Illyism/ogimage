@@ -11,7 +11,7 @@ export const GeneratorForm = () => {
 
   return (
     <form
-      className="flex w-full max-w-xl flex-col gap-2 rounded-full bg-black p-2 sm:flex-row"
+      className="flex w-full max-w-xl flex-col gap-2 rounded-lg bg-black p-2 sm:flex-row sm:rounded-full"
       onSubmit={onSubmit}
     >
       <label htmlFor="url" className="sr-only">

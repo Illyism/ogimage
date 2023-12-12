@@ -10,7 +10,7 @@ import Link from 'next/link'
 
 export const metadata = generatePageMeta({
   title: `OG Image Generator: Create Beautiful OG Images in Minutes`,
-  description: `Generate open graph images for your website with OgImage.Org, the trusted open graph image generator.`,
+  description: `Generate open graph images for your website with OGimage.org, the trusted open graph image generator.`,
   url: `/`,
 })
 

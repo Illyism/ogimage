@@ -15,7 +15,7 @@ export function Footer() {
           <div className="mt-1 flex h-6 w-7 items-center justify-center rounded-lg bg-primary text-white">
             <SwitchCamera className="h-4 w-4" />
           </div>
-          OgImage.Org
+          OGimage.org
         </Link>
       </div>
       <div>
@@ -40,7 +40,7 @@ export function Footer() {
         </nav>
       </div>
       <div className="contain flex items-center justify-between border-double text-xs">
-        <div>© {now.getFullYear()} OgImage.Org</div>
+        <div>© {now.getFullYear()} OGimage.org</div>
         <NavLink href="/about">About Us</NavLink>
         <NavLink href="/privacy">Privacy Policy</NavLink>
         <div className="flex-1"></div>
