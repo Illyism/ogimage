@@ -94,12 +94,7 @@ export const getMetaTags = async (url: string) => {
     object['og:description'] ||
     object['twitter:description']
 
-  const image =
-    object['og:image'] ||
-    object['twitter:image'] ||
-    object['image_src'] ||
-    object['icon'] ||
-    object['shortcut icon']
+  const image = object['og:image'] || object['twitter:image']
 
   const name =
     object['og:site_name'] ||
