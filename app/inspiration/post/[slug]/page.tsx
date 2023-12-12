@@ -43,29 +43,29 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
             {inspiration.domain} <ExternalLinkIcon size={14} />
           </Link>
           <div className="flex-1"></div>
+
+          {inspiration.color.length > 0 && (
+            <div className="flex flex-wrap content-center items-center justify-start space-x-2">
+              {inspiration.color.map((c) => (
+                <div
+                  key={c}
+                  className="h-5 w-5 rounded-full border-2 border-gray-100 hover:border-gray-50 hover:shadow-sm"
+                  style={{ backgroundColor: c }}
+                  title={c}
+                ></div>
+              ))}
+            </div>
+          )}
           {inspiration.category.length > 0 && (
             <div className="flex flex-wrap content-center items-center justify-start space-x-2">
               {inspiration.category.map((c) => (
                 <Link
                   key={c}
-                  href={`/inspiration/tag/${c}`}
+                  href={`/inspiration/category/${c}`}
                   className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200"
                 >
                   {c}
                 </Link>
-              ))}
-            </div>
-          )}
-          {inspiration.color.length > 0 && (
-            <div className="flex flex-wrap content-center items-center justify-start space-x-2">
-              {inspiration.color.map((c) => (
-                <Link
-                  key={c}
-                  href={`/inspiration/color/${c.replace('#', '')}`}
-                  className="h-5 w-5 rounded-full border-2 border-gray-100 hover:border-gray-50 hover:shadow-sm"
-                  style={{ backgroundColor: c }}
-                  title={c}
-                ></Link>
               ))}
             </div>
           )}

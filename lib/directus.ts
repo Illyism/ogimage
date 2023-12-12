@@ -70,15 +70,29 @@ export async function getInspiration(slug: string) {
   }
 }
 
-export async function getLatestInspiration() {
+export async function getLatestInspiration(filter = {}) {
   try {
     const inspirations = await directus.request(
       readItems('inspiration', {
-        sort: ['-date_created'],
         limit: 90,
         fields: ['*'],
       }),
     )
+
+    if (filter && Object.keys(filter).length > 0) {
+      return inspirations.filter((inspiration) => {
+        return Object.keys(filter).every((key) => {
+          // array check
+          if (Array.isArray(inspiration[key])) {
+            return inspiration[key].some((item) => {
+              return item === filter[key]
+            })
+          }
+          return inspiration[key] === filter[key]
+        })
+      })
+    }
+
     if (inspirations.length === 0) {
       return []
     }
