@@ -27,7 +27,9 @@ export const ImageCard = ({
       <motion.img
         src={src}
         alt={alt}
-        className="rounded-lg"
+        width={1200}
+        height={630}
+        className="aspect-[1200/630] rounded-lg object-cover"
         itemProp="image"
         itemScope
         whileHover={{ boxShadow: `0 0 100px ${color || '#000'}` }}
