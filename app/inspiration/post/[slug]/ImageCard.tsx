@@ -32,6 +32,7 @@ export const ImageCard = ({
         className="aspect-[1200/630] rounded-lg object-cover"
         itemProp="image"
         itemScope
+        loading="lazy"
         whileHover={{ boxShadow: `0 0 100px ${color || '#000'}` }}
         transition={{ duration: 0.2 }}
       />
