@@ -24,7 +24,7 @@ export const ImageCard = ({
       tiltMaxAngleY={10}
     >
       <div
-        className="relative -mx-1 mt-4 rounded-[12px] p-1"
+        className="relative -mx-1 rounded-[12px] p-1"
         itemProp="image"
         itemScope
         style={{
