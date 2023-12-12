@@ -1,10 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
+import { generatePageMeta } from '@/core/seo'
 import { getLatestInspiration } from '@/lib/directus'
 import Link from 'next/link'
 import { ImageCard } from './post/[slug]/ImageCard'
 
 export const revalidate = 5 * 60 // 5 minutes
+
+export const metadata = generatePageMeta({
+  title: 'Open Graph Image Inspiration: Discover Best OG Image Designs',
+  description:
+    'Need open graph image inspiration? We&apos;ve got you covered. Discover the best OG image designs, templates, and more at OGimage.org. Be inspired by handpicked examples of real OG images, ensuring the highest quality.',
+  url: '/inspiration',
+})
 
 export default async function Page() {
   const list = await getLatestInspiration()
