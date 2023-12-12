@@ -75,7 +75,7 @@ export async function getLatestInspiration(filter = {}) {
     const inspirations = await directus.request(
       readItems('inspiration', {
         sort: ['-date_created'],
-        limit: 90,
+        limit: 500,
         fields: ['*'],
       }),
     )
