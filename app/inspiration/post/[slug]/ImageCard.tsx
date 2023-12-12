@@ -1,5 +1,6 @@
 'use client'
 
+import { motion } from 'framer-motion'
 import Tilt from 'react-parallax-tilt'
 
 /* eslint-disable @next/next/no-img-element */
@@ -17,22 +18,21 @@ export const ImageCard = ({
     <Tilt
       glareEnable={true}
       glareMaxOpacity={0.3}
-      glareColor="#ffffff"
+      glareColor={color}
       glarePosition="all"
       glareBorderRadius="8px"
       tiltMaxAngleX={10}
       tiltMaxAngleY={10}
     >
-      <div
-        className="relative -mx-1 rounded-[12px] p-1"
+      <motion.img
+        src={src}
+        alt={alt}
+        className="rounded-lg"
         itemProp="image"
         itemScope
-        style={{
-          boxShadow: `0 0 5px ${color}`,
-        }}
-      >
-        <img src={src} alt={alt} className="rounded-[10px] bg-white/20" />
-      </div>
+        whileHover={{ boxShadow: `0 0 100px ${color || '#000'}` }}
+        transition={{ duration: 0.2 }}
+      />
     </Tilt>
   )
 }
