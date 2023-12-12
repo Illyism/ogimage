@@ -1,9 +1,19 @@
 import { ImageCard } from '@/app/inspiration/post/[slug]/ImageCard'
 import { PageLayout } from '@/components/nav/PageLayout'
+import { generatePageMeta } from '@/core/seo'
 import { getLatestInspiration } from '@/lib/directus'
 import Link from 'next/link'
 
 export const revalidate = 5 * 60 // 5 minutes
+
+export async function generateMetadata({ params }: any) {
+  const tag = params.slug
+  return generatePageMeta({
+    title: `Best OG Images in ${tag.replace(/-/g, ' ')}`,
+    description: `Get inspired by the best ${tag} OG image designs, templates, and more.`,
+    url: `/inspiration/category/${tag}`,
+  })
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const tag = params.slug

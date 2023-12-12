@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
+import { generatePageMeta } from '@/core/seo'
 import { Inspiration, getInspiration } from '@/lib/directus'
 import { getRouteRel } from '@/lib/route-rel'
 import { ExternalLinkIcon } from 'lucide-react'
@@ -7,6 +8,22 @@ import Link from 'next/link'
 import { ImageCard } from './ImageCard'
 
 export const revalidate = 5 * 60 // 5 minutes
+
+export async function generateMetadata({ params }: any) {
+  const inspiration = await getInspiration(params.slug)
+  if (!inspiration) {
+    return {
+      title: `Add ${params.slug}?`,
+      robots: 'noindex',
+    }
+  }
+
+  return generatePageMeta({
+    title: `${inspiration.name} - OG Image for ${inspiration.domain}`,
+    description: inspiration.description,
+    url: `/inspiration/post/${params.slug}`,
+  })
+}
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const inspiration = await getInspiration(params.slug)
