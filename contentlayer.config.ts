@@ -73,7 +73,7 @@ const computedFields = (type: 'template') => ({
 
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [BlogPost, TemplateMeta],
+  documentTypes: [TemplateMeta],
   mdx: {
     remarkPlugins: [],
     rehypePlugins: [],
