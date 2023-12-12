@@ -64,7 +64,7 @@
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.0",
     "schema-dts": "^1.1.2",
-    "sharp": "^0.33.0",
+    "sharp": "0.32.6",
     "shiki": "^0.14.6",
     "stream": "^0.0.2",
     "stripe": "^14.8.0",
