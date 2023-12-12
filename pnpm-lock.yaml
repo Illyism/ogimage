@@ -197,6 +197,9 @@ dependencies:
   vaul:
     specifier: ^0.7.9
     version: 0.7.9(@types/react@18.2.43)(react-dom@18.2.0)(react@18.2.0)
+  zod:
+    specifier: ^3.22.4
+    version: 3.22.4
   zustand:
     specifier: ^4.4.7
     version: 4.4.7(@types/react@18.2.43)(react@18.2.0)
@@ -9086,7 +9089,7 @@ packages:
   /zod-error@1.5.0:
     resolution: {integrity: sha512-zzopKZ/skI9iXpqCEPj+iLCKl9b88E43ehcU+sbRoHuwGd9F1IDVGQ70TyO6kmfiRL1g4IXkjsXK+g1gLYl4WQ==}
     dependencies:
-      zod: 3.22.3
+      zod: 3.22.4
     dev: false
 
   /zod@3.22.3:
