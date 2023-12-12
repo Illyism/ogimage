@@ -8,7 +8,8 @@ export const getHtml = async (url: string) => {
     const response = await fetch(url, {
       signal: controller.signal,
       headers: {
-        'User-Agent': 'dub-bot/1.0',
+        'User-Agent':
+          'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/W.X.Y.Z Safari/537.36',
       },
       next: {
         revalidate: 60, // revalidate once per minute
