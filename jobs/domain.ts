@@ -222,7 +222,7 @@ function componentToHex(c: number) {
 async function formatImage(blob: Blob) {
   const buffer = await sharp(await blob.arrayBuffer())
     .resize(1200, 630, {
-      fit: 'contain',
+      fit: 'inside',
       withoutEnlargement: true,
     })
     .jpeg({
