@@ -3,6 +3,7 @@ import directus, { Inspiration } from '@/lib/directus'
 import { getMetaTags } from '@/lib/metatags'
 import { createItem, uploadFiles } from '@directus/sdk'
 import { IO, eventTrigger } from '@trigger.dev/sdk'
+import sharp from 'sharp'
 import { z } from 'zod'
 
 client.defineJob({
@@ -61,15 +62,20 @@ client.defineJob({
     inspiration.description = domainInfo.description
 
     // upload image to directus
-    const image = await io.runTask(
+    const { image, color } = await io.runTask(
       'upload-image',
       async () => {
         if (!domainInfo.image) {
-          return null
+          return {
+            image: '',
+            color: '',
+          }
         }
 
         const response = await fetch(domainInfo.image)
         const blob = await response.blob()
+
+        const color = await getPalette(blob)
 
         const formData = new FormData()
         formData.append('title', `og-image-${inspiration.slug}`)
@@ -78,7 +84,10 @@ client.defineJob({
         formData.append('file', blob)
 
         const result = await directus.request(uploadFiles(formData))
-        return result.id
+        return {
+          image: result.id,
+          color: color,
+        }
       },
       { name: 'Upload image', icon: 'image', params: domainInfo.image },
     )
@@ -87,6 +96,7 @@ client.defineJob({
     }
 
     inspiration.image = image
+    inspiration.color = [color]
 
     return await io.runTask(
       'submit-inspiration',
@@ -97,3 +107,19 @@ client.defineJob({
     )
   },
 })
+
+async function getPalette(blob: Blob) {
+  const { dominant } = await sharp(await blob.arrayBuffer()).stats()
+  const { r, g, b } = dominant
+  // return hex
+  return rgbToHex(r, g, b)
+}
+
+function rgbToHex(r: number, g: number, b: number) {
+  return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`
+}
+
+function componentToHex(c: number) {
+  const hex = c.toString(16)
+  return hex.length === 1 ? '0' + hex : hex
+}

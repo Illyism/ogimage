@@ -65,8 +65,14 @@ export function DomainRunDetails({ eventId }: { eventId: string }) {
             <a href={data.output.URL}>{data.output.domain}</a>
             <p>{data.output.description}</p>
             <img src={`https://db.ogimage.org/assets/${data.output.image}`} />
-            <pre>{JSON.stringify(data.output, null, 2)}</pre>
           </div>
+        )}
+        {(data?.status === 'SUCCESS' || data?.status === 'FAILURE') && (
+          <Button asChild>
+            <Link href={`/inspiration/post/${data.output.slug}`}>
+              View Post
+            </Link>
+          </Button>
         )}
         {(data?.status === 'SUCCESS' || data?.status === 'FAILURE') && (
           <Button asChild>

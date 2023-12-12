@@ -4,6 +4,7 @@ import { Inspiration, getInspiration } from '@/lib/directus'
 import { getRouteRel } from '@/lib/route-rel'
 import { ExternalLinkIcon } from 'lucide-react'
 import Link from 'next/link'
+import { ImageCard } from './ImageCard'
 
 export const revalidate = 5 * 60 // 5 minutes
 
@@ -26,17 +27,13 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
         <p className="text-base font-normal leading-7 text-gray-600">
           {inspiration.description}
         </p>
-        <div
-          className="relative -mx-2 mt-4 rounded-xl border border-foreground/5 bg-foreground/5 p-2"
-          itemProp="image"
-          itemScope
-        >
-          <img
-            src={`https://db.ogimage.org/assets/${inspiration.image}`}
-            alt={`OG Image for ${inspiration.domain}`}
-            className="rounded-lg border-2 border-foreground/10 shadow-md"
-          />
-        </div>
+
+        <ImageCard
+          src={`https://db.ogimage.org/assets/${inspiration.image}`}
+          alt={`OG Image for ${inspiration.domain}`}
+          color={inspiration.color[0]}
+        />
+
         <div className="group mt-3 flex items-center space-x-6">
           <Link
             href={inspiration.URL}
@@ -45,17 +42,33 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
           >
             {inspiration.domain} <ExternalLinkIcon size={14} />
           </Link>
-          <div className="flex flex-wrap content-center items-center justify-start space-x-2">
-            {inspiration.category.map((c) => (
-              <Link
-                key={c}
-                href={`/inspiration/tag/${c}`}
-                className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200"
-              >
-                {c}
-              </Link>
-            ))}
-          </div>
+          <div className="flex-1"></div>
+          {inspiration.category.length > 0 && (
+            <div className="flex flex-wrap content-center items-center justify-start space-x-2">
+              {inspiration.category.map((c) => (
+                <Link
+                  key={c}
+                  href={`/inspiration/tag/${c}`}
+                  className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200"
+                >
+                  {c}
+                </Link>
+              ))}
+            </div>
+          )}
+          {inspiration.color.length > 0 && (
+            <div className="flex flex-wrap content-center items-center justify-start space-x-2">
+              {inspiration.color.map((c) => (
+                <Link
+                  key={c}
+                  href={`/inspiration/color/${c}`}
+                  className="h-5 w-5 rounded-full border-2 border-gray-100 hover:border-gray-50 hover:shadow-sm"
+                  style={{ backgroundColor: c }}
+                  title={c}
+                ></Link>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </PageLayout>
