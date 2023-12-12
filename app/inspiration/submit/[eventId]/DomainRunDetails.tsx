@@ -90,7 +90,7 @@ type ProgressItemProps = {
   name: string
 }
 
-function ProgressItem({ icon, state, name }: ProgressItemProps) {
+function ProgressItem({ state, name }: ProgressItemProps) {
   return (
     <div className="flex items-center gap-2">
       {state === 'progress' ? (

@@ -23,6 +23,10 @@ export default async function Page() {
                 alt={`OG Image for ${item.domain}`}
                 color={item.color[0]}
               />
+              <div>
+                <h2 className="text-lg font-bold">{item.domain} OG Image</h2>
+                <p className="truncate text-sm text-gray-600">{item.name}</p>
+              </div>
             </Link>
           ))}
         </div>
