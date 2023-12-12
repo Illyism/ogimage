@@ -61,7 +61,7 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
               {inspiration.color.map((c) => (
                 <Link
                   key={c}
-                  href={`/inspiration/color/${c}`}
+                  href={`/inspiration/color/${c.replace('#', '')}`}
                   className="h-5 w-5 rounded-full border-2 border-gray-100 hover:border-gray-50 hover:shadow-sm"
                   style={{ backgroundColor: c }}
                   title={c}

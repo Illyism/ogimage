@@ -1,10 +1,16 @@
 import { client } from '@/jobs/trigger'
 import directus, { Inspiration } from '@/lib/directus'
 import { getMetaTags } from '@/lib/metatags'
-import { createItem, uploadFiles } from '@directus/sdk'
+import { createItem, updateItem, uploadFiles } from '@directus/sdk'
 import { IO, eventTrigger } from '@trigger.dev/sdk'
 import sharp from 'sharp'
 import { z } from 'zod'
+
+import Anthropic from '@anthropic-ai/sdk'
+
+const anthropic = new Anthropic({
+  apiKey: process.env.ANTHROPIC_API_KEY,
+})
 
 client.defineJob({
   id: 'submit-domain-inspiration',
@@ -73,7 +79,10 @@ client.defineJob({
         }
 
         const response = await fetch(domainInfo.image)
-        const blob = await response.blob()
+        const originalBlob = await response.blob()
+
+        // let's resize to max 1200 x 630
+        const blob = await formatImage(originalBlob)
 
         const color = await getPalette(blob)
 
@@ -98,10 +107,96 @@ client.defineJob({
     inspiration.image = image
     inspiration.color = [color]
 
+    // improve name, description and category with AI
+    const { name, description, categories } = await io.runTask(
+      `improve-name-description-category`,
+      async () => {
+        const result = await anthropic.completions.create({
+          model: 'claude-2.1',
+          max_tokens_to_sample: 512,
+          temperature: 0.5,
+          prompt: `
+${Anthropic.HUMAN_PROMPT}
+Domain: ${inspiration.domain}
+URL: ${inspiration.URL}
+Name: ${inspiration.name}
+Title: ${domainInfo.title}
+Description: ${inspiration.description}
+
+List of categories:
+- saas
+- ecommerce
+- blog
+- news
+- portfolio
+- agency
+- landing
+- marketplace
+- social
+- forum
+- wiki
+- education
+- entertainment
+- health
+- finance
+- travel
+- food
+- ... (add more categories)
+
+Your task is to improve the name, description and get the category of this domain.
+
+Name: Short version of the business name, Title case
+Description: Description of the business (rephrased from the existing description), start with "NAME is a ..."
+Category: A list of categories that best describe the domain / business as lowercase, slugified
+
+Return the name, description and category in the following format:
+<name>REPLACE THIS WITH THE NAME</name>
+<description>REPLACE THIS WITH THE DESCRIPTION</description>
+<category>REPLACE THIS WITH THE CATEGORY</category>
+<category>REPLACE THIS WITH THE CATEGORY</category>
+<category>REPLACE THIS WITH THE CATEGORY</category>
+
+${Anthropic.AI_PROMPT}`.trim(),
+        })
+
+        // Here is a shortened title for that article in 60 characters or less:\n13 Best Free SEO Chrome Extensions to Boost Productivity in 2023
+        const text = result.completion
+        io.logger.info(text)
+
+        const regexName = /<name>(.*)<\/name>/gm
+        const regexDescription = /<description>(.*)<\/description>/gm
+        const regexCategory = /<category>(.*)<\/category>/gm
+
+        const name = regexName.exec(text)?.[1]
+        const description = regexDescription.exec(text)?.[1]
+        const categories = text
+          .match(regexCategory)
+          ?.map((c) => c.replace(/<category>|<\/category>/g, ''))
+
+        return {
+          name,
+          description,
+          categories,
+        }
+      },
+      { name: 'Improve result', icon: 'seo', params: inspiration },
+    )
+
+    inspiration.name = name || inspiration.name
+    inspiration.description = description || inspiration.description
+    inspiration.category = categories || inspiration.category
+
     return await io.runTask(
       'submit-inspiration',
       async () => {
-        return await directus.request(createItem('inspiration', inspiration))
+        try {
+          return await directus.request(createItem('inspiration', inspiration))
+        } catch (error) {
+          io.logger.info('Updating inspiration')
+          return await directus.request(
+            updateItem('inspiration', inspiration.slug, inspiration),
+          )
+        }
       },
       { name: 'Submit inspiration', icon: 'inspiration', params: inspiration },
     )
@@ -122,4 +217,18 @@ function rgbToHex(r: number, g: number, b: number) {
 function componentToHex(c: number) {
   const hex = c.toString(16)
   return hex.length === 1 ? '0' + hex : hex
+}
+
+async function formatImage(blob: Blob) {
+  const buffer = await sharp(await blob.arrayBuffer())
+    .resize(1200, 630, {
+      fit: 'contain',
+      withoutEnlargement: true,
+    })
+    .jpeg({
+      quality: 90,
+    })
+    .toBuffer()
+
+  return new Blob([buffer], { type: 'image/jpeg' })
 }
