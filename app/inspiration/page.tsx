@@ -1,27 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
-import directus from '@/lib/directus'
-import { readItems } from '@directus/sdk'
+import { getLatestInspiration } from '@/lib/directus'
 import Link from 'next/link'
 import { ImageCard } from './post/[slug]/ImageCard'
-
-async function getLatestInspiration() {
-  try {
-    const inspirations = await directus.request(
-      readItems('inspiration', {
-        sort: ['-date_created'],
-        limit: 90,
-        fields: ['*'],
-      }),
-    )
-    if (inspirations.length === 0) {
-      return []
-    }
-    return inspirations
-  } catch (error) {
-    return []
-  }
-}
 
 export default async function Page() {
   const list = await getLatestInspiration()

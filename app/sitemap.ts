@@ -1,8 +1,16 @@
+import directus, { getLatestInspiration } from '@/lib/directus'
+import { readItems } from '@directus/sdk'
 import { allTemplateMeta } from 'contentlayer/generated'
 
 const domain = `ogimage.org`
 
 export default async function Sitemap() {
+  const inspirations = await getLatestInspiration()
+  const pages = await directus.request(
+    readItems('pages', {
+      fields: ['slug', 'updatedAt'],
+    }),
+  )
   return [
     {
       url: `https://${domain}`,
@@ -19,6 +27,18 @@ export default async function Sitemap() {
     ...allTemplateMeta.map((t) => ({
       url: `https://${domain}/templates/${t.slug}`,
       lastModified: t.createdAt,
+    })),
+    {
+      url: `https://${domain}/inspiration`,
+      lastModified: new Date(),
+    },
+    ...pages.map((p) => ({
+      url: `https://${domain}/${p.slug}`,
+      lastModified: p.updatedAt,
+    })),
+    ...inspirations.map((i) => ({
+      url: `https://${domain}/inspiration/post/${i.slug}`,
+      lastModified: i.date_updated,
     })),
   ]
 }

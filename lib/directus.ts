@@ -70,4 +70,22 @@ export async function getInspiration(slug: string) {
   }
 }
 
+export async function getLatestInspiration() {
+  try {
+    const inspirations = await directus.request(
+      readItems('inspiration', {
+        sort: ['-date_created'],
+        limit: 90,
+        fields: ['*'],
+      }),
+    )
+    if (inspirations.length === 0) {
+      return []
+    }
+    return inspirations
+  } catch (error) {
+    return []
+  }
+}
+
 export default directus
