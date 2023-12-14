@@ -4,9 +4,10 @@ import { PageLayout } from '@/components/nav/PageLayout'
 import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
 import { TestimonialReviews } from '@/components/reviews/testimonial-reviews'
 import { generatePageMeta } from '@/core/seo'
-import { getPost } from '@/lib/directus'
+import { getLatestInspiration, getPost } from '@/lib/directus'
 import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
+import { ImageCard } from './inspiration/post/[slug]/ImageCard'
 
 export const metadata = generatePageMeta({
   title: `OG Image Generator: Create Beautiful OG Images in Minutes`,
@@ -16,9 +17,29 @@ export const metadata = generatePageMeta({
 
 export default async function Page() {
   const home = await getPost('home')
+  const list = await getLatestInspiration({}, 6)
+
   return (
     <PageLayout>
       <Hero />
+
+      <div className="pad grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {list.map((item, i) => (
+          <Link key={i} href={`/inspiration/post/${item.slug}`}>
+            <ImageCard
+              src={`https://db.ogimage.org/assets/${item.image}`}
+              alt={`OG Image for ${item.domain}`}
+              color={item.color[0]}
+            />
+            <div className="flex items-center justify-between">
+              <div className="text-lg font-bold">{item.name}</div>
+              <div className="truncate text-sm text-gray-600">
+                {item.domain}
+              </div>
+            </div>
+          </Link>
+        ))}
+      </div>
 
       {home && (
         <div
@@ -40,7 +61,7 @@ const Hero = () => {
   return (
     <div className="hero">
       <div className="hero-section border-0">
-        <div className="hero-content mx-auto flex max-w-4xl flex-col items-center justify-center px-10 py-14 text-center lg:py-20 xl:max-w-5xl">
+        <div className="hero-content pad mx-auto flex max-w-4xl flex-col items-center justify-center py-4 text-center sm:py-8 xl:max-w-5xl">
           <h1 className="mx-auto max-w-4xl text-3xl font-black leading-[1.4] tracking-[-0.015em] md:max-w-[46rem] md:text-5xl">
             The Only OG Image Generator That Doesn’t Waste Your Time
           </h1>

@@ -70,12 +70,12 @@ export async function getInspiration(slug: string) {
   }
 }
 
-export async function getLatestInspiration(filter = {}) {
+export async function getLatestInspiration(filter = {}, limit = 500) {
   try {
     const inspirations = await directus.request(
       readItems('inspiration', {
         sort: ['-date_created'],
-        limit: 500,
+        limit,
         fields: ['*'],
       }),
     )
