@@ -23,7 +23,7 @@ export default async function Page() {
     <PageLayout>
       <Hero />
 
-      <div className="pad grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="pad grid grid-cols-1 gap-4 pb-8 sm:grid-cols-2 lg:grid-cols-3">
         {list.map((item, i) => (
           <Link key={i} href={`/inspiration/post/${item.slug}`}>
             <ImageCard
@@ -39,17 +39,6 @@ export default async function Page() {
             </div>
           </Link>
         ))}
-      </div>
-
-      {home && (
-        <div
-          className="contain prose prose-sm mx-auto sm:prose-base"
-          dangerouslySetInnerHTML={{ __html: home.content }}
-        ></div>
-      )}
-
-      <div className="contain mb-12 max-w-xl">
-        <CTA />
       </div>
 
       <TestimonialMarquee />
