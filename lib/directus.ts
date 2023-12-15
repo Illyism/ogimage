@@ -103,4 +103,40 @@ export async function getLatestInspiration(filter = {}, limit = 500) {
   }
 }
 
+export function getUniqueCategories(list: { category: string[] }[]) {
+  const countMap = list.reduce(
+    (acc, curr) => {
+      for (const category of curr.category) {
+        if (acc[category]) {
+          acc[category]++
+        } else {
+          acc[category] = 1
+        }
+      }
+      return acc
+    },
+    {} as Record<string, number>,
+  )
+
+  // only keep those that appear multiple times
+  return Object.entries(countMap)
+    .filter(([, count]) => count > 1)
+    .sort(([, a], [, b]) => b - a)
+    .map(([category, count]) => ({ category, count }))
+}
+
+export async function getCategories() {
+  try {
+    const inspirations = await directus.request(
+      readItems('inspiration', {
+        fields: ['category'],
+      }),
+    )
+    const categories = getUniqueCategories(inspirations)
+    return categories
+  } catch (error) {
+    return []
+  }
+}
+
 export default directus

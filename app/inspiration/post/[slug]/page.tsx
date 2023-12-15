@@ -22,6 +22,7 @@ export async function generateMetadata({ params }: any) {
   return generatePageMeta({
     title: `${inspiration.name} - OG Image for ${inspiration.domain} - Open Graph Image Inspiration`,
     description: inspiration.description,
+    image: `https://db.ogimage.org/assets/${inspiration.image}`,
     url: `/inspiration/post/${params.slug}`,
   })
 }
@@ -41,8 +42,8 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
       <ArticleStructuredData
         title={inspiration.name}
         id={`https://ogimage.org/inspiration/post/${inspiration.slug}`}
-        datePublished={inspiration.date_created.toISOString()}
-        dateModified={inspiration.date_updated.toISOString()}
+        datePublished={inspiration.date_created.toString()}
+        dateModified={inspiration.date_updated.toString()}
         authorName={'Ilias Ism'}
         authorId={'https://il.ly'}
         imageUrl={`https://db.ogimage.org/assets/${inspiration.image}`}

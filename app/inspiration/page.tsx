@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
-import { getLatestInspiration } from '@/lib/directus'
+import { getLatestInspiration, getUniqueCategories } from '@/lib/directus'
 import Link from 'next/link'
 import { ImageCard } from './post/[slug]/ImageCard'
 
@@ -16,6 +16,7 @@ export const metadata = generatePageMeta({
 
 export default async function Page() {
   const list = await getLatestInspiration()
+  const categories = getUniqueCategories(list)
   return (
     <PageLayout>
       <div className="pad pt-4 lg:pt-16">
@@ -28,6 +29,26 @@ export default async function Page() {
           OGimage.org. Be inspired by handpicked examples of real OG images,
           ensuring the highest quality.
         </p>
+
+        <div className="mb-8 flex flex-wrap gap-2">
+          {categories
+            .filter((c) => c.count > 10)
+            .map((c, i) => (
+              <Link
+                key={i}
+                href={`/inspiration/category/${c.category}`}
+                className="inline-flex items-center rounded-full bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-200"
+              >
+                <span className="px-2.5 py-1 text-xs font-medium text-gray-800">
+                  {c.category}
+                </span>
+                <span className="pr-2 font-mono text-xs font-bold tabular-nums text-gray-500">
+                  {c.count}
+                </span>
+              </Link>
+            ))}
+        </div>
+
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((item, i) => (
             <Link key={i} href={`/inspiration/post/${item.slug}`}>

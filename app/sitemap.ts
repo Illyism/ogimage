@@ -1,29 +1,8 @@
-import directus, { Inspiration, getLatestInspiration } from '@/lib/directus'
+import directus, { getCategories, getLatestInspiration } from '@/lib/directus'
 import { readItems } from '@directus/sdk'
 import { allTemplateMeta } from 'contentlayer/generated'
 
 const domain = `ogimage.org`
-
-function getUniqueCategories(list: Inspiration[]) {
-  const countMap = list.reduce(
-    (acc, curr) => {
-      for (const category of curr.category) {
-        if (acc[category]) {
-          acc[category]++
-        } else {
-          acc[category] = 1
-        }
-      }
-      return acc
-    },
-    {} as Record<string, number>,
-  )
-
-  // only keep those that appear multiple times
-  return Object.entries(countMap)
-    .filter(([, count]) => count > 1)
-    .map(([category]) => category)
-}
 
 export default async function Sitemap() {
   const inspirations = await getLatestInspiration()
@@ -33,7 +12,7 @@ export default async function Sitemap() {
     }),
   )
 
-  const categories = getUniqueCategories(inspirations)
+  const categories = await getCategories()
   return [
     {
       url: `https://${domain}`,
@@ -68,7 +47,7 @@ export default async function Sitemap() {
       lastModified: i.date_updated,
     })),
     ...categories.map((c) => ({
-      url: `https://${domain}/inspiration/category/${c}`,
+      url: `https://${domain}/inspiration/category/${c.category}`,
       lastModified: new Date(),
     })),
   ]
