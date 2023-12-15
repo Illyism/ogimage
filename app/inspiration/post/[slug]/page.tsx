@@ -37,11 +37,46 @@ export default async function Page({ params }: { params: { slug: string } }) {
 const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
   return (
     <PageLayout>
-      <div className="pad mx-auto max-w-3xl pt-4 lg:pt-16">
+      <div className="pad mx-auto max-w-3xl pt-4">
+        <nav
+          className="mb-4  flex gap-2 lg:mb-16"
+          itemScope
+          itemType="http://schema.org/BreadcrumbList"
+        >
+          <Link
+            href="/inspiration"
+            className="font-bold underline"
+            itemProp="itemListElement"
+            itemScope
+            itemType="http://schema.org/ListItem"
+          >
+            Inspiration
+          </Link>
+          /
+          <Link
+            href={`/inspiration/category/${inspiration.category[0]}`}
+            itemProp="itemListElement"
+            itemScope
+            itemType="http://schema.org/ListItem"
+            className="font-bold capitalize underline"
+          >
+            {inspiration.category[0]}
+          </Link>
+          /
+          <Link
+            href={`/inspiration/post/${inspiration.slug}`}
+            className="font-bold"
+            itemProp="itemListElement"
+            itemScope
+            itemType="http://schema.org/ListItem"
+          >
+            {inspiration.name}
+          </Link>
+        </nav>
         <h1 className="mb-2 text-2xl font-bold text-gray-900 sm:text-3xl">
           {inspiration.name}
         </h1>
-        <p className="text-base font-normal leading-7 text-gray-600">
+        <p className="mb-4 text-base font-normal leading-7 text-gray-600">
           {inspiration.description}
         </p>
 
