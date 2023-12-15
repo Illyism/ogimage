@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
+import { ArticleStructuredData } from '@/core/structured'
 import { Inspiration, getInspiration } from '@/lib/directus'
 import { getRouteRel } from '@/lib/route-rel'
 import { ExternalLinkIcon } from 'lucide-react'
@@ -37,6 +38,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
 const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
   return (
     <PageLayout>
+      <ArticleStructuredData
+        title={inspiration.name}
+        id={`https://ogimage.org/inspiration/post/${inspiration.slug}`}
+        datePublished={inspiration.date_created.toISOString()}
+        dateModified={inspiration.date_updated.toISOString()}
+        authorName={'Ilias Ism'}
+        authorId={'https://il.ly'}
+        imageUrl={`https://db.ogimage.org/assets/${inspiration.image}`}
+      />
       <div className="pad mx-auto max-w-3xl pt-4">
         <nav
           className="mb-4  flex gap-2 lg:mb-16"

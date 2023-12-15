@@ -1,6 +1,7 @@
 'use client'
 
 import { Analytics } from '@/core/analytics/Analytics'
+import { StructuredData } from '@/core/structured'
 import { usePathname } from 'next/navigation'
 import Script from 'next/script'
 import { createContext, useEffect, useRef } from 'react'
@@ -23,6 +24,7 @@ export function Providers({ children }: any) {
 
   return (
     <AppContext.Provider value={{ previousPathname }}>
+      <StructuredData />
       {children}
       <Analytics />
       <Script
