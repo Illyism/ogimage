@@ -7,6 +7,9 @@ import { allTemplateMeta } from 'contentlayer/generated'
 import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 
+export const runtime = 'edge'
+export const revalidate = 60 * 60 * 4 // 4 hours
+
 export const metadata = generatePageMeta({
   title: '3 Best Open Graph Image Templates for 2023 - OGimage.org',
   description:
