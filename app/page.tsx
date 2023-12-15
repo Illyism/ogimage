@@ -5,7 +5,6 @@ import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
 import { TestimonialReviews } from '@/components/reviews/testimonial-reviews'
 import { generatePageMeta } from '@/core/seo'
 import { getLatestInspiration } from '@/lib/directus'
-import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 import { ImageCard } from './inspiration/post/[slug]/ImageCard'
 
@@ -62,26 +61,6 @@ const Hero = () => {
           <TestimonialReviews className="mt-8" />
         </div>
       </div>
-    </div>
-  )
-}
-
-const CTA = () => {
-  return (
-    <div className="hero-button flex flex-col gap-5 py-4 sm:flex-row">
-      <Link
-        href="/buy"
-        className="flex h-[40px] w-40 items-center justify-center rounded-full bg-violet-500 text-base font-bold text-white hover:shadow-lg hover:drop-shadow-lg lg:h-[50px] lg:w-44 lg:text-lg"
-      >
-        <span className="tracking-tight">Get Started</span>
-        <ArrowRightIcon className="ml-2" />
-      </Link>
-      <Link
-        href="/templates"
-        className="flex h-[40px] w-40 items-center justify-center rounded-full border border-violet-500 bg-white text-base font-bold text-black transition duration-200 hover:bg-slate-500/20 hover:shadow-lg hover:drop-shadow-lg lg:h-[50px] lg:w-44 lg:text-lg"
-      >
-        <span className="tracking-tight">See Templates</span>
-      </Link>
     </div>
   )
 }
