@@ -4,7 +4,7 @@ import { PageLayout } from '@/components/nav/PageLayout'
 import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
 import { TestimonialReviews } from '@/components/reviews/testimonial-reviews'
 import { generatePageMeta } from '@/core/seo'
-import { getLatestInspiration, getPost } from '@/lib/directus'
+import { getLatestInspiration } from '@/lib/directus'
 import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 import { ImageCard } from './inspiration/post/[slug]/ImageCard'
@@ -16,7 +16,6 @@ export const metadata = generatePageMeta({
 })
 
 export default async function Page() {
-  const home = await getPost('home')
   const list = await getLatestInspiration({}, 6)
 
   return (
