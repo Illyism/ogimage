@@ -13,6 +13,9 @@ import { notFound } from 'next/navigation'
 import { LiveExample } from './LiveExample'
 import { SiteBox } from './SiteBox'
 
+export const runtime = 'edge'
+export const revalidate = 60 * 60 * 4 // 4 hours
+
 export async function generateStaticParams() {
   return allTemplateMeta.map((post) => ({
     slug: post.slug,
