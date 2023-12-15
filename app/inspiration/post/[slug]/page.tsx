@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: any) {
   }
 
   return generatePageMeta({
-    title: `${inspiration.name} - OG Image for ${inspiration.domain}`,
+    title: `${inspiration.name} - OG Image for ${inspiration.domain} - Open Graph Image Inspiration`,
     description: inspiration.description,
     url: `/inspiration/post/${params.slug}`,
   })
