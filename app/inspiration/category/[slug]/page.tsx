@@ -9,7 +9,10 @@ export const revalidate = 5 * 60 // 5 minutes
 export async function generateMetadata({ params }: any) {
   const tag = params.slug
   return generatePageMeta({
-    title: `Best OG Images in ${tag.replace(/-/g, ' ')}`,
+    title: `Best OG Images in ${tag.replace(
+      /-/g,
+      ' ',
+    )} - Open Graph Image Inspiration Examples`,
     description: `Get inspired by the best ${tag} OG image designs, templates, and more.`,
     url: `/inspiration/category/${tag}`,
   })
