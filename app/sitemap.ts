@@ -1,4 +1,7 @@
-import directus, { getCategories, getLatestInspiration } from '@/lib/directus'
+import directus, {
+  getLatestInspiration,
+  getUniqueCategories,
+} from '@/lib/directus'
 import { readItems } from '@directus/sdk'
 import { allTemplateMeta } from 'contentlayer/generated'
 
@@ -12,7 +15,7 @@ export default async function Sitemap() {
     }),
   )
 
-  const categories = await getCategories()
+  const categories = getUniqueCategories(inspirations)
   return [
     {
       url: `https://${domain}`,
