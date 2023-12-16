@@ -8,7 +8,7 @@ import { ImageCard } from './post/[slug]/ImageCard'
 export const revalidate = 5 * 60 // 5 minutes
 
 export const metadata = generatePageMeta({
-  title: 'Open Graph Image Inspiration: Discover Best OG Image Designs',
+  title: 'OG Image Inspiration - OG Image Design Gallery',
   description:
     'Need open graph image inspiration? We&apos;ve got you covered. Discover the best OG image designs, templates, and more at OGimage.org. Be inspired by handpicked examples of real OG images, ensuring the highest quality.',
   url: '/inspiration',
@@ -21,13 +21,12 @@ export default async function Page() {
     <PageLayout>
       <div className="pad pt-4 lg:pt-16">
         <h1 className="mb-2 text-2xl font-bold text-gray-900 sm:text-3xl">
-          The Best OG Image Inspiration
+          OG Image Design Inspiration Gallery
         </h1>
         <p className="mb-8 text-base font-normal leading-7 text-gray-600">
           Need open graph image inspiration? We&apos;ve got you covered.
-          Discover the best OG image designs, templates, and more at
-          OGimage.org. Be inspired by handpicked examples of real OG images,
-          ensuring the highest quality.
+          Discover the best OG image inspiration, design and templates in our
+          gallery.
         </p>
 
         <div className="mb-8 flex flex-wrap gap-2">
