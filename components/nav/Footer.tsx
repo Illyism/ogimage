@@ -36,6 +36,12 @@ export const Footer = () => {
               🛒 Order Now
             </Link>
             <Link
+              href="/pricing"
+              className="px-8 py-2 hover:bg-indigo-500/10 hover:text-indigo-500 sm:rounded sm:px-1 sm:py-0.5"
+            >
+              💰 Pricing
+            </Link>
+            <Link
               href="/templates"
               className="px-8 py-2 hover:bg-indigo-500/10 hover:text-indigo-500 sm:rounded sm:px-1 sm:py-0.5"
             >
@@ -52,12 +58,6 @@ export const Footer = () => {
               className="px-8 py-2 hover:bg-indigo-500/10 hover:text-indigo-500 sm:rounded sm:px-1 sm:py-0.5"
             >
               ❓ FAQ
-            </Link>
-            <Link
-              href="https://magicspace.agency"
-              className="px-8 py-2 hover:bg-indigo-500/10 hover:text-indigo-500 sm:rounded sm:px-1 sm:py-0.5"
-            >
-              📈 SEO Services
             </Link>
           </div>
 
@@ -90,6 +90,12 @@ export const Footer = () => {
               className="px-8 py-2 hover:bg-indigo-500/10 hover:text-indigo-500 sm:mb-2 sm:rounded sm:px-1 sm:py-0.5"
             >
               📰 Facebook Link Previews
+            </Link>
+            <Link
+              href="https://magicspace.agency"
+              className="px-8 py-2 hover:bg-indigo-500/10 hover:text-indigo-500 sm:rounded sm:px-1 sm:py-0.5"
+            >
+              📈 SEO Services
             </Link>
           </div>
 
