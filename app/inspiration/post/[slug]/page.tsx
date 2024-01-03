@@ -6,6 +6,7 @@ import { Inspiration, getInspiration } from '@/lib/directus'
 import { getRouteRel } from '@/lib/route-rel'
 import { ExternalLinkIcon } from 'lucide-react'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import { ImageCard } from './ImageCard'
 
 export const revalidate = 5 * 60 // 5 minutes
@@ -28,6 +29,11 @@ export async function generateMetadata({ params }: any) {
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
+  // if slug contains www, redirect to non-www
+  if (params.slug.includes('www.')) {
+    return redirect(`/inspiration/post/${params.slug.replace('www.', '')}`)
+  }
+
   const inspiration = await getInspiration(params.slug)
   if (!inspiration) {
     return <NotFoundInspiration slug={params.slug} />
