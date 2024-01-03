@@ -45,10 +45,10 @@ client.defineJob({
     if (content.includes('http')) {
       // it's a URL
       inspiration.URL = content
-      inspiration.domain = new URL(content).hostname
+      inspiration.domain = new URL(content).hostname.replace('www.', '')
     } else {
       // it's a domain
-      inspiration.domain = content
+      inspiration.domain = content.replace('www.', '')
       inspiration.URL = `https://${content}`
     }
 
