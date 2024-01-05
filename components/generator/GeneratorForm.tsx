@@ -38,7 +38,7 @@ export const GeneratorForm = () => {
         type="submit"
         className="flex items-center justify-center rounded-full bg-violet-500 px-4 text-sm font-bold text-white"
       >
-        <span className="tracking-tight">Generate</span>
+        <span className="tracking-tight">Order Now</span>
         <Wand2 className="ml-2" size={16} />
       </button>
     </form>
