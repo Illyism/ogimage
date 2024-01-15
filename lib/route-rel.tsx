@@ -16,6 +16,9 @@ const APPROVED = [
   'buildinpublic.community',
   'storychief.io',
   'screenshotone.com',
+  'typeframes.comma',
+  'swissobserver.com',
+  'castpush.com',
 ]
 
 /*

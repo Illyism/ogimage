@@ -104,13 +104,13 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
         />
 
         <div className="group mt-3 flex items-center space-x-6">
-          <Link
+          <a
             href={inspiration.URL}
             rel={getRouteRel(inspiration.URL)}
             className="flex items-center gap-2 font-bold underline"
           >
             {inspiration.domain} <ExternalLinkIcon size={14} />
-          </Link>
+          </a>
           <div className="flex-1"></div>
 
           {inspiration.color.length > 0 && (
@@ -148,7 +148,7 @@ const NotFoundInspiration = ({ slug }: { slug: string }) => {
   return (
     <PageLayout>
       <div className="contain pt-16 text-center">
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-800 dark:text-gray-100 sm:text-5xl">
+        <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-gray-100">
           Add {slug}?
         </h1>
         <p className="mt-4 text-base text-gray-600 dark:text-gray-400">
