@@ -115,12 +115,20 @@ export const Footer = () => {
             >
               📜 Privacy Policy
             </Link>
-            <Link
+            <a
               href="https://il.ly/blog"
               className="px-8 py-2 hover:bg-indigo-500/10 hover:text-indigo-500 sm:rounded sm:px-1 sm:py-0.5"
             >
               📝 SEO Blog
-            </Link>
+            </a>
+
+            <a
+              href="https://storychief.io/blog/seo-tools"
+              target="_blank"
+              className="px-8 py-2 hover:bg-indigo-500/10 hover:text-indigo-500 sm:rounded sm:px-1 sm:py-0.5"
+            >
+              📈 SEO Tools
+            </a>
 
             <Link
               href="/contact"
