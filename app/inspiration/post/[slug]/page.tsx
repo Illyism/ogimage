@@ -4,6 +4,7 @@ import { generatePageMeta } from '@/core/seo'
 import { ArticleStructuredData } from '@/core/structured'
 import { Inspiration, getInspiration } from '@/lib/directus'
 import { getRouteRel } from '@/lib/route-rel'
+import { cn } from '@/lib/utils'
 import { ExternalLinkIcon } from 'lucide-react'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
@@ -139,6 +140,17 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
             </div>
           )}
         </div>
+
+        {inspiration.content && (
+          <div
+            data-mdx-container
+            className={cn(
+              'prose prose-zinc max-w-none transition-all dark:prose-invert prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-display prose-headings:font-bold',
+              'py-16',
+            )}
+            dangerouslySetInnerHTML={{ __html: inspiration.content }}
+          />
+        )}
       </div>
     </PageLayout>
   )
@@ -148,7 +160,7 @@ const NotFoundInspiration = ({ slug }: { slug: string }) => {
   return (
     <PageLayout>
       <div className="contain pt-16 text-center">
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-800 dark:text-gray-100 sm:text-5xl">
+        <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-gray-100">
           Add {slug}?
         </h1>
         <p className="mt-4 text-base text-gray-600 dark:text-gray-400">

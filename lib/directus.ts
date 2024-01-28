@@ -38,6 +38,7 @@ export interface Inspiration {
   description: string
   image: string
   color: string[]
+  content?: string
 }
 
 const directus = createDirectus<Schema>('https://db.ogimage.org')
