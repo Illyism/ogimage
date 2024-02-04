@@ -16,6 +16,7 @@ const APPROVED = [
   'buildinpublic.community',
   'storychief.io',
   'screenshotone.com',
+  'nsfw-ai-chat.com',
 ]
 
 /*
