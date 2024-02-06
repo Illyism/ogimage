@@ -122,14 +122,6 @@ export const Footer = () => {
               📝 SEO Blog
             </a>
 
-            <a
-              href="https://storychief.io/blog/seo-tools"
-              target="_blank"
-              className="px-8 py-2 hover:bg-indigo-500/10 hover:text-indigo-500 sm:rounded sm:px-1 sm:py-0.5"
-            >
-              📈 SEO Tools
-            </a>
-
             <Link
               href="/contact"
               className="px-8 py-2 hover:bg-indigo-500/10 hover:text-indigo-500 sm:rounded sm:px-1 sm:py-0.5"
