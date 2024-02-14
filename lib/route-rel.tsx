@@ -40,5 +40,5 @@ export const getRouteRel = (href: string) => {
     return '' // all good
   }
 
-  return 'noopener noreferrer nofollow'
+  return 'nofollow'
 }
