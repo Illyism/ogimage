@@ -17,6 +17,7 @@ const APPROVED = [
   'storychief.io',
   'screenshotone.com',
   'nsfw-ai-chat.com',
+  'bestparents.com',
 ]
 
 /*
