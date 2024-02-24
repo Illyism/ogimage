@@ -105,13 +105,13 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
         />
 
         <div className="group mt-3 flex items-center space-x-6">
-          <Link
+          <a
             href={inspiration.URL}
             rel={getRouteRel(inspiration.URL)}
             className="flex items-center gap-2 font-bold underline"
           >
             {inspiration.domain} <ExternalLinkIcon size={14} />
-          </Link>
+          </a>
           <div className="flex-1"></div>
 
           {inspiration.color.length > 0 && (

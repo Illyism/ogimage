@@ -1,20 +1,21 @@
 'use client'
 
 import { Wand2 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-export const GeneratorForm = () => {
+export const LinkToGeneratorForm = () => {
   const [website, setWebsite] = useState('')
+  const router = useRouter()
 
   const onSubmit = (e) => {
-    // redirect to /buy
     e.preventDefault()
     if (window.posthog) {
-      window.posthog.capture('generator_started', {
+      window.posthog.capture('generator_open', {
         website,
       })
     }
-    window.location.href = '/buy'
+    router.push(`/free?url=${website}`)
   }
 
   return (

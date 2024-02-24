@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { GeneratorForm } from '@/components/generator/GeneratorForm'
+import { LinkToGeneratorForm } from '@/components/generator/LinkToGeneratorForm'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
 import { TestimonialReviews } from '@/components/reviews/testimonial-reviews'
@@ -56,7 +56,7 @@ const Hero = () => {
             Create <b className="font-bold">OG images</b> automatically for
             every page on your website. No design skills required.
           </p>
-          <GeneratorForm />
+          <LinkToGeneratorForm />
 
           <TestimonialReviews className="mt-8" />
         </div>

@@ -18,6 +18,9 @@ const APPROVED = [
   'screenshotone.com',
   'nsfw-ai-chat.com',
   'bestparents.com',
+  'typeframes.comma',
+  'swissobserver.com',
+  'castpush.com',
 ]
 
 /*

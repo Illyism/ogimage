@@ -88,6 +88,12 @@
     "prettier-plugin-tailwindcss": "^0.5.9",
     "typescript": "5.3.3"
   },
+  "peerDependencies": {
+    "@types/react": "^17.0.2 || ^18.0.0",
+    "@types/react-dom": "^17.0.2 || ^18.0.0",
+    "react": "^17.0.2 || ^18.0.0",
+    "react-dom": "^17.0.2 || ^18.0.0"
+  },
   "trigger.dev": {
     "endpointId": "ogimage--4xk"
   }
