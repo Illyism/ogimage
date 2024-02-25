@@ -1,16 +1,16 @@
-import { Metadata } from 'next'
+import { type Metadata } from 'next'
 import { type OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types'
-import { Twitter } from 'next/dist/lib/metadata/types/twitter-types'
+import { type Twitter } from 'next/dist/lib/metadata/types/twitter-types'
 import { type StaticImageData } from 'next/image'
 
-const title = 'OGimage.org: Open Graph Image Generator'
+const title = 'ogimage.org: The Ultimate Open Graph Image Generator'
 const description = `Generate open graph images with ease using OGimage.org, your reliable open graph image generator.`
 
 export const rootOpenGraph: OpenGraph = {
   locale: 'en',
   type: 'website',
   url: 'https://ogimage.org',
-  siteName: 'OGimage.org',
+  siteName: 'ogimage.org',
   title,
   description,
 }
@@ -27,9 +27,10 @@ export const rootMetadata: Metadata = {
   metadataBase: new URL('https://ogimage.org'),
   title,
   description,
-  applicationName: 'OGimage.org',
+  applicationName: 'ogimage.org',
   openGraph: rootOpenGraph,
   twitter: rootTwitter,
+  manifest: '/site.webmanifest',
   icons: [
     {
       rel: 'apple-touch-icon',
@@ -50,15 +51,14 @@ export const rootMetadata: Metadata = {
     },
     {
       rel: 'manifest',
-      url: '/site.webmanifest',
+      url: '/_static/favicons/site.webmanifest',
     },
     {
       rel: 'mask-icon',
       url: '/_static/favicons/safari-pinned-tab.svg',
-      color: '#172e40',
+      color: '#101215',
     },
   ],
-  manifest: '/site.webmanifest',
   robots:
     'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large',
 }
@@ -93,8 +93,8 @@ function getImage(
 }
 
 export function generatePageMeta({
-  title = 'OGimage.org: Open Graph Image Generator',
-  description = `Generate open graph images for your website with OGimage.org, the trusted open graph image generator.`,
+  title = rootMetadata.title as string,
+  description = rootMetadata.description as string,
   url,
   image,
   image_alt,
@@ -102,10 +102,8 @@ export function generatePageMeta({
   image_height,
   publishedAt,
   updatedAt,
-  author,
-  siteName,
-  feed,
-  readingTime,
+  siteName = 'Typeframes',
+  feed = '/blog/feed.xml',
 }: {
   title?: string
   description?: string
@@ -119,41 +117,36 @@ export function generatePageMeta({
   author?: string
   siteName?: string
   feed?: string
-  readingTime?: string
 } = {}): Metadata {
   const metadata = {
     ...rootMetadata,
     title,
     description,
-    authors: author ? [author] : undefined,
     alternates: {
       canonical: url,
     },
     openGraph: {
       ...rootOpenGraph,
       url,
-      title: title,
+      title: `${title} - ${siteName ?? rootOpenGraph.siteName}`,
       description,
     } as OpenGraph,
     twitter: {
       ...rootTwitter,
-      title: title,
+      title: `${title} - ${siteName ?? rootOpenGraph.siteName}`,
       description,
     } as Twitter,
-    publisher: siteName,
-    other: {},
   } as Metadata
 
-  if (publishedAt && author) {
+  if (publishedAt) {
     metadata.openGraph = {
       ...metadata.openGraph,
       type: 'article',
-      locale: 'en',
       publishedTime: publishedAt,
       modifiedTime: updatedAt ?? publishedAt,
-      authors: ['https://www.facebook.com/TheSwissObserver'],
+      authors: ['ogimage.org'],
       section: siteName,
-      tags: [siteName ?? ''],
+      tags: [siteName],
     }
   }
 
@@ -161,7 +154,7 @@ export function generatePageMeta({
   const screenshot = {
     url: `${metadata.metadataBase}og?url=${encodeURIComponent(url || '/')}`,
     width: 1200,
-    height: 600,
+    height: 630,
     alt: title,
     type: 'image/png',
   }
@@ -178,15 +171,6 @@ export function generatePageMeta({
       metadata.alternates!.types = {}
     }
     metadata.alternates!.types['application/rss+xml'] = feed
-  }
-
-  if (author) {
-    metadata.other!['twitter:label1'] = 'Written by'
-    metadata.other!['twitter:data1'] = author
-  }
-  if (readingTime) {
-    metadata.other!['twitter:label2'] = 'Est. reading time'
-    metadata.other!['twitter:data2'] = `${readingTime} min`
   }
 
   return metadata

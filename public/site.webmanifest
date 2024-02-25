@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "ogimage.org",
+    "short_name": "ogimage.org",
     "icons": [
         {
             "src": "/_static/favicons/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#895af7",
-    "background_color": "#895af7",
+    "theme_color": "#ae3aed",
+    "background_color": "#ae3aed",
     "display": "standalone"
 }

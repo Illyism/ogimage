@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Button } from '../ui/button'
+import { Logo } from '../ui/logo'
 import { headerLinks } from './nav'
 
 export function Header() {
@@ -15,6 +16,7 @@ export function Header() {
       <header className="pad sticky top-0 z-50 flex w-full items-center justify-between bg-background/95 py-1 text-sm backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="flex items-center space-x-4">
           <Link href="/" className="flex flex-1 items-center gap-2 font-black">
+            <Logo className="text-primary" width={24} height={24} />
             ogimage.org
           </Link>
           <nav className="flex items-center justify-center sm:ml-8">
@@ -117,7 +119,7 @@ const ContactButton = () => {
   return (
     <Button asChild>
       <Link href="/buy" target="_blank">
-        Buy Now
+        Buy now
       </Link>
     </Button>
   )

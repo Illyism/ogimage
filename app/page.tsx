@@ -47,11 +47,11 @@ const Hero = () => {
     <div className="pt-24 text-center">
       <h1 className="mx-auto mb-4 max-w-4xl text-balance text-center text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:max-w-[46rem] md:text-5xl">
         The{' '}
-        <span className="relative rounded border-2 border-primary px-2 font-black">
-          <div className="absolute -left-1.5 -top-1.5 h-3 w-3 border-2 border-primary bg-background"></div>
-          <div className="absolute -right-1.5 -top-1.5 h-3 w-3 border-2 border-primary bg-background"></div>
-          <div className="absolute -bottom-1.5 -left-1.5 h-3 w-3 border-2 border-primary bg-background"></div>
-          <div className="absolute -bottom-1.5 -right-1.5 h-3 w-3 border-2 border-primary bg-background"></div>
+        <span className="group relative rounded border-2 border-primary px-2 font-black transition-colors hover:bg-primary/10">
+          <div className="group-hover:scale-200 absolute -left-1.5 -top-1.5 h-3 w-3 rounded-lg border-2 border-primary bg-background transition group-hover:bg-primary"></div>
+          <div className="group-hover:scale-200 absolute -right-1.5 -top-1.5 h-3 w-3 rounded-lg border-2 border-primary bg-background transition group-hover:bg-primary"></div>
+          <div className="group-hover:scale-200 absolute -bottom-1.5 -left-1.5 h-3 w-3 rounded-lg border-2 border-primary bg-background transition group-hover:bg-primary"></div>
+          <div className="group-hover:scale-200 absolute -bottom-1.5 -right-1.5 h-3 w-3 rounded-lg border-2 border-primary bg-background transition group-hover:bg-primary"></div>
           Ultimate
         </span>{' '}
         Open Graph Image Generator
