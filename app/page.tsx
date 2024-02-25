@@ -80,7 +80,9 @@ const Hero = () => {
             <TooltipTrigger>
               <Button asChild className="px-4">
                 <a href="/buy" target="_blank" className="flex">
-                  PURCHASE TODAY&emsp;<s className="text-xs font-bold">$127</s>{' '}
+                  <span className="hidden sm:inline">PURCHASE TODAY</span>
+                  <span className="sm:hidden">Buy now</span>
+                  &emsp;<s className="text-xs font-bold">$127</s>{' '}
                   <b className="-my-1 ml-2 text-lg font-black">$97</b>
                 </a>
               </Button>
@@ -94,7 +96,7 @@ const Hero = () => {
         <Button asChild variant="secondary" className="px-4">
           <Link href="/templates" className="flex items-center">
             View templates
-            <span className="ml-2 rounded-full bg-green-400/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-green-400">
+            <span className="ml-2 rounded-full bg-green-500/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-green-500 dark:text-green-400">
               2 new
             </span>
           </Link>
