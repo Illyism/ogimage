@@ -113,17 +113,11 @@ const NavLink = ({ href, children }) => {
   )
 }
 
-const ContactButton = ({ className }: any) => {
+const ContactButton = () => {
   return (
-    <Button
-      className={cn(
-        'h-auto w-fit cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-2xl border border-primary bg-primary px-4 py-2.5 text-sm font-bold leading-none text-primary-foreground shadow-xl outline outline-1 outline-offset-[-2px] outline-primary-foreground/30 transition-all duration-150 ease-in-out hover:bg-primary/90',
-        className,
-      )}
-      asChild
-    >
+    <Button asChild>
       <Link href="/buy" target="_blank">
-        Get Started
+        Buy Now
       </Link>
     </Button>
   )
