@@ -210,8 +210,7 @@ mark {
   }
 }
 
-.btn-primary {
-  @apply bg-primary text-primary-foreground;
+.btn {
   background-image: linear-gradient(
     rgba(255, 255, 255, 0.08),
     rgba(255, 255, 255, 0)

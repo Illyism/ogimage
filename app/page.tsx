@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
+import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
 import { getLatestInspiration } from '@/lib/directus'
 import Link from 'next/link'
@@ -42,7 +43,7 @@ export default async function Page() {
 
 const Hero = () => {
   return (
-    <div className="pt-24 text-center">
+    <div className="py-24 text-center">
       <h1 className="mx-auto mb-4 max-w-4xl text-balance text-center text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:max-w-[46rem] md:text-5xl">
         The{' '}
         <span className="group relative rounded border-2 border-primary px-2 font-black transition-colors hover:bg-primary/10">
@@ -58,6 +59,16 @@ const Hero = () => {
         Beautifully designed automated open graph images for your website, blog,
         or social media posts. Customizable. Open source. Pay once, use forever.
       </p>
+      <div className="mt-4 flex items-center justify-center gap-2">
+        <Button asChild className="px-4">
+          <a href="/buy" target="_blank">
+            Buy now
+          </a>
+        </Button>
+        <Button asChild variant="secondary" className="px-4">
+          <Link href="/templates">View templates</Link>
+        </Button>
+      </div>
     </div>
   )
 }

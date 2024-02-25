@@ -29,7 +29,11 @@ export function Header() {
         </div>
         <div className="flex items-center justify-end space-x-4">
           <DarkModeToggle />
-          <ContactButton />
+          <Button asChild>
+            <Link href="/buy" target="_blank">
+              Buy now
+            </Link>
+          </Button>
         </div>
       </header>
     </>
@@ -112,15 +116,5 @@ const NavLink = ({ href, children }) => {
     >
       {children}
     </Link>
-  )
-}
-
-const ContactButton = () => {
-  return (
-    <Button asChild>
-      <Link href="/buy" target="_blank">
-        Buy now
-      </Link>
-    </Button>
   )
 }
