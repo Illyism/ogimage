@@ -92,7 +92,12 @@ const Hero = () => {
         </TooltipProvider>
 
         <Button asChild variant="secondary" className="px-4">
-          <Link href="/templates">View templates</Link>
+          <Link href="/templates" className="flex items-center">
+            View templates
+            <span className="ml-2 rounded-full bg-green-400/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-green-400">
+              2 new
+            </span>
+          </Link>
         </Button>
       </div>
       <div className="mt-2 flex items-center justify-center text-center text-xs">
