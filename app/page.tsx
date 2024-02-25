@@ -60,19 +60,19 @@ const Hero = () => {
   return (
     <div className="pb-24 pt-16 text-center">
       <h1 className="mx-auto mb-4 max-w-4xl text-balance text-center text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:max-w-[46rem] md:text-5xl">
-        The{' '}
         <span className="group relative rounded border-2 border-primary px-2 font-black transition-colors hover:bg-primary/10">
           <div className="group-hover:scale-200 absolute -left-1.5 -top-1.5 h-3 w-3 rounded-lg border-2 border-primary bg-background transition group-hover:bg-primary"></div>
           <div className="group-hover:scale-200 absolute -right-1.5 -top-1.5 h-3 w-3 rounded-lg border-2 border-primary bg-background transition group-hover:bg-primary"></div>
           <div className="group-hover:scale-200 absolute -bottom-1.5 -left-1.5 h-3 w-3 rounded-lg border-2 border-primary bg-background transition group-hover:bg-primary"></div>
           <div className="group-hover:scale-200 absolute -bottom-1.5 -right-1.5 h-3 w-3 rounded-lg border-2 border-primary bg-background transition group-hover:bg-primary"></div>
-          Ultimate
+          OG
         </span>{' '}
-        Open Graph Image Generator
+        Image Generator
       </h1>
       <p className="mx-auto max-w-[750px] text-balance text-lg text-muted-foreground sm:text-xl">
-        Beautifully designed automated open graph images for your website, blog,
-        or social media posts. Customizable. Open source. Lifetime access.
+        Automate <b className="font-bold">open graph images</b> for your
+        website, blog, or social media posts. Customizable. Open source.
+        Lifetime access.
       </p>
       <div className="mt-6 flex items-center justify-center gap-2">
         <TooltipProvider>
