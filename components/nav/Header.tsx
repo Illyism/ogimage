@@ -25,8 +25,8 @@ export function Header() {
     setHasSeenHeader(true)
   }, [])
   return (
-    <header className="sticky top-0 z-50 w-full">
-      <ul className="pad hidden items-center gap-12 bg-background-body py-2 text-xs md:flex">
+    <header className="top-0 z-50 w-full sm:sticky">
+      <ul className="pad flex items-center gap-12 bg-background-body py-2 text-xs">
         <li className="ml-1 flex items-center">
           <CheckCircle size={14} className="mr-1 text-green-500" />
           Created by&nbsp;
@@ -39,7 +39,7 @@ export function Header() {
           </a>
           . Trusted by developers.
         </li>
-        <li className="flex items-center gap-0.5">
+        <li className="hidden items-center gap-0.5 sm:flex">
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
               key={i}
@@ -61,7 +61,7 @@ export function Header() {
             <Logo className="text-primary" width={24} height={24} />
             ogimage.org
           </Link>
-          <nav className="flex items-center justify-center sm:ml-8">
+          <nav className="hidden items-center justify-center sm:ml-8 sm:flex">
             {headerLinks.map((link, i) => (
               <NavLink key={i} href={link.href}>
                 {link.label}
@@ -96,6 +96,13 @@ export function Header() {
           </TooltipProvider>
         </div>
       </div>
+      <nav className="flex items-center pl-4 sm:hidden">
+        {headerLinks.map((link, i) => (
+          <NavLink key={i} href={link.href}>
+            {link.label}
+          </NavLink>
+        ))}
+      </nav>
     </header>
   )
 }
