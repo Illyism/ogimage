@@ -79,8 +79,9 @@ const Hero = () => {
           <Tooltip>
             <TooltipTrigger>
               <Button asChild className="px-4">
-                <a href="/buy" target="_blank">
-                  Buy now
+                <a href="/buy" target="_blank" className="flex">
+                  PURCHASE TODAY&emsp;<s className="text-xs font-bold">$127</s>{' '}
+                  <b className="-my-1 ml-2 text-lg font-black">$97</b>
                 </a>
               </Button>
             </TooltipTrigger>
