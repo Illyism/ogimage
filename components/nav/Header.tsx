@@ -1,19 +1,42 @@
 'use client'
 import { cn } from '@/lib/utils'
-import cookieCutter from 'cookie-cutter'
-import { AnimatePresence, motion } from 'framer-motion'
-import { MoonIcon, SunIcon } from 'lucide-react'
+import { CheckCircle, Star } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
 import { Button } from '../ui/button'
 import { Logo } from '../ui/logo'
+import { DarkModeToggle } from './DarkModeToggle'
 import { headerLinks } from './nav'
 
 export function Header() {
   return (
-    <>
-      <header className="pad sticky top-0 z-50 flex w-full items-center justify-between bg-background/95 py-1 text-sm backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full">
+      <ul className="pad hidden items-center gap-12 bg-background-body py-2 text-xs md:flex">
+        <li className="ml-1 flex items-center">
+          <CheckCircle size={14} className="mr-1 text-green-500" />
+          Created by&nbsp;
+          <a
+            href="https://magicspace.agency"
+            target="_blank"
+            className="font-medium hover:underline"
+          >
+            SEO experts
+          </a>
+          . Trusted by developers.
+        </li>
+        <li className="flex items-center gap-0.5">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star
+              key={i}
+              size={14}
+              fill="currentColor"
+              className="text-green-500 transition hover:scale-125 hover:text-green-400"
+            />
+          ))}
+          <span className="ml-1">Used by top startups</span>
+        </li>
+      </ul>
+      <div className="pad sticky top-0 z-50 flex w-full items-center justify-between bg-background/95 py-1 text-sm backdrop-blur-lg supports-[backdrop-filter]:bg-background/90">
         <div className="flex items-center space-x-4">
           <Link
             href="/"
@@ -39,52 +62,8 @@ export function Header() {
             </Link>
           </Button>
         </div>
-      </header>
-    </>
-  )
-}
-
-const DarkModeToggle = () => {
-  const [darkMode, setDarkMode] = useState(cookieCutter.get('og-dark') === 'true')
-
-  useEffect(() => {
-    if (darkMode) {
-      cookieCutter.set('og-dark', 'true')
-      document.documentElement.classList.add('dark')
-    } else {
-      cookieCutter.set('og-dark', 'false')
-      document.documentElement.classList.remove('dark')
-    }
-  }, [darkMode])
-
-  return (
-    <Button
-      variant="ghost"
-      className={cn('h-10 w-10 dark:text-yellow-200')}
-      onClick={() => setDarkMode(!darkMode)}
-    >
-      <AnimatePresence>
-        {darkMode ? (
-          <motion.span
-            key="moon"
-            initial={{ rotate: 0 }}
-            animate={{ rotate: 360 }}
-            className="origin-center"
-          >
-            <MoonIcon size={16} />
-          </motion.span>
-        ) : (
-          <motion.span
-            key="sun"
-            initial={{ rotate: 0 }}
-            animate={{ rotate: 360 }}
-            className="origin-center"
-          >
-            <SunIcon size={16} />
-          </motion.span>
-        )}
-      </AnimatePresence>
-    </Button>
+      </div>
+    </header>
   )
 }
 

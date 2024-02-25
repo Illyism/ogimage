@@ -57,7 +57,7 @@ const Hero = () => {
       </h1>
       <p className="mx-auto max-w-[750px] text-balance text-lg text-muted-foreground sm:text-xl">
         Beautifully designed automated open graph images for your website, blog,
-        or social media posts. Customizable. Open source. Pay once, use forever.
+        or social media posts. Customizable. Open source. Lifetime access.
       </p>
       <div className="mt-4 flex items-center justify-center gap-2">
         <Button asChild className="px-4">
@@ -69,6 +69,7 @@ const Hero = () => {
           <Link href="/templates">View templates</Link>
         </Button>
       </div>
+      <div className="flex items-center"></div>
     </div>
   )
 }

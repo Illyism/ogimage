@@ -20,8 +20,8 @@ export async function GET() {
 
   const newCheckout: NewCheckout = {
     productOptions: {
-      name: '50% OFF - Automatic Open Graph Image Generator Tool',
-      description: '**50% off!**\nCreate OG Images for SEO - Works for any blog, website, Next.js and more. Get the full source code and create social images for free.',
+      name: 'Automatic Open Graph Image Generator Tool - Lifetime Access',
+      description: '50% off with code LAUNCH 🎁 Create OG Images for SEO - Works for any blog, website, Next.js and more. Get the full source code and create social images for free.',
     },
     checkoutData: {
       discountCode: 'LAUNCH',
