@@ -4,6 +4,7 @@ import { StarGlow } from '@/components/ui/StarGlow'
 import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
 import { getLatestInspiration } from '@/lib/directus'
+import { DollarSign } from 'lucide-react'
 import Link from 'next/link'
 import { ImageCard } from './inspiration/post/[slug]/ImageCard'
 
@@ -72,9 +73,10 @@ const Hero = () => {
       </div>
       <div className="mt-2 flex items-center justify-center text-center text-xs">
         <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
-          <div className="relative mr-1 h-2 w-2 rounded-full bg-green-500">
-            <div className="absolute h-2 w-2 animate-ping rounded-full bg-green-500"></div>
-          </div>
+          <DollarSign
+            size={12}
+            className="absolute inset-y-0 -left-4 m-auto animate-ping text-green-500"
+          />
           $30 off
         </span>{' '}
         for the next 7 customers
