@@ -1,7 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
+import { CountdownFast } from '@/components/ui/CountdownFast'
 import { StarGlow } from '@/components/ui/StarGlow'
 import { Button } from '@/components/ui/button'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import { generatePageMeta } from '@/core/seo'
 import { getLatestInspiration } from '@/lib/directus'
 import { DollarSign } from 'lucide-react'
@@ -68,11 +75,21 @@ const Hero = () => {
         or social media posts. Customizable. Open source. Lifetime access.
       </p>
       <div className="mt-6 flex items-center justify-center gap-2">
-        <Button asChild className="px-4">
-          <a href="/buy" target="_blank">
-            Buy now
-          </a>
-        </Button>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger>
+              <Button asChild className="px-4">
+                <a href="/buy" target="_blank">
+                  Buy now
+                </a>
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent className="btn flex w-32 items-center justify-center rounded-2xl bg-black px-2 py-1 font-black text-white">
+              <CountdownFast />
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+
         <Button asChild variant="secondary" className="px-4">
           <Link href="/templates">View templates</Link>
         </Button>

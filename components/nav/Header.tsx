@@ -75,9 +75,9 @@ export function Header() {
             <Tooltip defaultOpen={!hasSeenHeader}>
               <TooltipTrigger>
                 <Button asChild>
-                  <Link href="/buy" target="_blank">
+                  <a href="/buy" target="_blank">
                     Buy now
-                  </Link>
+                  </a>
                 </Button>
               </TooltipTrigger>
               <TooltipContent
