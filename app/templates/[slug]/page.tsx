@@ -77,7 +77,7 @@ export default async function TemplateDetail({
             ← Back to Templates
           </Link>
 
-          <h1 className="mb-4 flex-1 font-display text-3xl font-bold tracking-tighter text-gray-800 md:text-4xl">
+          <h1 className="mb-4 flex-1 text-3xl font-bold tracking-tighter text-gray-800 md:text-4xl">
             {post.title}
           </h1>
           <p className="text-md">
@@ -134,12 +134,12 @@ export default async function TemplateDetail({
         </header>
 
         <div className="py-8">
-          <h2 className="pb-4 font-display text-2xl font-bold tracking-tight text-gray-800 sm:text-3xl">
+          <h2 className="pb-4 text-2xl font-bold tracking-tight text-gray-800 sm:text-3xl">
             Live Demo
           </h2>
           <LiveExample slug={post.slug} defaultURL={examples[0]} />
 
-          <h2 className="pb-4 pt-12 font-display text-2xl font-bold tracking-tight text-gray-800 sm:text-3xl">
+          <h2 className="pb-4 pt-12 text-2xl font-bold tracking-tight text-gray-800 sm:text-3xl">
             {post.title} examples
           </h2>
           <div className="grid grid-cols-1 gap-4 pb-8 sm:grid-cols-2">

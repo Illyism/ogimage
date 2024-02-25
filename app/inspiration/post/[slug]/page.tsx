@@ -145,7 +145,7 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
           <div
             data-mdx-container
             className={cn(
-              'prose prose-zinc max-w-none transition-all dark:prose-invert prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-display prose-headings:font-bold',
+              'prose prose-zinc max-w-none transition-all dark:prose-invert prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-bold',
               'py-16',
             )}
             dangerouslySetInnerHTML={{ __html: inspiration.content }}

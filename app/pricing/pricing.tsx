@@ -89,13 +89,9 @@ const Pricing = () => {
               )}
 
               <div className="p-5">
-                <h3 className="my-3 text-center font-display text-3xl font-bold">
-                  {plan}
-                </h3>
+                <h3 className="my-3 text-center text-3xl font-bold">{plan}</h3>
                 <p className="text-gray-500">{tagline}</p>
-                <p className="my-5 font-display text-6xl font-semibold">
-                  ${price}
-                </p>
+                <p className="my-5 text-6xl font-semibold">${price}</p>
                 <p className="text-gray-500">per month</p>
               </div>
               <div className="flex h-20 items-center justify-center border-b border-t border-gray-200 bg-gray-50">

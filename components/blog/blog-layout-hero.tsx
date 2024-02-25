@@ -14,7 +14,7 @@ export default function BlogLayoutHero() {
   return (
     <div className="contain">
       <div className="pt-16">
-        <h1 className="font-display text-3xl font-extrabold text-gray-700 sm:text-4xl">
+        <h1 className="text-3xl font-extrabold text-gray-700 sm:text-4xl">
           {data?.title || 'Blog'}
         </h1>
         <p className="mt-4 text-xl text-gray-500">

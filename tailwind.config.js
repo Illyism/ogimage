@@ -22,8 +22,7 @@ module.exports = {
         DEFAULT: '150ms',
       },
       fontFamily: {
-        display: ['var(--font-satoshi)', 'system-ui', 'sans-serif'],
-        sans: ['var(--font-inter)', 'sans-serif'],
+        sans: ['var(--font-satoshi)', 'sans-serif'],
       },
       colors: {
         border: 'hsl(var(--border))',

@@ -24,20 +24,6 @@ const nextConfig = {
       'senja-io.s3.us-west-1.amazonaws.com',
     ],
   },
-  redirects() {
-    return [
-      {
-        source: '/buy',
-        destination: 'https://clients.magicspace.agency/order/ogimage',
-        permanent: false,
-      },
-      {
-        source: '/buy/call',
-        destination: 'https://cal.com/illyism/free',
-        permanent: false,
-      },
-    ]
-  },
   async headers() {
     return [
       {

@@ -1,17 +1,9 @@
 'use client'
 
-import { usePathname } from 'next/navigation'
 import Script from 'next/script'
 import { useEffect } from 'react'
-import { initPosthog, pageview } from './posthog'
 
-export const Analytics = () => {
-  const pathname = usePathname()
-
-  useEffect(() => {
-    pageview()
-  }, [pathname])
-
+export const LemonSqueezyProvider = () => {
   function onLoaded() {
     window.createLemonSqueezy?.()
     console.log('🍋')
@@ -20,7 +12,6 @@ export const Analytics = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return
     window.lemonSqueezyAffiliateConfig = { store: 'magicspace' }
-    initPosthog()
   })
 
   return (

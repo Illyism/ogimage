@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { LinkToGeneratorForm } from '@/components/generator/LinkToGeneratorForm'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { getLatestInspiration } from '@/lib/directus'
@@ -19,6 +18,9 @@ export default async function Page() {
     <PageLayout>
       <Hero />
 
+      <h2 className="mb-4 text-center text-3xl font-bold leading-tight tracking-tighter">
+        Check out some examples
+      </h2>
       <div className="pad grid grid-cols-1 gap-4 pb-8 sm:grid-cols-2 lg:grid-cols-3">
         {list.map((item, i) => (
           <Link key={i} href={`/inspiration/post/${item.slug}`}>
@@ -42,19 +44,22 @@ export default async function Page() {
 
 const Hero = () => {
   return (
-    <div className="hero">
-      <div className="hero-section border-0">
-        <div className="hero-content pad mx-auto flex max-w-4xl flex-col items-center justify-center py-4 text-center sm:py-8 xl:max-w-5xl">
-          <h1 className="mx-auto max-w-4xl text-3xl font-black leading-[1.4] tracking-[-0.015em] md:max-w-[46rem] md:text-5xl">
-            The Only OG Image Generator That Doesn’t Waste Your Time
-          </h1>
-          <p className="mx-auto max-w-sm space-y-4 px-5 py-5 text-lg text-gray-800 md:max-w-lg lg:px-0 lg:text-xl">
-            Create <b className="font-bold">OG images</b> automatically for
-            every page on your website. No design skills required.
-          </p>
-          <LinkToGeneratorForm />
-        </div>
-      </div>
+    <div className="pt-24 text-center">
+      <h1 className="mx-auto mb-4 max-w-4xl text-balance text-center text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:max-w-[46rem] md:text-5xl">
+        The{' '}
+        <span className="relative rounded border-2 border-primary px-2 font-black">
+          <div className="absolute -left-1.5 -top-1.5 h-3 w-3 border-2 border-primary bg-background"></div>
+          <div className="absolute -right-1.5 -top-1.5 h-3 w-3 border-2 border-primary bg-background"></div>
+          <div className="absolute -bottom-1.5 -left-1.5 h-3 w-3 border-2 border-primary bg-background"></div>
+          <div className="absolute -bottom-1.5 -right-1.5 h-3 w-3 border-2 border-primary bg-background"></div>
+          Ultimate
+        </span>{' '}
+        Open Graph Image Generator
+      </h1>
+      <p className="mx-auto max-w-[750px] text-balance text-lg text-muted-foreground sm:text-xl">
+        Beautifully designed automated open graph images for your website, blog,
+        or social media posts. Customizable. Open source. Pay once, use forever.
+      </p>
     </div>
   )
 }

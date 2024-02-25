@@ -48,7 +48,7 @@ const BlogTemplate = ({ post }: { post: Page }) => {
       <header className="contain pt-16 lg:max-w-5xl">
         <div className="flex max-w-screen-sm flex-col space-y-4">
           <h1
-            className="font-display text-3xl font-extrabold text-foreground sm:text-4xl"
+            className="text-3xl font-extrabold text-foreground sm:text-4xl"
             itemProp="headline"
           >
             {post.title}
@@ -70,7 +70,7 @@ const BlogTemplate = ({ post }: { post: Page }) => {
             <div
               data-mdx-container
               className={cn(
-                'prose prose-zinc max-w-none transition-all dark:prose-invert prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-display prose-headings:font-bold',
+                'prose prose-zinc max-w-none transition-all dark:prose-invert prose-headings:relative prose-headings:scroll-mt-20  prose-headings:font-bold',
                 'px-5 pb-20 pt-4 md:px-10',
               )}
               dangerouslySetInnerHTML={{ __html: post.content || post.block }}
