@@ -68,7 +68,8 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
             itemScope
             itemType="http://schema.org/ListItem"
           >
-            Inspiration
+            <span itemProp="name">Inspiration</span>
+            <meta itemProp="position" content="1" />
           </Link>
           /
           <Link
@@ -78,7 +79,8 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
             itemType="http://schema.org/ListItem"
             className="font-bold capitalize underline"
           >
-            {inspiration.category[0]}
+            <span itemProp="name">{inspiration.category[0]}</span>
+            <meta itemProp="position" content="2" />
           </Link>
           /
           <Link
@@ -88,13 +90,14 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
             itemScope
             itemType="http://schema.org/ListItem"
           >
-            {inspiration.name}
+            <span itemProp="name">{inspiration.name}</span>
+            <meta itemProp="position" content="3" />
           </Link>
         </nav>
-        <h1 className="mb-2 text-2xl font-bold text-gray-900 sm:text-3xl">
+        <h1 className="mb-2 text-2xl font-bold sm:text-3xl">
           {inspiration.name}
         </h1>
-        <p className="mb-4 text-base font-normal leading-7 text-gray-600">
+        <p className="mb-4 text-base font-normal leading-7 text-muted-foreground">
           {inspiration.description}
         </p>
 
@@ -132,7 +135,7 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
                 <Link
                   key={c}
                   href={`/inspiration/category/${c}`}
-                  className="inline-flex items-center rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-800 hover:bg-gray-200"
+                  className="inline-flex items-center rounded-full border border-border bg-card px-2.5 py-0.5 text-sm font-bold text-card-foreground"
                 >
                   {c}
                 </Link>
@@ -160,7 +163,7 @@ const NotFoundInspiration = ({ slug }: { slug: string }) => {
   return (
     <PageLayout>
       <div className="contain pt-16 text-center">
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-gray-100">
+        <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-800 dark:text-gray-100 sm:text-5xl">
           Add {slug}?
         </h1>
         <p className="mt-4 text-base text-gray-600 dark:text-gray-400">

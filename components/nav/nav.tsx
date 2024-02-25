@@ -8,10 +8,6 @@ export const headerLinks = [
     label: 'Templates',
   },
   {
-    href: '/pricing',
-    label: 'Pricing',
-  },
-  {
     href: '/contact',
     label: 'Contact',
   },

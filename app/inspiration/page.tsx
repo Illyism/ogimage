@@ -8,9 +8,9 @@ import { ImageCard } from './post/[slug]/ImageCard'
 export const revalidate = 5 * 60 // 5 minutes
 
 export const metadata = generatePageMeta({
-  title: 'OG Image Inspiration - OG Image Design Gallery',
+  title: 'OG Image Gallery - Design Inspiration for Open Graph Images',
   description:
-    'Need open graph image inspiration? We&apos;ve got you covered. Discover the best OG image designs, templates, and more at OGimage.org. Be inspired by handpicked examples of real OG images, ensuring the highest quality.',
+    'Need open graph image inspiration? We have the best OG image inspiration, design and templates in our gallery.',
   url: '/inspiration',
 })
 
@@ -20,10 +20,10 @@ export default async function Page() {
   return (
     <PageLayout>
       <div className="pad pt-4 lg:pt-16">
-        <h1 className="mb-2 text-2xl font-bold text-gray-900 sm:text-3xl">
-          OG Image Design Inspiration Gallery
+        <h1 className="mb-2 text-2xl font-bold sm:text-3xl">
+          Open Graph Image Gallery
         </h1>
-        <p className="mb-8 text-base font-normal leading-7 text-gray-600">
+        <p className="mb-8 text-base font-normal leading-7 text-muted-foreground">
           Need open graph image inspiration? We&apos;ve got you covered.
           Discover the best OG image inspiration, design and templates in our
           gallery.
@@ -36,12 +36,12 @@ export default async function Page() {
               <Link
                 key={i}
                 href={`/inspiration/category/${c.category}`}
-                className="inline-flex items-center rounded-full bg-gray-100 text-sm font-medium text-gray-700 hover:bg-gray-200"
+                className="inline-flex items-center rounded-full border border-border bg-card text-sm font-medium text-card-foreground"
               >
-                <span className="px-2.5 py-1 text-xs font-medium text-gray-800">
+                <span className="px-2.5 py-1 text-sm font-bold">
                   {c.category}
                 </span>
-                <span className="pr-2 font-mono text-xs font-bold tabular-nums text-gray-500">
+                <span className="pr-2 font-mono text-xs font-medium opacity-60">
                   {c.count}
                 </span>
               </Link>

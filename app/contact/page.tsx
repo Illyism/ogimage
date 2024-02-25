@@ -3,7 +3,6 @@ import { generatePageMeta } from '@/core/seo'
 import { Mail } from 'lucide-react'
 import Link from 'next/link'
 import TallyContact from './Contact'
-import { ContactCard } from './ContactCard'
 
 export const metadata = generatePageMeta({
   title: 'Contact OgImage.org',
@@ -24,7 +23,7 @@ export default function Page() {
             Let&apos;s talk about your OG image needs.
           </p>
 
-          <div className="block flex-1 rounded-xl border border-foreground/5 bg-card/80 p-4 text-sm font-medium backdrop-blur-2xl">
+          <div className="dark block flex-1 rounded-xl border border-foreground/5 bg-card/80 bg-white p-4 text-sm font-medium backdrop-blur-2xl">
             <TallyContact />
           </div>
 
@@ -39,14 +38,13 @@ export default function Page() {
               <b className="block text-lg">Email us</b>
               Send us an email at{' '}
               <Link
-                href="mailto:mailto:team@magicspace.agency"
+                href="mailto:contact@ogimage.org"
                 className="mt-4 flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-lg border border-primary bg-primary px-4 py-2 text-sm font-bold text-primary-foreground shadow-md outline outline-1 outline-offset-[-2px] outline-primary-foreground/30 transition-all duration-150 ease-in-out hover:bg-primary/90 hover:shadow-lg"
               >
                 <Mail className="h-4 w-4" />
-                team@magicspace.agency
+                contact@ogimage.org
               </Link>
             </div>
-            <ContactCard />
           </div>
         </div>
       </div>

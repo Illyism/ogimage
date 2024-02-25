@@ -1,12 +1,10 @@
 import { MDX } from '@/components/blog/mdx'
-import { LinkedInIcon, TwitterIcon } from '@/components/icons/SocialIcons'
 import { authors } from '@/components/ui/author'
 import { generatePageMeta } from '@/core/seo'
 import { getMetaTags } from '@/lib/metatags'
 import { getRouteRel } from '@/lib/route-rel'
 import { formatDate, getDomainWithoutWWW } from '@/lib/utils'
 import { allTemplateMeta } from 'contentlayer/generated'
-import { FacebookIcon } from 'lucide-react'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -60,24 +58,37 @@ export default async function TemplateDetail({
 
   return (
     <div>
-      <div className="rounded-lg bg-violet-500 px-4 py-2 text-xs font-bold text-violet-50">
-        <div className="mx-auto md:max-w-3xl xl:max-w-[68rem]">
-          Our basic OG image templates work for every website, blog, or social
-          media. Get a{' '}
-          <Link href="/buy" className="font-black underline">
-            custom template
-          </Link>{' '}
-          for your brand, <b>100% free</b>.
-        </div>
-      </div>
-
       <div className="mx-auto md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
-        <header className="relative border-b border-gray-200 py-8">
-          <Link href="/templates" className="mb-3 block text-sm text-gray-500">
-            ← Back to Templates
-          </Link>
+        <header className="relative border-b border-border py-8">
+          <nav
+            className="mb-4  flex gap-2 lg:mb-16"
+            itemScope
+            itemType="http://schema.org/BreadcrumbList"
+          >
+            <Link
+              href="/templates"
+              className="font-bold underline"
+              itemProp="itemListElement"
+              itemScope
+              itemType="http://schema.org/ListItem"
+            >
+              <span itemProp="name">Templates</span>
+              <meta itemProp="position" content="1" />
+            </Link>
+            /
+            <Link
+              href={`/templates/${post.slug}`}
+              itemProp="itemListElement"
+              itemScope
+              itemType="http://schema.org/ListItem"
+              className="font-bold capitalize underline"
+            >
+              <span itemProp="name">{post.title}</span>
+              <meta itemProp="position" content="2" />
+            </Link>
+          </nav>
 
-          <h1 className="mb-4 flex-1 text-3xl font-bold tracking-tighter text-gray-800 md:text-4xl">
+          <h1 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
             {post.title}
           </h1>
           <p className="text-md">
@@ -104,42 +115,16 @@ export default async function TemplateDetail({
 
           <div className="flex w-full flex-wrap items-center justify-between text-xs md:justify-start">
             <div className="flex-1">Updated {formatDate(post.createdAt)}</div>
-            <div className="flex-end flex items-center space-x-2">
-              <Link
-                href={`https://twitter.com/intent/tweet?text=${post.title}&url=https://ogimage.org/templates/${post.slug}&via=${post.author}`}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="transition-all hover:scale-110"
-              >
-                <TwitterIcon className="h-6 w-6" />
-              </Link>
-              <Link
-                href={`https://www.linkedin.com/shareArticle?mini=true&url=https://ogimage.org/templates/${post.slug}`}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="transition-all hover:scale-110"
-              >
-                <LinkedInIcon className="h-6 w-6" fill="black" />
-              </Link>
-              <Link
-                href={`https://www.facebook.com/sharer/sharer.php?u=https://ogimage.org/templates/${post.slug}`}
-                target="_blank"
-                rel="noopener noreferrer nofollow"
-                className="transition-all hover:scale-110"
-              >
-                <FacebookIcon className="h-6 w-6" fill="black" />
-              </Link>
-            </div>
           </div>
         </header>
 
         <div className="py-8">
-          <h2 className="pb-4 text-2xl font-bold tracking-tight text-gray-800 sm:text-3xl">
+          <h2 className="pb-4 text-2xl font-bold tracking-tight sm:text-3xl">
             Live Demo
           </h2>
           <LiveExample slug={post.slug} defaultURL={examples[0]} />
 
-          <h2 className="pb-4 pt-12 text-2xl font-bold tracking-tight text-gray-800 sm:text-3xl">
+          <h2 className="pb-4 pt-12 text-2xl font-bold tracking-tight sm:text-3xl">
             {post.title} examples
           </h2>
           <div className="grid grid-cols-1 gap-4 pb-8 sm:grid-cols-2">

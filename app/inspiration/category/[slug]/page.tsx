@@ -9,10 +9,10 @@ export const revalidate = 5 * 60 // 5 minutes
 export async function generateMetadata({ params }: any) {
   const tag = params.slug
   return generatePageMeta({
-    title: `Best OG Images in ${tag.replace(
+    title: `OG Image Examples in ${tag.replace(
       /-/g,
       ' ',
-    )} - Open Graph Image Inspiration Examples`,
+    )} - Design Inspiration`,
     description: `Get inspired by the best ${tag} OG image designs, templates, and more.`,
     url: `/inspiration/category/${tag}`,
   })
@@ -26,12 +26,40 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <PageLayout>
       <div className="pad pt-4 lg:pt-16">
-        <h1 className="mb-2 text-2xl font-bold capitalize text-gray-900 sm:text-3xl">
+        <h1 className="mb-2 text-2xl font-bold sm:text-3xl">
           The Best OG Images in {tag.replace(/-/g, ' ')}
         </h1>
-        <p className="mb-8 text-base font-normal leading-7 text-gray-600">
+        <p className="mb-8 text-base font-normal leading-7 text-muted-foreground">
           Get inspired by the best {tag} OG image designs, templates, and more.
         </p>
+        <nav
+          className="mb-8 flex gap-2"
+          itemScope
+          itemType="http://schema.org/BreadcrumbList"
+        >
+          <Link
+            href="/inspiration"
+            className="font-bold underline"
+            itemProp="itemListElement"
+            itemScope
+            itemType="http://schema.org/ListItem"
+          >
+            <span itemProp="name">Inspiration</span>
+            <meta itemProp="position" content="1" />
+          </Link>
+          /
+          <Link
+            href={`/inspiration/category/${tag}`}
+            itemProp="itemListElement"
+            itemScope
+            itemType="http://schema.org/ListItem"
+            className="font-bold capitalize underline"
+          >
+            <span itemProp="name">{tag.replace(/-/g, ' ')}</span>
+            <meta itemProp="position" content="2" />
+          </Link>
+        </nav>
+
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {list.map((item, i) => (
             <Link key={i} href={`/inspiration/post/${item.slug}`}>

@@ -80,8 +80,9 @@ export function MDX({
 
   const MDXImage = (props: any) => {
     if (!images) return null
-    const blurDataURL = images.find((image: any) => image.src === props.src)
-      ?.blurDataURL
+    const blurDataURL = images.find(
+      (image: any) => image.src === props.src,
+    )?.blurDataURL
 
     return <ZoomImage {...props} blurDataURL={blurDataURL} />
   }
@@ -98,7 +99,7 @@ export function MDX({
     <article
       data-mdx-container
       className={cn(
-        'prose prose-gray max-w-none transition-all prose-headings:relative prose-headings:scroll-mt-20  prose-headings:font-bold',
+        'prose prose-gray max-w-none transition-all dark:prose-invert prose-headings:relative prose-headings:scroll-mt-20  prose-headings:font-bold',
         className,
       )}
     >

@@ -1,9 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
-import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
 import { formatDate } from '@/lib/utils'
 import { allTemplateMeta } from 'contentlayer/generated'
-import { ArrowRightIcon } from 'lucide-react'
 import Link from 'next/link'
 
 export const runtime = 'edge'
@@ -22,22 +20,12 @@ export default function Templates() {
   )
   return (
     <div>
-      <div className="rounded-lg bg-violet-500 px-4 py-2 text-xs font-bold text-violet-50">
-        <div className="mx-auto md:max-w-3xl xl:max-w-[68rem]">
-          Our basic OG image templates work for every website, blog, or social
-          media. Get a{' '}
-          <Link href="/buy" className="font-black underline">
-            custom template
-          </Link>{' '}
-          for your brand, <b>100% free</b>.
-        </div>
-      </div>
       <div className="mx-auto md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
-        <header className="relative border-b border-gray-200 py-8">
-          <h1 className="mb-4 flex-1 text-3xl font-bold tracking-tighter text-gray-800 md:text-4xl">
+        <header className="relative border-b border-border py-8">
+          <h1 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
             Open Graph Image Templates For Every Website
           </h1>
-          <p className="text-md">
+          <p className="text-md text-muted-foreground">
             If you&apos;re looking to build a website and share it, these
             thoroughly tested and highly rated open graph image templates offer
             the power and flexibility needed to create an attractive, reliable
@@ -93,28 +81,6 @@ export default function Templates() {
               </div>
             </Link>
           ))}
-        </div>
-      </div>
-      <div className="contain my-8 lg:my-16">
-        <div className="mx-auto text-center">
-          <h2 className="text-xl font-bold tracking-tight sm:mb-6 md:text-4xl">
-            Worth every single penny.
-          </h2>
-          <div className="mb-6 font-bold md:text-xl lg:mb-12">
-            Custom templates are{' '}
-            <Link href="/pricing" className="underline">
-              100% free
-            </Link>{' '}
-            as part of our plans.
-          </div>
-        </div>
-        <div className="mt-4 text-center">
-          <Button asChild>
-            <Link href="/buy">
-              <span className="tracking-tight">Get a Custom Template</span>
-              <ArrowRightIcon className="ml-2" />
-            </Link>
-          </Button>
         </div>
       </div>
     </div>

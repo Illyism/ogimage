@@ -13,10 +13,6 @@ const productLinks = [
     href: '/templates',
     label: 'Templates',
   },
-  {
-    href: '/pricing',
-    label: 'Pricing',
-  },
 
   {
     href: '/contact',
