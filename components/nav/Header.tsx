@@ -87,10 +87,9 @@ export function Header() {
               >
                 <Logo className="mr-2 text-primary" width={32} height={32} />
                 <div className="text-sm font-bold text-card-foreground">
-                  Lifetime access to all templates.
+                  Lifetime access.
                   <br />
-                  Updates included. Claim{' '}
-                  <span className="font-black">$30 off</span>.
+                  Claim <span className="font-black">$30 off</span>.
                 </div>
               </TooltipContent>
             </Tooltip>
