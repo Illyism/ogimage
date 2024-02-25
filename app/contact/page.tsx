@@ -1,6 +1,4 @@
 import { PageLayout } from '@/components/nav/PageLayout'
-import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
-import { TestimonialMasonry } from '@/components/reviews/testimonial-masonry'
 import { generatePageMeta } from '@/core/seo'
 import { Mail } from 'lucide-react'
 import Link from 'next/link'
@@ -51,11 +49,7 @@ export default function Page() {
             <ContactCard />
           </div>
         </div>
-        <TestimonialMarquee />
       </div>
-
-      <div className="mt-32"></div>
-      <TestimonialMasonry limit={12} showContact={false} />
     </PageLayout>
   )
 }

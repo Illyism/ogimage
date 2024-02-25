@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { LinkToGeneratorForm } from '@/components/generator/LinkToGeneratorForm'
 import { PageLayout } from '@/components/nav/PageLayout'
-import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
-import { TestimonialReviews } from '@/components/reviews/testimonial-reviews'
 import { generatePageMeta } from '@/core/seo'
 import { getLatestInspiration } from '@/lib/directus'
 import Link from 'next/link'
@@ -38,8 +36,6 @@ export default async function Page() {
           </Link>
         ))}
       </div>
-
-      <TestimonialMarquee />
     </PageLayout>
   )
 }
@@ -57,8 +53,6 @@ const Hero = () => {
             every page on your website. No design skills required.
           </p>
           <LinkToGeneratorForm />
-
-          <TestimonialReviews className="mt-8" />
         </div>
       </div>
     </div>

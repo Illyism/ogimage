@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-img-element */
-import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
 import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
 import { formatDate } from '@/lib/utils'
@@ -109,7 +108,6 @@ export default function Templates() {
             as part of our plans.
           </div>
         </div>
-        <TestimonialMarquee />
         <div className="mt-4 text-center">
           <Button asChild>
             <Link href="/buy">

@@ -159,40 +159,6 @@ mark {
   }
 }
 
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
-@keyframes marquee2 {
-  0% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0);
-  }
-}
-
-.marquee {
-  display: flex;
-  animation: marquee 60s linear infinite;
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-}
-
-.marquee2 {
-  display: flex;
-  animation: marquee2 60s linear infinite;
-  @media (prefers-reduced-motion: reduce) {
-    animation: none;
-  }
-}
-
 .animate-cursor-blink {
   animation: cursor-blink 1s infinite;
 }

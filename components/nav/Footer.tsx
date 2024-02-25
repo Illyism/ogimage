@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import { TestimonialReviews } from '../reviews/testimonial-reviews'
 import { Button } from '../ui/button'
 
 export const Footer = () => {
@@ -20,8 +19,6 @@ export const Footer = () => {
               </div>
             </div>
           </div>
-
-          <TestimonialReviews />
         </div>
 
         <div className="mt-8 flex flex-col items-start gap-4 text-black/80 sm:flex-row sm:gap-8 lg:gap-24">
@@ -58,6 +55,12 @@ export const Footer = () => {
               className="px-8 py-2 hover:bg-indigo-500/10 hover:text-indigo-500 sm:rounded sm:px-1 sm:py-0.5"
             >
               ❓ FAQ
+            </Link>
+            <Link
+              href="https://store.magicspace.agency/affiliates"
+              className="px-8 py-2 hover:bg-indigo-500/10 hover:text-indigo-500 sm:rounded sm:px-1 sm:py-0.5"
+            >
+              📈 Affiliates
             </Link>
           </div>
 

@@ -28,10 +28,6 @@ export function Providers({ children }: any) {
       {children}
       <Analytics />
       <Script
-        src="https://code.jivosite.com/widget/aNN6BnR31Q"
-        strategy="lazyOnload"
-      />
-      <Script
         data-domain="ogimage.org"
         src="https://p.il.ly/js/script.js"
         strategy="lazyOnload"
