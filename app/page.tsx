@@ -85,7 +85,7 @@ const Hero = () => {
           />
           $30 off
         </span>{' '}
-        for the next 7 customers
+        for the next 7 customers • Lifetime access
       </div>
       <StarGlow className="mt-4" />
     </div>
