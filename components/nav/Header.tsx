@@ -45,15 +45,7 @@ export function Header() {
 }
 
 const DarkModeToggle = () => {
-  const dark = cookieCutter.get('og-dark')
-  const [darkMode, setDarkMode] = useState(false)
-
-  useEffect(() => {
-    if (dark === 'true') {
-      document.documentElement.classList.add('dark')
-      setDarkMode(true)
-    }
-  }, []) // only run once
+  const [darkMode, setDarkMode] = useState(cookieCutter.get('og-dark') === 'true')
 
   useEffect(() => {
     if (darkMode) {
