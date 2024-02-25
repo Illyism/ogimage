@@ -1,6 +1,6 @@
 'use client'
 import { cn } from '@/lib/utils'
-import { CheckCircle, Gift, Star } from 'lucide-react'
+import { CheckCircle, Star } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
@@ -72,7 +72,7 @@ export function Header() {
         <div className="flex items-center justify-end space-x-4">
           <DarkModeToggle />
           <TooltipProvider delayDuration={0}>
-            <Tooltip defaultOpen>
+            <Tooltip defaultOpen={!hasSeenHeader}>
               <TooltipTrigger>
                 <Button asChild>
                   <Link href="/buy" target="_blank">
@@ -81,14 +81,12 @@ export function Header() {
                 </Button>
               </TooltipTrigger>
               <TooltipContent
-                className="btn flex items-center rounded-2xl px-1 py-1"
+                className="btn flex items-center rounded-xl"
                 side="bottom"
                 align="end"
               >
-                <div className="mr-2 rounded-xl bg-green-100/10 p-2">
-                  <Gift size={32} className="text-green-500" />
-                </div>
-                <div className="pr-1 text-sm font-bold text-card-foreground">
+                <Logo className="mr-2 text-primary" width={32} height={32} />
+                <div className="text-sm font-bold text-card-foreground">
                   Lifetime access to all templates.
                   <br />
                   Updates included. Claim{' '}
