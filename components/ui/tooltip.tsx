@@ -1,80 +1,30 @@
-'use client'
+"use client"
 
-/***********************************/
+import * as React from "react"
+import * as TooltipPrimitive from "@radix-ui/react-tooltip"
 
-/*  Tooltip Contents  */
-import useMediaQuery from '@/components/hooks/use-media-query'
-import * as TooltipPrimitive from '@radix-ui/react-tooltip'
-import { ReactNode } from 'react'
-import { Drawer } from 'vaul'
+import { cn } from "@/lib/utils"
 
-export default function Tooltip({
-  children,
-  content,
-  fullWidth,
-}: {
-  children: ReactNode
-  content: ReactNode | string
-  fullWidth?: boolean
-}) {
-  const { isMobile } = useMediaQuery()
+const TooltipProvider = TooltipPrimitive.Provider
 
-  if (isMobile) {
-    return (
-      <Drawer.Root>
-        <Drawer.Trigger
-          className={`${fullWidth ? 'w-full' : 'inline-flex'} md:hidden`}
-          onClick={(e) => {
-            e.stopPropagation()
-          }}
-        >
-          {children}
-        </Drawer.Trigger>
-        <Drawer.Overlay className="fixed inset-0 z-40 bg-gray-100 bg-opacity-10 backdrop-blur" />
-        <Drawer.Portal>
-          <Drawer.Content className="fixed bottom-0 left-0 right-0 z-50 mt-24 rounded-t-[10px] border-t border-gray-200 bg-white">
-            <div className="sticky top-0 z-20 flex w-full items-center justify-center rounded-t-[10px] bg-inherit">
-              <div className="my-3 h-1 w-12 rounded-full bg-gray-300" />
-            </div>
-            <div className="flex min-h-[150px] w-full items-center justify-center overflow-hidden bg-white align-middle shadow-xl">
-              {typeof content === 'string' ? (
-                <span className="block text-center text-sm text-gray-700">
-                  {content}
-                </span>
-              ) : (
-                content
-              )}
-            </div>
-          </Drawer.Content>
-          <Drawer.Overlay />
-        </Drawer.Portal>
-      </Drawer.Root>
-    )
-  }
-  return (
-    <TooltipPrimitive.Provider delayDuration={100}>
-      <TooltipPrimitive.Root>
-        <TooltipPrimitive.Trigger className="hidden md:inline-flex" asChild>
-          {children}
-        </TooltipPrimitive.Trigger>
-        {/* 
-            We don't use TooltipPrimitive.Portal here because for some reason it 
-            prevents you from selecting the contents of a tooltip when used inside a modal 
-        */}
-        <TooltipPrimitive.Content
-          sideOffset={8}
-          side="top"
-          className="animate-slide-up-fade z-[99] hidden items-center overflow-hidden rounded-md border border-gray-200 bg-white shadow-md md:block"
-        >
-          {typeof content === 'string' ? (
-            <div className="block max-w-xs px-4 py-2 text-center text-sm text-gray-700">
-              {content}
-            </div>
-          ) : (
-            content
-          )}
-        </TooltipPrimitive.Content>
-      </TooltipPrimitive.Root>
-    </TooltipPrimitive.Provider>
-  )
-}
+const Tooltip = TooltipPrimitive.Root
+
+const TooltipTrigger = TooltipPrimitive.Trigger
+
+const TooltipContent = React.forwardRef<
+  React.ElementRef<typeof TooltipPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
+>(({ className, sideOffset = 4, ...props }, ref) => (
+  <TooltipPrimitive.Content
+    ref={ref}
+    sideOffset={sideOffset}
+    className={cn(
+      "z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+      className
+    )}
+    {...props}
+  />
+))
+TooltipContent.displayName = TooltipPrimitive.Content.displayName
+
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
