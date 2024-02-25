@@ -25,7 +25,7 @@ export function Header() {
     setHasSeenHeader(true)
   }, [])
   return (
-    <header className="top-0 z-50 w-full sm:sticky">
+    <>
       <ul className="pad flex items-center gap-12 bg-background-body py-2 text-xs">
         <li className="ml-1 flex items-center">
           <CheckCircle size={14} className="mr-1 text-green-500" />
@@ -51,7 +51,7 @@ export function Header() {
           <span className="ml-1">Used by top startups</span>
         </li>
       </ul>
-      <div className="pad sticky top-0 z-50 flex w-full items-center justify-between bg-background/95 py-1 text-sm backdrop-blur-lg supports-[backdrop-filter]:bg-background/90">
+      <header className="pad sticky top-0 z-50 flex w-full items-center justify-between bg-background/95 py-1 text-sm backdrop-blur-lg supports-[backdrop-filter]:bg-background/90">
         <div className="flex items-center space-x-4">
           <Link
             href="/"
@@ -95,7 +95,7 @@ export function Header() {
             </Tooltip>
           </TooltipProvider>
         </div>
-      </div>
+      </header>
       <nav className="flex items-center pl-4 sm:hidden">
         {headerLinks.map((link, i) => (
           <NavLink key={i} href={link.href}>
@@ -103,7 +103,7 @@ export function Header() {
           </NavLink>
         ))}
       </nav>
-    </header>
+    </>
   )
 }
 
