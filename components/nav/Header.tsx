@@ -15,7 +15,11 @@ export function Header() {
     <>
       <header className="pad sticky top-0 z-50 flex w-full items-center justify-between bg-background/95 py-1 text-sm backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="flex items-center space-x-4">
-          <Link href="/" className="flex flex-1 items-center gap-2 font-black">
+          <Link
+            href="/"
+            prefetch={false}
+            className="flex flex-1 items-center gap-2 font-black"
+          >
             <Logo className="text-primary" width={24} height={24} />
             ogimage.org
           </Link>

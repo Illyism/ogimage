@@ -1,108 +1,108 @@
 /* eslint-disable @next/next/no-img-element */
+import { Star } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Button } from '../ui/button'
+import { Logo } from '../ui/logo'
 
 const productLinks = [
   {
     href: '/',
-    label: 'Features',
+    label: 'Generator',
+  },
+  {
+    href: '/templates',
+    label: 'Templates',
   },
   {
     href: '/pricing',
     label: 'Pricing',
   },
+
   {
-    href: '/tools',
-    label: 'Tools',
-  },
-  {
-    href: '/blog',
-    label: 'Blog',
-  },
-  {
-    href: 'mailto:contact@ogimage.org',
+    href: '/contact',
     label: 'Contact',
   },
 ]
 
-const toolsLinks = [
+const resourcesLinks = [
   {
-    href: '/tools/text-to-video',
-    label: 'Text to Video',
+    href: '/inspiration',
+    label: 'OG Image Gallery',
   },
   {
-    href: '/tools/create-short-video-clip',
-    label: 'Create clips from Youtube',
+    href: '/faq',
+    label: 'FAQ',
   },
   {
-    href: '/tools/create-avatar-video',
-    label: 'Create An AI avatar Video',
+    href: '/best-practices',
+    label: 'Best practices',
   },
   {
-    href: '/tools/create-website-review-video',
-    label: 'Create A Website Review Video',
+    href: '/sizes',
+    label: 'Sizes',
   },
   {
-    href: '/tools/create-tiktok-video',
-    label: 'Create TikTok Video',
+    href: '/for-blog',
+    label: 'For blog',
+  },
+]
+
+const moreLinks = [
+  {
+    href: 'https://store.magicspace.agency/affiliates',
+    label: 'Affiliates',
   },
   {
-    href: '/tools/create-ai-generated-clip',
-    label: 'Create AI-Generated Clip',
+    href: '/privacy',
+    label: 'Privacy',
   },
   {
-    href: '/tools/website-to-video',
-    label: 'Website to Video',
+    href: 'https://magicspace.agency/',
+    label: 'MagicSpace SEO',
   },
   {
-    href: '/tools/create-video-ad-from-website',
-    label: 'Create Video Ad from any Website',
-  },
-  {
-    href: '/tools/create-product-hunt-videos',
-    label: 'Create Product Hunt Videos',
-  },
-  {
-    href: '/tools/tweet-to-video',
-    label: 'Tweet to Video: Create Videos From Twitter Posts Instantly',
-  },
-  {
-    href: '/tools/create-product-video',
-    label: 'Create Product Videos from websites',
-  },
-  {
-    href: '/tools/create-video-for-amazon-product',
-    label: 'Create Video for Amazon Products',
-  },
-  {
-    href: '/tools/create-video-for-shopify-website',
-    label: 'Create Product Videos for Shopify',
+    href: 'https://il.ly',
+    label: 'Ilias Ism',
   },
 ]
 
 export const Footer = () => {
   return (
-    <footer className="bg-[#15171A] py-12 text-white xl:py-8">
-      <div className="contain">
-        <div className=" flex items-center gap-2 sm:gap-8">
-          <div className="inline-flex items-center gap-2 text-lg font-bold leading-none">
-            <Link href="/" prefetch={false}>
-              <Image
-                alt="Typeframes logo"
-                priority
-                width={150}
-                height={30}
-                src="/blog/img/typeframes.png"
-              />
-            </Link>
-            <span className="font-black">ogimage.org</span>
-          </div>
+    <footer className="dark overflow-hidden bg-black py-16 text-white">
+      <div className="pad">
+        <div className="flex items-center gap-2 sm:gap-8">
+          <Link
+            href="/"
+            prefetch={false}
+            className="relative flex flex-1 items-center gap-3"
+          >
+            <Image
+              className="pointer-events-none absolute inset-x-0 top-[-300px] select-none"
+              src="/img/background-gradient.png"
+              alt="background"
+              aria-hidden="true"
+              width={1480}
+              height={1617}
+              sizes="100vw"
+              loading="lazy"
+            />
+            <div className="relative z-10 rounded-lg bg-gradient-to-b from-gray-50 to-white p-1 shadow-2xl">
+              <Logo className="text-primary" width={32} height={32} />
+            </div>
+            <div className="text-sm font-medium leading-none">
+              <b className="mb-1 block text-lg font-black leading-none">
+                ogimage.org
+              </b>
+              Self-Hosted Open Graph Image Generator
+            </div>
+          </Link>
           <div className="flex items-center gap-2 text-sm font-bold dark:text-gray-300"></div>
         </div>
 
         <div className="mt-8 grid items-start gap-8 md:grid-cols-5">
           <nav className="grid grid-cols-1 text-sm">
-            <div className="px-2 py-1 text-base font-bold">Company</div>
+            <div className="px-2 py-1 text-base font-bold">Product</div>
             {productLinks.map((link, index) => (
               <Link
                 key={index}
@@ -114,31 +114,59 @@ export const Footer = () => {
               </Link>
             ))}
           </nav>
-          <nav className="grid grid-cols-1 text-sm sm:col-span-4">
-            <div className="px-2 py-1 text-base font-bold">Products</div>
-            <div className="grid grid-cols-1 content-start items-center gap-2 sm:grid-cols-2 lg:grid-cols-4">
-              {toolsLinks.map((link, index) => (
-                <Link
-                  key={index}
-                  href={link.href}
-                  prefetch={false}
-                  className="px-2 py-2 transition hover:text-purple-300 sm:py-1"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+          <nav className="grid grid-cols-1 text-sm">
+            <div className="px-2 py-1 text-base font-bold">Resources</div>
+            {resourcesLinks.map((link, index) => (
+              <Link
+                key={index}
+                href={link.href}
+                prefetch={false}
+                className="px-2 py-2 transition hover:text-purple-300 sm:py-1"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <nav className="grid grid-cols-1 text-sm">
+            <div className="px-2 py-1 text-base font-bold">More</div>
+            {moreLinks.map((link, index) => (
+              <Link
+                key={index}
+                href={link.href}
+                prefetch={false}
+                className="px-2 py-2 transition hover:text-purple-300 sm:py-1"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
         </div>
 
         <div className="mt-12 flex flex-col gap-8 border-t border-white/20 pt-12 sm:flex-row sm:items-center sm:justify-between xl:mt-8 xl:pt-8">
           <div className="flex flex-col items-center justify-center gap-3 text-sm leading-tight text-violet-400/80 sm:flex-row">
-            <a
-              href="/"
-              className="bg-gradient rounded-full border border-white/10 px-5 py-2 font-bold text-white transition hover:border-purple-500 hover:text-purple-500"
-            >
-              Open App
-            </a>
+            <Button asChild>
+              <Link href="/buy" target="_blank">
+                Buy now
+              </Link>
+            </Button>
+            <div>
+              <div className="flex items-center gap-0.5">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star
+                    key={i}
+                    size={16}
+                    fill="currentColor"
+                    className="text-yellow-500 transition hover:scale-125 hover:text-yellow-400"
+                  />
+                ))}
+              </div>
+              <Link
+                href="/contact"
+                className="text-yellow-100 hover:text-yellow-400 hover:underline"
+              >
+                Write a review
+              </Link>
+            </div>
           </div>
 
           <div className="flex flex-col items-center gap-6 text-sm font-bold sm:flex-row">
