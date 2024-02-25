@@ -20,8 +20,8 @@ export async function GET() {
 
   const newCheckout: NewCheckout = {
     productOptions: {
-      name: 'New Checkout Test',
-      description: 'a new checkout test',
+      name: '50% OFF - Automatic Open Graph Image Generator Tool',
+      description: '**50% off!**\nCreate OG Images for SEO - Works for any blog, website, Next.js and more. Get the full source code and create social images for free.',
     },
     checkoutData: {
       discountCode: 'LAUNCH',
