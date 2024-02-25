@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { Star } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '../ui/button'
 import { Logo } from '../ui/logo'
@@ -69,24 +68,14 @@ const moreLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="dark overflow-hidden bg-black py-16 text-white">
+    <footer className="dark overflow-hidden bg-background-body py-16 text-white">
       <div className="pad">
         <div className="flex items-center gap-2 sm:gap-8">
           <Link
             href="/"
             prefetch={false}
-            className="relative flex flex-1 items-center gap-3"
+            className="flex flex-1 items-center gap-3"
           >
-            <Image
-              className="pointer-events-none absolute inset-x-0 top-[-300px] select-none"
-              src="/img/background-gradient.png"
-              alt="background"
-              aria-hidden="true"
-              width={1480}
-              height={1617}
-              sizes="100vw"
-              loading="lazy"
-            />
             <div className="relative z-10 rounded-lg bg-gradient-to-b from-gray-50 to-white p-1 shadow-2xl">
               <Logo className="text-primary" width={32} height={32} />
             </div>
@@ -142,7 +131,7 @@ export const Footer = () => {
           </nav>
         </div>
 
-        <div className="mt-12 flex flex-col gap-8 border-t border-white/20 pt-12 sm:flex-row sm:items-center sm:justify-between xl:mt-8 xl:pt-8">
+        <div className=" mt-12 flex flex-col gap-8 pt-12 sm:flex-row sm:items-center sm:justify-between xl:mt-8 xl:pt-8">
           <div className="flex flex-col items-center justify-center gap-3 text-sm leading-tight text-violet-400/80 sm:flex-row">
             <Button asChild>
               <Link href="/buy" target="_blank">
