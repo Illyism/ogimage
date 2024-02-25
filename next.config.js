@@ -3,9 +3,6 @@ const { withContentlayer } = require('next-contentlayer')
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  experimental: {
-    mdxRs: true,
-  },
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   images: {
     formats: ['image/avif', 'image/webp'],
