@@ -1,14 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
-import { CountdownFast } from '@/components/ui/CountdownFast'
 import { StarGlow } from '@/components/ui/StarGlow'
 import { Button } from '@/components/ui/button'
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
 import { generatePageMeta } from '@/core/seo'
 import { getLatestInspiration } from '@/lib/directus'
 import { DollarSign } from 'lucide-react'
@@ -75,23 +68,14 @@ const Hero = () => {
         Lifetime access.
       </p>
       <div className="mt-6 flex items-center justify-center gap-2">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger>
-              <Button asChild className="px-4">
-                <a href="/buy" target="_blank" className="flex">
-                  <span className="hidden sm:inline">PURCHASE TODAY</span>
-                  <span className="sm:hidden">Buy now</span>
-                  &emsp;<s className="text-xs font-bold">$127</s>{' '}
-                  <b className="-my-1 ml-2 text-lg font-black">$97</b>
-                </a>
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent className="btn flex w-32 items-center justify-center rounded-2xl bg-black px-2 py-1 font-black text-white">
-              <CountdownFast />
-            </TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+        <Button asChild className="px-4">
+          <a href="/buy" target="_blank" className="flex">
+            <span className="hidden sm:inline">PURCHASE TODAY</span>
+            <span className="sm:hidden">Buy now</span>
+            &emsp;<s className="text-xs font-bold">$127</s>{' '}
+            <b className="-my-1 ml-2 text-lg font-black">$97</b>
+          </a>
+        </Button>
 
         <Button asChild variant="secondary" className="px-4">
           <Link href="/templates" className="flex items-center">
