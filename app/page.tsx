@@ -13,12 +13,18 @@ export const metadata = generatePageMeta({
 })
 
 export default async function Page() {
-  const list = await getLatestInspiration({}, 6)
-
   return (
     <PageLayout>
       <Hero />
+      <Examples />
+    </PageLayout>
+  )
+}
 
+const Examples = async () => {
+  const list = await getLatestInspiration({}, 6)
+  return (
+    <div>
       <h2 className="mb-4 text-center text-3xl font-bold leading-tight tracking-tighter">
         Check out some examples
       </h2>
@@ -39,7 +45,7 @@ export default async function Page() {
           </Link>
         ))}
       </div>
-    </PageLayout>
+    </div>
   )
 }
 
