@@ -27,7 +27,7 @@ export default async function Page() {
 
 const ProblemSolution = () => {
   return (
-    <div className="pad pb-24 pt-16 text-center">
+    <div className="pad py-24 text-center">
       <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
         The problem we solve
       </h2>
