@@ -21,6 +21,8 @@ export default async function Page() {
       <ProblemSolution />
       <TemplatePreview />
       <Pricing />
+      <FAQ />
+      <FinalCallToAction />
     </PageLayout>
   )
 }
@@ -332,6 +334,102 @@ const TemplateCard = ({ title, description, image }: any) => {
       />
       <h3 className="mb-2 mt-4 text-xl font-bold">{title}</h3>
       <p className="text-muted-foreground">{description}</p>
+    </div>
+  )
+}
+
+const FAQ = () => {
+  return (
+    <div className="pad pb-24 pt-16 text-center">
+      <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+        Frequently asked questions
+      </h2>
+      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <FAQCard
+          question="What is OG Image Generator?"
+          answer="OG Image Generator is an open-source tool that automatically generates open graph images for your website, blog, or social media posts. It is customizable, open source, and requires no design skills."
+        />
+        <FAQCard
+          question="What do I get exactly?"
+          answer="You get lifetime access to the source code of OG Image Generator. You can host it on your own server, we have examples for Vercel, Firebase, Docker, and more. If there is something you need, we are here to help."
+        />
+        <FAQCard
+          question="What are the templates?"
+          answer="The templates are pre-designed open graph images that you can use as a starting point. You can customize the text, colors, and images to match your brand. We have a variety of templates to choose from."
+        />
+        <FAQCard
+          question="What is the essential plan?"
+          answer="The essential plan includes lifetime access to the source code, unlimited images, and our 3 top templates. Which are all you need to get started. You can always upgrade later and only pay the difference with a special coupon code."
+        />
+        <FAQCard
+          question="JavaScript or HTML?"
+          answer="OG Image Generator is built with TypeScript and Next.js. It generates images using Sartori, a server-side rendering library. You can use JavaScript, SVG, Tailwind or HTML to customize the templates."
+        />
+        <FAQCard
+          question="How is this better than Canva?"
+          answer="Canva is a great tool for creating open graph images. However, it is not automated, customizable, or open source. OG Image Generator is designed to be used by developers and designers who want to automate the process and save up to 90% of the time and cost."
+        />
+        <FAQCard
+          question="What is the refund policy?"
+          answer="After you've got access to the repo, the code is yours forever, so it can't be refunded. But we are here to help you with any questions or issues you might have. We are committed to making sure you are happy with your purchase."
+        />
+        <FAQCard
+          question="Are there any other costs?"
+          answer="Yes, you need a server to host the code. But it can be as cheap as $0/month. The documentation includes examples for free hosting providers like Vercel, Firebase, and GitHub Pages. You can also use Docker, AWS, or any other serverless provider."
+        />
+        <FAQCard
+          question="What if I need help?"
+          answer="We are here to help. You can reach out to us on Twitter or email. We also have a community of developers and designers who are using OG Image Generator and are happy to help you."
+        />
+      </div>
+    </div>
+  )
+}
+
+const FAQCard = ({ question, answer }: any) => {
+  return (
+    <div className="relative rounded-lg border-2 border-border bg-card p-4 text-left shadow">
+      <h3 className="mb-2 text-xl font-bold">{question}</h3>
+      <p className="text-muted-foreground">{answer}</p>
+    </div>
+  )
+}
+
+const FinalCallToAction = () => {
+  return (
+    <div className="pad pb-24 pt-16 text-center">
+      <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+        Get started today
+      </h2>
+      <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
+        Automate open graph images for your website, blog, or social media
+        posts. Customizable. Open source. Lifetime access.
+      </p>
+      <div className="mt-6 flex items-center justify-center gap-2">
+        <Button asChild className="px-4">
+          <a href="/buy" target="_blank" className="flex">
+            <span className="hidden sm:inline">PURCHASE TODAY</span>
+            <span className="sm:hidden">Buy now</span>
+            &emsp;<s className="text-xs font-bold">$127</s>{' '}
+            <b className="-my-1 ml-2 text-lg font-black">$97</b>
+          </a>
+        </Button>
+
+        <Button asChild variant="secondary" className="px-4">
+          <Link href="/templates" className="flex items-center">
+            View templates
+            <span className="ml-2 rounded-full bg-green-500/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-green-500 dark:text-green-400">
+              2 new
+            </span>
+          </Link>
+        </Button>
+      </div>
+      <div className="mt-2 flex items-center justify-center text-center text-xs">
+        <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
+          $30 off
+        </span>{' '}
+        for the next 17 customers • Lifetime access
+      </div>
     </div>
   )
 }
