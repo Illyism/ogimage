@@ -3,10 +3,9 @@ import { PageLayout } from '@/components/nav/PageLayout'
 import { StarGlow } from '@/components/ui/StarGlow'
 import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
-import { getLatestInspiration } from '@/lib/directus'
-import { DollarSign } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { Check, DollarSign, XIcon } from 'lucide-react'
 import Link from 'next/link'
-import { ImageCard } from './inspiration/post/[slug]/ImageCard'
 
 export const metadata = generatePageMeta({
   url: `/`,
@@ -16,36 +15,8 @@ export default async function Page() {
   return (
     <PageLayout>
       <Hero />
-      <Examples />
+      <Pricing />
     </PageLayout>
-  )
-}
-
-const Examples = async () => {
-  const list = await getLatestInspiration({}, 6)
-  return (
-    <div>
-      <h2 className="mb-4 text-center text-3xl font-bold leading-tight tracking-tighter">
-        Check out some examples
-      </h2>
-      <div className="pad grid grid-cols-1 gap-4 pb-8 sm:grid-cols-2 lg:grid-cols-3">
-        {list.map((item, i) => (
-          <Link key={i} href={`/inspiration/post/${item.slug}`}>
-            <ImageCard
-              src={`https://db.ogimage.org/assets/${item.image}`}
-              alt={`OG Image for ${item.domain}`}
-              color={item.color[0]}
-            />
-            <div className="flex items-center justify-between">
-              <div className="text-lg font-bold">{item.name}</div>
-              <div className="truncate text-sm text-gray-600">
-                {item.domain}
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
-    </div>
   )
 }
 
@@ -97,6 +68,136 @@ const Hero = () => {
         for the next 17 customers • Lifetime access
       </div>
       <StarGlow className="mt-4" />
+    </div>
+  )
+}
+
+const Pricing = () => {
+  return (
+    <div className="pad pb-24 pt-16 text-center">
+      <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+        It&apos;s a one-time purchase
+      </h2>
+      <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
+        No monthly fees. No hidden costs. Just a one-time payment for lifetime
+        access to the source code. Free updates included.
+      </p>
+      <div className="mx-auto mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <PricingCard
+          title="Essential"
+          price="$29"
+          discount="$59"
+          features={[
+            'Source code',
+            'Unlimited images',
+            'Lifetime access',
+            'Our 3 top templates',
+          ]}
+          disabled={[
+            'Free updates',
+            '10% discount on partner products',
+            'Get featured on our website',
+            'Priority support',
+          ]}
+        />
+        <PricingCard
+          popular
+          title="Pro"
+          price="$97"
+          discount="$127"
+          features={[
+            'Source code',
+            'Unlimited images',
+            'Lifetime access',
+            'All templates',
+            'Free updates',
+            '10% discount on partner products',
+          ]}
+          disabled={['Get featured on our website', 'Priority support']}
+        />
+        <PricingCard
+          className="sm:col-span-2 lg:col-span-1"
+          title="Agency"
+          price="$297"
+          discount="$327"
+          features={[
+            'Source code',
+            'Unlimited images',
+            'Lifetime access',
+            'All templates',
+            'Free updates',
+            '10% discount on partner products',
+            'Get featured on our website',
+            'Priority support',
+          ]}
+        />
+      </div>
+      <div className="mt-2 flex items-center justify-center text-center text-xs">
+        <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
+          $30 off
+        </span>{' '}
+        for the next 17 customers • Lifetime access
+      </div>
+    </div>
+  )
+}
+
+const PricingCard = ({
+  title,
+  price,
+  discount,
+  features,
+  className,
+  popular,
+  disabled,
+}: any) => {
+  return (
+    <div
+      className={cn(
+        'btn relative flex flex-col rounded-lg border-2 border-border bg-card px-6 py-4 text-left shadow',
+        popular && 'border-primary',
+        className,
+      )}
+    >
+      {popular && (
+        <div className="absolute inset-x-0 -top-4 mx-auto w-fit rounded-full bg-primary px-3 py-1 font-bold text-white">
+          Popular
+        </div>
+      )}
+      <h3 className="mb-2 text-2xl font-bold">{title}</h3>
+      <div className="flex items-center gap-2">
+        <s className="text-lg font-bold text-muted-foreground">{discount}</s>
+        <span className="text-4xl font-black">{price}</span>
+      </div>
+      <ul className="mt-4 flex-1 text-center">
+        {features.map((feature, i) => (
+          <li key={i} className="flex items-center gap-2 font-semibold">
+            <Check size={16} className="text-green-500" />
+            <span>{feature}</span>
+          </li>
+        ))}
+        {disabled &&
+          disabled.map((feature, i) => (
+            <li
+              key={i}
+              className="flex items-center gap-2 font-medium text-muted-foreground"
+            >
+              <XIcon size={16} />
+              <span>{feature}</span>
+            </li>
+          ))}
+      </ul>
+
+      <div className="text-center">
+        <Button asChild className="mt-6 w-full px-4">
+          <a href="/buy" target="_blank">
+            Buy {title}
+          </a>
+        </Button>
+        <div className="mt-2 text-xs text-muted-foreground">
+          Pay once, create unlimited images
+        </div>
+      </div>
     </div>
   )
 }
