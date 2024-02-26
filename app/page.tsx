@@ -4,7 +4,7 @@ import { StarGlow } from '@/components/ui/StarGlow'
 import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
 import { cn } from '@/lib/utils'
-import { Check, DollarSign, XIcon } from 'lucide-react'
+import { Check, DollarSign, Sparkles, XIcon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -94,13 +94,19 @@ const SocialProof = () => {
             <div className="text-base font-bold leading-none tracking-wide">
               Ilias Ism
             </div>
-            <a
-              className="text-xs font-semibold leading-tight opacity-80 transition-colors hover:underline hover:opacity-100"
-              href="https://magicspace.agency"
-              target="_blank"
-            >
-              MagicSpace SEO
-            </a>
+            <div className="flex items-center gap-1">
+              <a
+                className="text-xs font-semibold leading-tight text-foreground/80 transition-colors"
+                href="https://magicspace.agency"
+                target="_blank"
+              >
+                MagicSpace SEO{' '}
+              </a>
+              <span className="flex items-center justify-center rounded-2xl bg-purple-500 px-1 py-1 text-[10px] font-black uppercase leading-none tracking-tighter text-white">
+                <Sparkles size={10} />
+                Agency
+              </span>
+            </div>
           </div>
         </div>
       </div>
