@@ -17,8 +17,47 @@ export default async function Page() {
     <PageLayout>
       <Hero />
       <SocialProof />
+      <ProblemSolution />
       <Pricing />
     </PageLayout>
+  )
+}
+
+const ProblemSolution = () => {
+  return (
+    <div className="pad pb-24 pt-16 text-center">
+      <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+        The problem we solve
+      </h2>
+      <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
+        Open Graph images are a pain to create. They require a designer, or
+        expensive software. They are not customizable, and they are not
+        automated. OG Image Generator solves all these problems.
+      </p>
+      <div className="mt-12 flex items-center justify-center gap-4">
+        <div className="max-w-sm p-3 text-sm">
+          <h3 className="mb-2 text-xl font-bold">Automated</h3>
+          <p className="text-muted-foreground">
+            Generate images automatically from your website or blog. No need to
+            design them manually.
+          </p>
+        </div>
+        <div className="max-w-sm p-3 text-sm">
+          <h3 className="mb-2 text-xl font-bold">Customizable</h3>
+          <p className="text-muted-foreground">
+            Change the text, colors, and images of your open graph images. Make
+            them unique to your brand.
+          </p>
+        </div>
+        <div className="max-w-sm p-3 text-sm">
+          <h3 className="mb-2 text-xl font-bold">Open Source</h3>
+          <p className="text-muted-foreground">
+            Get the source code and host it on your own server. No monthly fees.
+            No hidden costs.
+          </p>
+        </div>
+      </div>
+    </div>
   )
 }
 
