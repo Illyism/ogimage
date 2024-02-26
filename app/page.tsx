@@ -325,7 +325,7 @@ const TemplatePreview = () => {
 const TemplateCard = ({ title, description, image }: any) => {
   return (
     <div className="relative rounded-lg border-2 border-border bg-card p-4 text-left shadow">
-      <Image
+      <img
         src={image}
         alt={title}
         className="aspect-[1200/630] rounded-lg"
