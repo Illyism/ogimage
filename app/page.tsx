@@ -170,8 +170,8 @@ const Pricing = () => {
       <div className="mx-auto mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <PricingCard
           title="Essential"
-          price="$29"
-          discount="$59"
+          price="$69"
+          discount="$99"
           features={[
             'Source code',
             'Unlimited images',
