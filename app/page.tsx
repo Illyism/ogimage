@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
 import { cn } from '@/lib/utils'
 import { Check, DollarSign, XIcon } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 
 export const metadata = generatePageMeta({
@@ -15,6 +16,7 @@ export default async function Page() {
   return (
     <PageLayout>
       <Hero />
+      <SocialProof />
       <Pricing />
     </PageLayout>
   )
@@ -67,7 +69,41 @@ const Hero = () => {
         </span>{' '}
         for the next 17 customers • Lifetime access
       </div>
-      <StarGlow className="mt-4" />
+    </div>
+  )
+}
+
+const SocialProof = () => {
+  return (
+    <div className="flex items-center justify-center text-center">
+      <div className="max-w-sm p-3 text-sm">
+        <StarGlow className="mb-2" />
+        <p className="text-bold mb-3 text-balance text-lg opacity-90">
+          &quot;OG Image Generator is a game changer for our agency. It saves us
+          time and money, and our clients love the results.&quot;
+        </p>
+        <div className="flex items-center justify-center gap-2 text-left">
+          <Image
+            src="/me/ilias-ism-circle.png"
+            alt="Ilias Ism"
+            width={48}
+            height={48}
+            className="rounded-full border border-white/10"
+          />
+          <div>
+            <div className="text-base font-bold leading-none tracking-wide">
+              Ilias Ism
+            </div>
+            <a
+              className="text-xs font-semibold leading-tight opacity-80 transition-colors hover:underline hover:opacity-100"
+              href="https://magicspace.agency"
+              target="_blank"
+            >
+              MagicSpace SEO
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
