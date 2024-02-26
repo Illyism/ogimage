@@ -76,7 +76,7 @@ const Pricing = () => {
   return (
     <div className="pad pb-24 pt-16 text-center">
       <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
-        It&apos;s a one-time purchase
+        A lifetime deal you can&apos;t miss
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
         No monthly fees. No hidden costs. Just a one-time payment for lifetime
