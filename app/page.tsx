@@ -433,8 +433,8 @@ const FinalCallToAction = () => {
         Automate open graph images for your website, blog, or social media
         posts. Customizable. Open source. Lifetime access.
       </p>
-      <div className="mt-6 flex items-center justify-center gap-2">
-        <Button asChild className="px-4">
+      <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row">
+        <Button asChild className="w-full px-4 sm:w-auto">
           <a href="/buy" target="_blank" className="flex">
             <span className="hidden sm:inline">PURCHASE TODAY</span>
             <span className="sm:hidden">Buy now</span>
@@ -443,7 +443,7 @@ const FinalCallToAction = () => {
           </a>
         </Button>
 
-        <Button asChild variant="secondary" className="px-4">
+        <Button asChild variant="secondary" className="w-full px-4 sm:w-auto">
           <Link href="/templates" className="flex items-center">
             View templates
             <span className="ml-2 rounded-full bg-green-500/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-green-500 dark:text-green-400">

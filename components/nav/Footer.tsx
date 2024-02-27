@@ -130,7 +130,7 @@ export const Footer = () => {
         <div className=" mt-12 flex flex-col gap-8 pt-12 sm:flex-row sm:items-center sm:justify-between xl:mt-8 xl:pt-8">
           <div className="flex flex-col items-center justify-center gap-3 text-sm leading-tight text-violet-400/80 sm:flex-row">
             <Button asChild>
-              <Link href="/buy" target="_blank">
+              <Link href="/buy" target="_blank" className="w-full sm:w-auto">
                 Buy now
               </Link>
             </Button>
