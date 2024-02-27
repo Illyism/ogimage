@@ -388,10 +388,6 @@ const FAQ = () => {
           answer="OG Image Generator is built with TypeScript and Next.js. It generates images using Sartori, a server-side rendering library. You can use JavaScript, SVG, Tailwind or HTML to customize the templates."
         />
         <FAQCard
-          question="How is this better than Canva?"
-          answer="Canva is a great tool for creating open graph images. However, it is not automated, customizable, or open source. OG Image Generator is designed to be used by developers and designers who want to automate the process and save up to 90% of the time and cost."
-        />
-        <FAQCard
           question="What is the refund policy?"
           answer="After you've got access to the repo, the code is yours forever, so it can't be refunded. But we are here to help you with any questions or issues you might have. We are committed to making sure you are happy with your purchase."
         />
@@ -402,6 +398,10 @@ const FAQ = () => {
         <FAQCard
           question="What if I need help?"
           answer="We are here to help. You can reach out to us on Twitter or email. We also have a community of developers and designers who are using OG Image Generator and are happy to help you."
+        />
+        <FAQCard
+          question="I can't afford it"
+          answer="We understand that not everyone can afford it. We are committed to making OG Image Generator accessible to everyone. If you need help, reach out to us and we will do our best to help you."
         />
       </div>
     </div>
