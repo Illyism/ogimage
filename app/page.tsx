@@ -5,7 +5,14 @@ import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
 import { cn } from '@/lib/utils'
 import { allTemplateMeta } from 'contentlayer/generated'
-import { Check, DollarSign, Sparkles, XIcon } from 'lucide-react'
+import {
+  Check,
+  DollarSign,
+  SmilePlus,
+  Sparkles,
+  Wrench,
+  XIcon,
+} from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -31,33 +38,43 @@ const ProblemSolution = () => {
   return (
     <div className="pad py-24 text-center">
       <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
-        The problem we solve
+        Why OG Image Generator?
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
-        Open Graph images are a pain to create. They require a designer, or
-        expensive software. They are not customizable, and they are not
-        automated. OG Image Generator solves all these problems.
+        It takes so much <b>time</b> to create open graph images manually. We
+        save you up to <b>99%</b> of the <b>time and cost</b>. Here&apos;s how:
       </p>
-      <div className="mt-12 flex items-center justify-center gap-4">
-        <div className="max-w-sm p-3 text-sm">
-          <h3 className="mb-2 text-xl font-bold">Automated</h3>
+      <div className="mt-4 flex flex-col items-center justify-center gap-4 text-left text-sm sm:mt-12 sm:flex-row sm:text-center">
+        <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow">
+          <h3 className="mb-2 flex items-center justify-between text-xl font-bold">
+            Automated
+            <Sparkles size={16} className="text-primary dark:text-yellow-400" />
+          </h3>
           <p className="text-muted-foreground">
-            Generate images automatically from your website or blog. No need to
-            design them manually.
+            Published a <b>new blog post</b>? We generate the open graph image
+            for you.
           </p>
         </div>
-        <div className="max-w-sm p-3 text-sm">
-          <h3 className="mb-2 text-xl font-bold">Customizable</h3>
+        <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow">
+          <h3 className="mb-2 flex items-center justify-between text-xl font-bold">
+            Customizable
+            <Wrench size={16} className="text-primary dark:text-yellow-400" />
+          </h3>
           <p className="text-muted-foreground">
-            Change the text, colors, and images of your open graph images. Make
-            them unique to your brand.
+            You get the <b>source code</b> and can customize the templates to
+            match your brand.
           </p>
         </div>
-        <div className="max-w-sm p-3 text-sm">
-          <h3 className="mb-2 text-xl font-bold">Open Source</h3>
+        <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow">
+          <h3 className="mb-2 flex items-center justify-between text-xl font-bold">
+            Beautiful templates
+            <SmilePlus
+              size={16}
+              className="text-primary dark:text-yellow-400"
+            />
+          </h3>
           <p className="text-muted-foreground">
-            Get the source code and host it on your own server. No monthly fees.
-            No hidden costs.
+            Get more <b>engagement</b> with our pre-designed templates.
           </p>
         </div>
       </div>
@@ -83,8 +100,8 @@ const Hero = () => {
         website, blog, or social media posts. Customizable. Open source.
         Lifetime access.
       </p>
-      <div className="mt-6 flex items-center justify-center gap-2">
-        <Button asChild className="px-4">
+      <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row">
+        <Button asChild className="w-full px-4 sm:w-auto">
           <a href="/buy" target="_blank" className="flex">
             <span className="hidden sm:inline">PURCHASE TODAY</span>
             <span className="sm:hidden">Buy now</span>
@@ -93,7 +110,11 @@ const Hero = () => {
           </a>
         </Button>
 
-        <Button asChild variant="secondary" className="px-4">
+        <Button
+          asChild
+          variant="secondary"
+          className="hidden px-4 sm:inline-block"
+        >
           <Link href="/templates" className="flex items-center">
             View templates
             <span className="ml-2 rounded-full bg-green-500/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-green-500 dark:text-green-400">
