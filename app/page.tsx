@@ -8,6 +8,7 @@ import { allTemplateMeta } from 'contentlayer/generated'
 import {
   Check,
   DollarSign,
+  MessageCircleQuestion,
   SmilePlus,
   Sparkles,
   Wrench,
@@ -42,7 +43,7 @@ const ProblemSolution = () => {
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
         It takes so much <b>time</b> to create open graph images manually. We
-        save you up to <b>99%</b> of the <b>time and cost</b>. Here&apos;s how:
+        save you up to <b>99%</b> of the <b>time and cost</b>.
       </p>
       <div className="mt-4 flex flex-col items-center justify-center gap-4 text-left text-sm sm:mt-12 sm:flex-row sm:text-center">
         <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow">
@@ -181,7 +182,7 @@ const SocialProof = () => {
 const Pricing = () => {
   return (
     <div className="pad pb-24 pt-16 text-center">
-      <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+      <h2 className="text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
         A lifetime deal you can&apos;t miss
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
@@ -409,8 +410,14 @@ const FAQ = () => {
 
 const FAQCard = ({ question, answer }: any) => {
   return (
-    <div className="relative rounded-lg border-2 border-border bg-card p-4 text-left shadow">
-      <h3 className="mb-2 text-xl font-bold">{question}</h3>
+    <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow">
+      <h3 className="mb-2 flex items-center justify-between text-xl font-bold">
+        {question}
+        <MessageCircleQuestion
+          size={16}
+          className="text-primary dark:text-yellow-400"
+        />
+      </h3>
       <p className="text-muted-foreground">{answer}</p>
     </div>
   )
