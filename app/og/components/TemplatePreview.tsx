@@ -96,7 +96,7 @@ export const TemplatePreview = () => {
         />
         <TemplateCard
           title="Screenshot"
-          description="It shows your website by taking a screenshot"
+          description="Show your website by taking a screenshot"
           image={`/og/templates/screenshot`}
         />
       </div>
