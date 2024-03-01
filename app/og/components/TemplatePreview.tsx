@@ -1,14 +1,17 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import {
   BadgeCheck,
   BarChart,
   Bookmark,
+  Code,
   GalleryThumbnails,
   Globe2,
   Heart,
   LinkedinIcon,
+  Lock,
   MessageCircleIcon,
   Repeat2,
   Share,
@@ -16,6 +19,7 @@ import {
   TwitterIcon,
 } from 'lucide-react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { useState } from 'react'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
@@ -23,8 +27,8 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 /* eslint-disable @next/next/no-img-element */
 
 type Store = {
-  preview: 'twitter' | 'simple' | 'linkedin'
-  setPreview: (preview: 'twitter' | 'simple' | 'linkedin') => void
+  preview: 'twitter' | 'simple' | 'linkedin' | 'source'
+  setPreview: (preview: 'twitter' | 'simple' | 'linkedin' | 'source') => void
 }
 
 export const usePreviewState = create(
@@ -47,11 +51,12 @@ export const TemplatePreview = () => {
       <div className="relative">
         <div className="top-32 w-full md:sticky">
           <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
-            Beautiful templates
+            OG Image Templates
           </h2>
           <p className="mx-auto mb-2 max-w-[750px] text-balance text-lg text-muted-foreground">
-            Choose from a variety of templates to create open graph images that
-            match your brand.
+            All templates are <b>included</b> in the kit and can be customized
+            to your liking. You get the <b>full source code</b> to modify and
+            use however you like.
           </p>
           <PreviewType className="mb-4" />
         </div>
@@ -65,6 +70,8 @@ export const TemplatePreview = () => {
             'flex w-full flex-col items-center justify-center rounded-2xl bg-white p-6 dark:bg-black',
           preview === 'linkedin' &&
             'flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-white p-6 dark:bg-black',
+          preview === 'source' &&
+            'flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-white p-6 font-mono dark:bg-black',
         )}
       >
         <TemplateCard
@@ -82,6 +89,11 @@ export const TemplatePreview = () => {
           description="Any image, logo or profile picture"
           image={`/og/templates/image`}
         />
+        <TemplateCard
+          title="Button"
+          description="Highly converting call to action button"
+          image={`/og/templates/button`}
+        />
       </div>
     </div>
   )
@@ -92,15 +104,9 @@ const PreviewType = ({ className }: { className?: string }) => {
 
   return (
     <form
-      className={cn('flex items-center gap-1', className)}
+      className={cn('flex flex-wrap items-center gap-1', className)}
       onSubmit={(e) => e.preventDefault()}
     >
-      <Toggle
-        label="Simple"
-        icon={<GalleryThumbnails size={14} />}
-        value={preview === 'simple'}
-        onChange={(checked) => setPreview(checked ? 'simple' : 'twitter')}
-      />
       <Toggle
         label="Twitter"
         icon={<TwitterIcon size={14} />}
@@ -112,6 +118,18 @@ const PreviewType = ({ className }: { className?: string }) => {
         icon={<LinkedinIcon size={14} />}
         value={preview === 'linkedin'}
         onChange={(checked) => setPreview(checked ? 'linkedin' : 'simple')}
+      />
+      <Toggle
+        label="Simple"
+        icon={<GalleryThumbnails size={14} />}
+        value={preview === 'simple'}
+        onChange={(checked) => setPreview(checked ? 'simple' : 'twitter')}
+      />
+      <Toggle
+        label="Show the source code"
+        icon={<Code size={14} />}
+        value={preview === 'source'}
+        onChange={(checked) => setPreview(checked ? 'source' : 'twitter')}
       />
     </form>
   )
@@ -150,6 +168,10 @@ const TemplateCard = (props: any) => {
 
   if (preview == 'linkedin') {
     return <LinkedInPreview {...props} />
+  }
+
+  if (preview == 'source') {
+    return <SourcePreview {...props} />
   }
 
   return <SimplePreview {...props} />
@@ -288,6 +310,48 @@ const LinkedInPreview = ({ title, description, image }: any) => {
         <Smile size={16} />
         <span>2 comments</span>
       </div>
+    </div>
+  )
+}
+
+const SourcePreview = ({ title, description, image }: any) => {
+  return (
+    <div className="relative rounded-lg border border-border bg-card p-4 text-left dark:bg-black">
+      <img
+        src={image}
+        alt={title}
+        className="absolute -right-2 top-2 z-10 rotate-12 rounded-lg bg-black object-cover shadow-2xl transition duration-500 dark:bg-gray-800"
+        width={240}
+        height={126}
+        loading="lazy"
+      />
+      <h3 className="text-sm font-bold">{title}</h3>
+      <p className="mb-2 text-xs text-muted-foreground">{description}</p>
+      <pre className="relative h-48 overflow-hidden whitespace-pre-wrap rounded-2xl border-2 border-border bg-gray-50 p-4 text-xs dark:bg-gray-950">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-2xl bg-gradient-to-b from-white/30 via-white/90 to-white font-sans text-lg font-medium transition dark:from-black/30 dark:via-black/90 dark:to-black">
+          Purchase the kit to get the full source code
+          <Button asChild>
+            <Link href="/buy" target="_blank">
+              <Lock size={16} className="mr-2" />
+              Unlock the source
+            </Link>
+          </Button>
+        </div>
+        <code className="h-48 w-full overflow-y-auto">
+          {`
+return new ImageResponse((
+    <div tw="flex items-center justify-center w-full h-full bg-gray-900">
+      <div tw="flex flex-col text-white">
+        <div tw="text-[72px]">Nice try</div>
+        <div tw="text-[32px] opacity-90">If you want the source code, you'll have to purchase the kit</div>
+      </div>
+    </div>
+  ),
+  { width: 1200, height: 630 }
+)
+  `.trim()}
+        </code>
+      </pre>
     </div>
   )
 }

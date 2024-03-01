@@ -5,8 +5,8 @@ import { ImageResponse } from 'next/og'
 export const runtime = 'edge'
 
 /**
- * @name Image Template
- * @description A simple template with an image and text
+ * @name Button Template
+ * @description A simple template with a button
  */
 export async function GET() {
   const Satoshi = await fetch(
@@ -15,17 +15,10 @@ export async function GET() {
 
   return new ImageResponse(
     (
-      <div tw="flex items-center justify-center w-full h-full bg-gray-900">
-        <img
-          src="https://ogimage.org/me/ilias.png"
-          alt=""
-          width="150"
-          height="150"
-          tw="mr-4"
-        />
-        <div tw="flex flex-col text-white">
-          <div tw="text-[72px]">Ilias Ism</div>
-          <div tw="text-[32px] opacity-90">Creator of ogimage.org</div>
+      <div tw="flex flex-col items-center justify-center w-full h-full bg-[#2663ec]">
+        <h1 tw="text-[64px] text-white">ogimage.org</h1>
+        <div tw="text-[#ffd400] rounded-full text-[32px] text-black">
+          Create beautiful OG images
         </div>
       </div>
     ),

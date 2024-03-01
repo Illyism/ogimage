@@ -2,6 +2,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/og'
 
+export const runtime = 'edge'
+
 /**
  * @name Icon Template
  * @description How to use Lucide icons as SVG

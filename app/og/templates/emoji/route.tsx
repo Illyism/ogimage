@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/og'
 
+export const runtime = 'edge'
+
 /**
  * @name Emoji Template
  * @description zero-effort template with a centered emoji
