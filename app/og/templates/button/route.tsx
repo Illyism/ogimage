@@ -16,8 +16,9 @@ export async function GET() {
   return new ImageResponse(
     (
       <div tw="flex flex-col items-center justify-center w-full h-full bg-[#2663ec]">
-        <h1 tw="text-[64px] text-white">ogimage.org</h1>
-        <div tw="text-[#ffd400] rounded-full text-[32px] text-black">
+        <div tw="text-[150px] -mb-2">🤯</div>
+        <div tw="text-[64px] text-white mb-10">OG Image Generator</div>
+        <div tw="bg-[#ffd400] rounded-full px-12 py-4 text-[60px] text-black shadow-2xl border-[10px] border-purple-400/70">
           Create beautiful OG images
         </div>
       </div>
