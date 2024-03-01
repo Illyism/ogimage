@@ -144,8 +144,8 @@ const Toggle = ({ label, icon, value, onChange }: any) => {
   return (
     <div
       className={cn(
-        'flex items-center gap-2 rounded-lg border-2 bg-card px-2 py-0.5 text-sm font-bold',
-        value ? 'border-primary' : 'boder-card',
+        'btn flex items-center gap-2 rounded-lg border-2 bg-card px-2 py-0.5 text-sm font-bold',
+        value ? 'border-primary dark:text-yellow-500' : 'border-card',
       )}
     >
       <label htmlFor={label} className="flex items-center gap-1">
@@ -237,7 +237,7 @@ const TwitterPreview = ({ title, description, image }: any) => {
             src={image}
             alt={title}
             className={cn(
-              'max-w-full rounded-2xl bg-black object-cover transition duration-500 dark:bg-gray-800',
+              'aspect-[1200/630] max-w-full rounded-2xl bg-black object-cover transition duration-500 dark:bg-gray-800',
               !loaded && 'animate-pulse',
             )}
             onLoad={() => setLoaded(true)}

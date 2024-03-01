@@ -7,6 +7,7 @@ import { StructuredData } from '@/core/structured'
 import '@/styles/prism.css'
 import '@/styles/tailwind.css'
 import localFont from 'next/font/local'
+import { cookies } from 'next/headers'
 import Script from 'next/script'
 import { Suspense } from 'react'
 
@@ -29,11 +30,15 @@ export const metadata = generatePageMeta()
 
 export default function RootLayout({ children }: { children: any }) {
   const bootstrapData = getBootstrapData()
+  const c = cookies()
+  const isDark = c.get('og-dark')?.value === 'true'
 
   return (
     <html lang="en" suppressHydrationWarning prefix="og: https://ogp.me/ns#">
       <PHProvider bootstrapData={bootstrapData}>
-        <body className={`${satoshi.variable} h-full font-sans antialiased`}>
+        <body
+          className={`${satoshi.variable} h-full font-sans antialiased ${isDark && 'dark'}`}
+        >
           <StructuredData />
           <Suspense>
             <PostHogPageView />
