@@ -1,6 +1,5 @@
 'use client'
 
-import { FadeIn, FadeInStagger } from '@/components/FadeIn'
 import { cn } from '@/lib/utils'
 import {
   BadgeCheck,
@@ -42,18 +41,46 @@ export const usePreviewState = create(
 )
 
 export const TemplatePreview = () => {
+  const { preview } = usePreviewState()
   return (
-    <div className="pad pb-24 pt-16 text-center">
-      <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
-        Beautiful templates
-      </h2>
-      <p className="mx-auto mb-2 max-w-[750px] text-balance text-lg text-muted-foreground">
-        Choose from a variety of templates to create open graph images that
-        match your brand.
-      </p>
-      <PreviewType className="mb-4" />
+    <div className="pad relative grid grid-cols-1 pb-24 pt-16 md:grid-cols-3">
+      <div className="sticky top-4 w-full">
+        <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+          Beautiful templates
+        </h2>
+        <p className="mx-auto mb-2 max-w-[750px] text-balance text-lg text-muted-foreground">
+          Choose from a variety of templates to create open graph images that
+          match your brand.
+        </p>
+        <PreviewType className="mb-4" />
+      </div>
 
-      <TemplateList className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3" />
+      <div
+        className={cn(
+          'md:col-span-2',
+          preview === 'simple' && 'flex flex-wrap gap-4',
+          preview === 'twitter' &&
+            'flex w-full flex-col items-center justify-center bg-white p-6 dark:bg-black',
+          preview === 'linkedin' &&
+            'flex w-full flex-col items-center justify-center gap-2 bg-white p-6 dark:bg-black',
+        )}
+      >
+        <TemplateCard
+          title="Emoji"
+          description="No icons, no text, just a beautiful emoji"
+          image={`/og/templates/emoji`}
+        />
+        <TemplateCard
+          title="Icon"
+          description="These lucide icons look great"
+          image={`/og/templates/icon`}
+        />
+        <TemplateCard
+          title="Image"
+          description="Any image, logo or profile picture"
+          image={`/og/templates/image`}
+        />
+      </div>
     </div>
   )
 }
@@ -63,7 +90,7 @@ const PreviewType = ({ className }: { className?: string }) => {
 
   return (
     <form
-      className={cn('flex items-center justify-center gap-1', className)}
+      className={cn('flex items-center gap-1', className)}
       onSubmit={(e) => e.preventDefault()}
     >
       <Toggle
@@ -112,63 +139,24 @@ const Toggle = ({ label, icon, value, onChange }: any) => {
   )
 }
 
-export const TemplateList = ({ className }: { className?: string }) => {
-  return (
-    <FadeInStagger className={className}>
-      <TemplateCard
-        title="Emoji"
-        description="OG image template with a centered emoji"
-        image={`/og/templates/emoji`}
-      />
-      <TemplateCard
-        title="Icon"
-        description="OG image template example with an SVG icon"
-        image={`/og/templates/icon`}
-      />
-      <TemplateCard
-        title="Logo"
-        description="Create a beautiful logo for your brand"
-        image={`/og/templates/logo`}
-      />
-      <TemplateCard
-        title="screenshot"
-        description="Create a beautiful screenshot for your brand"
-        image={`/og/templates/screenshot`}
-      />
-    </FadeInStagger>
-  )
-}
-
 const TemplateCard = (props: any) => {
   const { preview } = usePreviewState()
 
   if (preview == 'twitter') {
-    return (
-      <FadeIn>
-        <TwitterPreview {...props} />
-      </FadeIn>
-    )
+    return <TwitterPreview {...props} />
   }
 
   if (preview == 'linkedin') {
-    return (
-      <FadeIn>
-        <LinkedInPreview {...props} />
-      </FadeIn>
-    )
+    return <LinkedInPreview {...props} />
   }
 
-  return (
-    <FadeIn>
-      <SimplePreview {...props} />
-    </FadeIn>
-  )
+  return <SimplePreview {...props} />
 }
 
 const SimplePreview = ({ title, description, image }: any) => {
   const [loaded, setLoaded] = useState(false)
   return (
-    <div className="relative rounded-lg border-2 border-border bg-card p-4 text-left shadow">
+    <div className="relative max-w-md rounded-lg border-2 border-border bg-card p-4 text-left shadow">
       <img
         src={image}
         alt={title}
@@ -191,7 +179,7 @@ const SimplePreview = ({ title, description, image }: any) => {
 const TwitterPreview = ({ title, description, image }: any) => {
   const [loaded, setLoaded] = useState(false)
   return (
-    <div className="relative flex items-start gap-2 rounded border border-border bg-white pb-6 pl-4 pr-5 pt-4 text-left dark:bg-black">
+    <div className="relative flex max-w-xl items-start gap-2 border border-b-0 border-border bg-white pb-6 pl-4 pr-5 pt-4 text-left last:border-b-2 dark:bg-black">
       <Image
         src="/me/ilias.png"
         className="rounded-full transition hover:opacity-90"
@@ -220,13 +208,13 @@ const TwitterPreview = ({ title, description, image }: any) => {
             src={image}
             alt={title}
             className={cn(
-              'rounded-2xl bg-black object-cover transition duration-500 dark:bg-gray-800',
+              'max-w-full rounded-2xl bg-black object-cover transition duration-500 dark:bg-gray-800',
               !loaded && 'animate-pulse',
             )}
             onLoad={() => setLoaded(true)}
             onError={() => setLoaded(true)}
-            width={518}
-            height={271}
+            width={490}
+            height={275}
             loading="lazy"
           />
           <div className="text-xs opacity-50 hover:underline">
