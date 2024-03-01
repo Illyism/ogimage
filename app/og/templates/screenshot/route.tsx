@@ -15,7 +15,6 @@ export function GET() {
     width,
     height,
   })
-  console.log(screenshot)
   return new ImageResponse(
     (
       <img
@@ -63,6 +62,7 @@ function getScreenshotURL({
   query.append('viewport_height', height.toString())
   query.append('device_scale_factor', '1')
   query.append('format', 'png')
+  query.append('dark_mode', 'true')
   query.append(
     'user_agent',
     'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36 Google Favicon',
@@ -71,6 +71,7 @@ function getScreenshotURL({
   query.append('block_ads', 'true')
   query.append('block_cookie_banners', 'true')
   query.append('block_trackers', 'true')
+  query.append('ignore_host_errors', 'true')
   query.append('cache', 'true')
   query.append('cache_ttl', '86400')
   return `${base}?${query.toString()}`

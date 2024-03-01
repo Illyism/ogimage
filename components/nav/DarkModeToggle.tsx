@@ -7,8 +7,9 @@ import { useEffect, useState } from 'react'
 import { Button } from '../ui/button'
 
 export const DarkModeToggle = () => {
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
   const [darkMode, setDarkMode] = useState(
-    cookieCutter.get('og-dark') === 'true',
+    cookieCutter.get('og-dark') === 'true' ?? mediaQuery.matches,
   )
 
   useEffect(() => {
