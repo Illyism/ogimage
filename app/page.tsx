@@ -197,12 +197,12 @@ const Pricing = () => {
           features={[
             'Source code',
             'Unlimited images',
-            'Lifetime access',
+            'One-time purchase',
             'All current templates',
-            '30 days of updates',
           ]}
           disabled={[
-            '10% discount on partner products',
+            'No future templates',
+            'No discount on partner products',
             'Get featured on our website',
             'Priority support',
           ]}
