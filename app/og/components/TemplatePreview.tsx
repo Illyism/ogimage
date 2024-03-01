@@ -131,7 +131,7 @@ const PreviewType = ({ className }: { className?: string }) => {
         onChange={(checked) => setPreview(checked ? 'simple' : 'twitter')}
       />
       <Toggle
-        label="Show the source code"
+        label="Source code"
         icon={<Code size={14} />}
         value={preview === 'source'}
         onChange={(checked) => setPreview(checked ? 'source' : 'twitter')}
