@@ -6,14 +6,18 @@ import { MoonIcon, SunIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Button } from '../ui/button'
 
+const useDarkMedia = () => {
+  // has to work for both server and client
+  if (typeof window === 'undefined') return false
+  return window.matchMedia('(prefers-color-scheme: dark)').matches
+}
+
 export const DarkModeToggle = () => {
-  const mediaQuery =
-    typeof window !== 'undefined' &&
-    window.matchMedia('(prefers-color-scheme: dark)')
+  const isDark = useDarkMedia()
   // there are 3 states: true, false, and null
   const [darkMode, setDarkMode] = useState(
     typeof cookieCutter.get('og-dark') === 'undefined'
-      ? mediaQuery.matches
+      ? isDark
       : cookieCutter.get('og-dark') === 'true',
   )
 
