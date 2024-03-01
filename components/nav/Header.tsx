@@ -23,7 +23,7 @@ export function Header() {
   )
   useEffect(() => {
     setHasSeenHeader(true)
-  }, [])
+  }, [setHasSeenHeader])
   return (
     <>
       <ul className="pad flex items-center gap-12 bg-background-body py-2 text-xs">
