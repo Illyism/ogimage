@@ -96,12 +96,12 @@ export const TemplatePreview = () => {
         />
         <TemplateCard
           title="Screenshot"
-          description="Show your website by taking a screenshot"
+          description="Show your website by taking a live screenshot"
           image={`/og/templates/screenshot`}
         />
         <TemplateCard
           title="Phone"
-          description="Mobile-size screenshot"
+          description="Real-time live screenshot of your mobile website"
           image={`/og/templates/phone`}
         />
       </div>
