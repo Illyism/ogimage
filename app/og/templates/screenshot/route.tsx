@@ -19,7 +19,7 @@ export function GET() {
   return new ImageResponse(
     (
       <img
-        tw="w-hull h-full"
+        tw="w-full h-full"
         src={screenshot}
         alt=""
         height={height}
