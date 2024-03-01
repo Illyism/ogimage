@@ -1,5 +1,4 @@
 import PostHogPageView from '@/core/analytics/PostHogPageView'
-import { getBootstrapData } from '@/core/analytics/bootstrapData'
 import { LemonSqueezyProvider } from '@/core/analytics/lemonsqueezy'
 import { PHProvider } from '@/core/analytics/providers'
 import { generatePageMeta } from '@/core/seo'
@@ -25,12 +24,10 @@ const satoshi = localFont({
 
 export const metadata = generatePageMeta()
 
-export default async function RootLayout({ children }: { children: any }) {
-  const bootstrapData = await getBootstrapData()
-
+export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en" suppressHydrationWarning prefix="og: https://ogp.me/ns#">
-      <PHProvider bootstrapData={bootstrapData}>
+      <PHProvider>
         <body className={`${satoshi.variable} h-full font-sans antialiased`}>
           <StructuredData />
           <Suspense>

@@ -6,7 +6,6 @@ import { useEffect } from 'react'
 export const LemonSqueezyProvider = () => {
   function onLoaded() {
     window.createLemonSqueezy?.()
-    console.log('🍋')
   }
 
   useEffect(() => {
