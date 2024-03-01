@@ -1,20 +1,10 @@
 'use client'
+import { cookieCutter } from '@/lib/cookie'
 import { cn } from '@/lib/utils'
 import { AnimatePresence, motion } from 'framer-motion'
 import { MoonIcon, SunIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { Button } from '../ui/button'
-
-const cookieCutter = {
-  get: (name: string) => {
-    const value = `; ${document.cookie}`
-    const parts = value.split(`; ${name}=`)
-    if (parts.length === 2) return parts.pop()?.split(';').shift()
-  },
-  set: (name: string, value: string) => {
-    document.cookie = `${name}=${value}; path=/; max-age=31536000; samesite=strict`
-  },
-}
 
 export const DarkModeToggle = () => {
   const [darkMode, setDarkMode] = useState(
