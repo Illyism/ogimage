@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { TemplatePreview } from '../og/components/TemplatePreview'
 
@@ -14,7 +15,7 @@ export const metadata = generatePageMeta({
 
 export default function Templates() {
   return (
-    <div>
+    <PageLayout>
       <div className="mx-auto md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
         <header className="relative border-b border-border py-8">
           <h1 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
@@ -29,6 +30,6 @@ export default function Templates() {
         </header>
       </div>
       <TemplatePreview />
-    </div>
+    </PageLayout>
   )
 }

@@ -38,10 +38,6 @@ export default async function Sitemap() {
       lastModified: new Date(post.updatedAt || post.publishedAt || new Date()),
     })),
     {
-      url: `https://${domain}/templates`,
-      lastModified: new Date(),
-    },
-    {
       url: `https://${domain}/inspiration`,
       lastModified: new Date(),
     },
