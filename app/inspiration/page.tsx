@@ -36,7 +36,7 @@ export default async function Page() {
               <Link
                 key={i}
                 href={`/inspiration/category/${c.category}`}
-                className="inline-flex items-center rounded-full border border-border bg-card text-sm font-medium text-card-foreground"
+                className="btn inline-flex items-center rounded-lg  bg-card text-sm font-medium text-card-foreground"
               >
                 <span className="px-2.5 py-1 text-sm font-bold">
                   {c.category}

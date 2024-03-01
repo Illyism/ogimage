@@ -3,7 +3,7 @@ import directus, {
   getUniqueCategories,
 } from '@/lib/directus'
 import { readItems } from '@directus/sdk'
-import { allTemplateMeta } from 'contentlayer/generated'
+import { allBlogPosts } from 'contentlayer/generated'
 
 const domain = `ogimage.org`
 
@@ -29,10 +29,18 @@ export default async function Sitemap() {
       url: `https://${domain}/contact`,
       lastModified: new Date(),
     },
-    ...allTemplateMeta.map((t) => ({
-      url: `https://${domain}/templates/${t.slug}`,
-      lastModified: t.createdAt,
+    {
+      url: `https://${domain}/blog`,
+      lastModified: new Date(),
+    },
+    ...allBlogPosts.map((post) => ({
+      url: `https://${domain}/blog/${post.slug}`,
+      lastModified: new Date(post.updatedAt || post.publishedAt || new Date()),
     })),
+    {
+      url: `https://${domain}/templates`,
+      lastModified: new Date(),
+    },
     {
       url: `https://${domain}/inspiration`,
       lastModified: new Date(),

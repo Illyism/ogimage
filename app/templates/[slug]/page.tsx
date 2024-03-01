@@ -4,25 +4,20 @@ import { generatePageMeta } from '@/core/seo'
 import { getMetaTags } from '@/lib/metatags'
 import { getRouteRel } from '@/lib/route-rel'
 import { formatDate, getDomainWithoutWWW } from '@/lib/utils'
-import { allTemplateMeta } from 'contentlayer/generated'
+import console from 'console'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { LiveExample } from './LiveExample'
 import { SiteBox } from './SiteBox'
 
-export async function generateStaticParams() {
-  return allTemplateMeta.map((post) => ({
-    slug: post.slug,
-  }))
-}
-
 export async function generateMetadata({
   params,
 }: {
   params: { slug: string }
 }): Promise<Metadata | undefined> {
-  const post = allTemplateMeta.find((post) => post.slug === params.slug)
+  const post = require(`content/templates/${params.slug}.mdx`).metadata
+  console.log(post)
   if (!post) {
     return
   }
@@ -41,9 +36,8 @@ export default async function TemplateDetail({
 }: {
   params: { slug: string }
 }) {
-  const post = allTemplateMeta.find((post) => {
-    return post.slug === params.slug
-  })
+  const post = require(`content/templates/${params.slug}.mdx`).metadata
+  console.log(post)
   if (!post) {
     notFound()
   }

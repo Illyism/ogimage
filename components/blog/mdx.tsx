@@ -3,18 +3,22 @@ import { cn } from '@/lib/utils'
 import { ListChecks } from 'lucide-react'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import Link from 'next/link'
-import 'react-medium-image-zoom/dist/styles.css'
+import Script from 'next/script'
+import AffiliateBox from './AffiliateBox'
+import BonusBox from './BonusBox'
+import ReviewBox from './ReviewBox'
+import TextToVideoBox from './TextToVideoBox'
+import BlogImage from './blog-image'
 import CopyBox from './copy-box'
 import MDXTweet from './tweet'
 import MDXYoutube from './youtube'
-import ZoomImage from './zoom-image'
 
 const CustomLink = (props: any) => {
   const href = props.href
 
   if (href.startsWith('/')) {
     return (
-      <Link {...props} href={href}>
+      <Link {...props} href={href} prefetch={false}>
         {props.children}
       </Link>
     )
@@ -24,24 +28,24 @@ const CustomLink = (props: any) => {
     return <a {...props} />
   }
 
-  return <a target="_blank" rel={getRouteRel(props.href)} {...props} />
+  return <a target="_blank" {...props} rel={getRouteRel(href)} />
 }
 
 const components = {
-  h2: (props: any) => <h2 className="text-2xl" {...props} />,
+  h2: (props: any) => <h2 className="text-2xl lg:mt-24" {...props} />,
+  h3: (props: any) => <h3 className="lg:mt-12" {...props} />,
   a: (props: any) => (
     <CustomLink
-      className="font-medium text-gray-500 underline-offset-4 hover:text-black"
+      className="font-medium underline-offset-4 transition hover:text-yellow-400"
       {...props}
     />
   ),
-  code: (props: any) => (
-    <code
-      className="rounded-md border border-gray-200 bg-gray-50 px-2 py-1 font-medium text-gray-600 before:hidden after:hidden"
-      {...props}
-    />
+  table: (props: any) => (
+    <div className="rounded-md border border-border bg-card px-8 py-4 text-xs shadow-md lg:-mx-8 lg:rounded-lg lg:text-base xl:text-lg">
+      <table className="my-0" {...props} />
+    </div>
   ),
-  thead: (props: any) => <thead className="text-lg" {...props} />,
+  thead: (props: any) => <thead className="" {...props} />,
   Note: (props: any) => (
     <div
       className={cn(
@@ -73,33 +77,39 @@ export function MDX({
   className,
 }: {
   code: string
-  images?: any
-  className?: string
+  images: any
+  className: string
 }) {
   const Component = useMDXComponent(code)
 
   const MDXImage = (props: any) => {
     if (!images) return null
-    const blurDataURL = images.find(
-      (image: any) => image.src === props.src,
-    )?.blurDataURL
+    const blurDataURL = images.find((image: any) => image.src === props.src)
+      ?.blurDataURL
 
-    return <ZoomImage {...props} blurDataURL={blurDataURL} />
+    return <BlogImage {...props} blurDataURL={blurDataURL} />
   }
 
   const Tweet = ({ id }: any) => {
     return <MDXTweet id={id} className="mx-auto max-w-lg" />
   }
 
-  const YouTube = ({ id }: any) => {
-    return <MDXYoutube id={id} className="mx-auto max-w-lg" />
+  const YouTube = ({ id, title, className, uploadDate }: any) => {
+    return (
+      <MDXYoutube
+        id={id}
+        title={title}
+        className={className}
+        uploadDate={uploadDate}
+      />
+    )
   }
 
   return (
     <article
       data-mdx-container
       className={cn(
-        'prose prose-gray max-w-none transition-all dark:prose-invert prose-headings:relative prose-headings:scroll-mt-20  prose-headings:font-bold',
+        'prose-headings:font-display prose max-w-none transition-all dark:prose-invert lg:prose-xl prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-bold lg:prose-h2:text-4xl',
         className,
       )}
     >
@@ -109,6 +119,11 @@ export function MDX({
           Image: MDXImage,
           Tweet,
           YouTube,
+          ReviewBox,
+          AffiliateBox,
+          BonusBox,
+          TextToVideoBox,
+          Script,
         }}
       />
     </article>

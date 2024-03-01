@@ -1,8 +1,18 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import Link from 'next/link'
 import useCurrentAnchor from './use-current-anchor'
+
+const formatTitle = (title: string) => {
+  return (
+    title
+      // "1. Text - Description" -> "Text"
+      .replace(/^[0-9]+\. (.+) - .+$/, '$1')
+      // "1. Text" -> "Text"
+      .replace(/^[0-9]+\. (.+)$/, '$1')
+      .replace('Best AI Girlfriend App: ', '')
+  )
+}
 
 export default function TableOfContents({
   items,
@@ -18,19 +28,22 @@ export default function TableOfContents({
   }
 
   return (
-    <div className="grid gap-4 border-l-2 border-gray-200">
+    <div className="grid gap-2 border-l-2 border-border">
       {items.map((item, idx) => (
-        <Link
+        <a
           key={item.slug}
           href={`#${item.slug}`}
-          className={cn('-ml-0.5 pl-4 text-sm text-gray-500', {
-            'border-l-2 border-black text-black': currentAnchor
-              ? currentAnchor === item.slug
-              : idx === 0,
-          })}
+          className={cn(
+            '-ml-0.5 border-l-2 pl-4 text-sm font-medium text-foreground/70',
+            {
+              'border-green-400 text-green-400': currentAnchor
+                ? currentAnchor === item.slug
+                : idx === 0,
+            },
+          )}
         >
-          {item.title}
-        </Link>
+          {formatTitle(item.title)}
+        </a>
       ))}
     </div>
   )

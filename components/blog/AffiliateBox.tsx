@@ -73,15 +73,18 @@ export default function AffiliateBox({
             <Link
               href={link}
               className="rounded-full bg-blue-500 px-4 py-2 text-white shadow-xl"
-              rel={getRouteRel(link)}
               target="_blank"
+              prefetch={false}
+              rel={getRouteRel(link)}
             >
               Try {name}
             </Link>
             {reviewLink && (
               <Link
                 href={reviewLink}
+                prefetch={false}
                 className="rounded-full bg-blue-500 px-4 py-2 text-white shadow-xl"
+                rel={getRouteRel(link)}
               >
                 Read Review
               </Link>
@@ -92,7 +95,7 @@ export default function AffiliateBox({
             to you.
           </small>
         </div>
-        <Link href={link} rel={getRouteRel(link)} target="_blank">
+        <Link href={link} target="_blank" rel={getRouteRel(link)} prefetch={false}>
           <Image
             src={image}
             width={200}

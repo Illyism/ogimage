@@ -1,4 +1,4 @@
-import { generators } from '@/content/templates'
+import { generators } from '@/app/ogimage.org/templates'
 import { NextRequest } from 'next/server'
 
 export const runtime = 'edge'

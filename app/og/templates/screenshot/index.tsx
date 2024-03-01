@@ -9,8 +9,6 @@ export interface props {
   height: number
 }
 
-export const version = '2023-08-20'
-
 export async function generateImage(props: props) {
   return new ImageResponse(
     (

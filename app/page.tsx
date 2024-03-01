@@ -4,7 +4,6 @@ import { StarGlow } from '@/components/ui/StarGlow'
 import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
 import { cn } from '@/lib/utils'
-import { allTemplateMeta } from 'contentlayer/generated'
 import {
   Check,
   DollarSign,
@@ -16,6 +15,7 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { TemplatePreview } from './og/components/TemplatePreview'
 
 export const metadata = generatePageMeta({
   url: `/`,
@@ -305,57 +305,6 @@ const PricingCard = ({
           Pay once, create unlimited images
         </div>
       </div>
-    </div>
-  )
-}
-
-const TemplatePreview = () => {
-  const sortedTemplates = allTemplateMeta.sort((a, b) =>
-    b.createdAt.localeCompare(a.createdAt),
-  )
-
-  return (
-    <div className="pad pb-24 pt-16 text-center">
-      <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
-        Beautiful templates
-      </h2>
-      <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
-        Choose from a variety of templates to create open graph images that
-        match your brand.
-      </p>
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {sortedTemplates.map((post, idx) => (
-          <TemplateCard
-            key={idx}
-            title={post.title}
-            description={post.description}
-            image={`/templates/${post.slug}/example`}
-          />
-        ))}
-      </div>
-      <div className="mt-6">
-        <Button asChild variant="secondary">
-          <Link href="/templates" className="flex items-center">
-            View all templates
-          </Link>
-        </Button>
-      </div>
-    </div>
-  )
-}
-
-const TemplateCard = ({ title, description, image }: any) => {
-  return (
-    <div className="relative rounded-lg border-2 border-border bg-card p-4 text-left shadow">
-      <img
-        src={image}
-        alt={title}
-        className="aspect-[1200/630] rounded-lg"
-        width={1200}
-        height={630}
-      />
-      <h3 className="mb-2 mt-4 text-xl font-bold">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
     </div>
   )
 }
