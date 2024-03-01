@@ -13,7 +13,6 @@ import {
   Wrench,
   XIcon,
 } from 'lucide-react'
-import { cookies } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 import { TemplatePreview } from './og/components/TemplatePreview'
@@ -23,9 +22,8 @@ export const metadata = generatePageMeta({
 })
 
 export default function Page() {
-  const c = cookies()
   return (
-    <PageLayout darkCookie={c.get('og-dark')?.value === 'true'}>
+    <PageLayout>
       <Hero />
       <SocialProof />
       <ProblemSolution />

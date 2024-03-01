@@ -16,7 +16,7 @@ import {
 import { DarkModeToggle } from './DarkModeToggle'
 import { headerLinks } from './nav'
 
-export function Header({ darkCookie }) {
+export function Header() {
   const [hasSeenHeader, setHasSeenHeader] = useLocalStorage(
     'hasSeenHeader',
     false,
@@ -70,7 +70,7 @@ export function Header({ darkCookie }) {
           </nav>
         </div>
         <div className="flex items-center justify-end space-x-4">
-          <DarkModeToggle darkCookie={darkCookie} />
+          <DarkModeToggle />
           <TooltipProvider delayDuration={0}>
             <Tooltip defaultOpen={!hasSeenHeader}>
               <TooltipTrigger>
