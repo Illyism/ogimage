@@ -19,10 +19,11 @@ if (typeof window !== 'undefined') {
   })
 }
 
-export function PHProvider({ children }) {
+export function PHProvider({ children, bootstrapData }) {
   if (typeof window !== 'undefined') {
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
       api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+      bootstrap: bootstrapData,
     })
   }
 
