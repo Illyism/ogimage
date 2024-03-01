@@ -29,11 +29,8 @@ export function getPosthogId() {
 }
 
 export async function getBootstrapData() {
-  const client = getPosthogClient()
   const distinct_id = getPosthogId()
-  const flags = await client.getAllFlags(distinct_id)
   return {
     distinctID: distinct_id,
-    featureFlags: flags,
   }
 }
