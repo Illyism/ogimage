@@ -21,6 +21,8 @@ const satoshi = localFont({
       style: 'italic',
     },
   ],
+  display: 'swap',
+  preload: true,
 })
 
 export const metadata = generatePageMeta()
