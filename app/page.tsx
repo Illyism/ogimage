@@ -315,7 +315,7 @@ const FAQ = () => {
       <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
         Frequently asked questions
       </h2>
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="contain mt-12 max-w-3xl space-y-6">
         <FAQCard
           question="What is OG Image Generator?"
           answer="OG Image Generator is an open-source tool that automatically generates open graph images for your website, blog, or social media posts. It is customizable, open source, and requires no design skills."
@@ -367,7 +367,7 @@ const FAQCard = ({ question, answer }: any) => {
           className="text-primary dark:text-yellow-400"
         />
       </h3>
-      <p className="text-muted-foreground">{answer}</p>
+      <p className="text-lg text-muted-foreground">{answer}</p>
     </div>
   )
 }
