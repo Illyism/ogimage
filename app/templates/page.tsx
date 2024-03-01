@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { generatePageMeta } from '@/core/seo'
-import { TemplateList } from '../og/components/TemplatePreview'
+import { TemplatePreview } from '../og/components/TemplatePreview'
 
 export const runtime = 'edge'
 export const revalidate = 60 * 60 * 4 // 4 hours
@@ -27,9 +27,8 @@ export default function Templates() {
             online destination.
           </p>
         </header>
-
-        <TemplateList className="grid grid-cols-1 gap-4 py-8 sm:grid-cols-2" />
       </div>
+      <TemplatePreview />
     </div>
   )
 }
