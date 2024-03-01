@@ -229,10 +229,10 @@ const TwitterPreview = ({ title, description, image }: any) => {
           </div>
         </div>
         <div className="text-sm font-medium">
-          <p className="mb-4">
-            This <b>{title}</b> OG image template is beautiful! 😍
+          <p className="mb-4">{description}</p>
+          <p className="mb-2">
+            <b>{title}</b> OG image template 👇
           </p>
-          <p className="mb-2">{description}</p>
           <img
             src={image}
             alt={title}
