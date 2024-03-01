@@ -25,7 +25,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   })
   return (
     <PageLayout>
-      <div className="pad pt-4 lg:pt-16">
+      <div className="pad py-4 lg:py-16">
         <h1 className="mb-2 text-2xl font-bold sm:text-3xl">
           The Best OG Images in {tag.replace(/-/g, ' ')}
         </h1>

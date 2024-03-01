@@ -4,7 +4,7 @@ import Link from 'next/link'
 export default function NotFound() {
   return (
     <PageLayout>
-      <div className="contain pt-16 text-center">
+      <div className="contain py-16 text-center">
         <p className="text-base font-semibold text-gray-400 dark:text-gray-500">
           404
         </p>

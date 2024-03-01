@@ -55,9 +55,9 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
         authorId={'https://il.ly'}
         imageUrl={`https://db.ogimage.org/assets/${inspiration.image}`}
       />
-      <div className="pad mx-auto max-w-3xl pt-4">
+      <div className="pad mx-auto max-w-3xl py-4 lg:pb-16">
         <nav
-          className="mb-4  flex gap-2 lg:mb-16"
+          className="mb-4 flex gap-2 lg:mb-16"
           itemScope
           itemType="http://schema.org/BreadcrumbList"
         >
