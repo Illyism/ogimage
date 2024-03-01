@@ -7,21 +7,25 @@ import {
   BarChart,
   Bookmark,
   GalleryThumbnails,
+  Globe2,
   Heart,
+  LinkedinIcon,
   MessageCircleIcon,
   Repeat2,
   Share,
+  Smile,
   TwitterIcon,
 } from 'lucide-react'
 import Image from 'next/image'
+import { useState } from 'react'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
 /* eslint-disable @next/next/no-img-element */
 
 type Store = {
-  preview: 'twitter' | 'simple'
-  setPreview: (preview: 'twitter' | 'simple') => void
+  preview: 'twitter' | 'simple' | 'linkedin'
+  setPreview: (preview: 'twitter' | 'simple' | 'linkedin') => void
 }
 
 export const usePreviewState = create(
@@ -73,6 +77,12 @@ const PreviewType = ({ className }: { className?: string }) => {
         icon={<TwitterIcon size={14} />}
         value={preview === 'twitter'}
         onChange={(checked) => setPreview(checked ? 'twitter' : 'simple')}
+      />
+      <Toggle
+        label="LinkedIn"
+        icon={<LinkedinIcon size={14} />}
+        value={preview === 'linkedin'}
+        onChange={(checked) => setPreview(checked ? 'linkedin' : 'simple')}
       />
     </form>
   )
@@ -140,6 +150,14 @@ const TemplateCard = (props: any) => {
     )
   }
 
+  if (preview == 'linkedin') {
+    return (
+      <FadeIn>
+        <LinkedInPreview {...props} />
+      </FadeIn>
+    )
+  }
+
   return (
     <FadeIn>
       <SimplePreview {...props} />
@@ -148,12 +166,18 @@ const TemplateCard = (props: any) => {
 }
 
 const SimplePreview = ({ title, description, image }: any) => {
+  const [loaded, setLoaded] = useState(false)
   return (
     <div className="relative rounded-lg border-2 border-border bg-card p-4 text-left shadow">
       <img
         src={image}
         alt={title}
-        className="aspect-[1200/630] rounded-lg"
+        className={cn(
+          'aspect-[1200/630] rounded-lg bg-black object-cover transition duration-500 dark:bg-gray-800',
+          !loaded && 'animate-pulse',
+        )}
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
         width={1200}
         height={630}
         loading="lazy"
@@ -165,6 +189,7 @@ const SimplePreview = ({ title, description, image }: any) => {
 }
 
 const TwitterPreview = ({ title, description, image }: any) => {
+  const [loaded, setLoaded] = useState(false)
   return (
     <div className="relative flex items-start gap-2 rounded border border-border bg-white pb-6 pl-4 pr-5 pt-4 text-left dark:bg-black">
       <Image
@@ -194,7 +219,12 @@ const TwitterPreview = ({ title, description, image }: any) => {
           <img
             src={image}
             alt={title}
-            className="rounded-2xl object-cover"
+            className={cn(
+              'rounded-2xl bg-black object-cover transition duration-500 dark:bg-gray-800',
+              !loaded && 'animate-pulse',
+            )}
+            onLoad={() => setLoaded(true)}
+            onError={() => setLoaded(true)}
             width={518}
             height={271}
             loading="lazy"
@@ -213,6 +243,60 @@ const TwitterPreview = ({ title, description, image }: any) => {
             <Share size={16} />
           </div>
         </div>
+      </div>
+    </div>
+  )
+}
+
+const LinkedInPreview = ({ title, description, image }: any) => {
+  const [loaded, setLoaded] = useState(false)
+  return (
+    <div className="relative rounded-lg border border-border bg-white  text-left dark:bg-black">
+      <div className="flex items-start gap-2 pl-4 pr-5 pt-3">
+        <Image
+          src="/me/ilias.png"
+          className="rounded-full"
+          alt=""
+          width={48}
+          height={48}
+        />
+        <div>
+          <div className="-mt-1 flex items-center">
+            <b className="font-black hover:text-blue-500 hover:underline">
+              Ilias Ism
+            </b>
+            <span className="mx-1.5 text-[12px] opacity-70">•</span>{' '}
+            <span className="font-semibold tracking-wide opacity-70">1st</span>
+          </div>
+          <div className="text-xs font-semibold leading-none opacity-60">
+            Chief Open Graph Officer
+          </div>
+          <div className="text-xs font-semibold opacity-60">
+            2h • <Globe2 size={12} className="inline" />
+          </div>
+        </div>
+      </div>
+      <p className="px-4 pb-2 pt-3 font-medium">{description}</p>
+      <img
+        src={image}
+        alt={title}
+        className={cn(
+          'aspect-[555/312] overflow-hidden bg-black object-cover transition duration-500 dark:bg-gray-800',
+          !loaded && 'animate-pulse',
+        )}
+        width={555}
+        height={312}
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+        loading="lazy"
+      />
+      <div className="bg-gray-100 px-4 pb-4 pt-3 dark:bg-gray-800">
+        <p className="font-bold">{title}</p>
+        <p className="text-xs font-medium opacity-80">ogimage.org</p>
+      </div>
+      <div className="flex items-center justify-between px-4 py-2 text-xs">
+        <Smile size={16} />
+        <span>2 comments</span>
       </div>
     </div>
   )
