@@ -199,9 +199,9 @@ const Pricing = () => {
             'Unlimited images',
             'Lifetime access',
             'All current templates',
+            '30 days of updates',
           ]}
           disabled={[
-            'Free updates',
             '10% discount on partner products',
             'Get featured on our website',
             'Priority support',
@@ -217,7 +217,7 @@ const Pricing = () => {
             'Unlimited images',
             'Lifetime access',
             'All templates',
-            'New templates in the future',
+            'All future templates',
             '10% discount on partner products',
           ]}
           disabled={['Get featured on our website', 'Priority support']}
@@ -232,7 +232,7 @@ const Pricing = () => {
             'Unlimited images',
             'Lifetime access',
             'All templates',
-            'New templates in the future',
+            'All future templates',
             '10% discount on partner products',
             'Get featured on our website',
             'Priority support',
