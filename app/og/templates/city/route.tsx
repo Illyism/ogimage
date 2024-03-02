@@ -41,7 +41,8 @@ export async function GET() {
       width: 1200,
       height: 630,
       headers: {
-        // 'Cache-Control': 'public, max-age=3600, immutable',
+        // don't cache, because we want to show the city you are in
+        'Cache-Control': 'no-store',
       },
       fonts: [
         {
