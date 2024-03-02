@@ -125,7 +125,7 @@ const Hero = () => {
           <a href="/buy" target="_blank" className="flex">
             <span className="hidden sm:inline">PURCHASE TODAY</span>
             <span className="sm:hidden">Buy now</span>
-            &emsp;<s className="text-xs font-bold">$227</s>{' '}
+            &emsp;<s className="text-xs font-bold">$67</s>{' '}
             <b className="-my-1 ml-2 text-lg font-black">$37</b>
           </a>
         </Button>
@@ -410,7 +410,7 @@ const FinalCallToAction = () => {
           <a href="/buy" target="_blank" className="flex">
             <span className="hidden sm:inline">PURCHASE TODAY</span>
             <span className="sm:hidden">Buy now</span>
-            &emsp;<s className="text-xs font-bold">$227</s>{' '}
+            &emsp;<s className="text-xs font-bold">$67</s>{' '}
             <b className="-my-1 ml-2 text-lg font-black">$37</b>
           </a>
         </Button>
