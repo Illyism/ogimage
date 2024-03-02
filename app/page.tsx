@@ -89,12 +89,20 @@ const Hero = () => {
   return (
     <div className="pad pb-24 pt-16 text-center">
       <h1 className="mx-auto mb-4 max-w-4xl text-balance text-center text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:max-w-[46rem] md:text-5xl">
-        Self-Hosted Open Graph Image Generator
+        Open Graph Image Templates for Next.js
       </h1>
-      <p className="mx-auto max-w-[750px] text-balance text-lg text-muted-foreground sm:text-xl">
-        Automate <b className="font-bold">open graph images</b> for your
-        website, blog, or social media posts. Customizable. Open source.
-        Lifetime access.
+      <p className="mx-auto max-w-[750px] text-balance text-lg font-medium text-muted-foreground sm:text-xl">
+        TSX templates for Next.js{' '}
+        <a
+          href="https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#generate-images-using-code-js-ts-tsx"
+          className="font-bold text-primary underline dark:text-yellow-400"
+          rel="nofollow"
+          target="_blank"
+        >
+          opengraph-image & twitter-image
+        </a>
+        . Get all the code to generate infinite open graph images for your
+        website, blog, or social media posts for a one-time payment.
       </p>
       <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row">
         <Button asChild className="w-full px-4 sm:w-auto">
