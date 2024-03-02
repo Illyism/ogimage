@@ -46,7 +46,7 @@ const resourcesLinks = [
 const moreLinks = [
   {
     href: 'https://store.magicspace.agency/affiliates',
-    label: 'Affiliates',
+    label: 'Affiliate Program (40%)',
   },
   {
     href: '/privacy',
