@@ -59,6 +59,10 @@ export const TemplatePreview = () => {
             use however you like.
           </p>
           <PreviewType className="mb-4" />
+          <div className="text-xs text-muted-foreground">
+            Coming soon: Blog post, Podcast, Article, Product, Event, Portfolio,
+            Resume & more. Let us know what you need!
+          </div>
         </div>
       </div>
 
