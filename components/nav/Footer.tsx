@@ -7,39 +7,23 @@ import { Logo } from '../ui/logo'
 const productLinks = [
   {
     href: '/',
-    label: 'Generator',
+    label: 'Product',
+  },
+  {
+    href: '/customers',
+    label: 'Usage examples',
   },
   {
     href: '/templates',
     label: 'Templates',
   },
-
-  {
-    href: '/contact',
-    label: 'Contact',
-  },
-]
-
-const resourcesLinks = [
   {
     href: '/inspiration',
     label: 'OG Image Gallery',
   },
   {
-    href: '/faq',
-    label: 'FAQ',
-  },
-  {
-    href: '/best-practices',
-    label: 'Best practices',
-  },
-  {
-    href: '/sizes',
-    label: 'Sizes',
-  },
-  {
-    href: '/for-blog',
-    label: 'For blog',
+    href: '/contact',
+    label: 'Contact',
   },
 ]
 
@@ -89,19 +73,6 @@ export const Footer = () => {
           <nav className="grid grid-cols-1 text-sm">
             <div className="px-2 py-1 text-base font-bold">Product</div>
             {productLinks.map((link, index) => (
-              <Link
-                key={index}
-                href={link.href}
-                prefetch={false}
-                className="px-2 py-2 transition hover:text-purple-300 sm:py-1"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-          <nav className="grid grid-cols-1 text-sm">
-            <div className="px-2 py-1 text-base font-bold">Resources</div>
-            {resourcesLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
