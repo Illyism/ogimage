@@ -4,6 +4,10 @@ export const headerLinks = [
     label: 'Inspiration',
   },
   {
+    href: '/customers',
+    label: 'Customers',
+  },
+  {
     href: '/templates',
     label: 'Templates',
   },
