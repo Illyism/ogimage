@@ -150,8 +150,9 @@ const SocialProof = () => {
       <div className="max-w-sm p-3 text-sm">
         <StarGlow className="mb-2" />
         <p className="text-bold mb-3 text-balance text-lg opacity-90">
-          &quot;OG Image Generator is a game changer for our agency. It saves us
-          time and money, and our clients love the results.&quot;
+          &quot;It&apos;s kind of like{' '}
+          <b>Tailwind UI or Shadcn UI components</b> but for Vercel/OG images.
+          😎 Pretty cool.&quot;
         </p>
         <div className="flex items-center justify-center gap-2 text-left">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500">
