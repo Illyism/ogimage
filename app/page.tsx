@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
+import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
 import { StarGlow } from '@/components/ui/StarGlow'
 import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
@@ -7,7 +8,6 @@ import { cn } from '@/lib/utils'
 import {
   Check,
   DollarSign,
-  Handshake,
   MessageCircleQuestion,
   SmilePlus,
   Sparkles,
@@ -100,7 +100,7 @@ const ProblemSolution = () => {
 
 const Hero = () => {
   return (
-    <div className="pad pb-24 pt-16 text-center">
+    <div className="pad py-16 text-center">
       <h1 className="mx-auto mb-4 max-w-4xl text-balance text-center text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:max-w-[46rem] md:text-5xl">
         Open Graph & Twitter Image Templates for Next.js
       </h1>
@@ -159,42 +159,19 @@ const Hero = () => {
 
 const SocialProof = () => {
   return (
-    <div className="flex items-center justify-center text-center">
-      <div className="max-w-sm p-3 text-sm">
-        <StarGlow className="mb-2" />
-        <p className="text-bold mb-3 text-balance text-lg opacity-90">
-          &quot;It&apos;s kind of like{' '}
-          <b>Tailwind UI or Shadcn UI components</b> but for Vercel/OG images.
-          😎 Pretty cool.&quot;
-        </p>
-        <div className="flex items-center justify-center gap-2 text-left">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500">
-            <Handshake size={24} />
-          </div>
-          <div>
-            <div className="text-base font-bold leading-none tracking-wide">
-              Happy customer
-            </div>
-            <div className="flex items-center gap-1">
-              <a
-                className="text-xs font-semibold leading-tight text-foreground/80 transition-colors"
-                href="https://magicspace.agency"
-                target="_blank"
-              >
-                MagicSpace SEO{' '}
-              </a>
-              <span className="flex items-center justify-center rounded-2xl bg-purple-500 px-1 py-1 text-[10px] font-black uppercase leading-none tracking-tighter text-white">
-                <Sparkles size={10} />
-                Agency
-              </span>
-            </div>
-            <div className="max-w-[160px] text-xs text-purple-600 dark:text-purple-400">
-              (Sample review - Get the Agency plan to get featured)
-            </div>
-          </div>
+    <>
+      <div className="mb-4 flex items-center justify-center text-center">
+        <div className="max-w-sm text-sm">
+          <StarGlow className="mb-2" />
+          <p className="text-bold mb-3 text-balance text-lg opacity-90">
+            &quot;It&apos;s kind of like{' '}
+            <b>Tailwind UI or Shadcn UI components</b> but for Vercel/OG images.
+            😎 Pretty cool.&quot;
+          </p>
         </div>
       </div>
-    </div>
+      <TestimonialMarquee big />
+    </>
   )
 }
 

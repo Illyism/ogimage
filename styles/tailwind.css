@@ -219,3 +219,37 @@ mark {
     inset 0 1px rgba(255, 255, 255, 0.12),
     0 1px 2px rgba(16, 24, 40, 0.16);
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee2 {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.marquee {
+  display: flex;
+  animation: marquee 60s linear infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.marquee2 {
+  display: flex;
+  animation: marquee2 60s linear infinite;
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
