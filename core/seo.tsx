@@ -102,7 +102,7 @@ export function generatePageMeta({
   image_height,
   publishedAt,
   updatedAt,
-  siteName = 'Typeframes',
+  siteName = 'ogimage.org',
   feed = '/blog/feed.xml',
 }: {
   title?: string
