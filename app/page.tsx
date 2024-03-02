@@ -166,6 +166,9 @@ const SocialProof = () => {
                 Agency
               </span>
             </div>
+            <div className="max-w-[160px] text-xs text-purple-600 dark:text-purple-400">
+              (Sample review - Get the Agency plan to get featured)
+            </div>
           </div>
         </div>
       </div>
