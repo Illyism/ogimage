@@ -9,7 +9,6 @@ import { generatePageMeta } from '@/core/seo'
 import { cn } from '@/lib/utils'
 import {
   Check,
-  DollarSign,
   MessageCircleQuestion,
   SmilePlus,
   Sparkles,
@@ -145,10 +144,6 @@ const Hero = () => {
       </div>
       <div className="mt-2 flex items-center justify-center text-center text-xs">
         <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
-          <DollarSign
-            size={12}
-            className="absolute inset-y-0 -left-4 m-auto animate-ping text-green-500"
-          />
           $30 off
         </span>{' '}
         <Suspense fallback="for the next 17 customers">
