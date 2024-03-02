@@ -369,6 +369,19 @@ const FAQCard = ({ question, answer }: any) => {
 const FinalCallToAction = () => {
   return (
     <div className="pad pb-24 pt-16 text-center">
+      <a
+        href="https://www.producthunt.com/posts/og-image-generator?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-og&#0045;image&#0045;generator"
+        target="_blank"
+        className="mx-auto mb-4 inline-flex items-center justify-center"
+      >
+        <img
+          src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=441467&theme=light"
+          alt="OG&#0032;Image&#0032;Generator - Create&#0032;Beautiful&#0032;OG&#0032;Images&#0032;in&#0032;Minutes | Product Hunt"
+          width="250"
+          height="54"
+        />
+      </a>
+
       <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
         Get started today
       </h2>
