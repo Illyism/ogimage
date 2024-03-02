@@ -104,7 +104,20 @@ export const TemplatePreview = () => {
           description="Real-time live screenshot of your mobile website"
           image={`/og/templates/phone`}
         />
+        <ComingSoon />
       </div>
+    </div>
+  )
+}
+
+const ComingSoon = () => {
+  return (
+    <div className="relative rounded-lg border-2 border-border bg-card p-4 text-left dark:bg-black">
+      <h3 className="text-xl font-bold">More templates coming soon</h3>
+      <p className="text-muted-foreground">
+        Examples: Blog post, Podcast, Article, Product, Event, Portfolio, Resume
+        & more. Let us know what you need!
+      </p>
     </div>
   )
 }
