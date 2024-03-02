@@ -11,7 +11,7 @@ export const TestimonialMarquee = ({ big = false }) => {
   const secondHalfHighlights = highlights.slice(half, highlights.length)
 
   return (
-    <div className="space-y-4">
+    <div className="mx-4 space-y-4">
       <Marquee>
         {firstHalfHighlights.map((highlight, index) => (
           <HighlightCard key={index} highlight={highlight} big={big} />
