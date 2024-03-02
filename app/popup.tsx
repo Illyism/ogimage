@@ -18,6 +18,7 @@ import Image from 'next/image'
 import { usePostHog } from 'posthog-js/react'
 import React, { useEffect, useState } from 'react'
 import { create } from 'zustand'
+import { createJSONStorage, persist } from 'zustand/middleware'
 
 /**
  * GiftPopup.tsx
@@ -32,11 +33,19 @@ interface GiftPopupState {
   setShowPopup: (showPopup: boolean) => void
 }
 
-const useGiftPopup = create<GiftPopupState>((set) => ({
-  showPopup: false,
-  hasOpened: false,
-  setShowPopup: (showPopup) => set({ showPopup, hasOpened: true }),
-}))
+const useGiftPopup = create(
+  persist<GiftPopupState>(
+    (set) => ({
+      showPopup: false,
+      hasOpened: false,
+      setShowPopup: (showPopup) => set({ showPopup, hasOpened: true }),
+    }),
+    {
+      name: 'og-gift',
+      storage: createJSONStorage(() => window.sessionStorage),
+    },
+  ),
+)
 
 export function GiftPopup() {
   const [loaded, setLoaded] = useState(false)
