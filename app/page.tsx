@@ -211,8 +211,8 @@ const Pricing = () => {
       <div className="mx-auto mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <PricingCard
           title="Essential"
-          price="$69"
-          discount="$99"
+          price="$37"
+          discount="$67"
           features={[
             'Source code',
             'Unlimited images',
@@ -229,8 +229,8 @@ const Pricing = () => {
         <PricingCard
           popular
           title="Pro"
-          price="$97"
-          discount="$127"
+          price="$67"
+          discount="$97"
           features={[
             'Source code',
             'Unlimited images',
@@ -244,8 +244,8 @@ const Pricing = () => {
         <PricingCard
           className="sm:col-span-2 lg:col-span-1"
           title="Agency"
-          price="$297"
-          discount="$327"
+          price="$197"
+          discount="$227"
           features={[
             'Source code',
             'Unlimited images',
