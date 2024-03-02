@@ -98,7 +98,7 @@ export function GiftPopup() {
 
   return (
     <Dialog open={showPopup} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="btn sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>
             <FadeIn className="text-center">
