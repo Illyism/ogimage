@@ -15,6 +15,7 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { NextCustomers } from './launch'
 import { TemplatePreview } from './og/components/TemplatePreview'
 
 export const metadata = generatePageMeta({
@@ -125,7 +126,7 @@ const Hero = () => {
           />
           $30 off
         </span>{' '}
-        for the next 17 customers • Lifetime access
+        <NextCustomers /> • Lifetime access
       </div>
     </div>
   )
@@ -236,7 +237,7 @@ const Pricing = () => {
         <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
           $30 off
         </span>{' '}
-        for the next 17 customers • Lifetime access
+        <NextCustomers /> • Lifetime access
       </div>
     </div>
   )
@@ -398,7 +399,7 @@ const FinalCallToAction = () => {
         <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
           $30 off
         </span>{' '}
-        for the next 17 customers • Lifetime access
+        <NextCustomers /> • Lifetime access
       </div>
     </div>
   )
