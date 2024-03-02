@@ -71,9 +71,9 @@ const WhatIS = () => {
         <b>thumbnail preview image</b> usually appears.
       </p>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
-        The image that populates this preview is what's known as the open graph
-        or <b>OG image</b>. It provides a visual representation of the content
-        being shared.
+        The image that populates this preview is what&apos;s known as the open
+        graph or <b>OG image</b>. It provides a visual representation of the
+        content being shared.
       </p>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
         It&apos; important to have a <b>good open graph image</b> because it
