@@ -99,6 +99,11 @@ export const TemplatePreview = () => {
           image={`/og/templates/button`}
         />
         <TemplateCard
+          title="headline"
+          description="Headline with a background box"
+          image={`/og/templates/headline`}
+        />
+        <TemplateCard
           title="Screenshot"
           description="Show your website by taking a live screenshot"
           image={`/og/templates/screenshot`}
