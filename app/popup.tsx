@@ -11,14 +11,14 @@ import {
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { cn } from '@/lib/utils'
-import { AnimatePresence, motion } from 'framer-motion'
-import { Send } from 'lucide-react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { CheckCircle2 } from 'lucide-react'
 import Image from 'next/image'
 import { usePostHog } from 'posthog-js/react'
 import React, { useEffect, useState } from 'react'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
+import { sendGiveaway } from './api/giveaway'
 
 /**
  * GiftPopup.tsx
@@ -110,7 +110,7 @@ export function GiftPopup() {
                 className="mx-auto inline-block animate-bounce"
               />
               <h2 className="mb-2 mt-2 items-center text-xl font-black">
-                Pro License Giveaway
+                Free License Giveaway
               </h2>
               <p className="mb-4 text-base font-medium">
                 Subscribe to our product newsletter and get a chance to{' '}
@@ -119,7 +119,7 @@ export function GiftPopup() {
             </FadeIn>
           </DialogTitle>
           <DialogDescription asChild>
-            <EmailForm id="email-popup" cta="Subscribe" />
+            <EmailForm />
           </DialogDescription>
         </DialogHeader>
       </DialogContent>
@@ -137,61 +137,33 @@ const useFilledStore = create<FilledStore>((set) => ({
   setHasFilled: (newStr) => set({ hasFilled: newStr }),
 }))
 
-const EmailForm = ({ title, description, id, cta, className }: any) => {
+const EmailForm = () => {
   const hasFilled = useFilledStore((state) => state.hasFilled)
   const setHasFilled = useFilledStore((state) => state.setHasFilled)
   const posthog = usePostHog()
 
   const [error, setError] = React.useState<string | null>(null)
+  const [busy, setBusy] = React.useState(false)
 
   const capture = async (e: any) => {
+    if (e) e.preventDefault()
+    if (e) e.stopPropagation()
+    setBusy(true)
+    const email = e.target.email.value
+
     try {
-      if (e) e.preventDefault()
-      if (e) e.stopPropagation()
-      const email = e.target.email.value
+      await sendGiveaway(email)
+
       setHasFilled(true)
+      setBusy(false)
 
-      const res = await fetch(
-        'https://store.magicspace.agency/email-subscribe/external',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            email,
-          }),
-        },
-      )
-
-      if (
-        res.redirected &&
-        res.url == 'https://store.magicspace.agency/email-subscribe/success'
-      ) {
-        posthog.capture('lead', {
-          id,
-          title,
-          description,
-          cta,
-          $set: {
-            email,
-          },
-        })
-      }
-
-      if (
-        res.redirected &&
-        res.url == 'https://store.magicspace.agency/email-subscribe/error'
-      ) {
-        setHasFilled(false)
-        e.target.reset()
-        setError('Something went wrong')
-      }
+      posthog.capture('lead', {
+        email,
+        $set_once: { lead: true, email },
+      })
     } catch (error) {
-      console.error('error', error)
       setHasFilled(false)
-      e.target.reset()
-      setError('Could not subscribe, please try again later')
+      setError(error.message)
     }
   }
 
@@ -201,64 +173,77 @@ const EmailForm = ({ title, description, id, cta, className }: any) => {
     setMounted(true)
   }, [])
 
-  if (!mounted) return null
+  const reducedMotion = useReducedMotion()
+
+  if (!mounted)
+    return (
+      <div className="not-prose h-[200px] w-full animate-pulse rounded-2xl border-2 border-primary/10 bg-card" />
+    )
 
   return (
-    <div className={cn(className)}>
-      <div className="grid gap-4 text-left">
-        <div className="space-y-2">
-          {error && <p className="text-sm text-red-500">{error}</p>}
+    <div className="relative flex flex-col items-center justify-center">
+      <a id="form" className="absolute -top-16" />
 
-          {hasFilled && (
-            <AnimatePresence>
-              <motion.div
-                className="border border-border py-2 text-center text-xs font-bold dark:text-green-100"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
-              >
-                <Send className="mr-2 inline-block" size={16} />
-                Email on the way!
-              </motion.div>
-            </AnimatePresence>
-          )}
+      {error && <p className="text-sm text-red-500">{error}</p>}
 
-          {!hasFilled && (
-            <motion.form
-              action="https://store.magicspace.agency/email-subscribe/external"
-              method="post"
-              onSubmit={capture}
-              initial={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0 }}
+      {hasFilled && (
+        <AnimatePresence>
+          <motion.div
+            className="text-center text-lg"
+            initial={{ opacity: 0, scale: reducedMotion ? 1 : 0 }}
+            animate={{ opacity: 1, scale: reducedMotion ? 1 : 1 }}
+            exit={{ opacity: 0, scale: reducedMotion ? 1 : 0 }}
+          >
+            <CheckCircle2 className="mx-auto mb-2" size={24} />
+            <span>Thanks for signing up!</span>
+            <p className="text-sm text-gray-500">
+              We have a little surprise for you in your inbox.
+            </p>
+          </motion.div>
+        </AnimatePresence>
+      )}
+
+      {!hasFilled && (
+        <motion.form
+          action="https://magicspace.lemonsqueezy.com/email-subscribe/external"
+          method="post"
+          onSubmit={capture}
+          initial={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: reducedMotion ? 1 : 0 }}
+        >
+          {busy && (
+            <motion.div
+              className="absolute inset-0 flex items-center justify-center rounded-2xl bg-background/50 backdrop-blur"
+              initial={{ opacity: 0, scale: reducedMotion ? 1 : 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: reducedMotion ? 1 : 0 }}
             >
-              <div className="grid gap-2">
-                <div className="flex items-center gap-4">
-                  <Label htmlFor={id} className="sr-only">
-                    Email
-                  </Label>
-                  <Input
-                    id={id}
-                    name="email"
-                    type="email"
-                    placeholder="Email address"
-                    className="h-8 w-full"
-                    autoCapitalize="none"
-                    autoComplete="email"
-                    autoCorrect="off"
-                    required
-                    data-1p-ignore
-                  />
-                </div>
-                <Button>{cta}</Button>
-                <div className="text-center text-sm text-muted-foreground">
-                  We only notify you about major updates and new features. No
-                  spam, we promise.
-                </div>
-              </div>
-            </motion.form>
+              <div className="h-12 w-12 animate-spin rounded-full border-b-4 border-primary"></div>
+            </motion.div>
           )}
-        </div>
-      </div>
+          <div className="grid gap-2">
+            <div className="flex items-center gap-4">
+              <Label className="sr-only">Email</Label>
+              <Input
+                name="email"
+                type="email"
+                placeholder="Email address"
+                className="h-8 w-full"
+                autoCapitalize="none"
+                autoComplete="email"
+                autoCorrect="off"
+                required
+                data-1p-ignore
+              />
+            </div>
+            <Button>Subscribe</Button>
+            <div className="text-center text-sm text-muted-foreground">
+              We only notify you about major updates and new features. No spam,
+              we promise.
+            </div>
+          </div>
+        </motion.form>
+      )}
     </div>
   )
 }
