@@ -16,6 +16,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { Suspense } from 'react'
+import { Customers } from './customers/Customers'
 import { NextCustomers } from './launch'
 import { TemplatePreview } from './og/components/TemplatePreview'
 
@@ -30,6 +31,16 @@ export default function Page() {
       <SocialProof />
       <ProblemSolution />
       <TemplatePreview />
+      <div className="contain">
+        <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
+          Real-world examples
+        </h2>
+        <p>
+          Here are some examples of how websites can improve their open graph
+          images. Generated <b>100% LIVE</b> with our templates.
+        </p>
+      </div>
+      <Customers />
       <Pricing />
       <FAQ />
       <FinalCallToAction />
