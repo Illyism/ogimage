@@ -90,7 +90,7 @@ export function Header() {
                   <div className="text-xs font-black uppercase opacity-80">
                     Launch special
                   </div>
-                  $97 - Lifetime access
+                  $37 - Lifetime access
                 </div>
               </TooltipContent>
             </Tooltip>
