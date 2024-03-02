@@ -15,6 +15,7 @@ import {
   Wrench,
   XIcon,
 } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import { Customers } from './customers/Customers'
@@ -56,7 +57,7 @@ export default function Page() {
 const WhatIS = () => {
   // showcase in a beautiful way:
   return (
-    <div className="pad py-24 text-center">
+    <div className="pad pb-8 pt-24 text-center">
       <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
         What is an Open Graph Image?
       </h2>
@@ -65,26 +66,42 @@ const WhatIS = () => {
         <Link href="/marketing/twitter-marketing" className="font-bold">
           Twitter
         </Link>
-        , <b>LinkedIn</b>, or messaging platforms like <b>WhatsApp</b> or{' '}
-        <b>Telegram</b>, an accompanying <b>thumbnail preview image</b> usually
-        appears.
-      </p>
-      <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
-        For example, when sharing links on <b>Facebook</b> or <b>Slack</b>,
-        you'll see a little preview image beside the link.
+        , <b>LinkedIn</b>, <b>Facebook</b>, or messaging platforms like{' '}
+        <b>WhatsApp</b>, <b>Slack</b> or <b>Telegram</b>, an accompanying{' '}
+        <b>thumbnail preview image</b> usually appears.
       </p>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
         The image that populates this preview is what's known as the open graph
-        or OG image. It provides a visual representation of the content being
-        shared.
+        or <b>OG image</b>. It provides a visual representation of the content
+        being shared.
       </p>
+      <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
+        It&apos; important to have a <b>good open graph image</b> because it
+        <b> increases engagement</b> and <b>click-through rates</b>.
+      </p>
+      <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
+        <Image
+          className="rotate-[-2deg] rounded-lg border-2 border-border shadow-2xl"
+          src="/_static/boring-better.jpg"
+          width={1270}
+          height={760}
+          alt="Before and after of a boring and a better twitter card image"
+        />
+        <Image
+          className="rotate-[2deg] rounded-lg border-2 border-border shadow-2xl"
+          src="/_static/linkedin-boring.jpg"
+          width={1270}
+          height={760}
+          alt="Before and after of a boring and a better linkedin card image"
+        />
+      </div>
     </div>
   )
 }
 
 const ProblemSolution = () => {
   return (
-    <div className="pad py-24 text-center">
+    <div className="pad py-16 text-center">
       <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
         Why OG Image Generator?
       </h2>

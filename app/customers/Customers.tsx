@@ -80,7 +80,7 @@ const OscarStories = () => {
           <Image
             src="/_static/examples/oscar-stories-before.jpg"
             alt="Oscar Stories"
-            className="max-w-xl rounded-2xl"
+            className="w-full max-w-xl rounded-2xl"
             width={1082}
             height={672}
           />
@@ -152,7 +152,7 @@ const SeoByAI = () => {
           <Image
             src="/_static/examples/seobyai-og.png"
             alt="SEOByAI"
-            className="max-w-xl rounded-2xl"
+            className="w-full max-w-xl rounded-2xl"
             width={1200}
             height={630}
           />
