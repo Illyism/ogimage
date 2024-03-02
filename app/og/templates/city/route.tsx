@@ -19,6 +19,8 @@ export async function GET() {
 
   const img = await getCityPicture(city)
 
+  const decodedCity = decodeURIComponent(city)
+
   return new ImageResponse(
     (
       <div
@@ -33,7 +35,7 @@ export async function GET() {
           WODILY
         </div>
         <div tw="bg-[#ffd400] flex rounded-full px-12 py-4 text-[40px] text-black shadow-2xl border-[10px] border-purple-400/70">
-          Find CrossFit Gyms in {city}
+          Find CrossFit Gyms in {decodedCity}
         </div>
       </div>
     ),
@@ -43,6 +45,8 @@ export async function GET() {
       headers: {
         // don't cache, because we want to show the city you are in
         'Cache-Control': 'no-store',
+        'Surrogate-Control': 'no-store',
+        Vary: 'x-vercel-ip-city',
       },
       fonts: [
         {
