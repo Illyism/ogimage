@@ -19,6 +19,7 @@ import { Suspense } from 'react'
 import { Customers } from './customers/Customers'
 import { NextCustomers } from './launch'
 import { TemplatePreview } from './og/components/TemplatePreview'
+import { GiftPopup } from './popup'
 
 export const metadata = generatePageMeta({
   url: `/`,
@@ -44,6 +45,7 @@ export default function Page() {
       <Pricing />
       <FAQ />
       <FinalCallToAction />
+      <GiftPopup />
     </PageLayout>
   )
 }
