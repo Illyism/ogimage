@@ -7,13 +7,13 @@ import { cn } from '@/lib/utils'
 import {
   Check,
   DollarSign,
+  Handshake,
   MessageCircleQuestion,
   SmilePlus,
   Sparkles,
   Wrench,
   XIcon,
 } from 'lucide-react'
-import Image from 'next/image'
 import Link from 'next/link'
 import { NextCustomers } from './launch'
 import { TemplatePreview } from './og/components/TemplatePreview'
@@ -142,16 +142,12 @@ const SocialProof = () => {
           time and money, and our clients love the results.&quot;
         </p>
         <div className="flex items-center justify-center gap-2 text-left">
-          <Image
-            src="/me/ilias-ism-circle.png"
-            alt="Ilias Ism"
-            width={48}
-            height={48}
-            className="rounded-full border border-white/10"
-          />
+          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-purple-500">
+            <Handshake size={24} />
+          </div>
           <div>
             <div className="text-base font-bold leading-none tracking-wide">
-              Ilias Ism
+              Happy customer
             </div>
             <div className="flex items-center gap-1">
               <a
