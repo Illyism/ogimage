@@ -89,7 +89,7 @@ const Hero = () => {
   return (
     <div className="pad pb-24 pt-16 text-center">
       <h1 className="mx-auto mb-4 max-w-4xl text-balance text-center text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:max-w-[46rem] md:text-5xl">
-        Open Graph Image Templates for Next.js
+        Open Graph & Twitter Image Templates for Next.js
       </h1>
       <p className="mx-auto max-w-[750px] text-balance text-lg font-medium text-muted-foreground sm:text-xl">
         TSX templates for Next.js{' '}
