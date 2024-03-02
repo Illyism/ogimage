@@ -176,6 +176,9 @@ const OscarStories = () => {
           <h3 className="rounded-t-lg bg-red-500 p-2 text-center font-bold text-white">
             Before <ArrowDown size={14} className="inline" />
           </h3>
+          <div className="flex w-full max-w-xl items-center justify-between truncate border border-border bg-background p-2 font-mono text-xs font-bold">
+            /public/img/social.jpg
+          </div>
           <Image
             src="/_static/examples/oscar-stories-before.jpg"
             alt="Oscar Stories"
