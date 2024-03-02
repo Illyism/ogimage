@@ -31,6 +31,7 @@ export default function Page() {
     <PageLayout>
       <Hero />
       <SocialProof />
+      <WhatIS />
       <ProblemSolution />
       <TemplatePreview />
       <div className="contain">
@@ -49,6 +50,35 @@ export default function Page() {
       <GiftPopup />
       <TestimonialMasonry limit={9999} />
     </PageLayout>
+  )
+}
+
+const WhatIS = () => {
+  // showcase in a beautiful way:
+  return (
+    <div className="pad py-24 text-center">
+      <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+        What is an Open Graph Image?
+      </h2>
+      <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
+        When you share a link on social media like{' '}
+        <Link href="/marketing/twitter-marketing" className="font-bold">
+          Twitter
+        </Link>
+        , <b>LinkedIn</b>, or messaging platforms like <b>WhatsApp</b> or{' '}
+        <b>Telegram</b>, an accompanying <b>thumbnail preview image</b> usually
+        appears.
+      </p>
+      <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
+        For example, when sharing links on <b>Facebook</b> or <b>Slack</b>,
+        you'll see a little preview image beside the link.
+      </p>
+      <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
+        The image that populates this preview is what's known as the open graph
+        or OG image. It provides a visual representation of the content being
+        shared.
+      </p>
+    </div>
   )
 }
 
