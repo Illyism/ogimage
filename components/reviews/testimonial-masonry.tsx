@@ -3,30 +3,24 @@
 import { Star } from 'lucide-react'
 import Image from 'next/image'
 import { useMemo } from 'react'
-import { Container } from '../Container'
-import { ContactCard } from '../orders/ContactCard'
 import { Review, reviews } from './reviews'
 
 export const TestimonialMasonry = ({
   skip = 0,
   limit = 6,
-  showContact = true,
 }: {
   skip?: number
   limit?: number
-  showContact?: boolean
 } = {}) => {
   const sliceMax = useMemo(() => Math.min(limit, reviews.length), [limit])
   return (
-    <Container>
+    <div className="contain">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {reviews.slice(skip, sliceMax).map((review, index) => (
           <ReviewCard key={index} review={review} />
         ))}
-
-        {showContact && <ContactCard />}
       </div>
-    </Container>
+    </div>
   )
 }
 

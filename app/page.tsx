@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
 import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
+import { TestimonialMasonry } from '@/components/reviews/testimonial-masonry'
 import { TestimonialReviews } from '@/components/reviews/testimonial-reviews'
 import { StarGlow } from '@/components/ui/StarGlow'
 import { Button } from '@/components/ui/button'
@@ -47,6 +48,7 @@ export default function Page() {
       <FAQ />
       <FinalCallToAction />
       <GiftPopup />
+      <TestimonialMasonry limit={9999} />
     </PageLayout>
   )
 }
