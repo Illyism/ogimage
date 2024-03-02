@@ -29,7 +29,7 @@ export const TestimonialReviews = ({ className }: any) => {
           )}
         >
           <div className="flex">
-            {endorsers.slice(0, 4).map((person, index) => (
+            {endorsers.slice(0, 6).map((person, index) => (
               <Image
                 key={index}
                 className="-ml-3 h-10 w-10 rounded-full border border-primary/20 object-cover shadow-xl"

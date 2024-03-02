@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
 import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
+import { TestimonialReviews } from '@/components/reviews/testimonial-reviews'
 import { StarGlow } from '@/components/ui/StarGlow'
 import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
@@ -160,10 +161,18 @@ const Hero = () => {
 const SocialProof = () => {
   return (
     <>
-      <div className="mb-4 flex items-center justify-center text-center">
+      <div className="mb-8 flex flex-col items-center justify-center gap-8 text-center lg:flex-row">
         <div className="max-w-sm text-sm">
           <StarGlow className="mb-2" />
-          <p className="text-bold mb-3 text-balance text-lg opacity-90">
+          <p className="text-bold  text-balance text-lg opacity-90">
+            &quot;The live screenshot is very useful and saves us a lot of
+            time.&quot;
+          </p>
+        </div>
+        <TestimonialReviews />
+        <div className="max-w-sm text-sm">
+          <StarGlow className="mb-2" />
+          <p className="text-bold text-balance text-lg opacity-90">
             &quot;It&apos;s kind of like{' '}
             <b>Tailwind UI or Shadcn UI components</b> but for Vercel/OG images.
             😎 Pretty cool.&quot;
