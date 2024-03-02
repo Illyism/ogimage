@@ -18,7 +18,7 @@ export const Customers = ({ children }: { children?: React.ReactNode }) => {
   return (
     <div className="space-y-4 py-16 sm:space-y-16">
       <OscarStories />
-      <SeoByAI />
+      <Wodily />
       {children}
     </div>
   )
@@ -104,23 +104,46 @@ const OscarStories = () => {
   )
 }
 
-const SeoByAI = () => {
+const Wodily = () => {
   return (
     <div className="pad grid grid-cols-1 gap-4 pb-24 pt-16 lg:grid-cols-3">
       <div className="relative">
         <div className="top-32 w-full lg:sticky">
           <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
-            SEOByAI
+            Wodily
           </h2>
           <p className="text-md mb-4">
-            Kickstart your marketing efforts for free with SEOByAI. Rank higher,
-            get more traffic, and increase your revenue.
+            Find crossfit gyms and boxes near you. Wodily uses{' '}
+            <a
+              href="https://storychief.io/blog/programmatic-seo"
+              target="_blank"
+              className="font-bold text-blue-500 hover:underline"
+            >
+              programmatic SEO
+            </a>{' '}
+            to create <b>10,000+ pages</b> of crossfit gyms and boxes for every
+            city, country and gym in the world.
+          </p>
+          <p className="text-md mb-4">
+            So we used the Unsplash API to generate a unique image for each
+            city. We use Geolocation to get the city and country of the user.
+          </p>
+          <p className="text-md mb-4">
+            <b>Note</b>: This example is{' '}
+            <a
+              href="https://il.ly/tech/personalization"
+              className="font-bold text-blue-500 hover:underline"
+              target="_blank"
+            >
+              personalized
+            </a>{' '}
+            to <b>YOU</b>! It will generate an image for the city you are in.
           </p>
 
           <div className="relative">
             <img
-              src="https://www.seoby.ai/favicon.ico"
-              alt="SEOByAI"
+              src="https://wodily.com/favicon.ico"
+              alt="wodily"
               width="32"
               height="32"
               className="absolute inset-y-0 left-2 m-auto rounded-full"
@@ -128,9 +151,9 @@ const SeoByAI = () => {
             <a
               className="flex w-full items-center justify-between rounded-2xl border border-border bg-background p-2 pl-12 text-sm font-medium hover:underline"
               target="_blank"
-              href="https://www.seoby.ai/"
+              href="https://wodily.com"
             >
-              https://www.seoby.ai/
+              https://wodily.com
               <ExternalLink size={16} className="mr-2 inline" />
             </a>
           </div>
@@ -147,11 +170,11 @@ const SeoByAI = () => {
             Before <ArrowDown size={14} className="inline" />
           </h3>
           <div className="flex w-full max-w-xl items-center justify-between truncate border border-border bg-background p-2 font-mono text-xs font-bold">
-            /public/seobyai-og.png
+            /public/img/social.jpg
           </div>
           <Image
-            src="/_static/examples/seobyai-og.png"
-            alt="SEOByAI"
+            src="/_static/examples/wodily.png"
+            alt="wodily basel switzerland social image"
             className="w-full max-w-xl rounded-2xl"
             width={1200}
             height={630}
@@ -163,12 +186,12 @@ const SeoByAI = () => {
             After <ArrowDown size={14} className="inline" />
           </h3>
           <div className="flex w-full max-w-xl items-center justify-between truncate border border-border bg-background p-2 font-mono text-xs font-bold">
-            /og/templates/headline
+            /og/templates/city
           </div>
           <TwitterPreview
-            title="SEOByAI"
-            description="Kickstart your marketing efforts for free with SEOByAI. Rank higher, get more traffic, and increase your revenue."
-            image="/og/templates/headline"
+            title="Unsplash + GeoIP City"
+            description="Show an image of the city you are in."
+            image="/og/templates/city"
           />
         </div>
       </div>

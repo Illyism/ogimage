@@ -113,6 +113,11 @@ export const TemplatePreview = () => {
           description="Real-time live screenshot of your mobile website"
           image={`/og/templates/phone`}
         />
+        <TemplateCard
+          title="City"
+          description="Use Unsplash API + Vercel geolocation to get a city picture"
+          image={`/og/templates/city`}
+        />
         <ComingSoon />
       </div>
     </div>
