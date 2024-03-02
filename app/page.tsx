@@ -15,6 +15,7 @@ import {
   XIcon,
 } from 'lucide-react'
 import Link from 'next/link'
+import { Suspense } from 'react'
 import { NextCustomers } from './launch'
 import { TemplatePreview } from './og/components/TemplatePreview'
 
@@ -126,7 +127,10 @@ const Hero = () => {
           />
           $30 off
         </span>{' '}
-        <NextCustomers /> • Lifetime access
+        <Suspense fallback="for the next 17 customers">
+          <NextCustomers />
+        </Suspense>{' '}
+        • Lifetime access
       </div>
     </div>
   )
@@ -236,7 +240,10 @@ const Pricing = () => {
         <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
           $30 off
         </span>{' '}
-        <NextCustomers /> • Lifetime access
+        <Suspense fallback="for the next 17 customers">
+          <NextCustomers />
+        </Suspense>{' '}
+        • Lifetime access
       </div>
     </div>
   )
@@ -411,7 +418,10 @@ const FinalCallToAction = () => {
         <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
           $30 off
         </span>{' '}
-        <NextCustomers /> • Lifetime access
+        <Suspense fallback="for the next 17 customers">
+          <NextCustomers />
+        </Suspense>{' '}
+        • Lifetime access
       </div>
     </div>
   )
