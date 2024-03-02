@@ -152,7 +152,7 @@ export function generatePageMeta({
 
   const img = getImage(image, image_alt || title, image_width, image_height)
   const screenshot = {
-    url: `${metadata.metadataBase}og?url=${encodeURIComponent(url || '/')}`,
+    url: `${metadata.metadataBase}og/templates/button`,
     width: 1200,
     height: 630,
     alt: title,
