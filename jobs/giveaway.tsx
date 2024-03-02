@@ -88,7 +88,7 @@ ogimage.org
 
 <p>Let me know if you have any questions or need help getting started.</p>
 
-<p>If you loved it, please <a href="https://www.producthunt.com/products/og-image-generator/reviews">leave a review on Product Hunt</a> to help us spread the word.</p>
+<p>If you loved it, please <a href="https://senja.io/p/blogkit/r/8gkozI">leave a review</a> to help us spread the word.</p>
 
 <p>Thank you for being part of our community!</p>
 
@@ -103,7 +103,7 @@ Wondering if you had a chance to try out the free pack of Open Graph Image templ
 
 Let me know if you have any questions or need help getting started.
 
-If you loved it, please leave a review on Product Hunt to help us spread the word: https://www.producthunt.com/products/og-image-generator/reviews
+If you loved it, please leave a review to help us spread the word: https://senja.io/p/blogkit/r/8gkozI
 
 Thank you for being part of our community!
 
