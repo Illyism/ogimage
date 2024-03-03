@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import { PageLayout } from '@/components/nav/PageLayout'
 import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
@@ -213,7 +214,28 @@ const SocialProof = () => {
             time.&quot;
           </p>
         </div>
-        <TestimonialReviews />
+        <div className="flex flex-col items-center justify-center gap-4">
+          <a
+            href="https://www.producthunt.com/posts/og-image-generator?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-og&#0045;image&#0045;generator"
+            target="_blank"
+          >
+            <img
+              className="hidden dark:block"
+              src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=441467&theme=dark&period=daily"
+              alt="OG Image Generator - Create Beautiful OG Images in Minutes | Product Hunt"
+              width="250"
+              height="54"
+            />
+            <img
+              className="dark:hidden"
+              src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=441467&theme=light&period=daily"
+              alt="OG Image Generator - Create Beautiful OG Images in Minutes | Product Hunt"
+              width="250"
+              height="54"
+            />
+          </a>
+          <TestimonialReviews />
+        </div>
         <div className="max-w-sm text-sm">
           <StarGlow className="mb-2" />
           <p className="text-bold text-balance text-lg opacity-90">
