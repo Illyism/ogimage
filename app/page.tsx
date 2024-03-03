@@ -150,7 +150,7 @@ const ProblemSolution = () => {
 
 const Hero = () => {
   return (
-    <div className="pad py-16 text-center">
+    <div className="pad pb-8 pt-16 text-center">
       <h1 className="mx-auto mb-4 max-w-4xl text-balance text-center text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:max-w-[46rem] md:text-5xl">
         Open Graph & Twitter Image Templates for Next.js
       </h1>
@@ -206,7 +206,7 @@ const Hero = () => {
 const SocialProof = () => {
   return (
     <>
-      <div className="mb-8 flex flex-col items-center justify-center gap-8 text-center lg:flex-row">
+      <div className="mb-12 flex flex-col items-end justify-center gap-8 text-center lg:flex-row">
         <div className="max-w-sm text-sm">
           <StarGlow className="mb-2" />
           <p className="text-bold  text-balance text-lg opacity-90">
