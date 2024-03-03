@@ -125,8 +125,11 @@ export const Footer = () => {
             </div>
           </div>
 
-          <div className="flex flex-col items-center gap-6 text-sm font-bold sm:flex-row">
-            &copy; {new Date().getFullYear()} ogimage.org
+          <div className="flex flex-col items-center gap-2 text-sm font-bold sm:flex-row">
+            &copy; {new Date().getFullYear()}{' '}
+            <a href="https://blogkit.org" className="font-black">
+              BlogKit
+            </a>
           </div>
         </div>
       </div>

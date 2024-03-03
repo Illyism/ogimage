@@ -1,6 +1,7 @@
+/* eslint-disable @next/next/no-img-element */
 'use client'
 import { cn } from '@/lib/utils'
-import { CheckCircle, Star } from 'lucide-react'
+import { BookOpen, CheckCircle, Star } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
@@ -26,7 +27,22 @@ export function Header() {
   }, [setHasSeenHeader])
   return (
     <>
-      <ul className="pad flex items-center gap-12 bg-background-body py-2 text-xs">
+      <ul className="pad jc flex items-center gap-12 bg-background-body py-2 text-xs">
+        <li className="flex items-center">
+          <BookOpen
+            size={14}
+            className="mr-1 text-purple-500 dark:text-purple-400"
+          />
+          A&nbsp;
+          <a
+            href="https://blogkit.org"
+            target="_blank"
+            className="font-black hover:underline"
+          >
+            BlogKit
+          </a>
+          &nbsp;Project
+        </li>
         <li className="ml-1 flex items-center">
           <CheckCircle size={14} className="mr-1 text-green-500" />
           Created by&nbsp;
