@@ -27,7 +27,7 @@ export function Header() {
   }, [setHasSeenHeader])
   return (
     <>
-      <ul className="pad jc flex items-center gap-12 bg-background-body py-2 text-xs">
+      <ul className="pad jc flex items-center gap-12 overflow-hidden whitespace-nowrap bg-background-body py-2 text-xs">
         <li className="flex items-center">
           <BookOpen
             size={14}
