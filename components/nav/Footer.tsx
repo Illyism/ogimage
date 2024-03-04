@@ -114,14 +114,14 @@ export const Footer = () => {
           <nav className="grid grid-cols-1 text-sm">
             <div className="px-2 py-1 text-base font-bold">Learn</div>
             {learnLinks.map((link, index) => (
-              <Link
+              <a
                 key={index}
                 href={link.href}
-                prefetch={false}
+                target="_blank"
                 className="px-2 py-2 transition hover:text-purple-300 sm:py-1"
               >
                 {link.label}
-              </Link>
+              </a>
             ))}
           </nav>
         </div>
