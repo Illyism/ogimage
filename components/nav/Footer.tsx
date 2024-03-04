@@ -46,6 +46,21 @@ const moreLinks = [
   },
 ]
 
+const learnLinks = [
+  {
+    href: 'https://opengraphexamples.com/posts/open-graph/',
+    label: 'What is Open Graph?',
+  },
+  {
+    href: 'https://opengraphexamples.com/posts/open-graph-meta-tags/',
+    label: 'Open Graph Meta Tags',
+  },
+  {
+    href: 'https://opengraphexamples.com/open-graph-debugger/',
+    label: 'Open Graph Debugger',
+  },
+]
+
 export const Footer = () => {
   return (
     <footer className="dark overflow-hidden bg-background-body py-16 text-white">
@@ -86,6 +101,19 @@ export const Footer = () => {
           <nav className="grid grid-cols-1 text-sm">
             <div className="px-2 py-1 text-base font-bold">More</div>
             {moreLinks.map((link, index) => (
+              <Link
+                key={index}
+                href={link.href}
+                prefetch={false}
+                className="px-2 py-2 transition hover:text-purple-300 sm:py-1"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <nav className="grid grid-cols-1 text-sm">
+            <div className="px-2 py-1 text-base font-bold">Learn</div>
+            {learnLinks.map((link, index) => (
               <Link
                 key={index}
                 href={link.href}
