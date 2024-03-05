@@ -52,8 +52,10 @@ client.defineJob({
     const distinct_id = body.meta?.custom_data?.distinct_id
 
     if (distinct_id) {
-      const posthog = new PostHog(process.env.NEXT_PUBLIC_POSTHOG_KEY!)
-      posthog.capture({
+      const posthogClient = new PostHog(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
+        host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+      })
+      posthogClient.capture({
         distinctId: distinct_id,
         event: 'Order Completed',
         properties: {
@@ -66,7 +68,7 @@ client.defineJob({
           },
         },
       })
-      await posthog.flushAsync()
+      await posthogClient.flushAsync()
       io.logger.info('Sent event to PostHog', {
         distinct_id: distinct_id,
         event: 'Order Completed',
