@@ -206,7 +206,7 @@ const Hero = () => {
 const SocialProof = () => {
   return (
     <>
-      <div className="mb-12 flex flex-col items-end justify-center gap-8 text-center lg:flex-row">
+      <div className="mb-12 flex flex-col items-center justify-center gap-8 text-center md:flex-row">
         <div className="max-w-sm text-sm">
           <StarGlow className="mb-2" />
           <p className="text-bold  text-balance text-lg opacity-90">
@@ -216,6 +216,7 @@ const SocialProof = () => {
         </div>
         <div className="flex flex-col items-center justify-center gap-4">
           <a
+            className="min-w-[250px]"
             href="https://www.producthunt.com/posts/og-image-generator?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-og&#0045;image&#0045;generator"
             target="_blank"
           >
