@@ -68,7 +68,7 @@ client.defineJob({
           },
         },
       })
-      await posthogClient.flushAsync()
+      await posthogClient.shutdownAsync()
       io.logger.info('Sent event to PostHog', {
         distinct_id: distinct_id,
         event: 'Order Completed',
