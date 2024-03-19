@@ -10,10 +10,13 @@ import { generatePageMeta } from '@/core/seo'
 import { cn } from '@/lib/utils'
 import {
   Check,
+  CodeIcon,
   MessageCircleQuestion,
+  PaletteIcon,
   SmilePlus,
   Sparkles,
   Wrench,
+  WrenchIcon,
   XIcon,
 } from 'lucide-react'
 import Image from 'next/image'
@@ -32,9 +35,11 @@ export default function Page() {
   return (
     <PageLayout>
       <Hero />
-      <SocialProof />
       <WhatIS />
       <ProblemSolution />
+      <div className="py-8">
+        <TestimonialMarquee big />
+      </div>
       <TemplatePreview />
       <div className="contain">
         <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
@@ -80,14 +85,7 @@ const WhatIS = () => {
         It&apos; important to have a <b>good open graph image</b> because it
         <b> increases engagement</b> and <b>click-through rates</b>.
       </p>
-      <div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <Image
-          className="rotate-[-2deg] rounded-lg border-2 border-border shadow-2xl"
-          src="/_static/boring-better.jpg"
-          width={1270}
-          height={760}
-          alt="Before and after of a boring and a better twitter card image"
-        />
+      <div className="mx-auto mt-8 max-w-5xl">
         <Image
           className="rotate-[2deg] rounded-lg border-2 border-border shadow-2xl"
           src="/_static/linkedin-boring.jpg"
@@ -150,104 +148,103 @@ const ProblemSolution = () => {
 
 const Hero = () => {
   return (
-    <div className="pad pb-8 pt-16 text-center">
-      <h1 className="mx-auto mb-4 max-w-4xl text-balance text-center text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:max-w-[46rem] md:text-5xl">
-        Open Graph & Twitter Image Templates for Next.js
-      </h1>
-      <p className="mx-auto max-w-[750px] text-balance text-lg font-medium text-muted-foreground sm:text-xl">
-        TSX templates for Next.js{' '}
+    <div className="pad flex flex-col items-center justify-center gap-12 pb-8 pt-16 xl:flex-row">
+      <div>
         <a
-          href="https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#generate-images-using-code-js-ts-tsx"
-          className="font-bold text-primary underline dark:text-yellow-400"
-          rel="nofollow"
+          className="mx-auto mb-4 inline-block min-w-[250px]"
+          href="https://www.producthunt.com/posts/og-image-generator?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-og&#0045;image&#0045;generator"
           target="_blank"
         >
-          opengraph-image & twitter-image
+          <img
+            className="hidden dark:block"
+            src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=441467&theme=dark&period=daily"
+            alt="OG Image Generator - Create Beautiful OG Images in Minutes | Product Hunt"
+            width="250"
+            height="54"
+          />
+          <img
+            className="dark:hidden"
+            src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=441467&theme=light&period=daily"
+            alt="OG Image Generator - Create Beautiful OG Images in Minutes | Product Hunt"
+            width="250"
+            height="54"
+          />
         </a>
-        . Get all the code to generate infinite open graph images for your
-        website, blog, or social media posts for a one-time payment.
-      </p>
-      <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row">
-        <Button asChild className="w-full px-4 sm:w-auto">
-          <a href="/buy" className="flex">
-            <span className="hidden sm:inline">PURCHASE TODAY</span>
-            <span className="sm:hidden">Buy now</span>
-            &emsp;<s className="text-xs font-bold">$67</s>{' '}
-            <b className="-my-1 ml-2 text-lg font-black">$37</b>
-          </a>
-        </Button>
-
-        <Button
-          asChild
-          variant="secondary"
-          className="hidden px-4 sm:inline-block"
-        >
-          <Link href="/templates" className="flex items-center">
-            View templates
-            <span className="ml-2 rounded-full bg-green-500/10 px-1.5 py-0.5 text-[10px] font-bold uppercase text-green-500 dark:text-green-400">
-              2 new
-            </span>
-          </Link>
-        </Button>
-      </div>
-      <div className="mt-2 flex items-center justify-center text-center text-xs">
-        <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
-          $30 off
-        </span>{' '}
-        <Suspense fallback="for the next 17 customers">
-          <NextCustomers />
-        </Suspense>{' '}
-        • Lifetime access
-      </div>
-    </div>
-  )
-}
-
-const SocialProof = () => {
-  return (
-    <>
-      <div className="mb-12 flex flex-col items-center justify-center gap-8 text-center md:flex-row">
-        <div className="max-w-sm text-sm">
-          <StarGlow className="mb-2" />
-          <p className="text-bold  text-balance text-lg opacity-90">
-            &quot;The live screenshot is very useful and saves us a lot of
-            time.&quot;
-          </p>
+        <h1 className="mb-4 text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:text-5xl">
+          Open Graph Image Generator for Next.js
+        </h1>
+        <p className="text-balance text-lg font-medium text-muted-foreground sm:text-xl">
+          Everything you need to create infinite open graph images for your
+          website, API, blog, or social media posts.
+        </p>
+        <ul className="mt-4 text-left text-lg text-muted-foreground">
+          <li>
+            <WrenchIcon
+              size={14}
+              className="mr-2 inline-block align-baseline text-green-500"
+            />
+            <b>100% automated</b> with Sartori (use as API or serverless)
+          </li>
+          <li>
+            <PaletteIcon
+              size={14}
+              className="mr-2 inline-block align-baseline text-green-500"
+            />
+            <b>Customizable</b> with Tailwind CSS
+          </li>
+          <li>
+            <CodeIcon
+              size={14}
+              className="mr-2 inline-block align-baseline text-green-500"
+            />
+            <b>5+ Next.js templates</b> for{' '}
+            <a
+              href="https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#generate-images-using-code-js-ts-tsx"
+              className="font-medium underline underline-offset-2"
+              rel="nofollow"
+              target="_blank"
+            >
+              opengraph-image.jsx / twitter-image.tsx
+            </a>
+          </li>
+        </ul>
+        <div className="mt-6 flex flex-col items-center gap-2 sm:flex-row lg:mt-12">
+          <Button asChild className="w-full px-4 sm:w-auto">
+            <a href="/buy" className="flex">
+              <span className="hidden sm:inline">PURCHASE TODAY</span>
+              <span className="sm:hidden">Buy now</span>
+              &emsp;<s className="text-xs font-bold">$67</s>{' '}
+              <b className="-my-1 ml-2 text-lg font-black">$37</b>
+            </a>
+          </Button>
+          <div className="flex items-center text-center text-xs">
+            <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
+              $30 off
+            </span>{' '}
+            <Suspense fallback="for the next 17 customers">
+              <NextCustomers />
+            </Suspense>{' '}
+            + Lifetime access
+          </div>
         </div>
-        <div className="flex flex-col items-center justify-center gap-4">
-          <a
-            className="min-w-[250px]"
-            href="https://www.producthunt.com/posts/og-image-generator?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-og&#0045;image&#0045;generator"
-            target="_blank"
-          >
-            <img
-              className="hidden dark:block"
-              src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=441467&theme=dark&period=daily"
-              alt="OG Image Generator - Create Beautiful OG Images in Minutes | Product Hunt"
-              width="250"
-              height="54"
-            />
-            <img
-              className="dark:hidden"
-              src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=441467&theme=light&period=daily"
-              alt="OG Image Generator - Create Beautiful OG Images in Minutes | Product Hunt"
-              width="250"
-              height="54"
-            />
-          </a>
+        <div className="mt-8 flex gap-4 lg:mt-12">
           <TestimonialReviews />
-        </div>
-        <div className="max-w-sm text-sm">
-          <StarGlow className="mb-2" />
-          <p className="text-bold text-balance text-lg opacity-90">
-            &quot;It&apos;s kind of like{' '}
-            <b>Tailwind UI or Shadcn UI components</b> but for Vercel/OG images.
-            😎 Pretty cool.&quot;
-          </p>
+          <div className="text-left">
+            <StarGlow className="justify-start" />
+            <p className="text-muted-foreground">
+              Loved by developers and designers
+            </p>
+          </div>
         </div>
       </div>
-      <TestimonialMarquee big />
-    </>
+      <Image
+        className="rotate-[2deg] rounded-lg border-2 border-border shadow-2xl lg:max-w-2xl"
+        src="/_static/boring-better.jpg"
+        width={1270}
+        height={760}
+        alt="Before and after of a boring and a better twitter card image"
+      />
+    </div>
   )
 }
 
