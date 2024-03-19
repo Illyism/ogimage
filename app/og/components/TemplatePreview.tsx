@@ -11,6 +11,7 @@ import {
   Globe2,
   Heart,
   LinkedinIcon,
+  Lock,
   MessageCircleIcon,
   Repeat2,
   Share,
