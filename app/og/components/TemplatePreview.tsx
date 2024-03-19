@@ -11,7 +11,6 @@ import {
   Globe2,
   Heart,
   LinkedinIcon,
-  Lock,
   MessageCircleIcon,
   Repeat2,
   Share,
@@ -368,7 +367,7 @@ const SourcePreview = ({ title, description, image }: any) => {
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-2xl bg-gradient-to-b from-white/30 via-white/90 to-white font-sans text-lg font-medium transition dark:from-black/30 dark:via-black/90 dark:to-black">
           Purchase the kit to get the full source code
           <Button asChild>
-            <Link href="/buy" target="_blank">
+            <Link href="/buy">
               <Lock size={16} className="mr-2" />
               Unlock the source
             </Link>

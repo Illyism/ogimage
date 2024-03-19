@@ -169,7 +169,7 @@ const Hero = () => {
       </p>
       <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row">
         <Button asChild className="w-full px-4 sm:w-auto">
-          <a href="/buy" target="_blank" className="flex">
+          <a href="/buy" className="flex">
             <span className="hidden sm:inline">PURCHASE TODAY</span>
             <span className="sm:hidden">Buy now</span>
             &emsp;<s className="text-xs font-bold">$67</s>{' '}
@@ -372,9 +372,7 @@ const PricingCard = ({
 
       <div className="text-center">
         <Button asChild className="mt-6 w-full px-4">
-          <a href="/buy" target="_blank">
-            Buy {title}
-          </a>
+          <a href="/buy">Buy {title}</a>
         </Button>
         <div className="mt-2 text-xs text-muted-foreground">
           Pay once, create unlimited images
@@ -472,7 +470,7 @@ const FinalCallToAction = () => {
       </p>
       <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row">
         <Button asChild className="w-full px-4 sm:w-auto">
-          <a href="/buy" target="_blank" className="flex">
+          <a href="/buy" className="flex">
             <span className="hidden sm:inline">PURCHASE TODAY</span>
             <span className="sm:hidden">Buy now</span>
             &emsp;<s className="text-xs font-bold">$67</s>{' '}
