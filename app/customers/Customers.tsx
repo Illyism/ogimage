@@ -26,9 +26,9 @@ export const Customers = ({ children }: { children?: React.ReactNode }) => {
 
 const OscarStories = () => {
   return (
-    <div className="pad grid grid-cols-1 gap-4 pb-24 pt-16 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 pb-24 pt-16 lg:grid-cols-3">
       <div className="relative">
-        <div className="top-32 w-full lg:sticky">
+        <div className="pad top-32 w-full lg:sticky">
           <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
             Oscar Stories
           </h2>
@@ -67,15 +67,23 @@ const OscarStories = () => {
 
       <div
         className={cn(
-          'flex w-full flex-col items-center justify-center gap-4 rounded-2xl bg-white p-6 dark:bg-black md:col-span-2',
+          'flex w-full flex-col items-center justify-center gap-4 bg-white dark:bg-black sm:rounded-2xl sm:p-6 md:col-span-2',
         )}
       >
-        <div>
-          <h3 className="rounded-t-lg bg-red-500 p-2 text-center font-bold text-white">
+        <form method="POST">
+          <label
+            className="block bg-red-500 p-2 text-center font-bold text-white sm:rounded-t-lg"
+            htmlFor="url"
+          >
             Before <ArrowDown size={14} className="inline" />
-          </h3>
+          </label>
           <div className="flex w-full max-w-xl items-center justify-between truncate border border-border bg-background p-2 font-mono text-xs font-bold">
-            /public/img/social.jpg
+            <input
+              className="w-full bg-transparent font-mono text-xs font-bold"
+              value="/public/img/social.jpg"
+              name="url"
+              id="url"
+            />
           </div>
           <Image
             src="/_static/examples/oscar-stories-before.jpg"
@@ -84,21 +92,29 @@ const OscarStories = () => {
             width={1082}
             height={672}
           />
-        </div>
+        </form>
         <MoveDown size={72} className="inline" />
-        <div>
-          <h3 className="rounded-t-lg bg-green-500 p-2 text-center font-bold text-white">
+        <form method="POST">
+          <label
+            className="block bg-green-500 p-2 text-center font-bold text-white sm:rounded-t-lg"
+            htmlFor="website"
+          >
             After <ArrowDown size={14} className="inline" />
-          </h3>
-          <div className="flex w-full max-w-xl items-center justify-between truncate border border-border bg-background p-2 font-mono text-xs font-bold">
-            /og/blog-post?title=The Magic of the...&image=/ChristmasMarket_4.jpg
+          </label>
+          <div className="border border-border bg-background p-2 font-mono text-xs font-bold">
+            <input
+              className="w-full bg-transparent font-mono text-xs font-bold"
+              value="/og/blog-post?title=The Magic of the...&image=/ChristmasMarket_4.jpg"
+              name="website"
+              id="website"
+            />
           </div>
           <TwitterPreview
             title="Oscar Stories Blog Post"
             description="Read the best Christmas stories for kids and adults. These stories are perfect for reading at bedtime."
             image="/og/templates/oscar-stories-blog-post?title=The Magic of the Christmas Season: Discover the Best Christmas Stories&image=https://oscarstories.com/static/e832e36b996154cc1f17ceda101dfd34/e2d13/ChristmasMarket_4.jpg"
           />
-        </div>
+        </form>
       </div>
     </div>
   )
@@ -106,9 +122,9 @@ const OscarStories = () => {
 
 const Wodily = () => {
   return (
-    <div className="pad grid grid-cols-1 gap-4 pb-24 pt-16 lg:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 pb-24 pt-16 lg:grid-cols-3">
       <div className="relative">
-        <div className="top-32 w-full lg:sticky">
+        <div className="pad top-32 w-full lg:sticky">
           <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
             Wodily
           </h2>
@@ -162,15 +178,20 @@ const Wodily = () => {
 
       <div
         className={cn(
-          'flex w-full flex-col items-center justify-center gap-4 rounded-2xl bg-white p-6 dark:bg-black md:col-span-2',
+          'flex w-full flex-col items-center justify-center gap-4 bg-white dark:bg-black sm:rounded-2xl sm:p-6 md:col-span-2',
         )}
       >
-        <div>
-          <h3 className="rounded-t-lg bg-red-500 p-2 text-center font-bold text-white">
+        <form>
+          <label className="block bg-red-500 p-2 text-center font-bold text-white sm:rounded-t-lg">
             Before <ArrowDown size={14} className="inline" />
-          </h3>
-          <div className="flex w-full max-w-xl items-center justify-between truncate border border-border bg-background p-2 font-mono text-xs font-bold">
-            /public/img/social.jpg
+          </label>
+          <div className="truncate border border-border bg-background p-2 font-mono text-xs font-bold">
+            <input
+              className="w-full bg-transparent font-mono text-xs font-bold"
+              value="/public/img/social.jpg"
+              name="image"
+              id="image"
+            />
           </div>
           <Image
             src="/_static/examples/wodily.png"
@@ -179,21 +200,29 @@ const Wodily = () => {
             width={1200}
             height={630}
           />
-        </div>
+        </form>
         <MoveDown size={72} className="inline" />
-        <div>
-          <h3 className="rounded-t-lg bg-green-500 p-2 text-center font-bold text-white">
+        <form>
+          <label
+            className="block bg-green-500 p-2 text-center font-bold text-white sm:rounded-t-lg"
+            htmlFor="template"
+          >
             After <ArrowDown size={14} className="inline" />
-          </h3>
+          </label>
           <div className="flex w-full max-w-xl items-center justify-between truncate border border-border bg-background p-2 font-mono text-xs font-bold">
-            /og/templates/city
+            <input
+              className="w-full bg-transparent font-mono text-xs font-bold"
+              value="/og/templates/city"
+              name="template"
+              id="template"
+            />
           </div>
           <TwitterPreview
             title="Unsplash + GeoIP City"
             description="Show an image of the city you are in."
             image="/og/templates/city"
           />
-        </div>
+        </form>
       </div>
     </div>
   )

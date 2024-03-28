@@ -29,8 +29,8 @@ export const TestimonialMarquee = ({ big = false }) => {
 const Marquee = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="relative inset-x-px w-full overflow-hidden text-sm">
-      <div className="absolute inset-y-0 left-0 z-10 h-full w-64 bg-gradient-to-r from-background to-transparent"></div>
-      <div className="absolute inset-y-0 right-0 z-10 h-full w-64 bg-gradient-to-l from-background to-transparent"></div>
+      <div className="absolute inset-y-0 left-0 z-10 h-full w-16 bg-gradient-to-r from-background to-transparent sm:w-64"></div>
+      <div className="absolute inset-y-0 right-0 z-10 h-full w-16 bg-gradient-to-l from-background to-transparent sm:w-64"></div>
       <div className="flex gap-4">
         <div className="marquee animate-marquee flex gap-4 whitespace-nowrap">
           <div className="flex gap-4">{children}</div>

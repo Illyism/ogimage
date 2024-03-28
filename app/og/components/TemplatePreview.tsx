@@ -47,9 +47,9 @@ export const usePreviewState = create(
 export const TemplatePreview = () => {
   const { preview } = usePreviewState()
   return (
-    <div className="pad grid grid-cols-1 gap-4 pb-24 pt-16 md:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 pb-24 pt-16 md:grid-cols-3">
       <div className="relative">
-        <div className="top-32 w-full md:sticky">
+        <div className="pad top-32 w-full">
           <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
             OG Image Templates
           </h2>
@@ -71,11 +71,11 @@ export const TemplatePreview = () => {
           'md:col-span-2',
           preview === 'simple' && 'flex flex-wrap gap-4',
           preview === 'twitter' &&
-            'flex w-full flex-col items-center justify-center rounded-2xl bg-white p-6 dark:bg-black',
+            'flex w-full flex-col items-center justify-center bg-white dark:bg-black sm:rounded-2xl sm:p-6',
           preview === 'linkedin' &&
-            'flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-white p-6 dark:bg-black',
+            'flex w-full flex-col items-center justify-center gap-2 bg-white dark:bg-black sm:rounded-2xl sm:p-6',
           preview === 'source' &&
-            'flex w-full flex-col items-center justify-center gap-2 rounded-2xl bg-white p-6 font-mono dark:bg-black',
+            'flex w-full flex-col items-center justify-center gap-2 bg-white font-mono dark:bg-black sm:rounded-2xl sm:p-6',
         )}
       >
         <TemplateCard

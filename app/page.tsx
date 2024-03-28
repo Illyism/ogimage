@@ -37,7 +37,7 @@ export default function Page() {
       <Hero />
       <WhatIS />
       <ProblemSolution />
-      <div className="py-8">
+      <div className="sm:py-8">
         <TestimonialMarquee big />
       </div>
       <TemplatePreview />
@@ -63,8 +63,8 @@ export default function Page() {
 const WhatIS = () => {
   // showcase in a beautiful way:
   return (
-    <div className="pad pb-8 pt-24 text-center">
-      <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+    <div className="pad pb-8 pt-24 sm:text-center">
+      <h2 className="text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
         What is an Open Graph Image?
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
@@ -100,13 +100,14 @@ const WhatIS = () => {
 
 const ProblemSolution = () => {
   return (
-    <div className="pad py-16 text-center">
-      <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
-        Why OG Image Generator?
+    <div className="pad py-16 sm:text-center">
+      <h2 className="text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+        Why OG Image Kit?
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
-        It takes so much <b>time</b> to create open graph images manually. We
-        save you up to <b>99%</b> of the <b>time and cost</b>.
+        It takes so much <b>time</b> to create open graph images manually. Our
+        OG Image generator saves you up to <b>99%</b> of the{' '}
+        <b>time and cost</b>.
       </p>
       <div className="mt-4 flex flex-col items-center justify-center gap-4 text-left text-sm sm:mt-12 sm:flex-row sm:text-center">
         <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow">
@@ -148,7 +149,7 @@ const ProblemSolution = () => {
 
 const Hero = () => {
   return (
-    <div className="pad flex flex-col items-center justify-center gap-12 pb-8 pt-16 xl:flex-row">
+    <div className="pad flex flex-col items-center justify-center gap-12 pb-8 pt-4 sm:pt-16 xl:flex-row">
       <div>
         <a
           className="mx-auto mb-4 inline-block min-w-[250px]"
@@ -171,41 +172,33 @@ const Hero = () => {
           />
         </a>
         <h1 className="mb-4 text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:text-5xl">
-          Open Graph Image Generator for Next.js
+          Open Graph Image Kit
         </h1>
-        <p className="text-balance text-lg font-medium text-muted-foreground sm:text-xl">
-          Everything you need to create infinite open graph images for your
-          website, API, blog, or social media posts.
+        <p className="text-balance text-lg font-medium sm:text-xl">
+          All the code you need to create infinite open graph images for your
+          website, blog, or social media posts.
         </p>
-        <ul className="mt-4 text-left text-lg text-muted-foreground">
+        <ul className="mt-4 text-left text-lg">
           <li>
             <WrenchIcon
               size={14}
               className="mr-2 inline-block align-baseline text-green-500"
             />
-            <b>100% automated</b> with Sartori (use as API or serverless)
+            <b>100% automated</b> with <b>Sartori</b>
           </li>
           <li>
             <PaletteIcon
               size={14}
               className="mr-2 inline-block align-baseline text-green-500"
             />
-            <b>Customizable</b> with Tailwind CSS
+            <b>Customizable</b> with <b>Tailwind CSS</b>
           </li>
           <li>
             <CodeIcon
               size={14}
               className="mr-2 inline-block align-baseline text-green-500"
             />
-            <b>5+ Next.js templates</b> for{' '}
-            <a
-              href="https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image#generate-images-using-code-js-ts-tsx"
-              className="font-medium underline underline-offset-2"
-              rel="nofollow"
-              target="_blank"
-            >
-              opengraph-image.jsx / twitter-image.tsx
-            </a>
+            Works with <b>Next.js</b>, <b>Sveltekit</b> & more.
           </li>
         </ul>
         <div className="mt-6 flex flex-col items-center gap-2 sm:flex-row lg:mt-12">
@@ -227,11 +220,11 @@ const Hero = () => {
             + Lifetime access
           </div>
         </div>
-        <div className="mt-8 flex gap-4 lg:mt-12">
+        <div className="mt-8 flex flex-col gap-4 sm:flex-row lg:mt-12">
           <TestimonialReviews />
           <div className="text-left">
-            <StarGlow className="justify-start" />
-            <p className="text-muted-foreground">
+            <StarGlow className="justify-center sm:justify-start" />
+            <p className="hidden text-muted-foreground sm:block">
               Loved by developers and designers
             </p>
           </div>
@@ -381,11 +374,11 @@ const PricingCard = ({
 
 const FAQ = () => {
   return (
-    <div className="pad pb-24 pt-16 text-center">
+    <div className="pad pb-24 pt-16 sm:text-center">
       <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
         Frequently asked questions
       </h2>
-      <div className="contain mt-12 max-w-3xl space-y-6">
+      <div className="mt-12 max-w-3xl space-y-6">
         <FAQCard
           question="What is OG Image Generator?"
           answer="OG Image Generator is an open-source tool that automatically generates open graph images for your website, blog, or social media posts. It is customizable, open source, and requires no design skills."
@@ -404,7 +397,7 @@ const FAQ = () => {
         />
         <FAQCard
           question="JavaScript or HTML?"
-          answer="OG Image Generator is built with TypeScript and Next.js. It generates images using Sartori, a server-side rendering library. You can use JavaScript, SVG, Tailwind or HTML to customize the templates."
+          answer="OG Image Generator is built with TypeScript. It supports Next.js and Sveltekit. It generates images using Sartori, a server-side rendering library. You can use JavaScript, SVG, Tailwind or HTML to customize the templates."
         />
         <FAQCard
           question="What is the refund policy?"

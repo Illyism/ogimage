@@ -33,7 +33,9 @@ export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en" suppressHydrationWarning prefix="og: https://ogp.me/ns#">
       <PHProvider bootstrapData={bootstrapData}>
-        <body className={`${satoshi.variable} h-full font-sans antialiased`}>
+        <body
+          className={`${satoshi.variable} dark h-full font-sans antialiased`}
+        >
           <StructuredData />
           <Suspense>
             <PostHogPageView />

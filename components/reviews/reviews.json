@@ -532,7 +532,7 @@
     "type": "text",
     "integration": "Product Hunt",
     "title": "This is amazing!",
-    "text": "<mark>This is amazing</mark><b>!</b> <mark>This is exactly what we're need for our NextJS rebuild</mark>—can't wait to use it! Love your work, Ilias!",
+    "text": "<mark>This is amazing</mark>! <mark>This is exactly what we're need for our NextJS rebuild</mark>—can't wait to use it! Love your work, Ilias!",
     "rating": "5",
     "attachments": "",
     "url": "https://www.producthunt.com/posts/og-image-generator",

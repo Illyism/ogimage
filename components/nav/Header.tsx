@@ -28,7 +28,7 @@ export function Header() {
   return (
     <>
       <ul className="pad jc flex items-center gap-12 overflow-hidden whitespace-nowrap bg-background-body py-2 text-xs">
-        <li className="flex items-center">
+        <li className="hidden items-center sm:flex">
           <BookOpen
             size={14}
             className="mr-1 text-purple-500 dark:text-purple-400"
@@ -111,7 +111,7 @@ export function Header() {
           </TooltipProvider>
         </div>
       </header>
-      <nav className="flex items-center pl-4 sm:hidden">
+      <nav className="flex flex-wrap items-center pl-4 text-sm sm:hidden">
         {headerLinks.map((link, i) => (
           <NavLink key={i} href={link.href}>
             {link.label}
