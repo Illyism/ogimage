@@ -357,7 +357,7 @@ const SourcePreview = ({ title, description, image }: any) => {
       <img
         src={image}
         alt={title}
-        className="absolute -right-2 top-2 z-10 rotate-12 rounded-lg bg-black object-cover shadow-2xl transition duration-500 dark:bg-gray-800"
+        className="absolute -right-2 top-2 z-10 hidden rotate-12 rounded-lg bg-black object-cover shadow-2xl transition duration-500 dark:bg-gray-800 sm:block"
         width={240}
         height={126}
         loading="lazy"
@@ -365,7 +365,7 @@ const SourcePreview = ({ title, description, image }: any) => {
       <h3 className="text-sm font-bold">{title}</h3>
       <p className="mb-2 text-xs text-muted-foreground">{description}</p>
       <pre className="relative h-48 overflow-hidden whitespace-pre-wrap rounded-2xl border-2 border-border bg-gray-50 p-4 text-xs dark:bg-gray-950">
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-2xl bg-gradient-to-b from-white/30 via-white/90 to-white font-sans text-lg font-medium transition dark:from-black/30 dark:via-black/90 dark:to-black">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-2xl bg-gradient-to-b from-white/30 via-white/90 to-white text-center font-sans text-lg font-medium transition dark:from-black/30 dark:via-black/90 dark:to-black">
           Purchase the kit to get the full source code
           <Button asChild>
             <Link href="/buy">
