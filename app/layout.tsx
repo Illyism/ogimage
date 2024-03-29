@@ -47,6 +47,15 @@ export default function RootLayout({ children }: { children: any }) {
             src="https://p.il.ly/js/script.js"
             strategy="lazyOnload"
           />
+
+          <Script id="lemon-aff" strategy="beforeInteractive">
+            {"window.lemonSqueezyAffiliateConfig = { store: 'magicspace' }"}
+          </Script>
+          <Script
+            id="lemon-affiliate"
+            src="https://lmsqueezy.com/affiliate.js"
+            strategy="beforeInteractive"
+          />
         </body>
       </PHProvider>
     </html>
