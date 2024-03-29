@@ -55,6 +55,7 @@ export default function RootLayout({ children }: { children: any }) {
             id="lemon-affiliate"
             src="https://lmsqueezy.com/affiliate.js"
             strategy="beforeInteractive"
+            defer
           />
         </body>
       </PHProvider>
