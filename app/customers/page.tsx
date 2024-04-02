@@ -52,11 +52,11 @@ const Contact = () => {
         </a>{' '}
         or{' '}
         <Link
-          href="/contact"
+          href="https://love.blogkit.org/r/share"
           prefetch={false}
           className="font-bold text-primary hover:underline dark:text-yellow-400"
         >
-          send us an email
+          Write a review
         </Link>
       </p>
       <FounderCard
