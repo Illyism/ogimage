@@ -155,7 +155,7 @@ Ilias Ism</p>
 
 <p>Let me know if you have any questions or need any custom templates?</p>
 
-<p>If you loved it, please <a href="https://senja.io/p/blogkit/r/8gkozI">leave a review</a> to help us spread the word.</p>
+<p>If you loved it, please <a href="https://love.blogkit.org/r/share">leave a review</a> to help us spread the word.</p>
 
 <p>Ilias from ogimage.org</p>
 `.trim(),
@@ -166,7 +166,8 @@ Wondering if you had a chance to try out the of Open Graph Image Kit I sent you 
 
 Let me know if you have any questions or need any custom templates?
 
-If you loved it, please leave a review to help us spread the word.
+If you loved it, please leave a review to help us spread the word:
+https://love.blogkit.org/r/share
 
 Ilias from ogimage.org
 `.trim(),
