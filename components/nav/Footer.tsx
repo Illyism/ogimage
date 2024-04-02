@@ -145,8 +145,9 @@ export const Footer = () => {
                 ))}
               </div>
               <Link
-                href="/contact"
+                href="https://love.blogkit.org/r/share"
                 className="text-yellow-100 hover:text-yellow-400 hover:underline"
+                target="_blank"
               >
                 Write a review
               </Link>
