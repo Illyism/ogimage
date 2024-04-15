@@ -14,7 +14,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '../ui/tooltip'
-import { DarkModeToggle } from './DarkModeToggle'
 import { headerLinks } from './nav'
 
 export function Header() {
@@ -86,11 +85,10 @@ export function Header() {
           </nav>
         </div>
         <div className="flex items-center justify-end space-x-4">
-          <DarkModeToggle />
           <TooltipProvider delayDuration={0}>
             <Tooltip defaultOpen={!hasSeenHeader}>
               <TooltipTrigger>
-                <Button asChild>
+                <Button asChild size="rounded">
                   <a href="/buy">Buy now</a>
                 </Button>
               </TooltipTrigger>

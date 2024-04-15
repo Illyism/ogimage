@@ -202,7 +202,11 @@ const Hero = () => {
           </li>
         </ul>
         <div className="mt-6 flex flex-col items-center gap-2 sm:flex-row lg:mt-12">
-          <Button asChild className="w-full px-4 sm:w-auto">
+          <Button
+            asChild
+            className="w-full px-6 text-lg sm:w-auto"
+            size="rounded"
+          >
             <a href="/buy" className="flex">
               <span className="hidden sm:inline">PURCHASE TODAY</span>
               <span className="sm:hidden">Buy now</span>
@@ -361,7 +365,7 @@ const PricingCard = ({
       </ul>
 
       <div className="text-center">
-        <Button asChild className="mt-6 w-full px-4">
+        <Button asChild className="mt-6 w-full" size="rounded">
           <a href="/buy">Buy {title}</a>
         </Button>
         <div className="mt-2 text-xs text-muted-foreground">
@@ -378,7 +382,7 @@ const FAQ = () => {
       <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
         Frequently asked questions
       </h2>
-      <div className="mt-12 max-w-3xl space-y-6">
+      <div className="mx-auto mt-12 max-w-3xl space-y-6">
         <FAQCard
           question="What is OG Image Generator?"
           answer="OG Image Generator is an open-source tool that automatically generates open graph images for your website, blog, or social media posts. It is customizable, open source, and requires no design skills."
@@ -459,7 +463,7 @@ const FinalCallToAction = () => {
         posts. Customizable. Open source. Lifetime access.
       </p>
       <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row">
-        <Button asChild className="w-full px-4 sm:w-auto">
+        <Button asChild className="w-full sm:w-auto">
           <a href="/buy" className="flex">
             <span className="hidden sm:inline">PURCHASE TODAY</span>
             <span className="sm:hidden">Buy now</span>
