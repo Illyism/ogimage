@@ -11,7 +11,10 @@ export const runtime = 'edge'
  */
 export async function GET() {
   const headersList = headers()
-  const city = headersList.get('x-vercel-ip-city') ?? 'New York'
+  const city =
+    headersList.get('cf-ipcity') ??
+    headersList.get('x-vercel-ip-city') ??
+    'New York'
 
   const Satoshi = await fetch(
     new URL('@/styles/Satoshi-Black.ttf', import.meta.url),

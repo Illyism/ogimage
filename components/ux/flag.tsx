@@ -3,7 +3,10 @@ import { emojis } from './emoji'
 
 export const useCountry = () => {
   const headersList = headers()
-  const _country = headersList.get('x-vercel-ip-country') ?? 'US'
+  const _country =
+    headersList.get('cf-ipcountry') ??
+    headersList.get('x-vercel-ip-country') ??
+    'US'
   return (
     emojis[_country] ?? {
       emoji: '🇺🇸',
