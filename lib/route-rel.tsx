@@ -21,6 +21,7 @@ const APPROVED = [
   'typeframes.com',
   'swissobserver.com',
   'castpush.com',
+  'xnapper.com',
 ]
 
 /*
