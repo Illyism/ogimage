@@ -79,7 +79,7 @@ export function GET(request: NextRequest) {
  * SCREENSHOT_API_KEY=your-api-key
  * ```
  */
-export function getScreenshotURL({
+function getScreenshotURL({
   url,
   width,
   height,
