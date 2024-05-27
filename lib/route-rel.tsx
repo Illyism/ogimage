@@ -22,6 +22,7 @@ const APPROVED = [
   'swissobserver.com',
   'castpush.com',
   'xnapper.com',
+  'links.report',
 ]
 
 /*
