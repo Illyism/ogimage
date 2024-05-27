@@ -104,8 +104,8 @@ export const TemplatePreview = () => {
           image={`/og/templates/headline`}
         />
         <TemplateCard
-          title="Screenshot"
-          description="Show your website by taking a live screenshot"
+          title="Live screenshot"
+          description="Make automatic screenshots for every page"
           image={`/og/templates/screenshot`}
         />
         <TemplateCard

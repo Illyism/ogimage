@@ -19,6 +19,7 @@ export const Customers = ({ children }: { children?: React.ReactNode }) => {
     <div className="space-y-4 py-16 sm:space-y-16">
       <OscarStories />
       <Wodily />
+      <LinksReport />
       {children}
     </div>
   )
@@ -279,6 +280,95 @@ const TwitterPreview = ({ title, description, image }: any) => {
             <Share size={16} />
           </div>
         </div>
+      </div>
+    </div>
+  )
+}
+
+const LinksReport = () => {
+  return (
+    <div className="grid grid-cols-1 gap-4 pb-24 pt-16 lg:grid-cols-3">
+      <div className="relative">
+        <div className="pad top-32 w-full lg:sticky">
+          <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
+            Links Report
+          </h2>
+          <p className="text-md mb-4">
+            Links Report is an all-in-one backlink management platform that
+            helps SEO agencies save time, impress clients, and scale link
+            building efforts.
+          </p>
+          <p className="text-md mb-4">
+            They started using ogimage.org to generate unique screenshot OG
+            images for every page of their site.
+          </p>
+          <div className="relative">
+            <img
+              src="https://links.report/favicon.ico"
+              alt="Links Report"
+              width="32"
+              height="32"
+              className="absolute inset-y-0 left-2 m-auto rounded-full"
+            />
+            <a
+              className="flex w-full items-center justify-between rounded-2xl border border-border bg-background p-2 pl-12 text-sm font-medium hover:underline"
+              target="_blank"
+              href="https://links.report"
+            >
+              https://links.report
+              <ExternalLink size={16} className="mr-2 inline" />
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={cn(
+          'flex w-full flex-col items-center justify-center gap-4 bg-white dark:bg-black sm:rounded-2xl sm:p-6 md:col-span-2',
+        )}
+      >
+        <form>
+          <label className="block bg-red-500 p-2 text-center font-bold text-white sm:rounded-t-lg">
+            Before <ArrowDown size={14} className="inline" />
+          </label>
+          <div className="truncate border border-border bg-background p-2 font-mono text-xs font-bold">
+            <input
+              className="w-full bg-transparent font-mono text-xs font-bold"
+              value="https://links.report/blog/what/social.jpg"
+              name="image"
+              id="image"
+            />
+          </div>
+          <Image
+            src="/_static/examples/links-report.jpg"
+            alt="Links Report social image before"
+            className="w-full max-w-xl rounded-2xl"
+            width={1200}
+            height={630}
+          />
+        </form>
+        <MoveDown size={72} className="inline" />
+        <form>
+          <label
+            className="block bg-green-500 p-2 text-center font-bold text-white sm:rounded-t-lg"
+            htmlFor="template"
+          >
+            After <ArrowDown size={14} className="inline" />
+          </label>
+          <div className="flex w-full max-w-xl items-center justify-between truncate border border-border bg-background p-2 font-mono text-xs font-bold">
+            <input
+              className="w-full bg-transparent font-mono text-xs font-bold"
+              value="/og/templates/screenshot?path=/blog/what"
+              name="template"
+              id="template"
+            />
+          </div>
+          <TwitterPreview
+            title="Links Report Blog Post"
+            description="Links Report is a backlink management platform that helps SEO agencies save time, impress clients, and scale link building efforts."
+            image="/og/templates/screenshot?path=/blog/what"
+          />
+        </form>
       </div>
     </div>
   )

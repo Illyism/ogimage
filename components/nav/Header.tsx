@@ -100,7 +100,7 @@ export function Header() {
                 <Logo className="mr-2 text-primary" width={32} height={32} />
                 <div className="text-sm font-bold text-card-foreground">
                   <div className="text-xs font-black uppercase opacity-80">
-                    Launch special
+                    New Update
                   </div>
                   $37 - Lifetime access
                 </div>
