@@ -30,7 +30,7 @@ export function GET(request: NextRequest) {
   const path = searchParams.get('path') || '/'
 
   const BASE =
-    path == '/blog/what' ? 'https://links.report' : 'https://ogimage.org'
+    path == '/blog/what' ? 'https://seoagency.tools' : 'https://ogimage.org'
 
   const width = 1200
   const height = 630

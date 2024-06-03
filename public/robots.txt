@@ -1,4 +1,3 @@
 User-agent: *
-Disallow: /cdn-cgi/
-
+Allow: /
 Sitemap: https://ogimage.org/sitemap.xml
