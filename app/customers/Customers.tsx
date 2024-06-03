@@ -304,7 +304,7 @@ const LinksReport = () => {
           </p>
           <div className="relative">
             <img
-              src="https://links.report/favicon.ico"
+              src="https://seoagency.tools/favicon.ico"
               alt="Links Report"
               width="32"
               height="32"
@@ -313,9 +313,9 @@ const LinksReport = () => {
             <a
               className="flex w-full items-center justify-between rounded-2xl border border-border bg-background p-2 pl-12 text-sm font-medium hover:underline"
               target="_blank"
-              href="https://links.report"
+              href="https://seoagency.tools"
             >
-              https://links.report
+              https://seoagency.tools
               <ExternalLink size={16} className="mr-2 inline" />
             </a>
           </div>
@@ -334,7 +334,7 @@ const LinksReport = () => {
           <div className="truncate border border-border bg-background p-2 font-mono text-xs font-bold">
             <input
               className="w-full bg-transparent font-mono text-xs font-bold"
-              value="https://links.report/blog/what/social.jpg"
+              value="https://seoagency.tools/blog/what/social.jpg"
               name="image"
               id="image"
             />

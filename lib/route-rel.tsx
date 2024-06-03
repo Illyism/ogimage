@@ -23,6 +23,7 @@ const APPROVED = [
   'castpush.com',
   'xnapper.com',
   'links.report',
+  'seoagency.tools',
 ]
 
 /*
