@@ -44,6 +44,10 @@ const moreLinks = [
     href: 'https://il.ly',
     label: 'Ilias Ism',
   },
+  {
+    href: 'https://seoagency.tools',
+    label: 'SEO Agency Tools',
+  },
 ]
 
 const learnLinks = [
