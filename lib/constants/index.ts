@@ -49,8 +49,8 @@ export const HOME_DOMAIN =
   process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
     ? 'https://ogimage.org'
     : process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-    : 'http://home.localhost:8888'
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : 'http://home.localhost:8888'
 
 export const APP_HOSTNAMES = new Set([
   'localhost:8888',
@@ -63,15 +63,15 @@ export const APP_DOMAIN =
   process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
     ? 'https://app.ogimage.org'
     : process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-    ? 'https://preview.ogimage.org'
-    : 'http://localhost:8888'
+      ? 'https://preview.ogimage.org'
+      : 'http://localhost:8888'
 
 export const APP_DOMAIN_WITH_NGROK =
   process.env.NEXT_PUBLIC_VERCEL_ENV === 'production'
     ? 'https://app.ogimage.org'
     : process.env.NEXT_PUBLIC_VERCEL_ENV === 'preview'
-    ? 'https://preview.ogimage.org'
-    : process.env.NGROK_URL
+      ? 'https://preview.ogimage.org'
+      : process.env.NGROK_URL
 
 export const DEFAULT_REDIRECTS = {
   home: 'https://ogimage.org',
@@ -144,7 +144,7 @@ export const SPECIAL_APEX_DOMAINS = new Set([
 
 export const DEFAULT_LINK_PROPS = {
   key: 'github',
-  url: 'https://magicspace.agency',
+  url: 'https://ogimage.org',
   domain: 'ogimage.org',
   archived: false,
   expiresAt: null,

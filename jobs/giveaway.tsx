@@ -44,7 +44,7 @@ client.defineJob({
 
 <p>We are open to collaborate: DM me <a href="https://twitter.com/illyism">@illyism</a> or reply to this email.
 
-<p>We also have a great <a href="https://store.magicspace.agency/affiliates">affiliate program</a> that pays <b>40% commission</b> for every customer you refer to us.</p>
+<p>We also have a great <a href="https://store.ogimage.org/affiliates">affiliate program</a> that pays <b>40% commission</b> for every customer you refer to us.</p>
 
 <p>Warm regards,<br />
 <a href="https://il.ly">Ilias Ism</a>
@@ -66,7 +66,7 @@ Our mission is to make sure that every website has a beautiful and engaging imag
 
 We are open to collaborate: DM me @illyism or reply to this email.
 
-We also have a great affiliate program that pays 40% commission for every customer you refer to us: https://store.magicspace.agency/affiliates
+We also have a great affiliate program that pays 40% commission for every customer you refer to us: https://store.ogimage.org/affiliates
 
 Warm regards,
 Ilias Ism

@@ -29,7 +29,7 @@ const productLinks = [
 
 const moreLinks = [
   {
-    href: 'https://store.magicspace.agency/affiliates',
+    href: 'https://store.ogimage.org/affiliates',
     label: 'Affiliate Program (40%)',
   },
   {
