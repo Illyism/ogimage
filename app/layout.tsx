@@ -49,7 +49,7 @@ export default function RootLayout({ children }: { children: any }) {
           />
 
           <Script id="lemon-aff" strategy="beforeInteractive">
-            {"window.lemonSqueezyAffiliateConfig = { store: 'magicspace' }"}
+            {"window.lemonSqueezyAffiliateConfig = { store: 'ogimage' }"}
           </Script>
           <Script
             id="lemon-affiliate"
