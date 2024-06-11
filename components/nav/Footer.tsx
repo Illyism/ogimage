@@ -63,6 +63,10 @@ const learnLinks = [
     href: 'https://opengraphexamples.com/open-graph-debugger/',
     label: 'Open Graph Debugger',
   },
+  {
+    href: 'https://seoroast.org',
+    label: 'SEO Roast',
+  },
 ]
 
 export const Footer = () => {
