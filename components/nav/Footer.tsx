@@ -64,8 +64,8 @@ const learnLinks = [
     label: 'Open Graph Debugger',
   },
   {
-    href: 'https://seoroast.org',
-    label: 'SEO Roast',
+    href: 'https://seoaudit.me',
+    label: 'SEO Audit',
   },
 ]
 
