@@ -25,6 +25,7 @@ const APPROVED = [
   'links.report',
   'seoagency.tools',
   'seoaudit.me',
+  'voicenotes.com',
 ]
 
 /*
