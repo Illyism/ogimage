@@ -24,7 +24,7 @@ const APPROVED = [
   'xnapper.com',
   'links.report',
   'seoagency.tools',
-  'seoaudit.me',
+  'seoroast.co',
   'voicenotes.com',
   'linkdr.com',
 ]
