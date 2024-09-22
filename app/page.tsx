@@ -183,30 +183,31 @@ const Hero = () => {
           <li>
             <WrenchIcon
               size={14}
-              className="mr-2 inline-block align-baseline text-green-500"
+              className="mr-2 inline-block align-baseline text-green-400"
             />
             <b>100% automated</b> with <b>Sartori</b>
           </li>
           <li>
             <PaletteIcon
               size={14}
-              className="mr-2 inline-block align-baseline text-green-500"
+              className="mr-2 inline-block align-baseline text-pink-400"
             />
             <b>Customizable</b> with <b>Tailwind CSS</b>
           </li>
           <li>
             <CodeIcon
               size={14}
-              className="mr-2 inline-block align-baseline text-green-500"
+              className="mr-2 inline-block align-baseline text-purple-400"
             />
-            Works with <b>Next.js</b>, <b>Sveltekit</b> & more.
+            Works with <b>Next.js</b>, <b>Nuxt</b>, <b>Sveltekit</b> & more.
           </li>
           <li>
             <Sparkles
               size={14}
-              className="mr-2 inline-block align-baseline text-green-500"
+              className="mr-2 inline-block align-baseline text-yellow-400"
             />
-            <b>NEW</b>: AI image generation
+            <b>NEW</b>: AI image generation with <b>Flux.1</b> and{' '}
+            <b>GPT-4o-mini</b>
           </li>
         </ul>
         <div className="mt-6 flex flex-col items-center gap-2 sm:flex-row lg:mt-12">
@@ -263,15 +264,10 @@ const Pricing = () => {
           features={[
             'Source code',
             'Unlimited custom images',
-            'One-time purchase',
-            'All current templates',
-            '20 AI image credits',
+            'Lifetime access',
+            'All templates',
           ]}
-          disabled={[
-            'No future templates',
-            'No implementation support',
-            'Limited platform support',
-          ]}
+          disabled={['No AI images', 'Only GitHub support']}
         />
         <PricingCard
           popular
@@ -282,33 +278,46 @@ const Pricing = () => {
             'Source code',
             'Unlimited custom images',
             'Lifetime access',
-            'All templates (current & future)',
-            '50 AI image credits',
+            'All templates',
+            'AI Copilot ✨',
             '10% discount on partner products',
-            'Priority support',
           ]}
-          disabled={['No implementation support', 'Limited platform support']}
+          disabled={['No implementation support']}
         />
         <PricingCard
           title="Scale"
           price="$297"
           discount="$497"
           features={[
-            'Everything in Pro, plus:',
-            '200 AI image credits',
-            'Implementation & onboarding support',
-            'WordPress support',
-            'Framer support',
-            'Webflow support',
-            'Custom integrations available',
+            'Source code',
+            'Unlimited custom images',
+            'Lifetime access',
+            'All templates',
+            'AI Copilot ✨',
+            '10% discount on partner products',
+            'Dedicated Slack support',
+            'Webflow? Framer? Wordpress? No problem!',
           ]}
         />
       </div>
-      <div className="mt-4 text-sm text-muted-foreground">
-        Need more AI image credits? Additional credits available for purchase.
-      </div>
 
       <FOMO className="mt-4" />
+
+      <div className="mt-4 max-w-2xl rounded-lg border border-border bg-card/50 p-4 text-card-foreground shadow-sm mx-auto text-left">
+        <div className="flex items-center gap-2 text-xl text-yellow-400">
+          <b className="bg-yellow-400/10 px-2 py-0.5 rounded-full flex items-center gap-2">
+            <Sparkles size={16} className="text-yellow-400" />
+            New
+          </b>{' '}
+          <span className="font-bold">OG Image Copilot</span>
+        </div>
+        <p className="mt-2">
+          OG Image copilot is a powerful AI assistant that helps you generate OG
+          images using AI. It's powered by <b>Flux.1</b> and <b>GPT-4o-mini</b>.
+          You'll need to bring your own API key, but don't worry - we're here to
+          guide you.
+        </p>
+      </div>
     </div>
   )
 }
