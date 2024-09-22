@@ -1,6 +1,6 @@
 import { getPosthogClient, getPosthogId } from '@/core/analytics/bootstrapData'
 import {
-  NewCheckout,
+  type NewCheckout,
   createCheckout,
   lemonSqueezySetup,
 } from '@lemonsqueezy/lemonsqueezy.js'
@@ -20,11 +20,11 @@ export async function GET() {
 
   const newCheckout: NewCheckout = {
     productOptions: {
-      name: 'Automatic Open Graph Image Generator Tool - Lifetime Access',
-      description: '50% off with code LAUNCH 🎁 Create OG Images for SEO - Works for any blog, website, Next.js and more. Get the full source code and create social images for free.',
+      name: 'OG Image Generator - Lifetime Access',
+      description:
+        'Create OG Images for SEO - Works for any blog, website, Next.js and more - All source code + AI image generation',
     },
     checkoutData: {
-      discountCode: 'LAUNCH',
       custom: {
         distinct_id,
       },
