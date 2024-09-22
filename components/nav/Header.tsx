@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 'use client'
 import { cn } from '@/lib/utils'
-import { BookOpen, CheckCircle, Star } from 'lucide-react'
+import { CheckCircle, Star } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
@@ -27,21 +27,6 @@ export function Header() {
   return (
     <>
       <ul className="pad jc flex items-center gap-12 overflow-hidden whitespace-nowrap bg-background-body py-2 text-xs">
-        <li className="hidden items-center sm:flex">
-          <BookOpen
-            size={14}
-            className="mr-1 text-purple-500 dark:text-purple-400"
-          />
-          A&nbsp;
-          <a
-            href="https://blogkit.org"
-            target="_blank"
-            className="font-black hover:underline"
-          >
-            BlogKit
-          </a>
-          &nbsp;Project
-        </li>
         <li className="ml-1 flex items-center">
           <CheckCircle size={14} className="mr-1 text-green-500" />
           Created by&nbsp;
@@ -49,6 +34,7 @@ export function Header() {
             href="https://magicspace.agency"
             target="_blank"
             className="font-medium hover:underline"
+            rel="noreferrer"
           >
             SEO experts
           </a>
@@ -63,7 +49,12 @@ export function Header() {
               className="text-green-500 transition hover:scale-125 hover:text-green-400"
             />
           ))}
-          <span className="ml-1">Used by top startups</span>
+          <span className="ml-1">
+            Used by{' '}
+            <Link href="/customers" className="font-medium hover:underline">
+              top startups
+            </Link>
+          </span>
         </li>
       </ul>
       <header className="pad sticky top-0 z-50 flex w-full items-center justify-between bg-background/95 py-1 text-sm backdrop-blur-lg supports-[backdrop-filter]:bg-background/90">
