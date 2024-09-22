@@ -303,20 +303,43 @@ const Pricing = () => {
 
       <FOMO className="mt-4" />
 
-      <div className="mt-4 max-w-2xl rounded-lg border border-border bg-card/50 p-4 text-card-foreground shadow-sm mx-auto text-left">
-        <div className="flex items-center gap-2 text-xl text-yellow-400">
-          <b className="bg-yellow-400/10 px-2 py-0.5 rounded-full flex items-center gap-2">
-            <Sparkles size={16} className="text-yellow-400" />
-            New
-          </b>{' '}
-          <span className="font-bold">OG Image Copilot</span>
+      <div className="mt-4 max-w-5xl rounded-lg border border-border bg-card/50 p-4 text-card-foreground shadow-sm mx-auto text-left flex">
+        <div className="flex-shrink-0 mr-4 rounded-lg -rotate-1 hover:rotate-0 transition-all duration-300 shadow-2xl border-2 border-yellow-400 overflow-hidden bg-yellow-400 text-black font-bold text-xs uppercase pt-1 px-1">
+          <Image
+            src="/_static/copilot-screenshot.png"
+            alt="OG Image Copilot Screenshot"
+            width={1144 / 3}
+            height={646 / 3}
+            loading="lazy"
+          />
+          <span className="px-2 flex items-center gap-2 justify-between">
+            <span>100% AI Generated</span>
+            <a href="https://seoroast.co" className="hover:underline">
+              seoroast.co
+            </a>
+          </span>
         </div>
-        <p className="mt-2">
-          OG Image copilot is a powerful AI assistant that helps you generate OG
-          images using AI. It's powered by <b>Flux.1</b> and <b>GPT-4o-mini</b>.
-          You'll need to bring your own API key, but don't worry - we're here to
-          guide you.
-        </p>
+        <div>
+          <div className="flex items-center gap-2 text-xl text-yellow-400">
+            <b className="bg-yellow-400/10 px-2 py-0.5 rounded-full flex items-center gap-2">
+              <Sparkles size={16} className="text-yellow-400" />
+              New
+            </b>{' '}
+            <span className="font-bold">OG Image Copilot</span>
+          </div>
+          <p className="mt-2 mb-2">
+            OG Image copilot is a powerful AI assistant that helps you generate
+            OG images using AI. It's like having a designer in your pocket.
+          </p>
+          <ul className="list-disc pl-4">
+            <li>
+              Powered by advanced AI models like <b>Flux.1</b> and{' '}
+              <b>GPT-4o-mini</b>
+            </li>
+            <li>Bring your own API key for flexibility, control and privacy</li>
+            <li>Full guidance provided to help you get started quickly</li>
+          </ul>
+        </div>
       </div>
     </div>
   )
