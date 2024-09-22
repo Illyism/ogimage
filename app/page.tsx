@@ -21,14 +21,13 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Suspense } from 'react'
 import { Customers } from './customers/Customers'
-import { NextCustomers } from './launch'
+import { FOMO } from './launch'
 import { TemplatePreview } from './og/components/TemplatePreview'
 import { GiftPopup } from './popup'
 
 export const metadata = generatePageMeta({
-  url: `/`,
+  url: '/',
 })
 
 export default function Page() {
@@ -155,6 +154,7 @@ const Hero = () => {
           className="mx-auto mb-4 inline-block min-w-[250px]"
           href="https://www.producthunt.com/posts/og-image-generator?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-og&#0045;image&#0045;generator"
           target="_blank"
+          rel="noreferrer"
         >
           <img
             className="hidden dark:block"
@@ -214,15 +214,7 @@ const Hero = () => {
               <b className="-my-1 ml-2 text-lg font-black">$37</b>
             </a>
           </Button>
-          <div className="flex items-center text-center text-xs">
-            <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
-              $30 off
-            </span>{' '}
-            <Suspense fallback="for the next 17 customers">
-              <NextCustomers />
-            </Suspense>{' '}
-            + Lifetime access
-          </div>
+          <FOMO />
         </div>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row lg:mt-12">
           <TestimonialReviews />
@@ -249,11 +241,11 @@ const Pricing = () => {
   return (
     <div className="pad pb-24 pt-16 text-center">
       <h2 className="text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
-        A lifetime deal you can&apos;t miss
+        Choose your plan
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
-        No monthly fees. No hidden costs. Just a one-time payment for lifetime
-        access to the source code.
+        No monthly fees. One-time payment for lifetime access to the source
+        code, plus AI-powered image generation.
       </p>
       <div className="mx-auto mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <PricingCard
@@ -262,58 +254,53 @@ const Pricing = () => {
           discount="$67"
           features={[
             'Source code',
-            'Unlimited images',
+            'Unlimited custom images',
             'One-time purchase',
             'All current templates',
+            '20 AI image credits',
           ]}
           disabled={[
             'No future templates',
-            'No discount on partner products',
-            'Get featured on our website',
-            'Priority support',
+            'No implementation support',
+            'Limited platform support',
           ]}
         />
         <PricingCard
           popular
           title="Pro"
-          price="$67"
-          discount="$97"
+          price="$97"
+          discount="$147"
           features={[
             'Source code',
-            'Unlimited images',
+            'Unlimited custom images',
             'Lifetime access',
-            'All templates',
-            'All future templates',
+            'All templates (current & future)',
+            '50 AI image credits',
             '10% discount on partner products',
-          ]}
-          disabled={['Get featured on our website', 'Priority support']}
-        />
-        <PricingCard
-          className="sm:col-span-2 lg:col-span-1"
-          title="Agency"
-          price="$197"
-          discount="$227"
-          features={[
-            'Source code',
-            'Unlimited images',
-            'Lifetime access',
-            'All templates',
-            'All future templates',
-            '10% discount on partner products',
-            'Get featured on our website',
             'Priority support',
           ]}
+          disabled={['No implementation support', 'Limited platform support']}
+        />
+        <PricingCard
+          title="Scale"
+          price="$297"
+          discount="$497"
+          features={[
+            'Everything in Pro, plus:',
+            '200 AI image credits',
+            'Implementation & onboarding support',
+            'WordPress support',
+            'Framer support',
+            'Webflow support',
+            'Custom integrations available',
+          ]}
         />
       </div>
-      <div className="mt-2 flex items-center justify-center text-center text-xs">
-        <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
-          $30 off
-        </span>{' '}
-        <Suspense fallback="for the next 17 customers">
-          <NextCustomers />
-        </Suspense>{' '}
-        • Lifetime access
+      <div className="mt-4 text-sm text-muted-foreground">
+        Need more AI image credits? Additional credits available for purchase.
       </div>
+
+      <FOMO className="mt-4" />
     </div>
   )
 }
@@ -446,6 +433,7 @@ const FinalCallToAction = () => {
         href="https://www.producthunt.com/posts/og-image-generator?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-og&#0045;image&#0045;generator"
         target="_blank"
         className="mx-auto mb-4 inline-flex items-center justify-center"
+        rel="noreferrer"
       >
         <img
           src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=441467&theme=light"
@@ -481,15 +469,7 @@ const FinalCallToAction = () => {
           </Link>
         </Button>
       </div>
-      <div className="mt-2 flex items-center justify-center text-center text-xs">
-        <span className="relative mr-1 flex items-center rounded-full bg-green-500/10 px-1 py-0.5 font-black text-green-500">
-          $30 off
-        </span>{' '}
-        <Suspense fallback="for the next 17 customers">
-          <NextCustomers />
-        </Suspense>{' '}
-        • Lifetime access
-      </div>
+      <FOMO className="mt-4" />
     </div>
   )
 }

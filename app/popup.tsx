@@ -42,7 +42,7 @@ const useGiftPopup = create(
     }),
     {
       name: 'og-gift',
-      storage: createJSONStorage(() => window.sessionStorage),
+      storage: createJSONStorage(() => window.localStorage),
     },
   ),
 )
@@ -86,7 +86,7 @@ export function GiftPopup() {
     return () => {
       document.body.removeEventListener('mouseleave', handleMouseLeave)
     }
-  }, [showPopup, setShowPopup, hasOpened])
+  }, [setShowPopup, hasOpened])
 
   function handleClose() {
     setShowPopup(false)
