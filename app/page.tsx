@@ -303,8 +303,8 @@ const Pricing = () => {
 
       <FOMO className="mt-4" />
 
-      <div className="mt-4 max-w-5xl rounded-lg border border-border bg-card/50 p-4 text-card-foreground shadow-sm mx-auto text-left flex">
-        <div className="flex-shrink-0 mr-4 rounded-lg -rotate-1 hover:rotate-0 transition-all duration-300 shadow-2xl border-2 border-yellow-400 overflow-hidden bg-yellow-400 text-black font-bold text-xs uppercase pt-1 px-1">
+      <div className="mt-4 max-w-5xl rounded-lg border border-border bg-card/50 p-4 text-card-foreground shadow-sm mx-auto text-left flex flex-col sm:flex-row gap-4">
+        <div className="flex-shrink-0 rounded-lg -rotate-1 hover:rotate-0 transition-all duration-300 shadow-2xl border-2 border-yellow-400 overflow-hidden bg-yellow-400 text-black font-bold text-xs uppercase pt-1 px-1">
           <Image
             src="/_static/copilot-screenshot.png"
             alt="OG Image Copilot Screenshot"
