@@ -27,6 +27,7 @@ import { TemplatePreview } from './og/components/TemplatePreview'
 import { GiftPopup } from './popup'
 
 export const metadata = generatePageMeta({
+  title: 'OG Image Generator - Create Beautiful OG Images in Minutes',
   url: '/',
 })
 
@@ -172,7 +173,7 @@ const Hero = () => {
           />
         </a>
         <h1 className="mb-4 text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:text-5xl">
-          Open Graph Image Kit
+          OG Image Generator
         </h1>
         <p className="text-balance text-lg font-medium sm:text-xl">
           All the code you need to create infinite open graph images for your
@@ -199,6 +200,13 @@ const Hero = () => {
               className="mr-2 inline-block align-baseline text-green-500"
             />
             Works with <b>Next.js</b>, <b>Sveltekit</b> & more.
+          </li>
+          <li>
+            <Sparkles
+              size={14}
+              className="mr-2 inline-block align-baseline text-green-500"
+            />
+            <b>NEW</b>: AI image generation
           </li>
         </ul>
         <div className="mt-6 flex flex-col items-center gap-2 sm:flex-row lg:mt-12">
