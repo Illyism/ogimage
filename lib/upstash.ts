@@ -10,7 +10,7 @@ export const redis = new Redis({
 
 // Create a new ratelimiter, that allows 10 requests per 10 seconds by default
 export const ratelimit = (
-  requests: number = 10,
+  requests = 10,
   seconds:
     | `${number} ms`
     | `${number} s`
@@ -61,7 +61,7 @@ export async function setRandomKey(
  * If there's an error, it will be logged to a separate redis list for debugging
  **/
 export async function recordMetatags(url: string, error: boolean) {
-  if (url === 'https://magicspace.agency') {
+  if (url === 'https://magicspace.co') {
     // don't log metatag generation for default URL
     return null
   } else {

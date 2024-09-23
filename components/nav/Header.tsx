@@ -31,7 +31,7 @@ export function Header() {
           <CheckCircle size={14} className="mr-1 text-green-500" />
           Created by&nbsp;
           <a
-            href="https://magicspace.agency"
+            href="https://magicspace.co"
             target="_blank"
             className="font-medium hover:underline"
             rel="noreferrer"

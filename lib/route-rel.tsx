@@ -3,7 +3,7 @@ const APPROVED = [
   'ogimage.org',
   'gradient.page',
   'magicbuddy.chat',
-  'magicspace.agency',
+  'magicspace.co',
   'clippulse.com',
   'musicplayer.io',
   'workbookpdf.com',

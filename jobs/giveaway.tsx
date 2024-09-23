@@ -27,7 +27,7 @@ client.defineJob({
     await io.resend.emails.send('send-giveaway-email', {
       to: payload.to,
       from: 'Ilias from ogimage.org <contact@ogimage.org>',
-      reply_to: 'ilias@magicspace.agency',
+      reply_to: 'ilias@magicspace.co',
       subject: `You're in for a treat! 🎉`,
       html: `
 <p>Hi there!</p>
@@ -79,7 +79,7 @@ ogimage.org
     await io.resend.emails.send('send-affiliate-followuemail', {
       to: payload.to,
       from: 'Ilias from ogimage.org <contact@ogimage.org>',
-      reply_to: 'ilias@magicspace.agency',
+      reply_to: 'ilias@magicspace.co',
       subject: `RE: You're in for a treat! 🎉`,
       html: `
 <p>Hi!</p>

@@ -103,7 +103,7 @@ client.defineJob({
     await io.resend.emails.send('send-giveaway-email', {
       to: email,
       from: 'Ilias from ogimage.org <contact@ogimage.org>',
-      reply_to: 'ilias@magicspace.agency',
+      reply_to: 'ilias@magicspace.co',
       subject: `[OG Image Kit - ${order_number}] Access to the GitHub repository and guide`,
       text: `
 Hi ${name}!
@@ -146,7 +146,7 @@ Ilias Ism</p>
     await io.resend.emails.send('send-kit-followup', {
       to: email,
       from: 'Ilias from ogimage.org <contact@ogimage.org>',
-      reply_to: 'ilias@magicspace.agency',
+      reply_to: 'ilias@magicspace.co',
       subject: `How's it going with OG Image Kit?`,
       html: `
 <p>Hi ${name}!</p>
