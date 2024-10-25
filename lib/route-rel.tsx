@@ -27,6 +27,7 @@ const APPROVED = [
   'seoroast.co',
   'voicenotes.com',
   'linkdr.com',
+  'seoroast.co',
 ]
 
 /*

@@ -64,8 +64,8 @@ const learnLinks = [
     label: 'Open Graph Meta Tags',
   },
   {
-    href: 'https://opengraphexamples.com/open-graph-debugger/',
-    label: 'Open Graph Debugger',
+    href: 'https://seoroast.co/tools/open-graph-validator',
+    label: 'Open Graph Validator',
   },
   {
     href: 'https://seoroast.co',
