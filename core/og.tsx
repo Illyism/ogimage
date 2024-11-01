@@ -1,6 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/og'
 
+/**
+ * Uses a local screenshot API powered by Puppeteer
+ *
+ * Required environment variables:
+ * ```
+ * SCREENSHOT_API_KEY=your-api-key
+ * ```
+ */
 export function takeScreenshot({
   url,
   width,
@@ -10,14 +18,15 @@ export function takeScreenshot({
   width: number
   height: number
 }) {
-  const base = `https://api.screenshotone.com/take`
+  const base = 'https://browser.seoagency.tools/screenshot'
   const query = new URLSearchParams()
-  query.append('access_key', 'Ln1wiuBTbTQexA')
-  query.append('url', url.includes('http') ? url : `https://ogimage.org${url}`)
+  query.append('access_key', 'top-secret-key')
+  query.append('url', url)
   query.append('viewport_width', width.toString())
   query.append('viewport_height', height.toString())
   query.append('device_scale_factor', '1')
-  query.append('format', 'jpg')
+  query.append('format', 'png')
+  query.append('dark_mode', 'true')
   query.append(
     'user_agent',
     'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.75 Safari/537.36 Google Favicon',
@@ -26,6 +35,7 @@ export function takeScreenshot({
   query.append('block_ads', 'true')
   query.append('block_cookie_banners', 'true')
   query.append('block_trackers', 'true')
+  query.append('ignore_host_errors', 'true')
   query.append('cache', 'true')
   query.append('cache_ttl', '86400')
   return `${base}?${query.toString()}`
@@ -72,32 +82,30 @@ export async function generateImage({
     }
   }
   return new ImageResponse(
-    (
-      <div
-        tw="flex flex-col items-center justify-end w-full h-full text-center text-[#282d33]"
-        style={style}
-      >
-        {alt && (
-          <h1 tw="mb-8 font-black text-5xl tracking-tight leading-none">
-            {textBefore}
+    <div
+      tw="flex flex-col items-center justify-end w-full h-full text-center text-[#282d33]"
+      style={style}
+    >
+      {alt && (
+        <h1 tw="mb-8 font-black text-5xl tracking-tight leading-none">
+          {textBefore}
 
-            {textBold && (
-              <span tw="-mt-2 ml-2 rounded-2xl bg-[#cee9fd] text-[#009dff] font-black align-middle inline-block px-2 py-2">
-                {textBold}
-              </span>
-            )}
-          </h1>
-        )}
+          {textBold && (
+            <span tw="-mt-2 ml-2 rounded-2xl bg-[#cee9fd] text-[#009dff] font-black align-middle inline-block px-2 py-2">
+              {textBold}
+            </span>
+          )}
+        </h1>
+      )}
 
-        <img
-          tw="rounded-t-2xl shadow-2xl"
-          src={screenshot}
-          alt=""
-          height={imgHeight}
-          width={imgWidth}
-        />
-      </div>
-    ),
+      <img
+        tw="rounded-t-2xl shadow-2xl"
+        src={screenshot}
+        alt=""
+        height={imgHeight}
+        width={imgWidth}
+      />
+    </div>,
     {
       width: 1200,
       height: 600,

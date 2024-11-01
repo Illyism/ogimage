@@ -1,9 +1,7 @@
 /**
- * Uses a screenshot API
- * 1. Go to https://il.ly/go/screenshot-api
- * 2. Use "OGIMAGE" as coupon code to get 10% off 🔥
- * 3. Place your API key in the .env file
+ * Uses a local screenshot API powered by Puppeteer
  *
+ * Required environment variables:
  * ```
  * SCREENSHOT_API_KEY=your-api-key
  * ```
@@ -17,9 +15,9 @@ export function getScreenshotURL({
   width: number
   height: number
 }) {
-  const base = `https://api.screenshotone.com/take`
+  const base = 'https://browser.seoagency.tools/screenshot'
   const query = new URLSearchParams()
-  query.append('access_key', process.env.SCREENSHOT_API_KEY as string)
+  query.append('access_key', 'top-secret-key')
   query.append('url', url)
   query.append('viewport_width', width.toString())
   query.append('viewport_height', height.toString())

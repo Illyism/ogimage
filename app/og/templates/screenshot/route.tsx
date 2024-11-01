@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/og'
-import { NextRequest } from 'next/server'
+import type { NextRequest } from 'next/server'
 
 export const runtime = 'edge'
 
@@ -41,24 +41,22 @@ export function GET(request: NextRequest) {
     height: 630 - padding,
   })
   return new ImageResponse(
-    (
-      <div
-        tw="flex w-full h-full"
-        style={{
-          paddingTop: padding,
-          paddingLeft: padding,
-          paddingRight: padding,
-          background:
-            'linear-gradient(to top left,#ff75c3,#ffa647,#ffe83f,#9fff5b,#70e2ff,#cd93ff)',
-        }}
-      >
-        <img
-          tw="w-full h-full rounded-t-2xl shadow-2xl"
-          src={screenshot}
-          alt=""
-        />
-      </div>
-    ),
+    <div
+      tw="flex w-full h-full"
+      style={{
+        paddingTop: padding,
+        paddingLeft: padding,
+        paddingRight: padding,
+        background:
+          'linear-gradient(to top left,#ff75c3,#ffa647,#ffe83f,#9fff5b,#70e2ff,#cd93ff)',
+      }}
+    >
+      <img
+        tw="w-full h-full rounded-t-2xl shadow-2xl"
+        src={screenshot}
+        alt=""
+      />
+    </div>,
     {
       width,
       height,
@@ -70,11 +68,9 @@ export function GET(request: NextRequest) {
 }
 
 /**
- * Uses a screenshot API
- * 1. Go to https://il.ly/go/screenshot-api
- * 2. Use "OGIMAGE_FRIENDS" as coupon code to get 10% off 🔥
- * 3. Place your API key in the .env file
+ * Uses a local screenshot API powered by Puppeteer
  *
+ * Required environment variables:
  * ```
  * SCREENSHOT_API_KEY=your-api-key
  * ```
@@ -88,9 +84,9 @@ function getScreenshotURL({
   width: number
   height: number
 }) {
-  const base = `https://api.screenshotone.com/take`
+  const base = 'https://browser.seoagency.tools/screenshot'
   const query = new URLSearchParams()
-  query.append('access_key', process.env.SCREENSHOT_API_KEY as string)
+  query.append('access_key', 'top-secret-key')
   query.append('url', url)
   query.append('viewport_width', width.toString())
   query.append('viewport_height', height.toString())
