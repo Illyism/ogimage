@@ -71,6 +71,10 @@ const learnLinks = [
     href: 'https://seoroast.co',
     label: 'SEO Audit',
   },
+  {
+    href: 'https://magicspace.co/courses/programmatic-seo',
+    label: 'Programmatic SEO Course',
+  },
 ]
 
 export const Footer = () => {
