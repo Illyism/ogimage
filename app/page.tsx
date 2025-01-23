@@ -202,14 +202,6 @@ const Hero = () => {
             />
             Works with <b>Next.js</b>, <b>Nuxt</b>, <b>Sveltekit</b> & more.
           </li>
-          <li>
-            <Sparkles
-              size={14}
-              className="mr-2 inline-block align-baseline text-yellow-400"
-            />
-            <b>NEW</b>: AI image generation with <b>Flux.1</b> and{' '}
-            <b>GPT-4o-mini</b>
-          </li>
         </ul>
         <div className="mt-6 flex flex-col items-center gap-2 sm:flex-row lg:mt-12">
           <Button
