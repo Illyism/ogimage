@@ -214,7 +214,6 @@ const Hero = () => {
               <span className="sm:hidden">Buy now</span>
               &emsp;<s className="text-xs font-bold">$67</s>{' '}
               <b className="-my-1 ml-2 text-lg font-black">$79</b>
-              <span className="ml-2 text-xs text-red-500">↑ Next: $89</span>
             </a>
           </Button>
         </div>
