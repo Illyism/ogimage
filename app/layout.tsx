@@ -6,6 +6,7 @@ import { generatePageMeta } from '@/core/seo'
 import { StructuredData } from '@/core/structured'
 import '@/styles/prism.css'
 import '@/styles/tailwind.css'
+import type { Viewport } from 'next'
 import localFont from 'next/font/local'
 import Script from 'next/script'
 import { Suspense } from 'react'
@@ -26,6 +27,13 @@ const satoshi = localFont({
 })
 
 export const metadata = generatePageMeta()
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
+    { media: '(prefers-color-scheme: dark)', color: '#18181b' },
+  ],
+}
 
 export default function RootLayout({ children }: { children: any }) {
   const bootstrapData = getBootstrapData()
