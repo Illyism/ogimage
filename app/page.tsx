@@ -214,6 +214,7 @@ const Hero = () => {
               <span className="sm:hidden">Buy now</span>
               &emsp;<s className="text-xs font-bold">$67</s>{' '}
               <b className="-my-1 ml-2 text-lg font-black">$79</b>
+              <span className="ml-2 text-xs text-red-500">↑ Next: $89</span>
             </a>
           </Button>
         </div>
@@ -279,6 +280,15 @@ const Pricing = () => {
           $89
         </div>
       </div>
+      <div className="mx-auto mt-6 max-w-[500px]">
+        <div className="mb-2 flex justify-between text-sm font-medium">
+          <span className="text-green-500">$79</span>
+          <span className="text-red-500">$89</span>
+        </div>
+        <div className="h-2 overflow-hidden rounded-full bg-muted">
+          <div className="h-2 w-2/3 bg-green-500 transition-all" />
+        </div>
+      </div>
       <div className="mt-12">
         <PricingCard
           title="OG Image Generator"
@@ -319,8 +329,12 @@ const PricingCard = ({ title, price, previousPrice, features }: any) => {
       </ul>
 
       <div className="text-center">
-        <Button asChild className="mt-6 w-full" size="rounded">
-          <a href="/buy">Buy {title}</a>
+        <Button
+          asChild
+          className="mt-8 w-full px-8 py-3 text-lg"
+          size="rounded"
+        >
+          <a href="/buy">🔥 Buy Now Before Price Increases 🔥</a>
         </Button>
         <div className="mt-2 text-xs text-muted-foreground">
           Pay once, create unlimited images
@@ -372,6 +386,10 @@ const FAQ = () => {
         <FAQCard
           question="I can't afford it"
           answer="We understand that not everyone can afford it. We are committed to making OG Image Generator accessible to everyone. If you need help, reach out to us and we will do our best to help you."
+        />
+        <FAQCard
+          question="Will the price increase?"
+          answer="Yes! We've already increased the price 4 times based on demand. The current $79 price will increase to $89 after the next 10 sales. This gradual increase helps reward early adopters while maintaining sustainable development."
         />
       </div>
     </div>
