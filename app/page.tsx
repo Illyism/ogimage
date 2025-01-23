@@ -260,8 +260,33 @@ const Pricing = () => {
         image generation.{' '}
       </p>
       <p className="mt-2 inline-block rounded-full bg-yellow-500/10 px-3 py-1 font-bold text-yellow-600 dark:text-yellow-400">
-        Price increases after every <b>100 sales</b> — Lock in today's price!
+        Price increases every <b>10 sales</b>
       </p>
+      <div className="mx-auto mt-4 flex max-w-[600px] items-center justify-center gap-2 text-sm text-muted-foreground">
+        <div className="flex items-center gap-1">
+          <s>$37</s>
+          <span className="text-xs">→</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <s>$47</s>
+          <span className="text-xs">→</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <s>$57</s>
+          <span className="text-xs">→</span>
+        </div>
+        <div className="flex items-center gap-1">
+          <s>$67</s>
+          <span className="text-xs">→</span>
+        </div>
+        <div className="rounded-full bg-green-500/10 px-2 py-0.5 font-bold text-green-500 dark:text-green-400">
+          $79
+        </div>
+        <span className="text-xs">→</span>
+        <div className="rounded-full bg-red-500/10 px-2 py-0.5 font-bold text-red-500 dark:text-red-400">
+          $89
+        </div>
+      </div>
       <div className="mt-12">
         <PricingCard
           title="OG Image Generator"
