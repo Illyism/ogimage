@@ -7,7 +7,6 @@ import { TestimonialReviews } from '@/components/reviews/testimonial-reviews'
 import { StarGlow } from '@/components/ui/StarGlow'
 import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
-import { cn } from '@/lib/utils'
 import {
   Check,
   CodeIcon,
@@ -17,7 +16,6 @@ import {
   Sparkles,
   Wrench,
   WrenchIcon,
-  XIcon,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -26,7 +24,10 @@ import { TemplatePreview } from './og/components/TemplatePreview'
 import { GiftPopup } from './popup'
 
 export const metadata = generatePageMeta({
-  title: 'OG Image Generator - Create Beautiful OG Images in Minutes',
+  title:
+    'OG Image Generator - Boost Social Media CTR with Beautiful Open Graph Images',
+  description:
+    'Create stunning open graph images for your website and social media. Customizable, open source code templates for Next.js, Nuxt, Sveltekit, and more. Lifetime access.',
   url: '/',
 })
 
@@ -175,8 +176,9 @@ const Hero = () => {
           OG Image Generator
         </h1>
         <p className="text-balance text-lg font-medium sm:text-xl">
-          All the code you need to create infinite open graph images for your
-          website, blog, or social media posts.
+          Create beautiful open graph images to boost your social media
+          click-through rate. Get the code templates and automate your OG image
+          generation today.
         </p>
         <ul className="mt-4 text-left text-lg">
           <li>
@@ -219,7 +221,7 @@ const Hero = () => {
               <span className="hidden sm:inline">PURCHASE TODAY</span>
               <span className="sm:hidden">Buy now</span>
               &emsp;<s className="text-xs font-bold">$67</s>{' '}
-              <b className="-my-1 ml-2 text-lg font-black">$37</b>
+              <b className="-my-1 ml-2 text-lg font-black">$79</b>
             </a>
           </Button>
         </div>
@@ -245,127 +247,49 @@ const Hero = () => {
 }
 
 const Pricing = () => {
+  const currentPrice = 79
+  const previousPrice = 37
+
   return (
     <div className="pad pb-24 pt-16 text-center">
       <h2 className="text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
-        Choose your plan
+        Get Lifetime Access - Price Increasing Soon
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
-        No monthly fees. One-time payment for lifetime access to the source
-        code, plus AI-powered image generation.
+        One-time payment for lifetime access to the source code and unlimited OG
+        image generation.{' '}
       </p>
-      <div className="mx-auto mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <p className="mt-2 inline-block rounded-full bg-yellow-500/10 px-3 py-1 font-bold text-yellow-600 dark:text-yellow-400">
+        Price increases after every <b>100 sales</b> — Lock in today's price!
+      </p>
+      <div className="mt-12">
         <PricingCard
-          title="Essential"
-          price="$37"
-          discount="$67"
+          title="OG Image Generator"
+          price={`$${currentPrice}`}
+          previousPrice={`$${previousPrice}`}
           features={[
-            'Source code',
+            'Source code for OG Image Generator',
             'Unlimited custom images',
-            'Lifetime access',
-            'All templates',
-          ]}
-          disabled={['No AI images', 'Only GitHub support']}
-        />
-        <PricingCard
-          popular
-          title="Pro"
-          price="$97"
-          discount="$147"
-          features={[
-            'Source code',
-            'Unlimited custom images',
-            'Lifetime access',
-            'All templates',
-            'AI Copilot ✨',
-            '10% discount on partner products',
-          ]}
-          disabled={['No implementation support']}
-        />
-        <PricingCard
-          title="Scale"
-          price="$297"
-          discount="$497"
-          features={[
-            'Source code',
-            'Unlimited custom images',
-            'Lifetime access',
-            'All templates',
-            'AI Copilot ✨',
-            '10% discount on partner products',
-            'Dedicated Slack support',
-            'Webflow? Framer? Wordpress? No problem!',
+            'Lifetime access to all templates & updates',
+            'Use on unlimited websites & projects',
+            'Customizable with Tailwind CSS',
+            'Works with Next.js, Nuxt, Sveltekit & more',
+            '100% automated with Sartori',
           ]}
         />
-      </div>
-
-      <div className="mt-4 max-w-5xl rounded-lg border border-border bg-card/50 p-4 text-card-foreground shadow-sm mx-auto text-left flex flex-col sm:flex-row gap-4">
-        <div className="flex-shrink-0 rounded-lg -rotate-1 hover:rotate-0 transition-all duration-300 shadow-2xl border-2 border-yellow-400 overflow-hidden bg-yellow-400 text-black font-bold text-xs uppercase pt-1 px-1">
-          <Image
-            src="/_static/copilot-screenshot.png"
-            alt="OG Image Copilot Screenshot"
-            width={1144 / 3}
-            height={646 / 3}
-            loading="lazy"
-          />
-          <span className="px-2 flex items-center gap-2 justify-between">
-            <span>100% AI Generated</span>
-            <a href="https://seoroast.co" className="hover:underline">
-              seoroast.co
-            </a>
-          </span>
-        </div>
-        <div>
-          <div className="flex items-center gap-2 text-xl text-yellow-400">
-            <b className="bg-yellow-400/10 px-2 py-0.5 rounded-full flex items-center gap-2">
-              <Sparkles size={16} className="text-yellow-400" />
-              New
-            </b>{' '}
-            <span className="font-bold">OG Image Copilot</span>
-          </div>
-          <p className="mt-2 mb-2">
-            OG Image copilot is a powerful AI assistant that helps you generate
-            OG images using AI. It's like having a designer in your pocket.
-          </p>
-          <ul className="list-disc pl-4">
-            <li>
-              Powered by advanced AI models like <b>Flux.1</b> and{' '}
-              <b>GPT-4o-mini</b>
-            </li>
-            <li>Bring your own API key for flexibility, control and privacy</li>
-            <li>Full guidance provided to help you get started quickly</li>
-          </ul>
-        </div>
       </div>
     </div>
   )
 }
 
-const PricingCard = ({
-  title,
-  price,
-  discount,
-  features,
-  className,
-  popular,
-  disabled,
-}: any) => {
+const PricingCard = ({ title, price, previousPrice, features }: any) => {
   return (
-    <div
-      className={cn(
-        'btn relative flex flex-col rounded-lg border-2 border-border bg-card px-6 py-4 text-left shadow',
-        popular && 'border-primary',
-        className,
-      )}
-    >
-      {popular && (
-        <div className="absolute inset-x-0 -top-4 mx-auto w-fit rounded-full bg-primary px-3 py-1 font-bold text-white">
-          Popular
-        </div>
-      )}
+    <div className="btn relative inline-flex flex-col rounded-lg border-2 border-border bg-card px-6 py-4 text-left shadow">
       <h3 className="mb-2 text-2xl font-bold">{title}</h3>
       <div className="flex items-center gap-2">
-        <s className="text-lg font-bold text-muted-foreground">{discount}</s>
+        <s className="text-lg font-bold text-muted-foreground">
+          {previousPrice}
+        </s>
         <span className="text-4xl font-black">{price}</span>
       </div>
       <ul className="mt-4 flex-1 text-center">
@@ -375,16 +299,6 @@ const PricingCard = ({
             <span>{feature}</span>
           </li>
         ))}
-        {disabled &&
-          disabled.map((feature, i) => (
-            <li
-              key={i}
-              className="flex items-center gap-2 font-medium text-muted-foreground"
-            >
-              <XIcon size={16} />
-              <span>{feature}</span>
-            </li>
-          ))}
       </ul>
 
       <div className="text-center">
@@ -480,11 +394,12 @@ const FinalCallToAction = () => {
       </a>
 
       <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
-        Get started today
+        Don't miss out on Lifetime Access
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
-        Automate open graph images for your website, blog, or social media
-        posts. Customizable. Open source. Lifetime access.
+        Automate your open graph images, save time, and boost your social media
+        CTR. Get lifetime access to OG Image Generator code templates now before
+        the price increases again.
       </p>
       <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row">
         <Button asChild className="w-full sm:w-auto">
@@ -492,7 +407,7 @@ const FinalCallToAction = () => {
             <span className="hidden sm:inline">PURCHASE TODAY</span>
             <span className="sm:hidden">Buy now</span>
             &emsp;<s className="text-xs font-bold">$67</s>{' '}
-            <b className="-my-1 ml-2 text-lg font-black">$37</b>
+            <b className="-my-1 ml-2 text-lg font-black">$79</b>
           </a>
         </Button>
 
