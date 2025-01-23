@@ -30,26 +30,28 @@ const OscarStories = () => {
     <div className="grid grid-cols-1 gap-4 pb-24 pt-16 lg:grid-cols-3">
       <div className="relative">
         <div className="pad top-32 w-full lg:sticky">
-          <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
-            Oscar Stories
+          <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter md:text-4xl">
+            MagicSpace SEO
           </h2>
           <p className="text-md mb-4">
-            Oscar Stories is a bedtime story generator. They have a blog full of
-            amazing stories for kids and adults.
+            MagicSpace SEO is an SEO agency that drives organic traffic growth
+            using programmatic SEO techniques and content optimization
+            strategies.
           </p>
           <p className="text-md mb-4">
-            But they were using the same image for all their blog posts. They
-            wanted to generate a unique image for each blog post.
+            By implementing automated content generation and technical SEO
+            optimizations, they were able to scale their content to cover
+            thousands of targeted keywords.
           </p>
           <p className="text-md mb-4">
-            Here is how they can use ogimage.org to generate a unique image for
-            each blog post.
+            Here's how they used ogimage.org to create dynamic social images for
+            their programmatic SEO case study.
           </p>
 
           <div className="relative">
             <img
-              src="https://oscarstories.com/favicon.ico"
-              alt="Oscar Stories"
+              src="https://magicspace.co/favicon.ico"
+              alt="MagicSpace SEO"
               width="32"
               height="32"
               className="absolute inset-y-0 left-2 m-auto rounded-full"
@@ -57,9 +59,10 @@ const OscarStories = () => {
             <a
               className="flex w-full items-center justify-between rounded-2xl border border-border bg-background p-2 pl-12 text-sm font-medium hover:underline"
               target="_blank"
-              href="https://oscarstories.com/blog/en/best-christmas-stories/"
+              href="https://magicspace.co/courses/programmatic-seo"
+              rel="noreferrer"
             >
-              https://oscarstories.com/blog/en/best-christmas-stories/
+              https://magicspace.co/courses/programmatic-seo
               <ExternalLink size={16} className="mr-2 inline" />
             </a>
           </div>
@@ -87,11 +90,11 @@ const OscarStories = () => {
             />
           </div>
           <Image
-            src="/_static/examples/oscar-stories-before.jpg"
-            alt="Oscar Stories"
+            src="/_static/examples/magicspace.jpg"
+            alt="MagicSpace SEO"
             className="w-full max-w-xl rounded-2xl"
-            width={1082}
-            height={672}
+            width={1200}
+            height={630}
           />
         </form>
         <MoveDown size={72} className="inline" />
@@ -105,15 +108,15 @@ const OscarStories = () => {
           <div className="border border-border bg-background p-2 font-mono text-xs font-bold">
             <input
               className="w-full bg-transparent font-mono text-xs font-bold"
-              value="/og/blog-post?title=The Magic of the...&image=/ChristmasMarket_4.jpg"
+              value="/og/blog-post?title=PROGRAMMATIC%20SEO%20CASE%20STUDY"
               name="website"
               id="website"
             />
           </div>
           <TwitterPreview
-            title="Oscar Stories Blog Post"
-            description="Read the best Christmas stories for kids and adults. These stories are perfect for reading at bedtime."
-            image="/og/templates/oscar-stories-blog-post?title=The Magic of the Christmas Season: Discover the Best Christmas Stories&image=https://oscarstories.com/static/e832e36b996154cc1f17ceda101dfd34/e2d13/ChristmasMarket_4.jpg"
+            title="Programmatic SEO Case Study"
+            description="How we increased organic traffic by 100% using programmatic SEO techniques and content optimization strategies."
+            image="/og/templates/blog-post?title=PROGRAMMATIC%20SEO%20CASE%20STUDY"
           />
         </form>
       </div>
@@ -135,6 +138,7 @@ const Wodily = () => {
               href="https://storychief.io/blog/programmatic-seo"
               target="_blank"
               className="font-bold text-blue-500 hover:underline"
+              rel="noreferrer"
             >
               programmatic SEO
             </a>{' '}
@@ -151,6 +155,7 @@ const Wodily = () => {
               href="https://il.ly/tech/personalization"
               className="font-bold text-blue-500 hover:underline"
               target="_blank"
+              rel="noreferrer"
             >
               personalized
             </a>{' '}
@@ -169,6 +174,7 @@ const Wodily = () => {
               className="flex w-full items-center justify-between rounded-2xl border border-border bg-background p-2 pl-12 text-sm font-medium hover:underline"
               target="_blank"
               href="https://wodily.com"
+              rel="noreferrer"
             >
               https://wodily.com
               <ExternalLink size={16} className="mr-2 inline" />
@@ -314,6 +320,7 @@ const LinksReport = () => {
               className="flex w-full items-center justify-between rounded-2xl border border-border bg-background p-2 pl-12 text-sm font-medium hover:underline"
               target="_blank"
               href="https://seoagency.tools"
+              rel="noreferrer"
             >
               https://seoagency.tools
               <ExternalLink size={16} className="mr-2 inline" />
