@@ -22,7 +22,6 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { Customers } from './customers/Customers'
-import { FOMO } from './launch'
 import { TemplatePreview } from './og/components/TemplatePreview'
 import { GiftPopup } from './popup'
 
@@ -223,7 +222,6 @@ const Hero = () => {
               <b className="-my-1 ml-2 text-lg font-black">$37</b>
             </a>
           </Button>
-          <FOMO />
         </div>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row lg:mt-12">
           <TestimonialReviews />
@@ -300,8 +298,6 @@ const Pricing = () => {
           ]}
         />
       </div>
-
-      <FOMO className="mt-4" />
 
       <div className="mt-4 max-w-5xl rounded-lg border border-border bg-card/50 p-4 text-card-foreground shadow-sm mx-auto text-left flex flex-col sm:flex-row gap-4">
         <div className="flex-shrink-0 rounded-lg -rotate-1 hover:rotate-0 transition-all duration-300 shadow-2xl border-2 border-yellow-400 overflow-hidden bg-yellow-400 text-black font-bold text-xs uppercase pt-1 px-1">
@@ -509,7 +505,6 @@ const FinalCallToAction = () => {
           </Link>
         </Button>
       </div>
-      <FOMO className="mt-4" />
     </div>
   )
 }
