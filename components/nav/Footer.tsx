@@ -150,7 +150,6 @@ export const Footer = () => {
                 Buy now
               </Link>
             </Button>
-            <div>
               <div className="flex items-center gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <Star
@@ -161,21 +160,10 @@ export const Footer = () => {
                   />
                 ))}
               </div>
-              <Link
-                href="https://love.blogkit.org/r/share"
-                className="text-yellow-100 hover:text-yellow-400 hover:underline"
-                target="_blank"
-              >
-                Write a review
-              </Link>
-            </div>
           </div>
 
           <div className="flex flex-col items-center gap-2 text-sm font-bold sm:flex-row">
-            &copy; {new Date().getFullYear()}{' '}
-            <a href="https://blogkit.org" className="font-black">
-              BlogKit
-            </a>
+            &copy; {new Date().getFullYear()}{' '}MagicSpace SEO
           </div>
         </div>
       </div>

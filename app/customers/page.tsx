@@ -2,7 +2,6 @@
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import Image from 'next/image'
-import Link from 'next/link'
 import { Customers } from './Customers'
 
 export const runtime = 'edge'
@@ -49,15 +48,7 @@ const Contact = () => {
           className="font-bold text-primary hover:underline dark:text-yellow-400"
         >
           Twitter
-        </a>{' '}
-        or{' '}
-        <Link
-          href="https://love.blogkit.org/r/share"
-          prefetch={false}
-          className="font-bold text-primary hover:underline dark:text-yellow-400"
-        >
-          Write a review
-        </Link>
+        </a>
       </p>
       <FounderCard
         name="Ilias Ism"
