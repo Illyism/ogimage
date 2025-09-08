@@ -56,6 +56,15 @@ export default function RootLayout({ children }: { children: any }) {
             strategy="lazyOnload"
           />
 
+          {/* Datafa.st analytics (proxied) */}
+          <Script
+            defer
+            data-website-id="68be834141365f9cca1ef126"
+            data-domain="ogimage.org"
+            src="/js/script.js"
+            strategy="afterInteractive"
+          />
+
           <Script id="lemon-aff" strategy="beforeInteractive">
             {"window.lemonSqueezyAffiliateConfig = { store: 'ogimage' }"}
           </Script>
