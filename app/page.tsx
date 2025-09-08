@@ -22,6 +22,7 @@ import Link from 'next/link'
 import { Customers } from './customers/Customers'
 import { TemplatePreview } from './og/components/TemplatePreview'
 import { GiftPopup } from './popup'
+import { CURRENT_PRICE, NEXT_PRICE, PREVIOUS_PRICE, PRICE_LADDER } from '@/lib/pricing'
 
 export const metadata = generatePageMeta({
   title:
@@ -212,8 +213,9 @@ const Hero = () => {
             <a href="/buy" className="flex">
               <span className="hidden sm:inline">PURCHASE TODAY</span>
               <span className="sm:hidden">Buy now</span>
-              &emsp;<s className="text-xs font-bold">$67</s>{' '}
-              <b className="-my-1 ml-2 text-lg font-black">$79</b>
+              &emsp;
+              <s className="text-xs font-bold">${PREVIOUS_PRICE}</s>{' '}
+              <b className="-my-1 ml-2 text-lg font-black">${CURRENT_PRICE}</b>
             </a>
           </Button>
         </div>
@@ -239,8 +241,8 @@ const Hero = () => {
 }
 
 const Pricing = () => {
-  const currentPrice = 79
-  const previousPrice = 37
+  const currentPrice = CURRENT_PRICE
+  const previousPrice = PREVIOUS_PRICE
 
   return (
     <div className="pad pb-24 pt-16 text-center">
@@ -255,34 +257,36 @@ const Pricing = () => {
         Price increases every <b>10 sales</b>
       </p>
       <div className="mx-auto mt-4 flex max-w-[600px] items-center justify-center gap-2 text-sm text-muted-foreground">
-        <div className="flex items-center gap-1">
-          <s>$37</s>
-          <span className="text-xs">→</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <s>$47</s>
-          <span className="text-xs">→</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <s>$57</s>
-          <span className="text-xs">→</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <s>$67</s>
-          <span className="text-xs">→</span>
-        </div>
-        <div className="rounded-full bg-green-500/10 px-2 py-0.5 font-bold text-green-500 dark:text-green-400">
-          $79
-        </div>
-        <span className="text-xs">→</span>
-        <div className="rounded-full bg-red-500/10 px-2 py-0.5 font-bold text-red-500 dark:text-red-400">
-          $89
-        </div>
+        {PRICE_LADDER.map((p, i) => {
+          const isCurrent = p === CURRENT_PRICE
+          const isNext = p === NEXT_PRICE
+          const isBefore = p < CURRENT_PRICE
+          return (
+            <div key={p} className="flex items-center gap-1">
+              {isCurrent ? (
+                <div className="rounded-full bg-green-500/10 px-2 py-0.5 font-bold text-green-500 dark:text-green-400">
+                  ${'{'}p{'}'}
+                </div>
+              ) : isNext ? (
+                <div className="rounded-full bg-red-500/10 px-2 py-0.5 font-bold text-red-500 dark:text-red-400">
+                  ${'{'}p{'}'}
+                </div>
+              ) : isBefore ? (
+                <s>${'{'}p{'}'}</s>
+              ) : (
+                <span>${'{'}p{'}'}</span>
+              )}
+              {i < PRICE_LADDER.length - 1 && (
+                <span className="text-xs">→</span>
+              )}
+            </div>
+          )
+        })}
       </div>
       <div className="mx-auto mt-6 max-w-[500px]">
         <div className="mb-2 flex justify-between text-sm font-medium">
-          <span className="text-green-500">$79</span>
-          <span className="text-red-500">$89</span>
+          <span className="text-green-500">${'{'}CURRENT_PRICE{'}'}</span>
+          <span className="text-red-500">${'{'}NEXT_PRICE{'}'}</span>
         </div>
         <div className="h-2 overflow-hidden rounded-full bg-muted">
           <div className="h-2 w-2/3 bg-green-500 transition-all" />
@@ -388,7 +392,7 @@ const FAQ = () => {
         />
         <FAQCard
           question="Will the price increase?"
-          answer="Yes! We've already increased the price 4 times based on demand. The current $79 price will increase to $89 after the next 10 sales. This gradual increase helps reward early adopters while maintaining sustainable development."
+          answer={`Yes! We've already increased the price 4 times based on demand. The current $${'{'}CURRENT_PRICE{'}'} price will increase to $${'{'}NEXT_PRICE{'}'} after the next 10 sales. This gradual increase helps reward early adopters while maintaining sustainable development.`}
         />
       </div>
     </div>
@@ -440,8 +444,9 @@ const FinalCallToAction = () => {
           <a href="/buy" className="flex">
             <span className="hidden sm:inline">PURCHASE TODAY</span>
             <span className="sm:hidden">Buy now</span>
-            &emsp;<s className="text-xs font-bold">$67</s>{' '}
-            <b className="-my-1 ml-2 text-lg font-black">$79</b>
+            &emsp;
+            <s className="text-xs font-bold">${PREVIOUS_PRICE}</s>{' '}
+            <b className="-my-1 ml-2 text-lg font-black">${CURRENT_PRICE}</b>
           </a>
         </Button>
 
