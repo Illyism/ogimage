@@ -7,6 +7,7 @@ import { TestimonialReviews } from '@/components/reviews/testimonial-reviews'
 import { StarGlow } from '@/components/ui/StarGlow'
 import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
+import { cn } from '@/lib/utils'
 import {
   Check,
   CodeIcon,
@@ -16,19 +17,17 @@ import {
   Sparkles,
   Wrench,
   WrenchIcon,
+  XIcon,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Customers } from './customers/Customers'
 import { TemplatePreview } from './og/components/TemplatePreview'
 import { GiftPopup } from './popup'
-import { CURRENT_PRICE, NEXT_PRICE, PREVIOUS_PRICE, PRICE_LADDER } from '@/lib/pricing'
+import { ESSENTIAL_PRICE, PRO_PRICE } from '@/lib/pricing'
 
 export const metadata = generatePageMeta({
-  title:
-    'OG Image Generator - Boost Social Media CTR with Beautiful Open Graph Images',
-  description:
-    'Create stunning open graph images for your website and social media. Customizable, open source code templates for Next.js, Nuxt, Sveltekit, and more. Lifetime access.',
+  title: 'OG Image Generator - Create Beautiful OG Images in Minutes',
   url: '/',
 })
 
@@ -177,9 +176,8 @@ const Hero = () => {
           OG Image Generator
         </h1>
         <p className="text-balance text-lg font-medium sm:text-xl">
-          Create beautiful open graph images to boost your social media
-          click-through rate. Get the code templates and automate your OG image
-          generation today.
+          All the code you need to create infinite open graph images for your
+          website, blog, or social media posts.
         </p>
         <ul className="mt-4 text-left text-lg">
           <li>
@@ -210,12 +208,10 @@ const Hero = () => {
             className="w-full px-6 text-lg sm:w-auto"
             size="rounded"
           >
-            <a href="/buy" className="flex">
+            <a href="/buy?plan=essential" className="flex">
               <span className="hidden sm:inline">PURCHASE TODAY</span>
               <span className="sm:hidden">Buy now</span>
-              &emsp;
-              <s className="text-xs font-bold">${PREVIOUS_PRICE}</s>{' '}
-              <b className="-my-1 ml-2 text-lg font-black">${CURRENT_PRICE}</b>
+              &emsp;<b className="-my-1 ml-2 text-lg font-black">${ESSENTIAL_PRICE}</b>
             </a>
           </Button>
         </div>
@@ -241,85 +237,70 @@ const Hero = () => {
 }
 
 const Pricing = () => {
-  const currentPrice = CURRENT_PRICE
-  const previousPrice = PREVIOUS_PRICE
-
   return (
     <div className="pad pb-24 pt-16 text-center">
       <h2 className="text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
-        Get Lifetime Access - Price Increasing Soon
+        Choose your plan
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
-        One-time payment for lifetime access to the source code and unlimited OG
-        image generation.{' '}
+        No monthly fees. One-time payment for lifetime access to the source
+        code.
       </p>
-      <p className="mt-2 inline-block rounded-full bg-yellow-500/10 px-3 py-1 font-bold text-yellow-600 dark:text-yellow-400">
-        Price increases every <b>10 sales</b>
-      </p>
-      <div className="mx-auto mt-4 flex max-w-[600px] items-center justify-center gap-2 text-sm text-muted-foreground">
-        {PRICE_LADDER.map((p, i) => {
-          const isCurrent = p === CURRENT_PRICE
-          const isNext = p === NEXT_PRICE
-          const isBefore = p < CURRENT_PRICE
-          return (
-            <div key={p} className="flex items-center gap-1">
-              {isCurrent ? (
-                <div className="rounded-full bg-green-500/10 px-2 py-0.5 font-bold text-green-500 dark:text-green-400">
-                  ${p}
-                </div>
-              ) : isNext ? (
-                <div className="rounded-full bg-red-500/10 px-2 py-0.5 font-bold text-red-500 dark:text-red-400">
-                  ${p}
-                </div>
-              ) : isBefore ? (
-                <s>${p}</s>
-              ) : (
-                <span>${p}</span>
-              )}
-              {i < PRICE_LADDER.length - 1 && (
-                <span className="text-xs">→</span>
-              )}
-            </div>
-          )
-        })}
-      </div>
-      <div className="mx-auto mt-6 max-w-[500px]">
-        <div className="mb-2 flex justify-between text-sm font-medium">
-          <span className="text-green-500">${CURRENT_PRICE}</span>
-          <span className="text-red-500">${NEXT_PRICE}</span>
-        </div>
-        <div className="h-2 overflow-hidden rounded-full bg-muted">
-          <div className="h-2 w-2/3 bg-green-500 transition-all" />
-        </div>
-      </div>
-      <div className="mt-12">
+      <div className="mx-auto max-w-2xl mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
         <PricingCard
-          title="OG Image Generator"
-          price={`$${currentPrice}`}
-          previousPrice={`$${previousPrice}`}
+          title="Essential"
+          price={`$${ESSENTIAL_PRICE}`}
           features={[
-            'Source code for OG Image Generator',
+            'Source code',
             'Unlimited custom images',
-            'Lifetime access to all templates & updates',
-            'Use on unlimited websites & projects',
-            'Customizable with Tailwind CSS',
-            'Works with Next.js, Nuxt, Sveltekit & more',
-            '100% automated with Sartori',
+            'All templates',
+          ]}
+          disabled={[
+            '1 year updates',
+            'Only GitHub support',
+          ]}
+        />
+        <PricingCard
+          popular
+          title="Pro"
+          price={`$${PRO_PRICE}`}
+          features={[
+            'Source code',
+            'Unlimited custom images',
+            'All templates',
+            'Email support',
+            'Lifetime updates',
           ]}
         />
       </div>
+
     </div>
   )
 }
 
-const PricingCard = ({ title, price, previousPrice, features }: any) => {
+const PricingCard = ({
+  title,
+  price,
+  features,
+  className,
+  popular,
+  disabled,
+}: any) => {
   return (
-    <div className="btn relative inline-flex flex-col rounded-lg border-2 border-border bg-card px-6 py-4 text-left shadow">
+    <div
+      className={cn(
+        'btn relative flex flex-col rounded-lg border-2 border-border bg-card px-6 py-4 text-left shadow',
+        popular && 'border-primary',
+        className,
+      )}
+    >
+      {popular && (
+        <div className="absolute inset-x-0 -top-4 mx-auto w-fit rounded-full bg-primary px-3 py-1 font-bold text-white">
+          Popular
+        </div>
+      )}
       <h3 className="mb-2 text-2xl font-bold">{title}</h3>
       <div className="flex items-center gap-2">
-        <s className="text-lg font-bold text-muted-foreground">
-          {previousPrice}
-        </s>
         <span className="text-4xl font-black">{price}</span>
       </div>
       <ul className="mt-4 flex-1 text-center">
@@ -329,15 +310,21 @@ const PricingCard = ({ title, price, previousPrice, features }: any) => {
             <span>{feature}</span>
           </li>
         ))}
+        {disabled &&
+          disabled.map((feature, i) => (
+            <li
+              key={i}
+              className="flex items-center gap-2 font-medium text-muted-foreground"
+            >
+              <XIcon size={16} />
+              <span>{feature}</span>
+            </li>
+          ))}
       </ul>
 
       <div className="text-center">
-        <Button
-          asChild
-          className="mt-8 w-full px-8 py-3 text-lg"
-          size="rounded"
-        >
-          <a href="/buy">🔥 Buy Now Before Price Increases 🔥</a>
+        <Button asChild className="mt-6 w-full" size="rounded">
+          <a href={`/buy?plan=${title.toLowerCase()}`}>Buy {title}</a>
         </Button>
         <div className="mt-2 text-xs text-muted-foreground">
           Pay once, create unlimited images
@@ -390,10 +377,6 @@ const FAQ = () => {
           question="I can't afford it"
           answer="We understand that not everyone can afford it. We are committed to making OG Image Generator accessible to everyone. If you need help, reach out to us and we will do our best to help you."
         />
-        <FAQCard
-          question="Will the price increase?"
-          answer={`Yes! We've already increased the price 4 times based on demand. The current $${CURRENT_PRICE} price will increase to $${NEXT_PRICE} after the next 10 sales. This gradual increase helps reward early adopters while maintaining sustainable development.`}
-        />
       </div>
     </div>
   )
@@ -432,21 +415,18 @@ const FinalCallToAction = () => {
       </a>
 
       <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
-        Don't miss out on Lifetime Access
+        Get started today
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
-        Automate your open graph images, save time, and boost your social media
-        CTR. Get lifetime access to OG Image Generator code templates now before
-        the price increases again.
+        Automate open graph images for your website, blog, or social media
+        posts. Customizable. Open source. Lifetime access.
       </p>
       <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row">
         <Button asChild className="w-full sm:w-auto">
-          <a href="/buy" className="flex">
+          <a href="/buy?plan=essential" className="flex">
             <span className="hidden sm:inline">PURCHASE TODAY</span>
             <span className="sm:hidden">Buy now</span>
-            &emsp;
-            <s className="text-xs font-bold">${PREVIOUS_PRICE}</s>{' '}
-            <b className="-my-1 ml-2 text-lg font-black">${CURRENT_PRICE}</b>
+            &emsp;<b className="-my-1 ml-2 text-lg font-black">${ESSENTIAL_PRICE}</b>
           </a>
         </Button>
 

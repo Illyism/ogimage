@@ -2,7 +2,7 @@
 'use client'
 import { cn } from '@/lib/utils'
 import { CheckCircle, Star } from 'lucide-react'
-import { CURRENT_PRICE } from '@/lib/pricing'
+import { ESSENTIAL_PRICE } from '@/lib/pricing'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
@@ -94,7 +94,7 @@ export function Header() {
                   <div className="text-xs font-black uppercase opacity-80">
                     New Update
                   </div>
-                  ${CURRENT_PRICE} - Lifetime access
+                  ${ESSENTIAL_PRICE} - Lifetime access
                 </div>
               </TooltipContent>
             </Tooltip>
