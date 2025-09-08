@@ -54,7 +54,6 @@ export default function Page() {
       <Pricing />
       <FAQ />
       <FinalCallToAction />
-      <GiftPopup />
       <TestimonialMasonry limit={9999} />
     </PageLayout>
   )
