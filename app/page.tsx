@@ -23,7 +23,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Customers } from './customers/Customers'
 import { TemplatePreview } from './og/components/TemplatePreview'
-import { GiftPopup } from './popup'
 import { ESSENTIAL_PRICE, PRO_PRICE } from '@/lib/pricing'
 
 export const metadata = generatePageMeta({
