@@ -265,16 +265,16 @@ const Pricing = () => {
             <div key={p} className="flex items-center gap-1">
               {isCurrent ? (
                 <div className="rounded-full bg-green-500/10 px-2 py-0.5 font-bold text-green-500 dark:text-green-400">
-                  ${'{'}p{'}'}
+                  ${p}
                 </div>
               ) : isNext ? (
                 <div className="rounded-full bg-red-500/10 px-2 py-0.5 font-bold text-red-500 dark:text-red-400">
-                  ${'{'}p{'}'}
+                  ${p}
                 </div>
               ) : isBefore ? (
-                <s>${'{'}p{'}'}</s>
+                <s>${p}</s>
               ) : (
-                <span>${'{'}p{'}'}</span>
+                <span>${p}</span>
               )}
               {i < PRICE_LADDER.length - 1 && (
                 <span className="text-xs">→</span>
@@ -285,8 +285,8 @@ const Pricing = () => {
       </div>
       <div className="mx-auto mt-6 max-w-[500px]">
         <div className="mb-2 flex justify-between text-sm font-medium">
-          <span className="text-green-500">${'{'}CURRENT_PRICE{'}'}</span>
-          <span className="text-red-500">${'{'}NEXT_PRICE{'}'}</span>
+          <span className="text-green-500">${CURRENT_PRICE}</span>
+          <span className="text-red-500">${NEXT_PRICE}</span>
         </div>
         <div className="h-2 overflow-hidden rounded-full bg-muted">
           <div className="h-2 w-2/3 bg-green-500 transition-all" />
@@ -392,7 +392,7 @@ const FAQ = () => {
         />
         <FAQCard
           question="Will the price increase?"
-          answer={`Yes! We've already increased the price 4 times based on demand. The current $${'{'}CURRENT_PRICE{'}'} price will increase to $${'{'}NEXT_PRICE{'}'} after the next 10 sales. This gradual increase helps reward early adopters while maintaining sustainable development.`}
+          answer={`Yes! We've already increased the price 4 times based on demand. The current $${CURRENT_PRICE} price will increase to $${NEXT_PRICE} after the next 10 sales. This gradual increase helps reward early adopters while maintaining sustainable development.`}
         />
       </div>
     </div>
