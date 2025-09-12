@@ -37,7 +37,7 @@ const moreLinks = [
     label: 'Privacy',
   },
   {
-    href: 'https://magicspace.co/',
+    href: 'https://magicspace.agency/',
     label: 'MagicSpace SEO',
   },
   {
@@ -72,7 +72,7 @@ const learnLinks = [
     label: 'SEO Audit',
   },
   {
-    href: 'https://magicspace.co/courses/programmatic-seo',
+    href: 'https://magicspace.agency/courses/programmatic-seo',
     label: 'Programmatic SEO Course',
   },
 ]

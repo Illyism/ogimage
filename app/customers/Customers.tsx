@@ -50,7 +50,7 @@ const OscarStories = () => {
 
           <div className="relative">
             <img
-              src="https://magicspace.co/favicon.ico"
+              src="https://magicspace.agency/favicon.ico"
               alt="MagicSpace SEO"
               width="32"
               height="32"
@@ -59,10 +59,10 @@ const OscarStories = () => {
             <a
               className="flex w-full items-center justify-between rounded-2xl border border-border bg-background p-2 pl-12 text-sm font-medium hover:underline"
               target="_blank"
-              href="https://magicspace.co/courses/programmatic-seo"
+              href="https://magicspace.agency/courses/programmatic-seo"
               rel="noreferrer"
             >
-              https://magicspace.co/courses/programmatic-seo
+              https://magicspace.agency/courses/programmatic-seo
               <ExternalLink size={16} className="mr-2 inline" />
             </a>
           </div>

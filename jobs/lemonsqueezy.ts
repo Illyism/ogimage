@@ -146,7 +146,7 @@ Ilias Ism</p>
     await io.resend.emails.send('send-kit-followup', {
       to: email,
       from: 'Ilias from ogimage.org <contact@ogimage.org>',
-      reply_to: 'ilias@magicspace.co',
+      reply_to: 'ilias@magicspace.agency',
       subject: `How's it going with OG Image Kit?`,
       html: `
 <p>Hi ${name}!</p>

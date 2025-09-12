@@ -23,7 +23,7 @@ export async function GET() {
 
       <img
         tw="rounded-2xl shadow-2xl mx-auto"
-        src="https://magicspace.co/img/programmatic-seo-case-study.jpg"
+        src="https://magicspace.agency/img/programmatic-seo-case-study.jpg"
         width={1382 * 0.55}
         height={688 * 0.55}
         alt=""
@@ -31,7 +31,7 @@ export async function GET() {
 
       <div tw="flex items-center mt-auto">
         <img
-          src="https://magicspace.co/img/img.png"
+          src="https://magicspace.agency/img/img.png"
           alt=""
           tw="w-24 h-24 mr-4"
         />

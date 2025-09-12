@@ -61,7 +61,7 @@ export async function setRandomKey(
  * If there's an error, it will be logged to a separate redis list for debugging
  **/
 export async function recordMetatags(url: string, error: boolean) {
-  if (url === 'https://magicspace.co') {
+  if (url === 'https://magicspace.agency') {
     // don't log metatag generation for default URL
     return null
   } else {
