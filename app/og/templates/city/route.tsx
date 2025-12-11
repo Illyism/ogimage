@@ -10,8 +10,8 @@ import { ImageResponse } from 'next/og'
 export async function GET() {
   const headersList = await headers()
   const city =
-    headersList.get('cf-ipcity') ??
-    headersList.get('x-vercel-ip-city') ??
+    headersList.get('cf-ipcity') ?? // Cloudflare
+    headersList.get('x-vercel-ip-city') ?? // Vercel (fallback)
     'New York'
 
   const Satoshi = await fetch(
@@ -45,7 +45,7 @@ export async function GET() {
         // don't cache, because we want to show the city you are in
         'Cache-Control': 'no-store',
         'Surrogate-Control': 'no-store',
-        Vary: 'x-vercel-ip-city',
+        Vary: 'cf-ipcity, x-vercel-ip-city',
       },
       fonts: [
         {
@@ -59,8 +59,8 @@ export async function GET() {
 
 /**
  * 1. https://unsplash.com/developers
- * 2. Copy and paste your into .env file
- * 3. Add them to Vercel environment variables
+ * 2. Copy and paste your keys into .env file
+ * 3. Set UNSPLASH_KEY and UNSPLASH_SECRET environment variables
  */
 const keys = {
   key: process.env.UNSPLASH_KEY!,

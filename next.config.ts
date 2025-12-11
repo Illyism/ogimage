@@ -42,7 +42,6 @@ const nextConfig: NextConfig = {
       { hostname: 'lh3.googleusercontent.com' },
       { hostname: 'res.cloudinary.com' },
       { hostname: 'images.unsplash.com' },
-      { hostname: 'avatar.vercel.sh' },
       { hostname: 'img.youtube.com' },
       { hostname: 'i.ytimg.com' },
       { hostname: 'ssl.gstatic.com' },

@@ -4,8 +4,8 @@ import { emojis } from './emoji'
 export const getCountry = async () => {
   const headersList = await headers()
   const _country =
-    headersList.get('cf-ipcountry') ??
-    headersList.get('x-vercel-ip-country') ??
+    headersList.get('cf-ipcountry') ?? // Cloudflare
+    headersList.get('x-vercel-ip-country') ?? // Vercel (fallback)
     'US'
   return (
     emojis[_country] ?? {

@@ -13,8 +13,8 @@ export interface Country {
 export const getCountry = async (): Promise<Country> => {
   const headersList = await headers()
   const _country =
-    headersList.get('cf-ipcountry') ??
-    headersList.get('x-vercel-ip-country') ??
+    headersList.get('cf-ipcountry') ?? // Cloudflare
+    headersList.get('x-vercel-ip-country') ?? // Vercel (fallback)
     'US'
 
   if (!_country)
