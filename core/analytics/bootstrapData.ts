@@ -1,7 +1,7 @@
 import { generateId } from '@/lib/gen-id'
 import '@/styles/prism.css'
 import '@/styles/tailwind.css'
-import { cookies, type UnsafeUnwrappedCookies } from 'next/headers'
+import { cookies } from 'next/headers'
 import { PostHog } from 'posthog-node'
 
 export function getPosthogClient() {
@@ -11,10 +11,10 @@ export function getPosthogClient() {
   })
 }
 
-export function getPosthogId() {
+export async function getPosthogId() {
   let distinct_id = ''
   const phCookieName = `ph_${process.env.NEXT_PUBLIC_POSTHOG_KEY!}_posthog`
-  const cookieStore = cookies() as unknown as UnsafeUnwrappedCookies
+  const cookieStore = await cookies()
   const phCookie = cookieStore.get(phCookieName)
 
   if (phCookie) {
@@ -29,7 +29,7 @@ export function getPosthogId() {
 }
 
 export async function getBootstrapData() {
-  const distinct_id = getPosthogId()
+  const distinct_id = await getPosthogId()
   return {
     distinctID: distinct_id,
   }

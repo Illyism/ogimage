@@ -10,7 +10,7 @@ export async function GET(request: Request) {
   lemonSqueezySetup({ apiKey: process.env.LMSQUEEZY! })
 
   const client = getPosthogClient()
-  const distinct_id = getPosthogId()
+  const distinct_id = await getPosthogId()
 
   const storeId = 70232 // magicspace
 

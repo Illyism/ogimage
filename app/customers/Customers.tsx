@@ -44,7 +44,7 @@ const OscarStories = () => {
             thousands of targeted keywords.
           </p>
           <p className="text-md mb-4">
-            Here's how they used ogimage.org to create dynamic social images for
+            Here&apos;s how they used ogimage.org to create dynamic social images for
             their programmatic SEO case study.
           </p>
 

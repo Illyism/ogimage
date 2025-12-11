@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 export function NavItem({ href, children }: any) {
-  let isActive = usePathname() === href
+  const isActive = usePathname() === href
 
   return (
     <Link

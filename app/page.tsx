@@ -206,14 +206,14 @@ const Hero = () => {
             className="w-full px-6 text-lg sm:w-auto"
             size="rounded"
           >
-            <a href="/buy?plan=essential" className="flex">
+            <Link href="/buy?plan=essential" className="flex">
               <span className="hidden sm:inline">PURCHASE TODAY</span>
               <span className="sm:hidden">Buy now</span>
               &emsp;
               <b className="-my-1 ml-2 text-lg font-black">
                 ${ESSENTIAL_PRICE}
               </b>
-            </a>
+            </Link>
           </Button>
         </div>
         <div className="mt-8 flex flex-col gap-4 sm:flex-row lg:mt-12">
@@ -416,12 +416,12 @@ const FinalCallToAction = () => {
       </p>
       <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row">
         <Button asChild className="w-full sm:w-auto">
-          <a href="/buy?plan=essential" className="flex">
+          <Link href="/buy?plan=essential" className="flex">
             <span className="hidden sm:inline">PURCHASE TODAY</span>
             <span className="sm:hidden">Buy now</span>
             &emsp;
             <b className="-my-1 ml-2 text-lg font-black">${ESSENTIAL_PRICE}</b>
-          </a>
+          </Link>
         </Button>
 
         <Button asChild variant="secondary" className="w-full px-4 sm:w-auto">

@@ -35,8 +35,12 @@ export const viewport: Viewport = {
   ],
 }
 
-export default function RootLayout({ children }: { children: any }) {
-  const bootstrapData = getBootstrapData()
+export default async function RootLayout({
+  children,
+}: {
+  children: any
+}) {
+  const bootstrapData = await getBootstrapData()
 
   return (
     <html lang="en" suppressHydrationWarning prefix="og: https://ogp.me/ns#">

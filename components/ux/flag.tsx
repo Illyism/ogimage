@@ -1,8 +1,8 @@
-import { headers, type UnsafeUnwrappedHeaders } from 'next/headers'
+import { headers } from 'next/headers'
 import { emojis } from './emoji'
 
-export const useCountry = () => {
-  const headersList = headers() as unknown as UnsafeUnwrappedHeaders
+export const getCountry = async () => {
+  const headersList = await headers()
   const _country =
     headersList.get('cf-ipcountry') ??
     headersList.get('x-vercel-ip-country') ??
@@ -16,8 +16,12 @@ export const useCountry = () => {
 }
 // Adding className prop to FlagOnly and CountryName components
 
-export const FlagOnly = ({ className }: { className?: string }) => {
-  const country = useCountry()
+export const FlagOnly = async ({
+  className,
+}: {
+  className?: string
+}) => {
+  const country = await getCountry()
   return (
     <span role="img" aria-label={country.name} className={className}>
       {country.emoji}
@@ -25,7 +29,11 @@ export const FlagOnly = ({ className }: { className?: string }) => {
   )
 }
 
-export const CountryName = ({ className }: { className?: string }) => {
-  const country = useCountry()
+export const CountryName = async ({
+  className,
+}: {
+  className?: string
+}) => {
+  const country = await getCountry()
   return <span className={className}>{country.name}</span>
 }
