@@ -59,7 +59,7 @@ export async function POST(request: Request) {
           },
         },
       })
-      await posthogClient.shutdownAsync()
+      posthogClient.shutdown()
     }
 
     // Invite to GitHub

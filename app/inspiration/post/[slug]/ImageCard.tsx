@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Tilt from 'react-parallax-tilt'
 
-/* eslint-disable @next/next/no-img-element */
+ 
 
 export const ImageCard = ({
   src,

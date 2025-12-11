@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+ 
 import { Star } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '../ui/button'

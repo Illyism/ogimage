@@ -35,7 +35,7 @@ async function formatImage(blob: Blob) {
     })
     .toBuffer()
 
-  return new Blob([buffer], { type: 'image/jpeg' })
+  return new Blob([new Uint8Array(buffer)], { type: 'image/jpeg' })
 }
 
 export async function POST(request: Request) {
@@ -161,7 +161,7 @@ ${Anthropic.AI_PROMPT}`.trim(),
         data: inspiration,
       })
       return Response.json({ success: true, data: result })
-    } catch (error: any) {
+    } catch {
       // Update if exists
       const result = await prisma.inspiration.update({
         where: { slug: inspiration.slug },

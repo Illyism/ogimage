@@ -18,13 +18,13 @@ function initCookie(doc: { cookie: string } | undefined): Cookie {
   if (typeof doc === 'string') doc = { cookie: doc }
   if (doc.cookie === undefined) doc.cookie = ''
 
-  var self: Cookie = {} as Cookie
+  const self: Cookie = {} as Cookie
   self.get = function (key) {
     if (!doc) return undefined
-    var splat = doc.cookie.split(/;\s*/)
-    for (var i = 0; i < splat.length; i++) {
-      var ps = splat[i].split('=')
-      var k = unescape(ps[0])
+    const splat = doc.cookie.split(/;\s*/)
+    for (let i = 0; i < splat.length; i++) {
+      const ps = splat[i].split('=')
+      const k = unescape(ps[0])
       if (k === key) return unescape(ps[1])
     }
     return undefined
@@ -33,7 +33,7 @@ function initCookie(doc: { cookie: string } | undefined): Cookie {
   self.set = function (key, value, opts) {
     if (!doc) return ''
     if (!opts) opts = {}
-    var s = escape(key) + '=' + escape(value)
+    let s = escape(key) + '=' + escape(value)
     if (opts.expires) s += '; expires=' + opts.expires
     if (opts.path) s += '; path=' + escape(opts.path)
     if (opts.domain) s += '; domain=' + escape(opts.domain)

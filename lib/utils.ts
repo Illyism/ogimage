@@ -41,7 +41,7 @@ export const isValidUrl = (url: string) => {
   try {
     new URL(url)
     return true
-  } catch (e) {
+  } catch {
     return false
   }
 }
@@ -52,7 +52,7 @@ export const getUrlFromString = (str: string) => {
     if (str.includes('.') && !str.includes(' ')) {
       return new URL(`https://${str}`).toString()
     }
-  } catch (e) {
+  } catch {
     return null
   }
 }
@@ -65,7 +65,7 @@ export const getDomainWithoutWWW = (url: string) => {
     if (url.includes('.') && !url.includes(' ')) {
       return new URL(`https://${url}`).hostname.replace(/^www\./, '')
     }
-  } catch (e) {
+  } catch {
     return null
   }
 }
@@ -111,7 +111,7 @@ export function nFormatter(
     { value: 1e18, symbol: 'E' },
   ]
   const rx = /\.0+$|(\.[0-9]*[1-9])0+$/
-  var item = lookup
+  const item = lookup
     .slice()
     .reverse()
     .find(function (item) {

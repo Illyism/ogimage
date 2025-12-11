@@ -72,18 +72,22 @@ export const getMetaTags = async (url: string) => {
   }
   const { metaTags, title: titleTag, linkTags } = getHeadChildNodes(html)
 
-  let object = {}
+  const object = {}
 
-  for (let k in metaTags) {
-    let { property, content } = metaTags[k]
+  for (const k in metaTags) {
+    const { property, content } = metaTags[k]
 
-    property && (object[property] = content)
+    if (property) {
+      object[property] = content
+    }
   }
 
-  for (let m in linkTags) {
-    let { rel, href } = linkTags[m]
+  for (const m in linkTags) {
+    const { rel, href } = linkTags[m]
 
-    rel && (object[rel] = href)
+    if (rel) {
+      object[rel] = href
+    }
   }
 
   const title = object['og:title'] || object['twitter:title'] || titleTag

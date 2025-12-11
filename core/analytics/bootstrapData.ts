@@ -27,10 +27,3 @@ export async function getPosthogId() {
 
   return distinct_id
 }
-
-export async function getBootstrapData() {
-  const distinct_id = await getPosthogId()
-  return {
-    distinctID: distinct_id,
-  }
-}

@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button'
 import { getFileUrl } from '@/lib/file-storage'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { Spinner } from '../Spinner'
 
@@ -72,9 +73,11 @@ export function DomainRunDetails({ slug }: { slug: string }) {
             {data.domain}
           </a>
           <p className="mt-2">{data.description}</p>
-          <img
+          <Image
             src={getFileUrl(data.image)}
             alt={data.name}
+            width={1200}
+            height={630}
             className="mt-4 rounded-lg"
           />
         </div>

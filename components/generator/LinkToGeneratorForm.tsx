@@ -2,6 +2,7 @@
 
 import { Wand2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
+import posthog from 'posthog-js'
 import { useState } from 'react'
 
 export const LinkToGeneratorForm = () => {
@@ -10,11 +11,9 @@ export const LinkToGeneratorForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    if (window.posthog) {
-      window.posthog.capture('generator_open', {
-        website,
-      })
-    }
+    posthog.capture('generator_open', {
+      website,
+    })
     router.push(`/free?url=${website}`)
   }
 
