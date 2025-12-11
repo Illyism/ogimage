@@ -16,11 +16,7 @@ export const getCountry = async () => {
 }
 // Adding className prop to FlagOnly and CountryName components
 
-export const FlagOnly = async ({
-  className,
-}: {
-  className?: string
-}) => {
+export const FlagOnly = async ({ className }: { className?: string }) => {
   const country = await getCountry()
   return (
     <span role="img" aria-label={country.name} className={className}>
@@ -29,11 +25,7 @@ export const FlagOnly = async ({
   )
 }
 
-export const CountryName = async ({
-  className,
-}: {
-  className?: string
-}) => {
+export const CountryName = async ({ className }: { className?: string }) => {
   const country = await getCountry()
   return <span className={className}>{country.name}</span>
 }

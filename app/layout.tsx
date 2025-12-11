@@ -35,11 +35,7 @@ export const viewport: Viewport = {
   ],
 }
 
-export default async function RootLayout({
-  children,
-}: {
-  children: any
-}) {
+export default async function RootLayout({ children }: { children: any }) {
   const bootstrapData = await getBootstrapData()
 
   return (

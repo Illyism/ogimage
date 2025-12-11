@@ -134,10 +134,10 @@ mark {
   cursor: zoom-out;
   z-index: 1;
 }
-[data-rmiz-content="found"] img,
-[data-rmiz-content="found"] svg,
-[data-rmiz-content="found"] [role="img"],
-[data-rmiz-content="found"] [data-zoom] {
+[data-rmiz-content='found'] img,
+[data-rmiz-content='found'] svg,
+[data-rmiz-content='found'] [role='img'],
+[data-rmiz-content='found'] [data-zoom] {
   cursor: zoom-in;
 }
 [data-rmiz-modal]::backdrop {
@@ -162,10 +162,10 @@ mark {
   inset: 0;
   transition: background-color 0.15s;
 }
-[data-rmiz-modal-overlay="hidden"] {
+[data-rmiz-modal-overlay='hidden'] {
   background-color: rgba(0, 0, 0, 0);
 }
-[data-rmiz-modal-overlay="visible"] {
+[data-rmiz-modal-overlay='visible'] {
   @apply bg-background-body/90;
 }
 [data-rmiz-modal-content] {
@@ -215,8 +215,9 @@ mark {
     rgba(255, 255, 255, 0.08),
     rgba(255, 255, 255, 0)
   );
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.12), 0 1px 2px
-    rgba(16, 24, 40, 0.16);
+  box-shadow:
+    inset 0 1px rgba(255, 255, 255, 0.12),
+    0 1px 2px rgba(16, 24, 40, 0.16);
 }
 
 @keyframes marquee {
