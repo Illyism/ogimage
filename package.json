@@ -29,8 +29,6 @@
     "@trigger.dev/react": "^2.3.18",
     "@trigger.dev/resend": "^2.3.18",
     "@trigger.dev/sdk": "^2.3.18",
-    "@upstash/ratelimit": "^1.0.1",
-    "@upstash/redis": "^1.28.4",
     "@vercel/edge": "^1.1.1",
     "@vercel/og": "^0.6.2",
     "autoprefixer": "^10.4.17",
