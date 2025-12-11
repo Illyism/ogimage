@@ -1,6 +1,4 @@
 import { generateId } from '@/lib/gen-id'
-import '@/styles/prism.css'
-import '@/styles/tailwind.css'
 import { cookies } from 'next/headers'
 import { PostHog } from 'posthog-node'
 
