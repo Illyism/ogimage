@@ -35,9 +35,9 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Install addgroup and curl
+# Install adduser (provides addgroup) and curl
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    addgroup \
+    adduser \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
