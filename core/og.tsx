@@ -83,11 +83,11 @@ export async function generateImage({
       style={style}
     >
       {alt && (
-        <h1 tw="mb-8 font-black text-5xl tracking-tight leading-none">
+        <h1 tw="mb-8 font-black text-5xl tracking-tight leading-none flex items-center justify-center">
           {textBefore}
 
           {textBold && (
-            <span tw="-mt-2 ml-2 rounded-2xl bg-[#cee9fd] text-[#009dff] font-black align-middle inline-block px-2 py-2">
+            <span tw="-mt-2 ml-2 rounded-2xl bg-[#cee9fd] text-[#009dff] font-black px-2 py-2">
               {textBold}
             </span>
           )}
