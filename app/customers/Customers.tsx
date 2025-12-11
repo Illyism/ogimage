@@ -29,7 +29,7 @@ const OscarStories = () => {
   return (
     <div className="grid grid-cols-1 gap-4 pb-24 pt-16 lg:grid-cols-3">
       <div className="relative">
-        <div className="pad top-32 w-full lg:sticky">
+        <div className="container top-32 w-full lg:sticky">
           <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter md:text-4xl">
             MagicSpace SEO
           </h2>
@@ -130,7 +130,7 @@ const Wodily = () => {
   return (
     <div className="grid grid-cols-1 gap-4 pb-24 pt-16 lg:grid-cols-3">
       <div className="relative">
-        <div className="pad top-32 w-full lg:sticky">
+        <div className="container top-32 w-full lg:sticky">
           <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
             Wodily
           </h2>
@@ -299,7 +299,7 @@ const LinksReport = () => {
   return (
     <div className="grid grid-cols-1 gap-4 pb-24 pt-16 lg:grid-cols-3">
       <div className="relative">
-        <div className="pad top-32 w-full lg:sticky">
+        <div className="container top-32 w-full lg:sticky">
           <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
             Links Report
           </h2>

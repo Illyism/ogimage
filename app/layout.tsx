@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 
 export default async function RootLayout({ children }: { children: any }) {
   return (
-    <html lang="en" suppressHydrationWarning prefix="og: https://ogp.me/ns#">
+    <html lang="en" suppressHydrationWarning>
       <body className="dark h-full font-sans antialiased">
         <StructuredData />
         {children}

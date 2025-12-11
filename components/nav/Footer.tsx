@@ -79,7 +79,7 @@ const learnLinks = [
 export const Footer = () => {
   return (
     <footer className="dark overflow-hidden bg-background-body py-16 text-white">
-      <div className="pad">
+      <div className="container">
         <div className="flex items-center gap-2 sm:gap-8">
           <Link
             href="/"

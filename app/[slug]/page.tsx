@@ -44,7 +44,7 @@ export default async function BlogArticle({
 const BlogTemplate = ({ post }: { post: Page }) => {
   return (
     <article className="flex min-h-screen flex-col justify-between">
-      <header className="contain pt-16 lg:max-w-5xl">
+      <header className="container pt-16 lg:max-w-5xl">
         <div className="flex max-w-(--breakpoint-sm) flex-col space-y-4">
           <h1
             className="text-3xl font-extrabold text-foreground sm:text-4xl"
@@ -78,7 +78,7 @@ const BlogTemplate = ({ post }: { post: Page }) => {
       </header>
 
       <div className="relative">
-        <div className="contain grid grid-cols-4 gap-10 px-0 pb-10 pt-6 lg:max-w-5xl">
+        <div className="container grid grid-cols-4 gap-10 px-0 pb-10 pt-6 lg:max-w-5xl">
           <div className="relative col-span-4 mb-10 flex flex-col space-y-8 bg-card/20 sm:rounded-xl md:col-span-3">
             <div
               data-mdx-container

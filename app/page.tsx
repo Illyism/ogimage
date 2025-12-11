@@ -39,7 +39,7 @@ export default function Page() {
         <TestimonialMarquee big />
       </div>
       <TemplatePreview />
-      <div className="contain">
+      <div className="container">
         <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
           Real-world examples
         </h2>
@@ -60,7 +60,7 @@ export default function Page() {
 const WhatIS = () => {
   // showcase in a beautiful way:
   return (
-    <div className="pad pb-8 pt-24 sm:text-center">
+    <div className="container pb-8 pt-24 sm:text-center">
       <h2 className="text-balance text-3xl font-bold leading-normal tracking-[-0.015em]">
         What is an Open Graph Image?
       </h2>
@@ -97,7 +97,7 @@ const WhatIS = () => {
 
 const ProblemSolution = () => {
   return (
-    <div className="pad py-16 sm:text-center">
+    <div className="container py-16 sm:text-center">
       <h2 className="text-balance text-3xl font-bold leading-normal tracking-[-0.015em]">
         Why OG Image Kit?
       </h2>
@@ -146,7 +146,7 @@ const ProblemSolution = () => {
 
 const Hero = () => {
   return (
-    <div className="pad flex flex-col items-center justify-center gap-12 pb-8 pt-4 sm:pt-16 xl:flex-row">
+    <div className="container flex flex-col items-center justify-center gap-12 pb-8 pt-4 sm:pt-16 xl:flex-row">
       <div>
         <a
           className="mx-auto mb-4 inline-block min-w-[250px]"
@@ -238,7 +238,7 @@ const Hero = () => {
 
 const Pricing = () => {
   return (
-    <div className="pad pb-24 pt-16 text-center">
+    <div className="container pb-24 pt-16 text-center">
       <h2 className="text-balance text-3xl font-bold leading-normal tracking-[-0.015em]">
         Choose your plan
       </h2>
@@ -328,7 +328,7 @@ const PricingCard = ({
 
 const FAQ = () => {
   return (
-    <div className="pad pb-24 pt-16 sm:text-center">
+    <div className="container pb-24 pt-16 sm:text-center">
       <h2 className="text-3xl font-bold leading-normal tracking-[-0.015em]">
         Frequently asked questions
       </h2>
@@ -391,7 +391,7 @@ const FAQCard = ({ question, answer }: any) => {
 
 const FinalCallToAction = () => {
   return (
-    <div className="pad pb-24 pt-16 text-center">
+    <div className="container pb-24 pt-16 text-center">
       <a
         href="https://www.producthunt.com/posts/og-image-generator?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-og&#0045;image&#0045;generator"
         target="_blank"

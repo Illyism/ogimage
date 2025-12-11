@@ -16,7 +16,7 @@ export const revalidate = 3600 // revalidate at most every hour
 export default async function Page() {
   return (
     <PageLayout>
-      <div className="contain mt-6 max-w-3xl p-8">
+      <div className="container mt-6 max-w-3xl p-8">
         <header className="mb-6 space-y-2 text-center">
           <h1 className="text-2xl font-bold lg:text-4xl">
             Submit Your OG Image Inspiration

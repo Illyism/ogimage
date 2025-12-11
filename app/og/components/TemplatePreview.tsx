@@ -49,7 +49,7 @@ export const TemplatePreview = () => {
   return (
     <div className="grid grid-cols-1 gap-4 pb-24 pt-16 md:grid-cols-3">
       <div className="relative">
-        <div className="pad top-32 w-full">
+        <div className="container top-32 w-full">
           <h2 className="text-3xl font-bold leading-normal tracking-[-0.015em]">
             OG Image Templates
           </h2>

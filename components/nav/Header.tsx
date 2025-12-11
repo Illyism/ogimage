@@ -39,7 +39,7 @@ export function Header() {
   }, [tooltipOpen, setHasSeenHeader])
   return (
     <>
-      <ul className="pad jc flex items-center gap-12 overflow-hidden whitespace-nowrap bg-background-body py-2 text-xs">
+      <ul className="container jc flex items-center gap-12 overflow-hidden whitespace-nowrap bg-background-body py-2 text-xs">
         <li className="ml-1 flex items-center">
           <CheckCircle size={14} className="mr-1 text-green-500" />
           Created by&nbsp;
@@ -70,7 +70,7 @@ export function Header() {
           </span>
         </li>
       </ul>
-      <header className="pad sticky top-0 z-50 flex w-full items-center justify-between bg-background/95 py-1 text-sm backdrop-blur-lg supports-backdrop-filter:bg-background/90">
+      <header className="container sticky top-0 z-50 flex w-full items-center justify-between bg-background/95 py-1 text-sm backdrop-blur-lg supports-backdrop-filter:bg-background/90">
         <div className="flex items-center space-x-4">
           <Link
             href="/"

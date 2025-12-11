@@ -26,7 +26,7 @@ export default async function Page({
   // eventId is now the slug
   return (
     <PageLayout>
-      <div className="contain mt-6 max-w-3xl p-8">
+      <div className="container mt-6 max-w-3xl p-8">
         <DomainRunDetails slug={eventId} />
       </div>
     </PageLayout>

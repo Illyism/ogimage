@@ -14,7 +14,7 @@ export const metadata = generatePageMeta({
 export default function Page() {
   return (
     <PageLayout>
-      <div className="contain relative pb-24 pt-16">
+      <div className="container relative pb-24 pt-16">
         <div className="relative z-10 mx-auto mb-8 max-w-xl text-center">
           <h1 className="mb-4 text-xl font-bold tracking-tight md:text-6xl">
             Contact Us

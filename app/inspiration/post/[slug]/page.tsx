@@ -63,7 +63,7 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
         authorId={'https://il.ly'}
         imageUrl={getFileUrl(inspiration.image)}
       />
-      <div className="pad mx-auto max-w-3xl py-4 lg:pb-16">
+      <div className="container mx-auto max-w-3xl py-4 lg:pb-16">
         <nav
           className="mb-4 flex gap-2 lg:mb-16"
           itemScope
@@ -170,7 +170,7 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
 const NotFoundInspiration = ({ slug }: { slug: string }) => {
   return (
     <PageLayout>
-      <div className="contain pt-16 text-center">
+      <div className="container pt-16 text-center">
         <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-800 dark:text-gray-100 sm:text-5xl">
           Add {slug}?
         </h1>

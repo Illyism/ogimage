@@ -15,7 +15,7 @@ export const metadata = generatePageMeta({
 export default function Templates() {
   return (
     <PageLayout>
-      <header className="contain relative border-b border-border py-8">
+      <header className="container relative border-b border-border py-8">
         <h1 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
           Customers & Examples
         </h1>
@@ -34,7 +34,7 @@ export default function Templates() {
 
 const Contact = () => {
   return (
-    <div className="contain">
+    <div className="container">
       <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
         Tell us your story
       </h2>

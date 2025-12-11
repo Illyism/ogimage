@@ -34,7 +34,7 @@ export default async function Page(props: {
   })
   return (
     <PageLayout>
-      <div className="pad py-4 lg:py-16">
+      <div className="container py-4 lg:py-16">
         <h1 className="mb-2 text-2xl font-bold sm:text-3xl">
           The Best OG Images in {tag.replace(/-/g, ' ')}
         </h1>

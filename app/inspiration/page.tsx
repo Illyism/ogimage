@@ -19,7 +19,7 @@ export default async function Page() {
   const categories = getUniqueCategories(list)
   return (
     <PageLayout>
-      <div className="pad py-4 lg:py-16">
+      <div className="container py-4 lg:py-16">
         <h1 className="mb-2 text-2xl font-bold sm:text-3xl">
           Open Graph Image Gallery
         </h1>

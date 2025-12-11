@@ -14,7 +14,7 @@ export const TestimonialMasonry = ({
 } = {}) => {
   const sliceMax = useMemo(() => Math.min(limit, reviews.length), [limit])
   return (
-    <div className="pad mb-16">
+    <div className="container mb-16">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
         {reviews.slice(skip, sliceMax).map((review, index) => (
           <ReviewCard key={index} review={review} />
