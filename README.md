@@ -73,11 +73,7 @@ docker-compose up -d
 #### GitHub Integration
 - `GITHUB_TOKEN` - GitHub personal access token (used for webhook integrations)
 
-#### App URLs (for local development)
-- `NEXT_PUBLIC_APP_URL` - Base URL of the application (defaults to `http://localhost:3000`)
-- `NEXT_PUBLIC_VERCEL_ENV` - Vercel environment (`development`, `preview`, or `production`)
-- `NEXT_PUBLIC_VERCEL_URL` - Vercel preview URL (for preview deployments)
-- `NGROK_URL` - ngrok URL for local webhook testing (optional)
+Note: The app uses `NODE_ENV` to determine production vs development mode. Set `NODE_ENV=production` for production deployments. URLs are automatically set based on the environment.
 
 ## License
 

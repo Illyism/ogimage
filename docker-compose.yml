@@ -30,9 +30,6 @@ services:
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       # Optional: GitHub
       - GITHUB_TOKEN=${GITHUB_TOKEN}
-      # App URLs
-      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
-      - NEXT_PUBLIC_VERCEL_ENV=${NEXT_PUBLIC_VERCEL_ENV:-production}
     env_file:
       - .env
     restart: unless-stopped
