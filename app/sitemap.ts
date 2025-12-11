@@ -19,10 +19,6 @@ export default async function Sitemap() {
       lastModified: new Date(),
     },
     {
-      url: `https://${domain}/contact`,
-      lastModified: new Date(),
-    },
-    {
       url: `https://${domain}/blog`,
       lastModified: new Date(),
     },

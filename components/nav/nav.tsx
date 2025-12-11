@@ -11,8 +11,4 @@ export const headerLinks = [
     href: '/templates',
     label: 'Templates',
   },
-  {
-    href: '/contact',
-    label: 'Contact',
-  },
 ]

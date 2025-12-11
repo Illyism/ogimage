@@ -20,10 +20,6 @@ const productLinks = [
     href: '/inspiration',
     label: 'OG Image Gallery',
   },
-  {
-    href: '/contact',
-    label: 'Contact',
-  },
 ]
 
 const moreLinks = [

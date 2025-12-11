@@ -177,9 +177,6 @@ const NotFoundInspiration = ({ slug }: { slug: string }) => {
         <p className="mt-4 text-base text-gray-600 dark:text-gray-400">
           Get the OG image for your website in seconds.
         </p>
-        <Link href="/contact" className="font-bold underline">
-          Contact us
-        </Link>
       </div>
     </PageLayout>
   )
