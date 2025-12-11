@@ -1,4 +1,3 @@
- 
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { TemplatePreview } from '../og/components/TemplatePreview'

@@ -1,5 +1,3 @@
- 
- 
 import { headers } from 'next/headers'
 import { ImageResponse } from 'next/og'
 

@@ -3,8 +3,6 @@
 import { motion } from 'framer-motion'
 import Tilt from 'react-parallax-tilt'
 
- 
-
 export const ImageCard = ({
   src,
   alt,
