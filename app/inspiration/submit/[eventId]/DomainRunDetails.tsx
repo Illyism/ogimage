@@ -90,4 +90,3 @@ export function DomainRunDetails({ slug }: { slug: string }) {
     </>
   )
 }
-

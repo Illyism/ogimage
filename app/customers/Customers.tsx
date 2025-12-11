@@ -87,6 +87,7 @@ const OscarStories = () => {
               value="/public/img/social.jpg"
               name="url"
               id="url"
+              readOnly
             />
           </div>
           <Image
@@ -111,6 +112,7 @@ const OscarStories = () => {
               value="/og/blog-post?title=PROGRAMMATIC%20SEO%20CASE%20STUDY"
               name="website"
               id="website"
+              readOnly
             />
           </div>
           <TwitterPreview
@@ -198,6 +200,7 @@ const Wodily = () => {
               value="/public/img/social.jpg"
               name="image"
               id="image"
+              readOnly
             />
           </div>
           <Image
@@ -222,6 +225,7 @@ const Wodily = () => {
               value="/og/templates/city"
               name="template"
               id="template"
+              readOnly
             />
           </div>
           <TwitterPreview
@@ -344,6 +348,7 @@ const LinksReport = () => {
               value="https://seoagency.tools/blog/what/social.jpg"
               name="image"
               id="image"
+              readOnly
             />
           </div>
           <Image

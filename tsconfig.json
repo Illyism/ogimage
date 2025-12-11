@@ -57,9 +57,6 @@
       "@/images/*": [
         "images/*"
       ],
-      "@/jobs/*": [
-        "jobs/*"
-      ],
       "~/*": [
         "public/*"
       ],
@@ -73,13 +70,14 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts",
     "types/**/*.ts",
     "dist/types/**/*.ts",
     ".contentlayer/generated",
+    ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".next"
   ]
 }

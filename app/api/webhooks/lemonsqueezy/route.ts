@@ -1,7 +1,7 @@
 import { PostHog } from 'posthog-node'
 import { createHmac, timingSafeEqual } from 'crypto'
 import { Octokit } from 'octokit'
-import Resend from 'resend'
+import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY!)
 
@@ -86,7 +86,7 @@ export async function POST(request: Request) {
     await resend.emails.send({
       to: email,
       from: 'Ilias from ogimage.org <contact@ogimage.org>',
-      reply_to: 'ilias@magicspace.agency',
+      replyTo: 'ilias@magicspace.agency',
       subject: `[OG Image Kit - ${order_number}] Access to the GitHub repository and guide`,
       text: `
 Hi ${name}!
