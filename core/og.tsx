@@ -94,13 +94,15 @@ export async function generateImage({
         </h1>
       )}
 
-      <img
-        tw="rounded-t-2xl shadow-2xl"
-        src={screenshot}
-        alt=""
-        height={imgHeight}
-        width={imgWidth}
-      />
+      {screenshot && (
+        <img
+          tw="rounded-t-2xl shadow-2xl"
+          src={screenshot}
+          alt=""
+          height={imgHeight}
+          width={imgWidth}
+        />
+      )}
     </div>,
     {
       width: 1200,
