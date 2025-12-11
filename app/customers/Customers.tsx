@@ -373,6 +373,7 @@ const LinksReport = () => {
               value="/og/templates/screenshot?path=/blog/what"
               name="template"
               id="template"
+              readOnly
             />
           </div>
           <TwitterPreview

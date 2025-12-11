@@ -1,8 +1,35 @@
 import { withContentlayer } from 'next-contentlayer'
 import type { NextConfig } from 'next'
 
+// Helper to get S3 hostname from env vars (runs at build time)
+function getS3Hostname(): string | null {
+  const endpoint = process.env.S3_ENDPOINT
+  const bucket = process.env.S3_BUCKET
+  if (!endpoint || !bucket) {
+    return null
+  }
+  try {
+    // Handle different endpoint formats
+    let host: string
+    if (endpoint.includes('://')) {
+      // Full URL like https://fsn1.your-objectstorage.com
+      host = endpoint.replace(/^https?:\/\//, '').replace(/\/$/, '')
+    } else {
+      // Just hostname like fsn1.your-objectstorage.com
+      host = endpoint
+    }
+    // S3 URL format: https://{bucket}.{host}
+    return `${bucket}.${host}`
+  } catch {
+    return null
+  }
+}
+
+const s3Hostname = getS3Hostname()
+
 const nextConfig: NextConfig = {
   reactStrictMode: false,
+  output: 'standalone',
   experimental: {
     useCache: true,
   },
@@ -24,6 +51,8 @@ const nextConfig: NextConfig = {
       { hostname: 'senjaio.b-cdn.net' },
       { hostname: 'senja-io.s3.us-west-1.amazonaws.com' },
       { hostname: 'ph-avatars.imgix.net' },
+      // Dynamically add S3 hostname if configured
+      ...(s3Hostname ? [{ hostname: s3Hostname }] : []),
     ],
   },
   async headers() {

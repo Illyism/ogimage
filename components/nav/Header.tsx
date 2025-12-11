@@ -5,7 +5,7 @@ import { CheckCircle, Star } from 'lucide-react'
 import { ESSENTIAL_PRICE } from '@/lib/pricing'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 import { Button } from '../ui/button'
 import { Logo } from '../ui/logo'
@@ -22,9 +22,22 @@ export function Header() {
     'hasSeenHeader',
     false,
   )
+  const [isMounted, setIsMounted] = useState(false)
+  const [tooltipOpen, setTooltipOpen] = useState(false)
+
   useEffect(() => {
-    setHasSeenHeader(true)
-  }, [setHasSeenHeader])
+    setIsMounted(true)
+    // Only check localStorage after mount to avoid hydration mismatch
+    if (!hasSeenHeader) {
+      setTooltipOpen(true)
+    }
+  }, [hasSeenHeader])
+
+  useEffect(() => {
+    if (tooltipOpen) {
+      setHasSeenHeader(true)
+    }
+  }, [tooltipOpen, setHasSeenHeader])
   return (
     <>
       <ul className="pad jc flex items-center gap-12 overflow-hidden whitespace-nowrap bg-background-body py-2 text-xs">
@@ -78,7 +91,7 @@ export function Header() {
         </div>
         <div className="flex items-center justify-end space-x-4">
           <TooltipProvider delayDuration={0}>
-            <Tooltip defaultOpen={!hasSeenHeader}>
+            <Tooltip open={isMounted ? tooltipOpen : false} onOpenChange={setTooltipOpen}>
               <TooltipTrigger>
                 <Button asChild size="rounded">
                   <Link href="/buy">Buy now</Link>
