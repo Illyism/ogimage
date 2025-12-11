@@ -3,8 +3,13 @@ import { Page, getPost } from '@/lib/directus'
 import { cn, formatDate } from '@/lib/utils'
 import { notFound } from 'next/navigation'
 
-export async function generateMetadata({ params }: any) {
-  const post = await getPost(params.slug)
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const post = await getPost(slug)
   if (!post) return
 
   return generatePageMeta({
@@ -16,8 +21,13 @@ export async function generateMetadata({ params }: any) {
   })
 }
 
-export default async function BlogArticle({ params }: any) {
-  const post = await getPost(params.slug)
+export default async function BlogArticle({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const post = await getPost(slug)
   if (!post) {
     return notFound()
   }

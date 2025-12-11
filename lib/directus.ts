@@ -46,6 +46,15 @@ const directus = createDirectus<Schema>('https://db.ogimage.org')
   .with(staticToken(process.env.DIRECTUS_TOKEN!))
   .with(rest())
 
+export const getPages = cache(async function getPages() {
+  'use cache'
+  return await directus.request(
+    readItems('pages', {
+      fields: ['slug', 'updatedAt'],
+    }),
+  )
+})
+
 export const getPost = cache(async function getPost(slug: string) {
   'use cache'
   const posts = await directus.request(

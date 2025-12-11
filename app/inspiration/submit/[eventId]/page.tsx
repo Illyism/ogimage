@@ -4,11 +4,12 @@ import { DomainRunDetails } from './DomainRunDetails'
 
 export const revalidate = 3600 // revalidate at most every hour
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { eventId: string }
-}) {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ eventId: string }>
+  }
+) {
+  const params = await props.params;
   return generatePageMeta({
     title: 'Running...',
     description:
@@ -17,7 +18,8 @@ export async function generateMetadata({
   })
 }
 
-export default function Page({ params }: { params: { eventId: string } }) {
+export default async function Page(props: { params: Promise<{ eventId: string }> }) {
+  const params = await props.params;
   return (
     <PageLayout>
       <div className="contain mt-6 max-w-3xl p-8">

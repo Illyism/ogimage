@@ -1,19 +1,15 @@
-import directus, {
+import {
   getLatestInspiration,
+  getPages,
   getUniqueCategories,
 } from '@/lib/directus'
-import { readItems } from '@directus/sdk'
 import { allBlogPosts } from 'contentlayer/generated'
 
 const domain = `ogimage.org`
 
 export default async function Sitemap() {
   const inspirations = await getLatestInspiration()
-  const pages = await directus.request(
-    readItems('pages', {
-      fields: ['slug', 'updatedAt'],
-    }),
-  )
+  const pages = await getPages()
 
   const categories = getUniqueCategories(inspirations)
   return [

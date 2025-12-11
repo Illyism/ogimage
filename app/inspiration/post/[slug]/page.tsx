@@ -12,11 +12,16 @@ import { ImageCard } from './ImageCard'
 
 export const revalidate = 5 * 60 // 5 minutes
 
-export async function generateMetadata({ params }: any) {
-  const inspiration = await getInspiration(params.slug)
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const inspiration = await getInspiration(slug)
   if (!inspiration) {
     return {
-      title: `Add ${params.slug}?`,
+      title: `Add ${slug}?`,
       robots: 'noindex',
     }
   }
@@ -25,11 +30,12 @@ export async function generateMetadata({ params }: any) {
     title: `${inspiration.name} - OG Image for ${inspiration.domain} - Open Graph Image Inspiration`,
     description: inspiration.description,
     image: `https://db.ogimage.org/assets/${inspiration.image}`,
-    url: `/inspiration/post/${params.slug}`,
+    url: `/inspiration/post/${slug}`,
   })
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page(props: { params: Promise<{ slug: string }> }) {
+  const params = await props.params;
   // if slug contains www, redirect to non-www
   if (params.slug.includes('www.')) {
     return redirect(`/inspiration/post/${params.slug.replace('www.', '')}`)

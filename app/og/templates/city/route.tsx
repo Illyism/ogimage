@@ -10,7 +10,7 @@ export const runtime = 'edge'
  * @description GeoIP with Unsplash
  */
 export async function GET() {
-  const headersList = headers()
+  const headersList = await headers()
   const city =
     headersList.get('cf-ipcity') ??
     headersList.get('x-vercel-ip-city') ??

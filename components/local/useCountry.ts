@@ -1,4 +1,4 @@
-import { headers } from 'next/headers'
+import { headers, type UnsafeUnwrappedHeaders } from 'next/headers';
 import { emojis } from '../nav/emoji'
 
 export interface Country {
@@ -11,7 +11,7 @@ export interface Country {
  * Server component to get the country of the user by IP
  */
 export const useCountry = (): Country => {
-  const headersList = headers()
+  const headersList = (headers() as unknown as UnsafeUnwrappedHeaders)
   const _country =
     headersList.get('cf-ipcountry') ??
     headersList.get('x-vercel-ip-country') ??
