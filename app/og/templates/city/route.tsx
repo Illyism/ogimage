@@ -20,7 +20,7 @@ export async function GET() {
     <div
       tw="flex flex-col items-center justify-center w-full h-full p-[40px]"
       style={{
-        backgroundImage: `url(${img})`,
+        backgroundImage: img ? `url(${img})` : 'linear-gradient(to bottom, #4F46E5, #7C3AED)',
         backgroundSize: '100% 100%',
         backgroundPosition: 'center',
       }}
@@ -28,7 +28,7 @@ export async function GET() {
       <div tw="text-[64px] bg-blue-500 px-2 text-white rounded-2xl mb-2">
         WODILY
       </div>
-      <div tw="bg-[#ffd400] flex rounded-full px-12 py-4 text-[40px] text-black shadow-2xl border-10 border-purple-400/70">
+      <div tw="bg-[#ffd400] flex rounded-full px-12 py-4 text-[40px] text-black shadow-2xl border-[10px] border-purple-400/70">
         Find CrossFit Gyms in {decodedCity}
       </div>
     </div>,
@@ -68,9 +68,24 @@ async function getCityPicture(city: string) {
     const _url = 'https://api.unsplash.com/search/photos'
     const url = `${_url}?${p.toString()}`
     const res = await fetch(url, { headers })
-    const results = (await res.json()).results
+    
+    if (!res.ok) {
+      console.error('Unsplash API error:', res.status, res.statusText)
+      return undefined
+    }
+    
+    const json = await res.json()
+    const results = json?.results
+    
+    if (!results || !Array.isArray(results) || results.length === 0) {
+      console.error('No results from Unsplash API')
+      return undefined
+    }
+    
     for (const result of results) {
-      return result.urls.regular as string
+      if (result?.urls?.regular) {
+        return result.urls.regular as string
+      }
     }
   } catch (e) {
     console.error('failed to getPicture', e)

@@ -48,8 +48,18 @@ export async function GET(request: Request) {
   const { error, data } = await createCheckout(storeId, variantId, newCheckout)
 
   if (error) {
-    console.error('Error creating checkout', error)
-    return new Response('Error creating checkout', { status: 500 })
+    console.error('Error creating checkout', {
+      error,
+      storeId,
+      variantId,
+      plan,
+      env: process.env.LMSQUEEZY_ENV,
+      hasApiKey: !!process.env.LMSQUEEZY,
+    })
+    return new Response(
+      `Error creating checkout: ${error.message || 'Unknown error'}`,
+      { status: 500 },
+    )
   }
 
   client.capture({

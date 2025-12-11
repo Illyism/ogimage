@@ -15,9 +15,19 @@ export async function GET() {
     height,
   })
 
-  const Hoefler = await fetch(
-    new URL('@/styles/Hoefler Text Regular.ttf', import.meta.url),
-  ).then((res) => res.arrayBuffer())
+  // Load font from public URL
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://ogimage.org'
+  const fontUrl = `${appUrl}/styles/Hoefler%20Text%20Regular.ttf`
+  
+  let Hoefler: ArrayBuffer | null = null
+  try {
+    const fontRes = await fetch(fontUrl)
+    if (fontRes.ok) {
+      Hoefler = await fontRes.arrayBuffer()
+    }
+  } catch (e) {
+    console.error('Failed to load font:', e)
+  }
 
   return new ImageResponse(
     <div tw="flex w-full h-full bg-blue-500 text-black relative p-4">
@@ -26,12 +36,12 @@ export async function GET() {
         <div tw="text-[60px] leading-none font-black flex items-center mb-4">
           W<div tw="-ml-1 text-[40px]">IKIPEDI</div>A
         </div>
-        <div tw="bg-black text-white rounded-full px-4 pt-4 text-[30px] shadow-2xl leading-none border-10 border-white/20 shadow-2xl">
+        <div tw="bg-black text-white rounded-full px-4 pt-4 text-[30px] shadow-2xl leading-none border-[10px] border-white/20 shadow-2xl">
           Read More
         </div>
       </div>
       <img
-        tw="absolute right-0 top-[10px] bottom-0 border-l-20 border-t-20 border-black rounded-tl-[40px]"
+        tw="absolute right-0 top-[10px] bottom-0 border-l-[20px] border-t-[20px] border-black rounded-tl-[40px]"
         style={{
           boxShadow: '0 0 100px 4px rgba(0, 0, 0, 0.8)',
         }}
@@ -50,12 +60,14 @@ export async function GET() {
       headers: {
         // 'Cache-Control': 'public, max-age=3600, immutable',
       },
-      fonts: [
-        {
-          name: 'Hoefler',
-          data: Hoefler,
-        },
-      ],
+      fonts: Hoefler
+        ? [
+            {
+              name: 'Hoefler',
+              data: Hoefler,
+            },
+          ]
+        : [],
     },
   )
 }
