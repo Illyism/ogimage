@@ -9,13 +9,8 @@ export async function sendText(data: FormData) {
     throw new Error('Text is required')
   }
 
-  const baseUrl =
-    process.env.NODE_ENV === 'production'
-      ? 'https://ogimage.org'
-      : 'http://localhost:3000'
-
   const response = await fetch(
-    `${baseUrl}/api/inspiration/submit`,
+    `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/inspiration/submit`,
     {
       method: 'POST',
       headers: {

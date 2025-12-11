@@ -70,10 +70,11 @@ docker-compose up -d
 
 ### Optional Variables
 
+#### App URL
+- `NEXT_PUBLIC_APP_URL` - Base URL of the application (defaults to `https://ogimage.org`)
+
 #### GitHub Integration
 - `GITHUB_TOKEN` - GitHub personal access token (used for webhook integrations)
-
-Note: The app uses `NODE_ENV` to determine production vs development mode. Set `NODE_ENV=production` for production deployments. URLs are automatically set based on the environment.
 
 ## License
 

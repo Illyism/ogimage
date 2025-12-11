@@ -28,6 +28,8 @@ services:
       - RESEND_API_KEY=${RESEND_API_KEY}
       # Anthropic
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      # App URL
+      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-https://ogimage.org}
       # Optional: GitHub
       - GITHUB_TOKEN=${GITHUB_TOKEN}
     env_file:
