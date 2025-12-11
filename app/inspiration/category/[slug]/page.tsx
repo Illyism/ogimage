@@ -4,7 +4,7 @@ import { generatePageMeta } from '@/core/seo'
 import { getLatestInspiration } from '@/lib/directus'
 import Link from 'next/link'
 
-export const revalidate = 5 * 60 // 5 minutes
+export const revalidate = 300 // 5 minutes
 
 export async function generateMetadata({
   params,

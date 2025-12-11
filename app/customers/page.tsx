@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { Customers } from './Customers'
 
 export const runtime = 'edge'
-export const revalidate = 60 * 60 * 4 // 4 hours
+export const revalidate = 14400 // 4 hours
 
 export const metadata = generatePageMeta({
   title: 'Customers & Examples - Open Graph Image as a Service',

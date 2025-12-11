@@ -5,7 +5,7 @@ import { getLatestInspiration, getUniqueCategories } from '@/lib/directus'
 import Link from 'next/link'
 import { ImageCard } from './post/[slug]/ImageCard'
 
-export const revalidate = 5 * 60 // 5 minutes
+export const revalidate = 300 // 5 minutes
 
 export const metadata = generatePageMeta({
   title: 'OG Image Gallery - Design Inspiration for Open Graph Images',

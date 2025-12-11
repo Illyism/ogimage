@@ -4,7 +4,7 @@ import { generatePageMeta } from '@/core/seo'
 import { TemplatePreview } from '../og/components/TemplatePreview'
 
 export const runtime = 'edge'
-export const revalidate = 60 * 60 * 4 // 4 hours
+export const revalidate = 14400 // 4 hours
 
 export const metadata = generatePageMeta({
   title: 'Best Open Graph Image Templates for Every Website',

@@ -10,7 +10,7 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { ImageCard } from './ImageCard'
 
-export const revalidate = 5 * 60 // 5 minutes
+export const revalidate = 300 // 5 minutes
 
 export async function generateMetadata({
   params,
