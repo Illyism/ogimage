@@ -18,7 +18,7 @@ export function takeScreenshot({
   width: number
   height: number
 }) {
-  const base = 'https://browser.seoagency.tools/screenshot'
+  const base = 'https://browser.linkdr.com/screenshot'
   const query = new URLSearchParams()
   query.append('access_key', 'top-secret-key')
   query.append('url', url)
