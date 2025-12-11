@@ -60,10 +60,6 @@ export async function generateImage({
     width: imgWidth,
   })
 
-  const Satoshi = await fetch(
-    new URL('@/styles/Satoshi-Black.ttf', import.meta.url),
-  ).then((res) => res.arrayBuffer())
-
   const textBefore = alt ? alt.split('*')[0] : ''
   const textBold = alt ? alt.split('*')[1]?.replace(/\*/g, '') : ''
 
@@ -109,12 +105,6 @@ export async function generateImage({
     {
       width: 1200,
       height: 600,
-      fonts: [
-        {
-          name: 'Satoshi',
-          data: Satoshi,
-        },
-      ],
     },
   )
 }
