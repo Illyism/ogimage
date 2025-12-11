@@ -6,6 +6,7 @@ const nextConfig = {
   experimental: {
     useCache: true,
   },
+  turbopack: {},
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
   images: {
     formats: ['image/avif', 'image/webp'],
