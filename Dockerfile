@@ -35,6 +35,12 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# Install addgroup and curl
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    addgroup \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
 # Create a non-root user
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
