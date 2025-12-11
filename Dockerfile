@@ -63,5 +63,5 @@ EXPOSE 3000
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Run migrations and start the server
-CMD ["sh", "-c", "bunx prisma migrate deploy && bun server.js"]
+# Start the server
+CMD ["bun", "server.js"]
