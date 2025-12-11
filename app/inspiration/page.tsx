@@ -2,6 +2,7 @@
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { getLatestInspiration, getUniqueCategories } from '@/lib/directus'
+import { getFileUrl } from '@/lib/file-storage'
 import Link from 'next/link'
 import { ImageCard } from './post/[slug]/ImageCard'
 
@@ -52,7 +53,7 @@ export default async function Page() {
           {list.map((item, i) => (
             <Link key={i} href={`/inspiration/post/${item.slug}`}>
               <ImageCard
-                src={`https://db.ogimage.org/assets/${item.image}`}
+                src={getFileUrl(item.image)}
                 alt={`OG Image for ${item.domain}`}
                 color={item.color[0]}
               />

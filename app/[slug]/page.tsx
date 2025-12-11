@@ -16,8 +16,14 @@ export async function generateMetadata({
     title: post.title,
     description: post.description,
     url: `/${post.slug}`,
-    publishedAt: post.createdAt,
-    updatedAt: post.updatedAt,
+    publishedAt:
+      post.createdAt instanceof Date
+        ? post.createdAt.toISOString()
+        : post.createdAt,
+    updatedAt:
+      post.updatedAt instanceof Date
+        ? post.updatedAt.toISOString()
+        : post.updatedAt,
   })
 }
 
@@ -48,10 +54,24 @@ const BlogTemplate = ({ post }: { post: Page }) => {
           </h1>
           <div className="flex items-center space-x-4">
             <time
-              dateTime={post.updatedAt || post.createdAt}
+              dateTime={
+                (post.updatedAt instanceof Date
+                  ? post.updatedAt.toISOString()
+                  : post.updatedAt) ||
+                (post.createdAt instanceof Date
+                  ? post.createdAt.toISOString()
+                  : post.createdAt)
+              }
               className="text-sm text-foreground/90 transition-colors hover:text-foreground"
             >
-              {formatDate(post.updatedAt || post.createdAt)}
+              {formatDate(
+                (post.updatedAt instanceof Date
+                  ? post.updatedAt.toISOString()
+                  : post.updatedAt) ||
+                  (post.createdAt instanceof Date
+                    ? post.createdAt.toISOString()
+                    : post.createdAt),
+              )}
             </time>
           </div>
         </div>
@@ -66,7 +86,9 @@ const BlogTemplate = ({ post }: { post: Page }) => {
                 'prose prose-zinc max-w-none transition-all dark:prose-invert prose-headings:relative prose-headings:scroll-mt-20  prose-headings:font-bold',
                 'px-5 pb-20 pt-4 md:px-10',
               )}
-              dangerouslySetInnerHTML={{ __html: post.content || post.block }}
+              dangerouslySetInnerHTML={{
+                __html: post.content || post.block || '',
+              }}
             />
           </div>
         </div>

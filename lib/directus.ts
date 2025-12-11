@@ -1,31 +1,15 @@
-import {
-  createDirectus,
-  readItem,
-  readItems,
-  rest,
-  staticToken,
-} from '@directus/sdk'
+import { prisma } from '@/lib/prisma'
 import { cache } from 'react'
-
-type GlobalSettings = {
-  title: string
-}
-
-interface Schema {
-  global: GlobalSettings[]
-  pages: Page[]
-  inspiration: Inspiration[]
-}
 
 export interface Page {
   id: number
   slug: string
-  content: string
-  block: string
+  content: string | null
+  block: string | null
   title: string
   description: string
-  createdAt: string
-  updatedAt: string
+  createdAt: string | Date
+  updatedAt: string | Date
 }
 
 export interface Inspiration {
@@ -39,39 +23,47 @@ export interface Inspiration {
   description: string
   image: string
   color: string[]
-  content?: string
+  content?: string | null
 }
-
-const directus = createDirectus<Schema>('https://db.ogimage.org')
-  .with(staticToken(process.env.DIRECTUS_TOKEN!))
-  .with(rest())
 
 export const getPages = cache(async function getPages() {
   'use cache'
-  return await directus.request(
-    readItems('pages', {
-      fields: ['slug', 'updatedAt'],
-    }),
-  )
+  try {
+    const pages = await prisma.page.findMany({
+      select: {
+        slug: true,
+        updatedAt: true,
+      },
+    })
+    return pages.map((page) => ({
+      slug: page.slug,
+      updatedAt: page.updatedAt.toISOString(),
+    }))
+  } catch (error) {
+    console.error('Error fetching pages:', error)
+    return []
+  }
 })
 
 export const getPost = cache(async function getPost(slug: string) {
   'use cache'
-  const posts = await directus.request(
-    readItems('pages', {
-      filter: {
-        slug: {
-          _eq: slug,
-        },
-      },
-      limit: 1,
-      fields: ['*'],
-    }),
-  )
-  if (posts.length === 0) {
+  try {
+    const post = await prisma.page.findUnique({
+      where: { slug },
+    })
+    if (!post) {
+      return null
+    }
+    // Convert Date objects to ISO strings for backward compatibility
+    return {
+      ...post,
+      createdAt: post.createdAt.toISOString(),
+      updatedAt: post.updatedAt.toISOString(),
+    } as Page
+  } catch (error) {
+    console.error('Error fetching post:', error)
     return null
   }
-  return posts[0]
 })
 
 export const getInspiration = cache(async function getInspiration(
@@ -79,45 +71,50 @@ export const getInspiration = cache(async function getInspiration(
 ) {
   'use cache'
   try {
-    return await directus.request(readItem('inspiration', slug))
+    const inspiration = await prisma.inspiration.findUnique({
+      where: { slug },
+    })
+    return inspiration
   } catch (error) {
+    console.error('Error fetching inspiration:', error)
     return null
   }
 })
 
 export const getLatestInspiration = cache(async function getLatestInspiration(
-  filter = {},
+  filter: Record<string, any> = {},
   limit = 500,
 ) {
   'use cache'
   try {
-    const inspirations = await directus.request(
-      readItems('inspiration', {
-        sort: ['-date_created'],
-        limit,
-        fields: ['*'],
-      }),
-    )
+    // Build Prisma where clause
+    const where: any = {}
 
-    if (filter && Object.keys(filter).length > 0) {
-      return inspirations.filter((inspiration) => {
-        return Object.keys(filter).every((key) => {
-          // array check
-          if (Array.isArray(inspiration[key])) {
-            return inspiration[key].some((item) => {
-              return item === filter[key]
-            })
-          }
-          return inspiration[key] === filter[key]
-        })
-      })
+    // Handle category filter (array contains)
+    if (filter.category) {
+      where.category = {
+        has: filter.category,
+      }
     }
 
-    if (inspirations.length === 0) {
-      return []
-    }
+    // Handle other filters
+    Object.keys(filter).forEach((key) => {
+      if (key !== 'category') {
+        where[key] = filter[key]
+      }
+    })
+
+    const inspirations = await prisma.inspiration.findMany({
+      where,
+      orderBy: {
+        date_created: 'desc',
+      },
+      take: limit,
+    })
+
     return inspirations
   } catch (error) {
+    console.error('Error fetching inspirations:', error)
     return []
   }
 })
@@ -147,16 +144,15 @@ export function getUniqueCategories(list: { category: string[] }[]) {
 export const getCategories = cache(async function getCategories() {
   'use cache'
   try {
-    const inspirations = await directus.request(
-      readItems('inspiration', {
-        fields: ['category'],
-      }),
-    )
+    const inspirations = await prisma.inspiration.findMany({
+      select: {
+        category: true,
+      },
+    })
     const categories = getUniqueCategories(inspirations)
     return categories
   } catch (error) {
+    console.error('Error fetching categories:', error)
     return []
   }
 })
-
-export default directus

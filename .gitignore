@@ -40,3 +40,10 @@ dist
 # cache files
 .eslintcache
 .prettiercache
+
+# migration data
+migration-data/
+temp-images/
+/generated/prisma
+
+.env

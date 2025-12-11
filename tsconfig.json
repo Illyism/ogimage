@@ -77,7 +77,6 @@
     "types/**/*.ts",
     "dist/types/**/*.ts",
     ".contentlayer/generated",
-    "node_modules/@directus/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [

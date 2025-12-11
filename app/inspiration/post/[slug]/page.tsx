@@ -3,6 +3,7 @@ import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { ArticleStructuredData } from '@/core/structured'
 import { Inspiration, getInspiration } from '@/lib/directus'
+import { getFileUrl } from '@/lib/file-storage'
 import { getRouteRel } from '@/lib/route-rel'
 import { cn } from '@/lib/utils'
 import { ExternalLinkIcon } from 'lucide-react'
@@ -29,7 +30,7 @@ export async function generateMetadata({
   return generatePageMeta({
     title: `${inspiration.name} - OG Image for ${inspiration.domain} - Open Graph Image Inspiration`,
     description: inspiration.description,
-    image: `https://db.ogimage.org/assets/${inspiration.image}`,
+    image: getFileUrl(inspiration.image),
     url: `/inspiration/post/${slug}`,
   })
 }
@@ -61,7 +62,7 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
         dateModified={inspiration.date_updated.toString()}
         authorName={'Ilias Ism'}
         authorId={'https://il.ly'}
-        imageUrl={`https://db.ogimage.org/assets/${inspiration.image}`}
+        imageUrl={getFileUrl(inspiration.image)}
       />
       <div className="pad mx-auto max-w-3xl py-4 lg:pb-16">
         <nav
@@ -110,7 +111,7 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
         </p>
 
         <ImageCard
-          src={`https://db.ogimage.org/assets/${inspiration.image}`}
+          src={getFileUrl(inspiration.image)}
           alt={`OG Image for ${inspiration.domain}`}
           color={inspiration.color[0]}
         />

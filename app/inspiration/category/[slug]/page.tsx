@@ -2,6 +2,7 @@ import { ImageCard } from '@/app/inspiration/post/[slug]/ImageCard'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { getLatestInspiration } from '@/lib/directus'
+import { getFileUrl } from '@/lib/file-storage'
 import Link from 'next/link'
 
 export const revalidate = 300 // 5 minutes
@@ -72,7 +73,7 @@ export default async function Page(props: {
           {list.map((item, i) => (
             <Link key={i} href={`/inspiration/post/${item.slug}`}>
               <ImageCard
-                src={`https://db.ogimage.org/assets/${item.image}`}
+                src={getFileUrl(item.image)}
                 alt={`OG Image for ${item.domain}`}
                 color={item.color[0]}
               />
