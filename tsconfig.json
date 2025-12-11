@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -12,7 +16,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "allowImportingTsExtensions": true,
     // linting
@@ -26,18 +30,42 @@
       }
     ],
     "paths": {
-      "@/app/*": ["app/*"],
-      "@/components/*": ["components/*"],
-      "@/content/*": ["content/*"],
-      "@/core/*": ["core/*"],
-      "@/lib/*": ["lib/*"],
-      "@/prompts/*": ["prompts/*"],
-      "@/pages/*": ["pages/*"],
-      "@/styles/*": ["styles/*"],
-      "@/images/*": ["images/*"],
-      "@/jobs/*": ["jobs/*"],
-      "~/*": ["public/*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
+      "@/app/*": [
+        "app/*"
+      ],
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/content/*": [
+        "content/*"
+      ],
+      "@/core/*": [
+        "core/*"
+      ],
+      "@/lib/*": [
+        "lib/*"
+      ],
+      "@/prompts/*": [
+        "prompts/*"
+      ],
+      "@/pages/*": [
+        "pages/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ],
+      "@/images/*": [
+        "images/*"
+      ],
+      "@/jobs/*": [
+        "jobs/*"
+      ],
+      "~/*": [
+        "public/*"
+      ],
+      "contentlayer/generated": [
+        "./.contentlayer/generated"
+      ]
     },
     "strictNullChecks": true
   },
@@ -49,7 +77,10 @@
     "types/**/*.ts",
     "dist/types/**/*.ts",
     ".contentlayer/generated",
-    "node_modules/@directus/types/**/*.ts"
+    "node_modules/@directus/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }
