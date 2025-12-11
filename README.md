@@ -1,32 +1,83 @@
-# Spotlight
+# OG Image Generator
 
-Spotlight is a [Tailwind UI](https://tailwindui.com) site template built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
+OG Image Generator built using [Tailwind CSS](https://tailwindcss.com) and [Next.js](https://nextjs.org).
 
 ## Getting started
 
-To get started with this template, first install the npm dependencies:
+To get started, first install the dependencies:
 
 ```bash
-npm install
+bun install
 ```
 
-Next, create a `.env.local` file in the root of your project and set the `NEXT_PUBLIC_SITE_URL` variable to your site's public URL:
-
-```
-NEXT_PUBLIC_SITE_URL=https://example.com
-```
-
-Next, run the development server:
+Next, create a `.env` file in the root of your project (see [Environment Variables](#environment-variables) section below):
 
 ```bash
-npm run dev
+cp .env.example .env
+```
+
+Then run the development server:
+
+```bash
+bun dev
 ```
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
 
-## Customizing
+## Docker Deployment
 
-You can start editing this template by modifying the files in the `/src` folder. The site will auto-update as you edit these files.
+To build and run with Docker:
+
+```bash
+# Build the image
+docker build -t ogimage .
+
+# Run the container
+docker run -p 3000:3000 --env-file .env ogimage
+
+# Or use docker-compose
+docker-compose up -d
+```
+
+## Environment Variables
+
+### Required Variables
+
+#### Database
+- `DATABASE_URL` - PostgreSQL connection string
+
+#### S3 Storage (Hetzner Object Storage)
+- `S3_ENDPOINT` - S3 endpoint URL (e.g., `https://fsn1.your-objectstorage.com`)
+- `S3_REGION` - S3 region (e.g., `fsn1`)
+- `S3_BUCKET` - S3 bucket name
+- `S3_ACCESS_KEY_ID` - S3 access key ID
+- `S3_SECRET_ACCESS_KEY` - S3 secret access key
+
+#### PostHog Analytics
+- `NEXT_PUBLIC_POSTHOG_KEY` - PostHog project API key
+- `NEXT_PUBLIC_POSTHOG_HOST` - PostHog host URL
+
+#### LemonSqueezy (Payment Processing)
+- `LMSQUEEZY` - LemonSqueezy API key
+- `LMSQUEEZY_SECRET` - LemonSqueezy webhook secret for signature verification
+- `LMSQUEEZY_ENV` - Environment (`development` or `production`)
+
+#### Resend (Email)
+- `RESEND_API_KEY` - Resend API key for sending emails
+
+#### Anthropic (AI)
+- `ANTHROPIC_API_KEY` - Anthropic API key for AI features
+
+### Optional Variables
+
+#### GitHub Integration
+- `GITHUB_TOKEN` - GitHub personal access token (used for webhook integrations)
+
+#### App URLs (for local development)
+- `NEXT_PUBLIC_APP_URL` - Base URL of the application (defaults to `http://localhost:3000`)
+- `NEXT_PUBLIC_VERCEL_ENV` - Vercel environment (`development`, `preview`, or `production`)
+- `NEXT_PUBLIC_VERCEL_URL` - Vercel preview URL (for preview deployments)
+- `NGROK_URL` - ngrok URL for local webhook testing (optional)
 
 ## License
 
