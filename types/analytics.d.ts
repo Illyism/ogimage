@@ -17,7 +17,7 @@ interface Posthog {
   }
   isFeatureEnabled: (featureName: string) => boolean
   onFeatureFlags: (
-    callback: (featureFlags: Record<string, any>) => void
+    callback: (featureFlags: Record<string, any>) => void,
   ) => void
 }
 
@@ -26,45 +26,45 @@ interface Fbq {
   (
     command: 'trackCustom',
     eventName: string,
-    parameters?: Record<string, any>
+    parameters?: Record<string, any>,
   ): void
   (
     command: 'init',
     pixelId: string,
     advancedMatching?: Record<string, any>,
-    options?: Record<string, any>
+    options?: Record<string, any>,
   ): void
   (command: 'set', name: string, value: any): void
   (
     command: 'setAutoConfig',
     enabled: boolean,
-    options?: Record<string, any>
+    options?: Record<string, any>,
   ): void
   (command: 'setCustomParameters', parameters: Record<string, any>): void
   (command: 'setUserId', userId: string): void
   (
     command: 'trackSingleCustom',
     eventName: string,
-    customData?: Record<string, any>
-  ): void
-  (
-    command: 'trackSingleCustom',
-    eventName: string,
     customData?: Record<string, any>,
-    options?: Record<string, any>
   ): void
   (
     command: 'trackSingleCustom',
     eventName: string,
     customData?: Record<string, any>,
     options?: Record<string, any>,
-    callback?: () => void
   ): void
   (
     command: 'trackSingleCustom',
     eventName: string,
     customData?: Record<string, any>,
-    callback?: () => void
+    options?: Record<string, any>,
+    callback?: () => void,
+  ): void
+  (
+    command: 'trackSingleCustom',
+    eventName: string,
+    customData?: Record<string, any>,
+    callback?: () => void,
   ): void
 }
 

@@ -23,14 +23,16 @@ export async function generateMetadata({
   })
 }
 
-export default async function Page(props: { params: Promise<{ slug: string }> }) {
-  const params = await props.params;
+export default async function Page(props: {
+  params: Promise<{ slug: string }>
+}) {
+  const params = await props.params
   const tag = params.slug
   const list = await getLatestInspiration({
     category: tag,
   })
   return (
-    (<PageLayout>
+    <PageLayout>
       <div className="pad py-4 lg:py-16">
         <h1 className="mb-2 text-2xl font-bold sm:text-3xl">
           The Best OG Images in {tag.replace(/-/g, ' ')}
@@ -84,6 +86,6 @@ export default async function Page(props: { params: Promise<{ slug: string }> })
           ))}
         </div>
       </div>
-    </PageLayout>)
-  );
+    </PageLayout>
+  )
 }

@@ -74,7 +74,9 @@ export const getPost = cache(async function getPost(slug: string) {
   return posts[0]
 })
 
-export const getInspiration = cache(async function getInspiration(slug: string) {
+export const getInspiration = cache(async function getInspiration(
+  slug: string,
+) {
   'use cache'
   try {
     return await directus.request(readItem('inspiration', slug))
@@ -83,7 +85,10 @@ export const getInspiration = cache(async function getInspiration(slug: string) 
   }
 })
 
-export const getLatestInspiration = cache(async function getLatestInspiration(filter = {}, limit = 500) {
+export const getLatestInspiration = cache(async function getLatestInspiration(
+  filter = {},
+  limit = 500,
+) {
   'use cache'
   try {
     const inspirations = await directus.request(

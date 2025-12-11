@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
+    "format": "biome format --write",
     "lint": "eslint ."
   },
   "browserslist": "defaults, not ie <= 11",

@@ -6,8 +6,6 @@ import { ipAddress } from '@vercel/edge'
 import { getToken } from 'next-auth/jwt'
 import { NextRequest } from 'next/server'
 
-export const runtime = 'edge'
-
 export const GET = async (req: NextRequest) => {
   const url = req.nextUrl.searchParams.get('url')
   if (!url || !isValidUrl(url)) {

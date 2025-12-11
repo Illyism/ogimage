@@ -34,8 +34,10 @@ export async function generateMetadata({
   })
 }
 
-export default async function Page(props: { params: Promise<{ slug: string }> }) {
-  const params = await props.params;
+export default async function Page(props: {
+  params: Promise<{ slug: string }>
+}) {
+  const params = await props.params
   // if slug contains www, redirect to non-www
   if (params.slug.includes('www.')) {
     return redirect(`/inspiration/post/${params.slug.replace('www.', '')}`)

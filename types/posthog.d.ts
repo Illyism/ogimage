@@ -4,7 +4,7 @@ export declare global {
       capture: (eventName: string, properties?: Record<string, unknown>) => void
       identify: (
         distinctId: string,
-        properties?: Record<string, unknown>
+        properties?: Record<string, unknown>,
       ) => void
     }
   }

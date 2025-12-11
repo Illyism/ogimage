@@ -2,8 +2,6 @@
 import { ImageResponse } from 'next/og'
 import type { NextRequest } from 'next/server'
 
-export const runtime = 'edge'
-
 /**
  * @name Screenshot Template
  * @description Take a screenshot of a page on your website

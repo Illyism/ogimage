@@ -64,7 +64,10 @@ export function DomainRunDetails({ eventId }: { eventId: string }) {
             <h2>{data.output.name}</h2>
             <a href={data.output.URL}>{data.output.domain}</a>
             <p>{data.output.description}</p>
-            <img src={`https://db.ogimage.org/assets/${data.output.image}`} alt={data.output.name} />
+            <img
+              src={`https://db.ogimage.org/assets/${data.output.image}`}
+              alt={data.output.name}
+            />
           </div>
         )}
         {(data?.status === 'SUCCESS' || data?.status === 'FAILURE') && (

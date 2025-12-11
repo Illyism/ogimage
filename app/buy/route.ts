@@ -13,11 +13,11 @@ export async function GET(request: Request) {
   const distinct_id = getPosthogId()
 
   const storeId = 70232 // magicspace
-  
+
   // Get plan from URL search params
   const { searchParams } = new URL(request.url)
   const plan = searchParams.get('plan') || 'essential'
-  
+
   // Set variant ID based on plan
   let variantId: number
   if (plan === 'pro') {

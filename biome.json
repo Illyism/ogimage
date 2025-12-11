@@ -8,15 +8,11 @@
     "lineEnding": "lf",
     "lineWidth": 80,
     "attributePosition": "auto",
-    "ignore": [
-      ".next"
-    ]
+    "ignore": [".next"]
   },
   "organizeImports": {
     "enabled": true,
-    "ignore": [
-      ".next"
-    ]
+    "ignore": [".next"]
   },
   "linter": {
     "enabled": true,
@@ -45,9 +41,7 @@
         "noForEach": "off"
       }
     },
-    "ignore": [
-      ".next"
-    ]
+    "ignore": [".next"]
   },
   "javascript": {
     "formatter": {

@@ -1,8 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { ImageResponse } from 'next/og'
 
-export const runtime = 'edge'
-
 /**
  * @name Oscar Stories Blog Post Template
  * @description A template for a blog post with a screenshot of the Oscar Stories website

@@ -1,8 +1,8 @@
-import { headers, type UnsafeUnwrappedHeaders } from 'next/headers';
+import { headers, type UnsafeUnwrappedHeaders } from 'next/headers'
 import { emojis } from './emoji'
 
 export const useCountry = () => {
-  const headersList = (headers() as unknown as UnsafeUnwrappedHeaders)
+  const headersList = headers() as unknown as UnsafeUnwrappedHeaders
   const _country =
     headersList.get('cf-ipcountry') ??
     headersList.get('x-vercel-ip-country') ??

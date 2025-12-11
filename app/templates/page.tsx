@@ -3,7 +3,6 @@ import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { TemplatePreview } from '../og/components/TemplatePreview'
 
-export const runtime = 'edge'
 export const revalidate = 14400 // 4 hours
 
 export const metadata = generatePageMeta({

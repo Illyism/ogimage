@@ -4,7 +4,6 @@ import { generatePageMeta } from '@/core/seo'
 import Image from 'next/image'
 import { Customers } from './Customers'
 
-export const runtime = 'edge'
 export const revalidate = 14400 // 4 hours
 
 export const metadata = generatePageMeta({

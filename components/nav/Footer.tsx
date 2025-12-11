@@ -150,20 +150,20 @@ export const Footer = () => {
                 Buy now
               </Link>
             </Button>
-              <div className="flex items-center gap-0.5">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    fill="currentColor"
-                    className="text-yellow-500 transition hover:scale-125 hover:text-yellow-400"
-                  />
-                ))}
-              </div>
+            <div className="flex items-center gap-0.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <Star
+                  key={i}
+                  size={16}
+                  fill="currentColor"
+                  className="text-yellow-500 transition hover:scale-125 hover:text-yellow-400"
+                />
+              ))}
+            </div>
           </div>
 
           <div className="flex flex-col items-center gap-2 text-sm font-bold sm:flex-row">
-            &copy; {new Date().getFullYear()}{' '}MagicSpace SEO
+            &copy; {new Date().getFullYear()} MagicSpace SEO
           </div>
         </div>
       </div>

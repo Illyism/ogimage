@@ -209,7 +209,10 @@ const Hero = () => {
             <a href="/buy?plan=essential" className="flex">
               <span className="hidden sm:inline">PURCHASE TODAY</span>
               <span className="sm:hidden">Buy now</span>
-              &emsp;<b className="-my-1 ml-2 text-lg font-black">${ESSENTIAL_PRICE}</b>
+              &emsp;
+              <b className="-my-1 ml-2 text-lg font-black">
+                ${ESSENTIAL_PRICE}
+              </b>
             </a>
           </Button>
         </div>
@@ -248,15 +251,8 @@ const Pricing = () => {
         <PricingCard
           title="Essential"
           price={`$${ESSENTIAL_PRICE}`}
-          features={[
-            'Source code',
-            'Unlimited custom images',
-            'All templates',
-          ]}
-          disabled={[
-            '1 year updates',
-            'Only GitHub support',
-          ]}
+          features={['Source code', 'Unlimited custom images', 'All templates']}
+          disabled={['1 year updates', 'Only GitHub support']}
         />
         <PricingCard
           popular
@@ -271,7 +267,6 @@ const Pricing = () => {
           ]}
         />
       </div>
-
     </div>
   )
 }
@@ -424,7 +419,8 @@ const FinalCallToAction = () => {
           <a href="/buy?plan=essential" className="flex">
             <span className="hidden sm:inline">PURCHASE TODAY</span>
             <span className="sm:hidden">Buy now</span>
-            &emsp;<b className="-my-1 ml-2 text-lg font-black">${ESSENTIAL_PRICE}</b>
+            &emsp;
+            <b className="-my-1 ml-2 text-lg font-black">${ESSENTIAL_PRICE}</b>
           </a>
         </Button>
 

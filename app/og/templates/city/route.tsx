@@ -3,8 +3,6 @@
 import { headers } from 'next/headers'
 import { ImageResponse } from 'next/og'
 
-export const runtime = 'edge'
-
 /**
  * @name City Template
  * @description GeoIP with Unsplash
@@ -25,23 +23,21 @@ export async function GET() {
   const decodedCity = decodeURIComponent(city)
 
   return new ImageResponse(
-    (
-      <div
-        tw="flex flex-col items-center justify-center w-full h-full p-[40px]"
-        style={{
-          backgroundImage: `url(${img})`,
-          backgroundSize: '100% 100%',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div tw="text-[64px] bg-blue-500 px-2 text-white rounded-2xl mb-2">
-          WODILY
-        </div>
-        <div tw="bg-[#ffd400] flex rounded-full px-12 py-4 text-[40px] text-black shadow-2xl border-[10px] border-purple-400/70">
-          Find CrossFit Gyms in {decodedCity}
-        </div>
+    <div
+      tw="flex flex-col items-center justify-center w-full h-full p-[40px]"
+      style={{
+        backgroundImage: `url(${img})`,
+        backgroundSize: '100% 100%',
+        backgroundPosition: 'center',
+      }}
+    >
+      <div tw="text-[64px] bg-blue-500 px-2 text-white rounded-2xl mb-2">
+        WODILY
       </div>
-    ),
+      <div tw="bg-[#ffd400] flex rounded-full px-12 py-4 text-[40px] text-black shadow-2xl border-[10px] border-purple-400/70">
+        Find CrossFit Gyms in {decodedCity}
+      </div>
+    </div>,
     {
       width: 1200,
       height: 630,
