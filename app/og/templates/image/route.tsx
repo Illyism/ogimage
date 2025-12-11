@@ -7,10 +7,6 @@ import { ImageResponse } from 'next/og'
  * @description A simple template with an image and text
  */
 export async function GET() {
-  const Satoshi = await fetch(
-    new URL('@/styles/Satoshi-Black.ttf', import.meta.url),
-  ).then((res) => res.arrayBuffer())
-
   return new ImageResponse(
     <div tw="flex items-center justify-center w-full h-full bg-gray-900">
       <img
@@ -31,12 +27,6 @@ export async function GET() {
       headers: {
         'Cache-Control': 'public, max-age=3600, immutable',
       },
-      fonts: [
-        {
-          name: 'Satoshi',
-          data: Satoshi,
-        },
-      ],
     },
   )
 }

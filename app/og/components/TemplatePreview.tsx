@@ -50,7 +50,7 @@ export const TemplatePreview = () => {
     <div className="grid grid-cols-1 gap-4 pb-24 pt-16 md:grid-cols-3">
       <div className="relative">
         <div className="pad top-32 w-full">
-          <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+          <h2 className="text-3xl font-bold leading-normal tracking-[-0.015em]">
             OG Image Templates
           </h2>
           <p className="mx-auto mb-2 max-w-[750px] text-balance text-lg text-muted-foreground">
@@ -217,12 +217,12 @@ const TemplateCard = (props: any) => {
 const SimplePreview = ({ title, description, image }: any) => {
   const [loaded, setLoaded] = useState(false)
   return (
-    <div className="relative max-w-md rounded-lg border-2 border-border bg-card p-4 text-left shadow">
+    <div className="relative max-w-md rounded-lg border-2 border-border bg-card p-4 text-left shadow-sm">
       <img
         src={image}
         alt={title}
         className={cn(
-          'aspect-[1200/630] rounded-lg bg-black object-cover transition duration-500 dark:bg-gray-800',
+          'aspect-1200/630 rounded-lg bg-black object-cover transition duration-500 dark:bg-gray-800',
           !loaded && 'animate-pulse',
         )}
         onLoad={() => setLoaded(true)}
@@ -269,7 +269,7 @@ const TwitterPreview = ({ title, description, image }: any) => {
             src={image}
             alt={title}
             className={cn(
-              'aspect-[1200/630] max-w-full rounded-2xl bg-black object-cover transition duration-500 dark:bg-gray-800',
+              'aspect-1200/630 max-w-full rounded-2xl bg-black object-cover transition duration-500 dark:bg-gray-800',
               !loaded && 'animate-pulse',
             )}
             onLoad={() => setLoaded(true)}
@@ -330,7 +330,7 @@ const LinkedInPreview = ({ title, description, image }: any) => {
         src={image}
         alt={title}
         className={cn(
-          'aspect-[555/312] overflow-hidden bg-black object-cover transition duration-500 dark:bg-gray-800',
+          'aspect-555/312 overflow-hidden bg-black object-cover transition duration-500 dark:bg-gray-800',
           !loaded && 'animate-pulse',
         )}
         width={555}
@@ -365,7 +365,7 @@ const SourcePreview = ({ title, description, image }: any) => {
       <h3 className="text-sm font-bold">{title}</h3>
       <p className="mb-2 text-xs text-muted-foreground">{description}</p>
       <pre className="relative h-48 overflow-hidden whitespace-pre-wrap rounded-2xl border-2 border-border bg-gray-50 p-4 text-xs dark:bg-gray-950">
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-2xl bg-gradient-to-b from-white/30 via-white/90 to-white text-center font-sans text-lg font-medium transition dark:from-black/30 dark:via-black/90 dark:to-black">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-2xl bg-linear-to-b from-white/30 via-white/90 to-white text-center font-sans text-lg font-medium transition dark:from-black/30 dark:via-black/90 dark:to-black">
           Purchase the kit to get the full source code
           <Button asChild>
             <Link href="/buy">

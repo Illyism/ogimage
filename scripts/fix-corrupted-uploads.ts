@@ -16,7 +16,11 @@ async function isTarArchive(filePath: string): Promise<boolean> {
     // or if first bytes are ASCII (filename)
     const firstBytes = buffer.slice(0, 20).toString('ascii')
     // If it starts with a UUID-like pattern, it's likely a tar archive
-    if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(firstBytes)) {
+    if (
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(
+        firstBytes,
+      )
+    ) {
       return true
     }
     // Check for JPEG signature
@@ -40,7 +44,9 @@ async function extractFromTar(tarPath: string): Promise<Buffer | null> {
 
     // Find extracted file (should have same name)
     const files = await readdir(tempDir)
-    const extractedFile = files.find((f) => f.endsWith('.jpeg') || f.endsWith('.jpg'))
+    const extractedFile = files.find(
+      (f) => f.endsWith('.jpeg') || f.endsWith('.jpg'),
+    )
 
     if (!extractedFile) {
       console.log(`   ⚠️  No JPEG found in tar archive`)
@@ -89,7 +95,9 @@ async function fixFile(filePath: string): Promise<boolean> {
       return false
     }
 
-    console.log(`   ✅ Extracted JPEG: ${(jpegBuffer.length / 1024).toFixed(2)} KB`)
+    console.log(
+      `   ✅ Extracted JPEG: ${(jpegBuffer.length / 1024).toFixed(2)} KB`,
+    )
 
     // Create Blob and re-upload to S3
     const blob = new Blob([jpegBuffer], { type: 'image/jpeg' })

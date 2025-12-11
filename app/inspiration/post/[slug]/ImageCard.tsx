@@ -29,7 +29,7 @@ export const ImageCard = ({
         alt={alt}
         width={1200}
         height={630}
-        className="aspect-[1200/630] rounded-lg object-cover"
+        className="aspect-1200/630 rounded-lg object-cover"
         itemProp="image"
         itemScope
         loading="lazy"

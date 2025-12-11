@@ -44,9 +44,11 @@ docker-compose up -d
 ### Required Variables
 
 #### Database
+
 - `DATABASE_URL` - PostgreSQL connection string
 
 #### S3 Storage (Hetzner Object Storage)
+
 - `S3_ENDPOINT` - S3 endpoint URL (e.g., `https://fsn1.your-objectstorage.com`)
 - `S3_REGION` - S3 region (e.g., `fsn1`)
 - `S3_BUCKET` - S3 bucket name
@@ -54,26 +56,32 @@ docker-compose up -d
 - `S3_SECRET_ACCESS_KEY` - S3 secret access key
 
 #### PostHog Analytics
+
 - `NEXT_PUBLIC_POSTHOG_KEY` - PostHog project API key
 - `NEXT_PUBLIC_POSTHOG_HOST` - PostHog host URL
 
 #### LemonSqueezy (Payment Processing)
+
 - `LMSQUEEZY` - LemonSqueezy API key
 - `LMSQUEEZY_SECRET` - LemonSqueezy webhook secret for signature verification
 - `LMSQUEEZY_ENV` - Environment (`development` or `production`)
 
 #### Resend (Email)
+
 - `RESEND_API_KEY` - Resend API key for sending emails
 
 #### Anthropic (AI)
+
 - `ANTHROPIC_API_KEY` - Anthropic API key for AI features
 
 ### Optional Variables
 
 #### App URL
+
 - `NEXT_PUBLIC_APP_URL` - Base URL of the application (defaults to `https://ogimage.org`)
 
 #### GitHub Integration
+
 - `GITHUB_TOKEN` - GitHub personal access token (used for webhook integrations)
 
 ## License

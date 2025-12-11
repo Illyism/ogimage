@@ -64,7 +64,7 @@ export function getS3Hostname(): string | null {
   try {
     const endpoint = process.env.S3_ENDPOINT
     if (!endpoint) return null
-    
+
     // Extract hostname from endpoint
     if (endpoint.includes('://')) {
       const url = new URL(endpoint)

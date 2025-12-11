@@ -33,7 +33,7 @@ export const LinkToGeneratorForm = () => {
         value={website}
         onChange={(e) => setWebsite(e.target.value)}
         placeholder="https://yourwebsite.com"
-        className="block w-full min-w-0 flex-1 rounded-full border border-gray-300 px-4 py-2 text-base text-gray-900 placeholder-gray-500 focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 sm:text-sm"
+        className="block w-full min-w-0 flex-1 rounded-full border border-gray-300 px-4 py-2 text-base text-gray-900 placeholder-gray-500 focus:border-violet-500 focus:outline-hidden focus:ring-2 focus:ring-violet-500 focus:ring-offset-2 sm:text-sm"
       />
       <button
         type="submit"

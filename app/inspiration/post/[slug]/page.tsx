@@ -131,7 +131,7 @@ const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
               {inspiration.color.map((c) => (
                 <div
                   key={c}
-                  className="h-5 w-5 rounded-full border-2 border-gray-100 hover:border-gray-50 hover:shadow-sm"
+                  className="h-5 w-5 rounded-full border-2 border-gray-100 hover:border-gray-50 hover:shadow-xs"
                   style={{ backgroundColor: c }}
                   title={c}
                 ></div>

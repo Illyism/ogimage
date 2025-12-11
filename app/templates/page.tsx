@@ -15,7 +15,7 @@ export const metadata = generatePageMeta({
 export default function Templates() {
   return (
     <PageLayout>
-      <div className="mx-auto md:max-w-3xl lg:px-0 xl:max-w-[68rem]">
+      <div className="mx-auto md:max-w-3xl lg:px-0 xl:max-w-272">
         <header className="relative border-b border-border py-8">
           <h1 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
             Open Graph Image Templates For Every Website

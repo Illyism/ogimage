@@ -26,12 +26,12 @@ export async function GET() {
         <div tw="text-[60px] leading-none font-black flex items-center mb-4">
           W<div tw="-ml-1 text-[40px]">IKIPEDI</div>A
         </div>
-        <div tw="bg-black text-white rounded-full px-4 pt-4 text-[30px] shadow-2xl leading-none border-[10px] border-white/20 shadow-2xl">
+        <div tw="bg-black text-white rounded-full px-4 pt-4 text-[30px] shadow-2xl leading-none border-10 border-white/20 shadow-2xl">
           Read More
         </div>
       </div>
       <img
-        tw="absolute right-0 top-[10px] bottom-0 border-l-[20px] border-t-[20px] border-black rounded-tl-[40px]"
+        tw="absolute right-0 top-[10px] bottom-0 border-l-20 border-t-20 border-black rounded-tl-[40px]"
         style={{
           boxShadow: '0 0 100px 4px rgba(0, 0, 0, 0.8)',
         }}

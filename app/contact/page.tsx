@@ -28,9 +28,9 @@ export default function Page() {
           </div>
 
           <div className="my-8 flex items-center">
-            <hr className="flex-grow border-t border-border" />
+            <hr className="grow border-t border-border" />
             <span className="px-2 text-foreground/20">or</span>
-            <hr className="flex-grow border-t border-border" />
+            <hr className="grow border-t border-border" />
           </div>
 
           <div className="grid grid-cols-1 items-center justify-center gap-2 sm:grid-cols-2">
@@ -39,7 +39,7 @@ export default function Page() {
               Send us an email at{' '}
               <Link
                 href="mailto:contact@ogimage.org"
-                className="mt-4 flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-lg border border-primary bg-primary px-4 py-2 text-sm font-bold text-primary-foreground shadow-md outline outline-1 outline-offset-[-2px] outline-primary-foreground/30 transition-all duration-150 ease-in-out hover:bg-primary/90 hover:shadow-lg"
+                className="mt-4 flex w-full cursor-pointer items-center justify-center gap-2 overflow-hidden whitespace-nowrap rounded-lg border border-primary bg-primary px-4 py-2 text-sm font-bold text-primary-foreground shadow-md outline-solid outline-1 -outline-offset-2 outline-primary-foreground/30 transition-all duration-150 ease-in-out hover:bg-primary/90 hover:shadow-lg"
               >
                 <Mail className="h-4 w-4" />
                 contact@ogimage.org

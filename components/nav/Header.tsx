@@ -71,7 +71,7 @@ export function Header() {
           </span>
         </li>
       </ul>
-      <header className="pad sticky top-0 z-50 flex w-full items-center justify-between bg-background/95 py-1 text-sm backdrop-blur-lg supports-[backdrop-filter]:bg-background/90">
+      <header className="pad sticky top-0 z-50 flex w-full items-center justify-between bg-background/95 py-1 text-sm backdrop-blur-lg supports-backdrop-filter:bg-background/90">
         <div className="flex items-center space-x-4">
           <Link
             href="/"
@@ -91,7 +91,10 @@ export function Header() {
         </div>
         <div className="flex items-center justify-end space-x-4">
           <TooltipProvider delayDuration={0}>
-            <Tooltip open={isMounted ? tooltipOpen : false} onOpenChange={setTooltipOpen}>
+            <Tooltip
+              open={isMounted ? tooltipOpen : false}
+              onOpenChange={setTooltipOpen}
+            >
               <TooltipTrigger>
                 <Button asChild size="rounded">
                   <Link href="/buy">Buy now</Link>

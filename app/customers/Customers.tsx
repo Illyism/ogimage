@@ -270,7 +270,7 @@ const TwitterPreview = ({ title, description, image }: any) => {
             src={image}
             alt={title}
             className={cn(
-              'aspect-[1200/630] max-w-full rounded-2xl bg-black object-cover transition duration-500 dark:bg-gray-800',
+              'aspect-1200/630 max-w-full rounded-2xl bg-black object-cover transition duration-500 dark:bg-gray-800',
             )}
             width={490}
             height={275}

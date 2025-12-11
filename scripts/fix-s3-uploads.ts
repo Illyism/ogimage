@@ -5,7 +5,11 @@
 
 import { prisma } from '@/lib/prisma'
 import { uploadFile, getFileUrl } from '@/lib/file-storage'
-import { S3Client, GetObjectCommand, ListObjectsV2Command } from '@aws-sdk/client-s3'
+import {
+  S3Client,
+  GetObjectCommand,
+  ListObjectsV2Command,
+} from '@aws-sdk/client-s3'
 import { readFileSync } from 'fs'
 
 // S3 Configuration
@@ -44,13 +48,20 @@ async function isTarArchive(buffer: Buffer): Promise<boolean> {
   }
   // Check if starts with UUID-like pattern (tar archive)
   const firstBytes = buffer.slice(0, 50).toString('ascii')
-  if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(firstBytes)) {
+  if (
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(
+      firstBytes,
+    )
+  ) {
     return true
   }
   return false
 }
 
-async function extractFromTarBuffer(tarBuffer: Buffer, fileId: string): Promise<Buffer | null> {
+async function extractFromTarBuffer(
+  tarBuffer: Buffer,
+  fileId: string,
+): Promise<Buffer | null> {
   let tempDir: string | null = null
   try {
     const { execSync } = await import('child_process')
@@ -69,7 +80,7 @@ async function extractFromTarBuffer(tarBuffer: Buffer, fileId: string): Promise<
 
     // Extract with timeout
     try {
-      execSync(`tar -xf "${tempTar}" -C "${tempDir}"`, { 
+      execSync(`tar -xf "${tempTar}" -C "${tempDir}"`, {
         stdio: 'pipe',
         timeout: 10000, // 10 second timeout
       })
@@ -92,7 +103,11 @@ async function extractFromTarBuffer(tarBuffer: Buffer, fileId: string): Promise<
     const jpegBuffer = readFileSync(extractedPath)
 
     // Verify JPEG
-    if (jpegBuffer[0] === 0xff && jpegBuffer[1] === 0xd8 && jpegBuffer[2] === 0xff) {
+    if (
+      jpegBuffer[0] === 0xff &&
+      jpegBuffer[1] === 0xd8 &&
+      jpegBuffer[2] === 0xff
+    ) {
       return jpegBuffer
     }
 
@@ -112,7 +127,10 @@ async function extractFromTarBuffer(tarBuffer: Buffer, fileId: string): Promise<
   }
 }
 
-async function checkAndFixS3File(s3Key: string, debug = false): Promise<boolean> {
+async function checkAndFixS3File(
+  s3Key: string,
+  debug = false,
+): Promise<boolean> {
   try {
     // Download file from S3
     const command = new GetObjectCommand({
@@ -137,7 +155,12 @@ async function checkAndFixS3File(s3Key: string, debug = false): Promise<boolean>
       console.log(`\n   📸 ${s3Key}:`)
       console.log(`      Size: ${(buffer.length / 1024).toFixed(2)} KB`)
       console.log(`      First bytes: ${buffer.slice(0, 20).toString('hex')}`)
-      console.log(`      First ASCII: ${buffer.slice(0, 50).toString('ascii').replace(/[^\x20-\x7E]/g, '.')}`)
+      console.log(
+        `      First ASCII: ${buffer
+          .slice(0, 50)
+          .toString('ascii')
+          .replace(/[^\x20-\x7E]/g, '.')}`,
+      )
     }
 
     // Check if corrupted - need to check more thoroughly
@@ -155,9 +178,10 @@ async function checkAndFixS3File(s3Key: string, debug = false): Promise<boolean>
 
     // Second check: Does it look like a tar archive (starts with filename)?
     const firstBytes = buffer.slice(0, 50).toString('ascii', 0, 50)
-    const looksLikeTar = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(
-      firstBytes,
-    )
+    const looksLikeTar =
+      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i.test(
+        firstBytes,
+      )
 
     if (debug) {
       console.log(`      Looks like tar: ${looksLikeTar}`)
@@ -172,14 +196,21 @@ async function checkAndFixS3File(s3Key: string, debug = false): Promise<boolean>
     if (debug) console.log(`      🔧 Extracting from tar...`)
 
     // Extract JPEG from tar
-    const fileId = s3Key.split('/').pop()?.replace(/\.(jpeg|jpg)$/, '') || 'unknown'
+    const fileId =
+      s3Key
+        .split('/')
+        .pop()
+        ?.replace(/\.(jpeg|jpg)$/, '') || 'unknown'
     const jpegBuffer = await extractFromTarBuffer(buffer, fileId)
     if (!jpegBuffer) {
       if (debug) console.log(`      ❌ Failed to extract`)
       return false
     }
 
-    if (debug) console.log(`      ✅ Extracted: ${(jpegBuffer.length / 1024).toFixed(2)} KB`)
+    if (debug)
+      console.log(
+        `      ✅ Extracted: ${(jpegBuffer.length / 1024).toFixed(2)} KB`,
+      )
 
     // Re-upload
     const blob = new Blob([jpegBuffer], { type: 'image/jpeg' })
@@ -194,18 +225,23 @@ async function checkAndFixS3File(s3Key: string, debug = false): Promise<boolean>
   }
 }
 
-async function processBatch(files: string[], batchNum: number, totalBatches: number, debugFirst = false) {
+async function processBatch(
+  files: string[],
+  batchNum: number,
+  totalBatches: number,
+  debugFirst = false,
+) {
   const results = await Promise.allSettled(
     files.map(async (key, index) => {
       try {
         // Debug first file of first batch
         const shouldDebug = debugFirst && batchNum === 1 && index === 0
-        
+
         // Add timeout to prevent hanging
         const timeoutPromise = new Promise<boolean>((_, reject) => {
           setTimeout(() => reject(new Error('Timeout after 30s')), 30000)
         })
-        
+
         const workPromise = checkAndFixS3File(key, shouldDebug)
         return await Promise.race([workPromise, timeoutPromise])
       } catch (error: any) {
@@ -219,9 +255,15 @@ async function processBatch(files: string[], batchNum: number, totalBatches: num
     }),
   )
 
-  const fixed = results.filter((r) => r.status === 'fulfilled' && r.value === true).length
-  const skipped = results.filter((r) => r.status === 'fulfilled' && r.value === false).length
-  const failed = results.filter((r) => r.status === 'rejected' || r.value === null).length
+  const fixed = results.filter(
+    (r) => r.status === 'fulfilled' && r.value === true,
+  ).length
+  const skipped = results.filter(
+    (r) => r.status === 'fulfilled' && r.value === false,
+  ).length
+  const failed = results.filter(
+    (r) => r.status === 'rejected' || r.value === null,
+  ).length
 
   console.log(
     `📦 Batch ${batchNum}/${totalBatches} complete: ✅ ${fixed} fixed, ⏭️  ${skipped} skipped, ❌ ${failed} failed`,
@@ -262,7 +304,7 @@ async function main() {
     // Check a sample from each batch to see if any are corrupted
     let sampleChecked = 0
     let sampleCorrupted = 0
-    
+
     for (let i = 0; i < batches.length; i++) {
       const batch = batches[i]
       // Check first file of each batch for debugging
@@ -274,15 +316,17 @@ async function main() {
           sampleCorrupted++
         }
       }
-      
+
       const result = await processBatch(batch, i + 1, totalBatches, false)
       totalFixed += result.fixed
       totalSkipped += result.skipped
       totalFailed += result.failed
     }
-    
+
     if (sampleChecked > 0) {
-      console.log(`\n🔍 Sample check: ${sampleCorrupted}/${sampleChecked} files were corrupted`)
+      console.log(
+        `\n🔍 Sample check: ${sampleCorrupted}/${sampleChecked} files were corrupted`,
+      )
     }
 
     console.log(`\n\n📊 Final Summary:`)

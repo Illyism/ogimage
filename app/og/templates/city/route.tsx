@@ -14,10 +14,6 @@ export async function GET() {
     headersList.get('x-vercel-ip-city') ?? // Vercel (fallback)
     'New York'
 
-  const Satoshi = await fetch(
-    new URL('@/styles/Satoshi-Black.ttf', import.meta.url),
-  ).then((res) => res.arrayBuffer())
-
   const img = await getCityPicture(city)
 
   const decodedCity = decodeURIComponent(city)
@@ -34,7 +30,7 @@ export async function GET() {
       <div tw="text-[64px] bg-blue-500 px-2 text-white rounded-2xl mb-2">
         WODILY
       </div>
-      <div tw="bg-[#ffd400] flex rounded-full px-12 py-4 text-[40px] text-black shadow-2xl border-[10px] border-purple-400/70">
+      <div tw="bg-[#ffd400] flex rounded-full px-12 py-4 text-[40px] text-black shadow-2xl border-10 border-purple-400/70">
         Find CrossFit Gyms in {decodedCity}
       </div>
     </div>,
@@ -47,12 +43,6 @@ export async function GET() {
         'Surrogate-Control': 'no-store',
         Vary: 'cf-ipcity, x-vercel-ip-city',
       },
-      fonts: [
-        {
-          name: 'Satoshi',
-          data: Satoshi,
-        },
-      ],
     },
   )
 }

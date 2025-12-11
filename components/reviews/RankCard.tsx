@@ -10,7 +10,7 @@ export const RankCard = ({
   return (
     <div
       className={cn(
-        'space-y-1 rounded-lg bg-background/30 p-4 shadow',
+        'space-y-1 rounded-lg bg-background/30 p-4 shadow-sm',
         className,
       )}
     >

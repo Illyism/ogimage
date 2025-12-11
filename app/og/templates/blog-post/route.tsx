@@ -6,10 +6,6 @@ import { ImageResponse } from 'next/og'
  * @description A template for a blog post with a screenshot of the Oscar Stories website
  */
 export async function GET() {
-  const Satoshi = await fetch(
-    new URL('@/styles/Satoshi-Black.ttf', import.meta.url),
-  ).then((res) => res.arrayBuffer())
-
   return new ImageResponse(
     <div tw="flex flex-col items-center justify-center w-full h-full bg-[#261e36] p-4 relative">
       <div tw="text-[48px] font-black text-white mb-2">
@@ -42,12 +38,6 @@ export async function GET() {
       headers: {
         // 'Cache-Control': 'public, max-age=3600, immutable',
       },
-      fonts: [
-        {
-          name: 'Satoshi',
-          data: Satoshi,
-        },
-      ],
     },
   )
 }

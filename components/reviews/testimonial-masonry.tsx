@@ -29,7 +29,7 @@ const ReviewCard = ({ review }: { review: Review }) => {
   const parts = review.text.split(/<mark>|<\/mark>/g)
 
   return (
-    <div className="rounded-md p-4 text-card-foreground shadow dark:bg-card">
+    <div className="rounded-md p-4 text-card-foreground shadow-sm dark:bg-card">
       <span className="hidden">
         <span>{review.rating}</span>
       </span>

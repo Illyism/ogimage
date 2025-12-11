@@ -45,7 +45,7 @@ const BlogTemplate = ({ post }: { post: Page }) => {
   return (
     <article className="flex min-h-screen flex-col justify-between">
       <header className="contain pt-16 lg:max-w-5xl">
-        <div className="flex max-w-screen-sm flex-col space-y-4">
+        <div className="flex max-w-(--breakpoint-sm) flex-col space-y-4">
           <h1
             className="text-3xl font-extrabold text-foreground sm:text-4xl"
             itemProp="headline"

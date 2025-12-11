@@ -62,7 +62,7 @@ const WhatIS = () => {
   // showcase in a beautiful way:
   return (
     <div className="pad pb-8 pt-24 sm:text-center">
-      <h2 className="text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+      <h2 className="text-balance text-3xl font-bold leading-normal tracking-[-0.015em]">
         What is an Open Graph Image?
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
@@ -85,7 +85,7 @@ const WhatIS = () => {
       </p>
       <div className="mx-auto mt-8 max-w-5xl">
         <Image
-          className="rotate-[2deg] rounded-lg border-2 border-border shadow-2xl"
+          className="rotate-2 rounded-lg border-2 border-border shadow-2xl"
           src="/_static/linkedin-boring.jpg"
           width={1270}
           height={760}
@@ -99,7 +99,7 @@ const WhatIS = () => {
 const ProblemSolution = () => {
   return (
     <div className="pad py-16 sm:text-center">
-      <h2 className="text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+      <h2 className="text-balance text-3xl font-bold leading-normal tracking-[-0.015em]">
         Why OG Image Kit?
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
@@ -108,7 +108,7 @@ const ProblemSolution = () => {
         <b>time and cost</b>.
       </p>
       <div className="mt-4 flex flex-col items-center justify-center gap-4 text-left text-sm sm:mt-12 sm:flex-row sm:text-center">
-        <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow">
+        <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow-sm">
           <h3 className="mb-2 flex items-center justify-between text-xl font-bold">
             Automated
             <Sparkles size={16} className="text-primary dark:text-yellow-400" />
@@ -118,7 +118,7 @@ const ProblemSolution = () => {
             for you.
           </p>
         </div>
-        <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow">
+        <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow-sm">
           <h3 className="mb-2 flex items-center justify-between text-xl font-bold">
             Customizable
             <Wrench size={16} className="text-primary dark:text-yellow-400" />
@@ -128,7 +128,7 @@ const ProblemSolution = () => {
             match your brand.
           </p>
         </div>
-        <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow">
+        <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow-sm">
           <h3 className="mb-2 flex items-center justify-between text-xl font-bold">
             Beautiful templates
             <SmilePlus
@@ -170,7 +170,7 @@ const Hero = () => {
             height="54"
           />
         </a>
-        <h1 className="mb-4 text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em] md:text-5xl">
+        <h1 className="mb-4 text-balance text-3xl font-bold leading-normal tracking-[-0.015em] md:text-5xl">
           OG Image Generator
         </h1>
         <p className="text-balance text-lg font-medium sm:text-xl">
@@ -227,7 +227,7 @@ const Hero = () => {
         </div>
       </div>
       <Image
-        className="rotate-[2deg] rounded-lg border-2 border-border shadow-2xl lg:max-w-2xl"
+        className="rotate-2 rounded-lg border-2 border-border shadow-2xl lg:max-w-2xl"
         src="/_static/boring-better.jpg"
         width={1270}
         height={760}
@@ -240,7 +240,7 @@ const Hero = () => {
 const Pricing = () => {
   return (
     <div className="pad pb-24 pt-16 text-center">
-      <h2 className="text-balance text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+      <h2 className="text-balance text-3xl font-bold leading-normal tracking-[-0.015em]">
         Choose your plan
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">
@@ -282,7 +282,7 @@ const PricingCard = ({
   return (
     <div
       className={cn(
-        'btn relative flex flex-col rounded-lg border-2 border-border bg-card px-6 py-4 text-left shadow',
+        'btn relative flex flex-col rounded-lg border-2 border-border bg-card px-6 py-4 text-left shadow-sm',
         popular && 'border-primary',
         className,
       )}
@@ -330,7 +330,7 @@ const PricingCard = ({
 const FAQ = () => {
   return (
     <div className="pad pb-24 pt-16 sm:text-center">
-      <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+      <h2 className="text-3xl font-bold leading-normal tracking-[-0.015em]">
         Frequently asked questions
       </h2>
       <div className="mx-auto mt-12 max-w-3xl space-y-6">
@@ -377,7 +377,7 @@ const FAQ = () => {
 
 const FAQCard = ({ question, answer }: any) => {
   return (
-    <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow">
+    <div className="rounded-lg border border-border bg-card/20 p-4 text-left shadow-sm">
       <h3 className="mb-2 flex items-center justify-between text-xl font-bold">
         {question}
         <MessageCircleQuestion
@@ -407,7 +407,7 @@ const FinalCallToAction = () => {
         />
       </a>
 
-      <h2 className="text-3xl font-bold leading-[1.5] tracking-[-0.015em]">
+      <h2 className="text-3xl font-bold leading-normal tracking-[-0.015em]">
         Get started today
       </h2>
       <p className="mx-auto mt-4 max-w-[750px] text-balance text-lg text-muted-foreground">

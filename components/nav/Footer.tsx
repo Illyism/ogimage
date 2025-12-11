@@ -87,7 +87,7 @@ export const Footer = () => {
             prefetch={false}
             className="flex flex-1 items-center gap-3"
           >
-            <div className="relative z-10 rounded-lg bg-gradient-to-b from-gray-50 to-white p-1 shadow-2xl">
+            <div className="relative z-10 rounded-lg bg-linear-to-b from-gray-50 to-white p-1 shadow-2xl">
               <Logo className="text-primary" width={32} height={32} />
             </div>
             <div className="text-sm font-medium leading-none">

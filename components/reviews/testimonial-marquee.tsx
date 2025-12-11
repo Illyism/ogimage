@@ -29,8 +29,8 @@ export const TestimonialMarquee = ({ big = false }) => {
 const Marquee = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="relative inset-x-px w-full overflow-hidden text-sm">
-      <div className="absolute inset-y-0 left-0 z-10 h-full w-16 bg-gradient-to-r from-background to-transparent sm:w-64"></div>
-      <div className="absolute inset-y-0 right-0 z-10 h-full w-16 bg-gradient-to-l from-background to-transparent sm:w-64"></div>
+      <div className="absolute inset-y-0 left-0 z-10 h-full w-16 bg-linear-to-r from-background to-transparent sm:w-64"></div>
+      <div className="absolute inset-y-0 right-0 z-10 h-full w-16 bg-linear-to-l from-background to-transparent sm:w-64"></div>
       <div className="flex gap-4">
         <div className="marquee animate-marquee flex gap-4 whitespace-nowrap">
           <div className="flex gap-4">{children}</div>
@@ -46,7 +46,7 @@ const Marquee = ({ children }: { children: React.ReactNode }) => {
 const AvatarImg = ({ endorser }: { endorser: Endorser }) => {
   return (
     <BlurImage
-      className="h-8 w-8 min-w-[32px] rounded-full border border-primary/10 bg-primary/20 object-cover shadow"
+      className="h-8 w-8 min-w-[32px] rounded-full border border-primary/10 bg-primary/20 object-cover shadow-sm"
       src={endorser.avatar}
       alt={endorser.name + ' avatar'}
       width={32}
@@ -63,7 +63,7 @@ const HighlightCard = ({
   big: boolean
 }) => {
   return (
-    <div className="highlight-card flex items-center gap-2 whitespace-nowrap rounded-lg border-2 border-foreground/5 bg-foreground/5 py-1 pl-2 pr-3 font-bold text-card-foreground shadow">
+    <div className="highlight-card flex items-center gap-2 whitespace-nowrap rounded-lg border-2 border-foreground/5 bg-foreground/5 py-1 pl-2 pr-3 font-bold text-card-foreground shadow-sm">
       <AvatarImg endorser={highlight.endorser} />
       {big ? (
         <div>

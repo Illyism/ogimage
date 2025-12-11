@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -30,39 +26,17 @@
       }
     ],
     "paths": {
-      "@/app/*": [
-        "app/*"
-      ],
-      "@/components/*": [
-        "components/*"
-      ],
-      "@/content/*": [
-        "content/*"
-      ],
-      "@/core/*": [
-        "core/*"
-      ],
-      "@/lib/*": [
-        "lib/*"
-      ],
-      "@/prompts/*": [
-        "prompts/*"
-      ],
-      "@/pages/*": [
-        "pages/*"
-      ],
-      "@/styles/*": [
-        "styles/*"
-      ],
-      "@/images/*": [
-        "images/*"
-      ],
-      "~/*": [
-        "public/*"
-      ],
-      "contentlayer/generated": [
-        "./.contentlayer/generated"
-      ]
+      "@/app/*": ["app/*"],
+      "@/components/*": ["components/*"],
+      "@/content/*": ["content/*"],
+      "@/core/*": ["core/*"],
+      "@/lib/*": ["lib/*"],
+      "@/prompts/*": ["prompts/*"],
+      "@/pages/*": ["pages/*"],
+      "@/styles/*": ["styles/*"],
+      "@/images/*": ["images/*"],
+      "~/*": ["public/*"],
+      "contentlayer/generated": ["./.contentlayer/generated"]
     },
     "strictNullChecks": true
   },
@@ -76,8 +50,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules",
-    ".next"
-  ]
+  "exclude": ["node_modules", ".next"]
 }
