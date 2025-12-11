@@ -151,8 +151,10 @@ export function generatePageMeta({
   }
 
   const img = getImage(image, image_alt || title, image_width, image_height)
+  const baseUrl = metadata.metadataBase?.toString() || 'https://ogimage.org'
+  const path = url || '/'
   const screenshot = {
-    url: `${metadata.metadataBase}og/templates/screenshot?path=${url}`,
+    url: `${baseUrl.replace(/\/$/, '')}/og/templates/screenshot?path=${path}`,
     width: 1200,
     height: 630,
     alt: title,
