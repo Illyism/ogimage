@@ -5,6 +5,7 @@ import {
   rest,
   staticToken,
 } from '@directus/sdk'
+import { cache } from 'react'
 
 type GlobalSettings = {
   title: string
@@ -45,7 +46,8 @@ const directus = createDirectus<Schema>('https://db.ogimage.org')
   .with(staticToken(process.env.DIRECTUS_TOKEN!))
   .with(rest())
 
-export async function getPost(slug: string) {
+export const getPost = cache(async function getPost(slug: string) {
+  'use cache'
   const posts = await directus.request(
     readItems('pages', {
       filter: {
@@ -61,17 +63,19 @@ export async function getPost(slug: string) {
     return null
   }
   return posts[0]
-}
+})
 
-export async function getInspiration(slug: string) {
+export const getInspiration = cache(async function getInspiration(slug: string) {
+  'use cache'
   try {
     return await directus.request(readItem('inspiration', slug))
   } catch (error) {
     return null
   }
-}
+})
 
-export async function getLatestInspiration(filter = {}, limit = 500) {
+export const getLatestInspiration = cache(async function getLatestInspiration(filter = {}, limit = 500) {
+  'use cache'
   try {
     const inspirations = await directus.request(
       readItems('inspiration', {
@@ -102,7 +106,7 @@ export async function getLatestInspiration(filter = {}, limit = 500) {
   } catch (error) {
     return []
   }
-}
+})
 
 export function getUniqueCategories(list: { category: string[] }[]) {
   const countMap = list.reduce(
@@ -126,7 +130,8 @@ export function getUniqueCategories(list: { category: string[] }[]) {
     .map(([category, count]) => ({ category, count }))
 }
 
-export async function getCategories() {
+export const getCategories = cache(async function getCategories() {
+  'use cache'
   try {
     const inspirations = await directus.request(
       readItems('inspiration', {
@@ -138,6 +143,6 @@ export async function getCategories() {
   } catch (error) {
     return []
   }
-}
+})
 
 export default directus

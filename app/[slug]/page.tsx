@@ -1,24 +1,7 @@
 import { generatePageMeta } from '@/core/seo'
-import directus, { Page, getPost } from '@/lib/directus'
+import { Page, getPost } from '@/lib/directus'
 import { cn, formatDate } from '@/lib/utils'
-import { readItems } from '@directus/sdk'
 import { notFound } from 'next/navigation'
-
-// Function to get all pages
-
-export async function generateStaticParams() {
-  const response = await directus.request(
-    readItems('pages', {
-      fields: ['slug'],
-    }),
-  )
-  const uniq = new Set(response.map((p) => p.slug))
-  return [
-    ...Array.from(uniq).map((slug) => ({
-      slug,
-    })),
-  ]
-}
 
 export async function generateMetadata({ params }: any) {
   const post = await getPost(params.slug)
