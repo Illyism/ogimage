@@ -19,10 +19,13 @@ export async function GET(request: Request) {
   const plan = searchParams.get('plan') || 'essential'
 
   // Set variant ID based on plan
+  // NOTE: If you get "Not Found" errors, verify these variant IDs exist in your Lemon Squeezy store
+  // You can find variant IDs in your Lemon Squeezy dashboard: Store > Products > [Product] > Variants
   let variantId: number
   if (plan === 'pro') {
     variantId = process.env.LMSQUEEZY_ENV === 'production' ? 988010 : 266572 // Use dev variant for pro in dev
   } else {
+    // Essential plan - variant ID 265794 may not exist, check your Lemon Squeezy dashboard
     variantId = process.env.LMSQUEEZY_ENV === 'production' ? 265794 : 266572 // Essential plan
   }
 

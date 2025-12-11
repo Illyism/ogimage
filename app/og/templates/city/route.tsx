@@ -51,11 +51,17 @@ export async function GET() {
  * 3. Set UNSPLASH_KEY and UNSPLASH_SECRET environment variables
  */
 const keys = {
-  key: process.env.UNSPLASH_KEY!,
-  secret: process.env.UNSPLASH_SECRET!,
+  key: process.env.UNSPLASH_KEY,
+  secret: process.env.UNSPLASH_SECRET,
 }
 
 async function getCityPicture(city: string) {
+  // Return undefined if API key is not configured
+  if (!keys.key) {
+    console.error('Unsplash API key not configured (UNSPLASH_KEY missing)')
+    return undefined
+  }
+
   try {
     const p = new URLSearchParams()
     p.append('query', `${city}`)
