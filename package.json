@@ -6,10 +6,13 @@
     "dev": "next dev",
     "build": "next build --webpack",
     "start": "next start",
-    "format": "biome format --write",
-    "lint": "eslint ."
+    "format": "prettier --write . --cache --cache-location .prettiercache --cache-strategy content",
+    "format-check": "prettier --check . --cache --cache-location .prettiercache --cache-strategy content",
+    "lint": "eslint .",
+    "lint-check": "eslint . --cache --cache-location .eslintcache --cache-strategy content",
+    "type-check": "tsc --noEmit",
+    "check": "bun run type-check && bun run lint-check && bun run format-check"
   },
-  "browserslist": "defaults, not ie <= 11",
   "dependencies": {
     "@anthropic-ai/sdk": "^0.14.1",
     "@directus/sdk": "^15.0.1",
@@ -79,12 +82,13 @@
     "zustand": "^4.5.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.2",
     "@directus/types": "^11.0.6",
     "@types/mdx": "^2.0.11",
     "@types/node": "20.11.20",
     "eslint": "^9",
     "eslint-config-next": "16.0.8",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.7.4",
     "typescript": "5.3.3"
   },
   "peerDependencies": {

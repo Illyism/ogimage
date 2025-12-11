@@ -1,0 +1,6 @@
+.next
+out
+build
+node_modules
+.contentlayer
+.next-env.d.ts
