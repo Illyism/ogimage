@@ -1,36 +1,32 @@
-import { type Metadata } from 'next'
-import { type OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types'
-import { type Twitter } from 'next/dist/lib/metadata/types/twitter-types'
-import { type StaticImageData } from 'next/image'
+import type { Metadata } from 'next'
+import type { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types'
+import type { Twitter } from 'next/dist/lib/metadata/types/twitter-types'
+import type { StaticImageData } from 'next/image'
 
 const title = 'ogimage.org: The Ultimate Open Graph Image Generator'
-const description = `Generate open graph images with ease using OGimage.org, your reliable open graph image generator.`
+const description =
+  'Generate open graph images with ease using OGimage.org, your reliable open graph image generator.'
 
 export const rootOpenGraph: OpenGraph = {
+  description,
   locale: 'en',
-  type: 'website',
-  url: 'https://ogimage.org',
   siteName: 'ogimage.org',
   title,
-  description,
+  type: 'website',
+  url: 'https://ogimage.org',
 }
 
 export const rootTwitter: Twitter = {
-  title,
-  description,
   card: 'summary_large_image',
   creator: '@illyism',
+  description,
   site: '@illyism',
+  title,
 }
 
 export const rootMetadata: Metadata = {
-  metadataBase: new URL('https://ogimage.org'),
-  title,
-  description,
   applicationName: 'ogimage.org',
-  openGraph: rootOpenGraph,
-  twitter: rootTwitter,
-  manifest: '/site.webmanifest',
+  description,
   icons: [
     {
       rel: 'apple-touch-icon',
@@ -39,14 +35,14 @@ export const rootMetadata: Metadata = {
     },
     {
       rel: 'icon',
-      type: 'image/png',
       sizes: '32x32',
+      type: 'image/png',
       url: '/_static/favicons/favicon-32x32.png',
     },
     {
       rel: 'icon',
-      type: 'image/png',
       sizes: '16x16',
+      type: 'image/png',
       url: '/_static/favicons/favicon-16x16.png',
     },
     {
@@ -54,13 +50,18 @@ export const rootMetadata: Metadata = {
       url: '/_static/favicons/site.webmanifest',
     },
     {
+      color: '#101215',
       rel: 'mask-icon',
       url: '/_static/favicons/safari-pinned-tab.svg',
-      color: '#101215',
     },
   ],
+  manifest: '/site.webmanifest',
+  metadataBase: new URL('https://ogimage.org'),
+  openGraph: rootOpenGraph,
   robots:
     'follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large',
+  title,
+  twitter: rootTwitter,
 }
 
 function getImage(
@@ -75,20 +76,20 @@ function getImage(
 
   if (typeof image === 'string') {
     return {
-      url: image,
       alt,
-      width,
       height,
       type: image.endsWith('.png') ? 'image/png' : 'image/jpeg',
+      url: image,
+      width,
     }
   }
 
   return {
+    alt,
+    height: image.height,
+    type: image.src.endsWith('.png') ? 'image/png' : 'image/jpeg',
     url: image.src,
     width: image.width,
-    height: image.height,
-    alt,
-    type: image.src.endsWith('.png') ? 'image/png' : 'image/jpeg',
   }
 }
 
@@ -120,33 +121,33 @@ export function generatePageMeta({
 } = {}): Metadata {
   const metadata = {
     ...rootMetadata,
-    title,
-    description,
     alternates: {
       canonical: url,
     },
+    description,
     openGraph: {
       ...rootOpenGraph,
-      url,
-      title: `${title} - ${siteName ?? rootOpenGraph.siteName}`,
       description,
+      title: `${title} - ${siteName ?? rootOpenGraph.siteName}`,
+      url,
     } as OpenGraph,
+    title,
     twitter: {
       ...rootTwitter,
-      title: `${title} - ${siteName ?? rootOpenGraph.siteName}`,
       description,
+      title: `${title} - ${siteName ?? rootOpenGraph.siteName}`,
     } as Twitter,
   } as Metadata
 
   if (publishedAt) {
     metadata.openGraph = {
       ...metadata.openGraph,
-      type: 'article',
-      publishedTime: publishedAt,
-      modifiedTime: updatedAt ?? publishedAt,
       authors: ['ogimage.org'],
+      modifiedTime: updatedAt ?? publishedAt,
+      publishedTime: publishedAt,
       section: siteName,
       tags: [siteName],
+      type: 'article',
     }
   }
 
@@ -154,11 +155,11 @@ export function generatePageMeta({
   const baseUrl = metadata.metadataBase?.toString() || 'https://ogimage.org'
   const path = url || '/'
   const screenshot = {
+    alt: title,
+    height: 630,
+    type: 'image/png',
     url: `${baseUrl.replace(/\/$/, '')}/og/templates/screenshot?path=${path}`,
     width: 1200,
-    height: 630,
-    alt: title,
-    type: 'image/png',
   }
   metadata.openGraph!.images = img ? [img] : [screenshot]
   metadata.twitter!.images = img ? [img] : [screenshot]

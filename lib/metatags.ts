@@ -1,18 +1,18 @@
-import { isValidUrl } from '@/lib/utils'
 import { parse } from 'node-html-parser'
+import { isValidUrl } from '@/lib/utils'
 
 export const getHtml = async (url: string) => {
   try {
     const controller = new AbortController()
     const timeoutId = setTimeout(() => controller.abort(), 5000) // timeout if it takes longer than 5 seconds
     const response = await fetch(url, {
-      signal: controller.signal,
       headers: {
         'User-Agent': 'dub-bot/1.0',
       },
       next: {
         revalidate: 60, // revalidate once per minute
       },
+      signal: controller.signal,
     })
     clearTimeout(timeoutId)
     return await response.text()
@@ -33,23 +33,23 @@ const getHeadChildNodes = (html) => {
   const metaTags = ast.querySelectorAll('meta').map(({ attributes }) => {
     const property = attributes.property || attributes.name || attributes.href
     return {
-      property,
       content: attributes.content,
+      property,
     }
   })
   const title = ast.querySelector('title')?.innerText
   const linkTags = ast.querySelectorAll('link').map(({ attributes }) => {
     const { rel, href } = attributes
     return {
-      rel,
       href,
+      rel,
     }
   })
 
-  return { metaTags, title, linkTags }
+  return { linkTags, metaTags, title }
 }
 
-const getRelativeUrl = (url: string, imageUrl: string) => {
+const getRelativeUrl = (url: string, imageUrl: string | undefined) => {
   if (!imageUrl) {
     return null
   }
@@ -65,26 +65,22 @@ export const getMetaTags = async (url: string) => {
   const html = await getHtml(url)
   if (!html) {
     return {
-      title: url,
       description: 'No description',
       image: null,
+      title: url,
     }
   }
   const { metaTags, title: titleTag, linkTags } = getHeadChildNodes(html)
 
-  const object = {}
+  const object: Record<string, string | undefined> = {}
 
-  for (const k in metaTags) {
-    const { property, content } = metaTags[k]
-
+  for (const { property, content } of Object.values(metaTags)) {
     if (property) {
       object[property] = content
     }
   }
 
-  for (const m in linkTags) {
-    const { rel, href } = linkTags[m]
-
+  for (const { rel, href } of Object.values(linkTags)) {
     if (rel) {
       object[rel] = href
     }
@@ -93,7 +89,7 @@ export const getMetaTags = async (url: string) => {
   const title = object['og:title'] || object['twitter:title'] || titleTag
 
   const description =
-    object['description'] ||
+    object.description ||
     object['og:description'] ||
     object['twitter:description']
 
@@ -105,9 +101,9 @@ export const getMetaTags = async (url: string) => {
     object['twitter:creator']
 
   return {
-    name,
-    title: title || url,
     description: description || 'No description',
     image: getRelativeUrl(url, image),
+    name,
+    title: title || url,
   }
 }

@@ -11,8 +11,8 @@ export async function generateMetadata({
 }) {
   const { eventId } = await params
   return generatePageMeta({
-    title: 'Submission Result',
     description: 'View your submitted OG image inspiration.',
+    title: 'Submission Result',
     url: `/inspiration/submit/${eventId}`,
   })
 }
@@ -26,7 +26,7 @@ export default async function Page({
   // eventId is now the slug
   return (
     <PageLayout>
-      <div className="container mt-6 max-w-3xl p-8">
+      <div className="container mt-6 max-w-3xl pb-16">
         <DomainRunDetails slug={eventId} />
       </div>
     </PageLayout>

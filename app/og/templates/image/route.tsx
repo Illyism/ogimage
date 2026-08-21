@@ -9,11 +9,11 @@ export async function GET() {
   return new ImageResponse(
     <div tw="flex items-center justify-center w-full h-full bg-gray-900">
       <img
-        src="https://ogimage.org/me/ilias.png"
         alt=""
-        width="150"
         height="150"
+        src="https://ogimage.org/me/ilias.png"
         tw="mr-4"
+        width="150"
       />
       <div tw="flex flex-col text-white">
         <div tw="text-[72px]">Ilias Ism</div>
@@ -21,11 +21,11 @@ export async function GET() {
       </div>
     </div>,
     {
-      width: 1200,
-      height: 630,
       headers: {
         'Cache-Control': 'public, max-age=3600, immutable',
       },
+      height: 630,
+      width: 1200,
     },
   )
 }

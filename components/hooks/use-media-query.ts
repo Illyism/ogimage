@@ -20,7 +20,7 @@ export default function useMediaQuery() {
       } else {
         setDevice('desktop')
       }
-      setDimensions({ width: window.innerWidth, height: window.innerHeight })
+      setDimensions({ height: window.innerHeight, width: window.innerWidth })
     }
 
     // Initial detection
@@ -37,10 +37,10 @@ export default function useMediaQuery() {
 
   return {
     device,
-    width: dimensions?.width,
     height: dimensions?.height,
+    isDesktop: device === 'desktop',
     isMobile: device === 'mobile',
     isTablet: device === 'tablet',
-    isDesktop: device === 'desktop',
+    width: dimensions?.width,
   }
 }

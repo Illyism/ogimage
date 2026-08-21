@@ -1,34 +1,34 @@
+import { allBlogPosts } from 'contentlayer/generated'
 import {
   getLatestInspiration,
   getPages,
   getUniqueCategories,
 } from '@/lib/directus'
-import { allBlogPosts } from 'contentlayer/generated'
 
-const domain = `ogimage.org`
+const domain = 'ogimage.org'
 
 export default async function Sitemap() {
   // Base static pages that always exist
   const staticPages = [
     {
+      lastModified: new Date(),
       url: `https://${domain}`,
-      lastModified: new Date(),
     },
     {
+      lastModified: new Date(),
       url: `https://${domain}/templates`,
-      lastModified: new Date(),
     },
     {
-      url: `https://${domain}/blog`,
       lastModified: new Date(),
+      url: `https://${domain}/blog`,
     },
     ...allBlogPosts.map((post) => ({
-      url: `https://${domain}/blog/${post.slug}`,
       lastModified: new Date(post.updatedAt || post.publishedAt || new Date()),
+      url: `https://${domain}/blog/${post.slug}`,
     })),
     {
-      url: `https://${domain}/inspiration`,
       lastModified: new Date(),
+      url: `https://${domain}/inspiration`,
     },
   ]
 
@@ -44,16 +44,16 @@ export default async function Sitemap() {
     return [
       ...staticPages,
       ...(pages || []).map((p) => ({
-        url: `https://${domain}/${p.slug}`,
         lastModified: p.updatedAt,
+        url: `https://${domain}/${p.slug}`,
       })),
       ...(inspirations || []).map((i) => ({
-        url: `https://${domain}/inspiration/post/${i.slug}`,
         lastModified: i.date_updated,
+        url: `https://${domain}/inspiration/post/${i.slug}`,
       })),
       ...categories.map((c) => ({
-        url: `https://${domain}/inspiration/category/${c.category}`,
         lastModified: new Date(),
+        url: `https://${domain}/inspiration/category/${c.category}`,
       })),
     ]
   } catch (error) {

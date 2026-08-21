@@ -2,24 +2,24 @@ import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { TemplatePreview } from '../og/components/TemplatePreview'
 
-export const revalidate = 14400 // 4 hours
+export const revalidate = 14_400 // 4 hours
 
 export const metadata = generatePageMeta({
-  title: 'Best Open Graph Image Templates for Every Website',
   description:
     'Generate beautiful Open Graph Images for your website, blog, or social media.',
+  title: 'Best Open Graph Image Templates for Every Website',
   url: '/templates',
 })
 
 export default function Templates() {
   return (
     <PageLayout>
-      <div className="mx-auto md:max-w-3xl lg:px-0 xl:max-w-272">
-        <header className="relative border-b border-border py-8">
-          <h1 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
+      <div className="container">
+        <header className="relative border-border border-b py-8">
+          <h1 className="mb-4 max-w-3xl text-balance font-bold text-3xl tracking-tight md:text-4xl">
             Open Graph Image Templates For Every Website
           </h1>
-          <p className="text-md text-muted-foreground">
+          <p className="max-w-2xl text-balance text-base text-muted-foreground">
             If you&apos;re looking to build a website and share it, these
             thoroughly tested and highly rated open graph image templates offer
             the power and flexibility needed to create an attractive, reliable

@@ -21,12 +21,15 @@ COPY . .
 # Set environment variables for build
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
+# Lint/typecheck are owned by CI and the pre-commit hook (TS7). The image
+# build must not re-run them — this also skips Next's embedded TS6 check.
+ENV DOCKER_BUILD=true
 
 # Generate Prisma Client
 RUN bunx prisma generate
 
-# Build Next.js app
-RUN bun run build
+# Build Next.js app (build script may include db:generate — that is fine)
+RUN --mount=type=cache,id=ogimage-next,target=/app/.next/cache bun run build
 
 # Production image, copy all the files and run next
 FROM base AS runner

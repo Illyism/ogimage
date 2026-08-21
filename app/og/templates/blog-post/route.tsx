@@ -16,28 +16,30 @@ export async function GET() {
       </div>
 
       <img
-        tw="rounded-2xl shadow-2xl mx-auto"
-        src="https://magicspace.agency/img/programmatic-seo-case-study.jpg"
-        width={1382 * 0.55}
-        height={688 * 0.55}
         alt=""
+        height={688 * 0.55}
+        src="https://magicspace.agency/img/programmatic-seo-case-study.jpg"
+        tw="rounded-2xl shadow-2xl mx-auto"
+        width={1382 * 0.55}
       />
 
       <div tw="flex items-center mt-auto">
         <img
-          src="https://magicspace.agency/img/img.png"
           alt=""
+          height={96}
+          src="https://magicspace.agency/img/img.png"
           tw="w-24 h-24 mr-4"
+          width={96}
         />
         <div tw="text-[42px] font-black text-white">MagicSpace SEO</div>
       </div>
     </div>,
     {
-      width: 1200,
-      height: 630,
       headers: {
         // 'Cache-Control': 'public, max-age=3600, immutable',
       },
+      height: 630,
+      width: 1200,
     },
   )
 }

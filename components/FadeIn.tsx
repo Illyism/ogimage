@@ -5,7 +5,7 @@ import { createContext, useContext } from 'react'
 
 const FadeInStaggerContext = createContext(false)
 
-const viewport = { once: true, margin: '0px 0px -200px' }
+const viewport = { margin: '0px 0px -200px', once: true }
 
 export function FadeIn(props: any) {
   const shouldReduceMotion = useReducedMotion()
@@ -21,8 +21,8 @@ export function FadeIn(props: any) {
         ? {}
         : {
             initial: 'hidden',
-            whileInView: 'visible',
             viewport,
+            whileInView: 'visible',
           })}
       {...props}
     />
@@ -34,9 +34,9 @@ export function FadeInStagger({ faster = false, ...props }: any) {
     <FadeInStaggerContext.Provider value={true}>
       <motion.div
         initial="hidden"
-        whileInView="visible"
-        viewport={viewport}
         transition={{ staggerChildren: faster ? 0.06 : 0.1 }}
+        viewport={viewport}
+        whileInView="visible"
         {...props}
       />
     </FadeInStaggerContext.Provider>

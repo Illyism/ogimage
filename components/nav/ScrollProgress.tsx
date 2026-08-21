@@ -6,11 +6,12 @@ export const ScrollProgress = () => {
   const { scrollYProgress } = useScroll()
   const barScale = useTransform(scrollYProgress, [0, 1], [0, 1])
 
-  useEffect(() => {
-    return () => {
+  useEffect(
+    () => () => {
       barScale.stop()
-    }
-  }, [barScale])
+    },
+    [barScale],
+  )
 
   return (
     <motion.div

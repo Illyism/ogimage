@@ -1,13 +1,13 @@
-import { PageLayout } from '@/components/nav/PageLayout'
-import { generatePageMeta } from '@/core/seo'
-import { ArticleStructuredData } from '@/core/structured'
-import { Inspiration, getInspiration } from '@/lib/directus'
-import { getFileUrl } from '@/lib/file-storage'
-import { getRouteRel } from '@/lib/route-rel'
-import { cn } from '@/lib/utils'
 import { ExternalLinkIcon } from 'lucide-react'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
+import { PageLayout } from '@/components/nav/PageLayout'
+import { generatePageMeta } from '@/core/seo'
+import { ArticleStructuredData } from '@/core/structured'
+import { getInspiration, type Inspiration } from '@/lib/directus'
+import { getFileUrl } from '@/lib/file-storage'
+import { getRouteRel } from '@/lib/route-rel'
+import { cn } from '@/lib/utils'
 import { ImageCard } from './ImageCard'
 
 export const revalidate = 300 // 5 minutes
@@ -21,15 +21,15 @@ export async function generateMetadata({
   const inspiration = await getInspiration(slug)
   if (!inspiration) {
     return {
-      title: `Add ${slug}?`,
       robots: 'noindex',
+      title: `Add ${slug}?`,
     }
   }
 
   return generatePageMeta({
-    title: `${inspiration.name} - OG Image for ${inspiration.domain} - Open Graph Image Inspiration`,
     description: inspiration.description,
     image: getFileUrl(inspiration.image),
+    title: `${inspiration.name} - OG Image for ${inspiration.domain} - Open Graph Image Inspiration`,
     url: `/inspiration/post/${slug}`,
   })
 }
@@ -51,133 +51,129 @@ export default async function Page(props: {
   return <InspirationPage inspiration={inspiration} />
 }
 
-const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => {
-  return (
-    <PageLayout>
-      <ArticleStructuredData
-        title={inspiration.name}
-        id={`https://ogimage.org/inspiration/post/${inspiration.slug}`}
-        datePublished={inspiration.date_created.toString()}
-        dateModified={inspiration.date_updated.toString()}
-        authorName={'Ilias Ism'}
-        authorId={'https://il.ly'}
-        imageUrl={getFileUrl(inspiration.image)}
-      />
-      <div className="container mx-auto max-w-3xl py-4 lg:pb-16">
-        <nav
-          className="mb-4 flex gap-2 lg:mb-16"
+const InspirationPage = ({ inspiration }: { inspiration: Inspiration }) => (
+  <PageLayout>
+    <ArticleStructuredData
+      authorId={'https://il.ly'}
+      authorName={'Ilias Ism'}
+      dateModified={inspiration.date_updated.toString()}
+      datePublished={inspiration.date_created.toString()}
+      id={`https://ogimage.org/inspiration/post/${inspiration.slug}`}
+      imageUrl={getFileUrl(inspiration.image)}
+      title={inspiration.name}
+    />
+    <div className="container mx-auto max-w-3xl py-4 lg:pb-16">
+      <nav
+        className="mb-4 flex gap-2 lg:mb-16"
+        itemScope
+        itemType="http://schema.org/BreadcrumbList"
+      >
+        <Link
+          className="font-bold underline"
+          href="/inspiration"
+          itemProp="itemListElement"
           itemScope
-          itemType="http://schema.org/BreadcrumbList"
+          itemType="http://schema.org/ListItem"
         >
-          <Link
-            href="/inspiration"
-            className="font-bold underline"
-            itemProp="itemListElement"
-            itemScope
-            itemType="http://schema.org/ListItem"
-          >
-            <span itemProp="name">Inspiration</span>
-            <meta itemProp="position" content="1" />
-          </Link>
-          /
-          <Link
-            href={`/inspiration/category/${inspiration.category[0]}`}
-            itemProp="itemListElement"
-            itemScope
-            itemType="http://schema.org/ListItem"
-            className="font-bold capitalize underline"
-          >
-            <span itemProp="name">{inspiration.category[0]}</span>
-            <meta itemProp="position" content="2" />
-          </Link>
-          /
-          <Link
-            href={`/inspiration/post/${inspiration.slug}`}
-            className="font-bold"
-            itemProp="itemListElement"
-            itemScope
-            itemType="http://schema.org/ListItem"
-          >
-            <span itemProp="name">{inspiration.name}</span>
-            <meta itemProp="position" content="3" />
-          </Link>
-        </nav>
-        <h1 className="mb-2 text-2xl font-bold sm:text-3xl">
-          {inspiration.name}
-        </h1>
-        <p className="mb-4 text-base font-normal leading-7 text-muted-foreground">
-          {inspiration.description}
-        </p>
+          <span itemProp="name">Inspiration</span>
+          <meta content="1" itemProp="position" />
+        </Link>
+        /
+        <Link
+          className="font-bold capitalize underline"
+          href={`/inspiration/category/${inspiration.category[0]}`}
+          itemProp="itemListElement"
+          itemScope
+          itemType="http://schema.org/ListItem"
+        >
+          <span itemProp="name">{inspiration.category[0]}</span>
+          <meta content="2" itemProp="position" />
+        </Link>
+        /
+        <Link
+          className="font-bold"
+          href={`/inspiration/post/${inspiration.slug}`}
+          itemProp="itemListElement"
+          itemScope
+          itemType="http://schema.org/ListItem"
+        >
+          <span itemProp="name">{inspiration.name}</span>
+          <meta content="3" itemProp="position" />
+        </Link>
+      </nav>
+      <h1 className="mb-2 text-balance font-bold text-3xl tracking-tight md:text-4xl">
+        {inspiration.name}
+      </h1>
+      <p className="mb-4 font-normal text-base text-muted-foreground leading-7">
+        {inspiration.description}
+      </p>
 
-        <ImageCard
-          src={getFileUrl(inspiration.image)}
-          alt={`OG Image for ${inspiration.domain}`}
-          color={inspiration.color[0]}
-        />
+      <ImageCard
+        alt={`OG Image for ${inspiration.domain}`}
+        color={inspiration.color[0]}
+        src={getFileUrl(inspiration.image)}
+      />
 
-        <div className="group mt-3 flex items-center space-x-6">
-          <a
-            href={inspiration.URL}
-            rel={getRouteRel(inspiration.URL)}
-            className="flex items-center gap-2 font-bold underline"
-          >
-            {inspiration.domain} <ExternalLinkIcon size={14} />
-          </a>
-          <div className="flex-1"></div>
+      <div className="group mt-3 flex items-center space-x-6">
+        <a
+          className="flex items-center gap-2 font-bold underline"
+          href={inspiration.URL}
+          rel={getRouteRel(inspiration.URL)}
+        >
+          {inspiration.domain} <ExternalLinkIcon size={14} />
+        </a>
+        <div className="flex-1" />
 
-          {inspiration.color.length > 0 && (
-            <div className="flex flex-wrap content-center items-center justify-start space-x-2">
-              {inspiration.color.map((c) => (
-                <div
-                  key={c}
-                  className="h-5 w-5 rounded-full border-2 border-gray-100 hover:border-gray-50 hover:shadow-xs"
-                  style={{ backgroundColor: c }}
-                  title={c}
-                ></div>
-              ))}
-            </div>
-          )}
-          {inspiration.category.length > 0 && (
-            <div className="flex flex-wrap content-center items-center justify-start space-x-2">
-              {inspiration.category.map((c) => (
-                <Link
-                  key={c}
-                  href={`/inspiration/category/${c}`}
-                  className="inline-flex items-center rounded-full border border-border bg-card px-2.5 py-0.5 text-sm font-bold text-card-foreground"
-                >
-                  {c}
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {inspiration.content && (
-          <div
-            data-mdx-container
-            className={cn(
-              'prose prose-zinc max-w-none transition-all dark:prose-invert prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-bold',
-              'py-16',
-            )}
-            dangerouslySetInnerHTML={{ __html: inspiration.content }}
-          />
+        {inspiration.color.length > 0 && (
+          <div className="flex flex-wrap content-center items-center justify-start space-x-2">
+            {inspiration.color.map((c) => (
+              <div
+                className="h-5 w-5 rounded-full border-2 border-gray-100 hover:border-gray-50 hover:shadow-xs"
+                key={c}
+                style={{ backgroundColor: c }}
+                title={c}
+              />
+            ))}
+          </div>
+        )}
+        {inspiration.category.length > 0 && (
+          <div className="flex flex-wrap content-center items-center justify-start space-x-2">
+            {inspiration.category.map((c) => (
+              <Link
+                className="inline-flex items-center rounded-full border border-border bg-card px-2.5 py-0.5 font-bold text-card-foreground text-sm"
+                href={`/inspiration/category/${c}`}
+                key={c}
+              >
+                {c}
+              </Link>
+            ))}
+          </div>
         )}
       </div>
-    </PageLayout>
-  )
-}
 
-const NotFoundInspiration = ({ slug }: { slug: string }) => {
-  return (
-    <PageLayout>
-      <div className="container pt-16 text-center">
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-800 dark:text-gray-100 sm:text-5xl">
-          Add {slug}?
-        </h1>
-        <p className="mt-4 text-base text-gray-600 dark:text-gray-400">
-          Get the OG image for your website in seconds.
-        </p>
-      </div>
-    </PageLayout>
-  )
-}
+      {inspiration.content ? (
+        <div
+          className={cn(
+            'prose prose-zinc dark:prose-invert prose-headings:relative max-w-none prose-headings:scroll-mt-20 prose-headings:font-bold transition-all',
+            'py-16',
+          )}
+          dangerouslySetInnerHTML={{ __html: inspiration.content }}
+          data-mdx-container
+        />
+      ) : null}
+    </div>
+  </PageLayout>
+)
+
+const NotFoundInspiration = ({ slug }: { slug: string }) => (
+  <PageLayout>
+    <div className="container pt-16 text-center">
+      <h1 className="mt-4 text-balance font-bold text-4xl tracking-tight sm:text-5xl">
+        Add {slug}?
+      </h1>
+      <p className="mt-4 text-base text-muted-foreground">
+        Get the OG image for your website in seconds.
+      </p>
+    </div>
+  </PageLayout>
+)

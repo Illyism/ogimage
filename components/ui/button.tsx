@@ -5,36 +5,38 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap font-semibold transition-[color,background-color,border-color,box-shadow,transform] duration-150 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0',
   {
+    defaultVariants: {
+      size: 'default',
+      variant: 'default',
+    },
     variants: {
+      size: {
+        default: 'h-10 rounded-lg px-4 text-sm',
+        icon: 'size-10 rounded-lg',
+        lg: 'h-12 rounded-lg px-6 text-base',
+        rounded: 'h-10 rounded-full px-5 text-sm',
+        sm: 'h-8 rounded-lg px-3 text-xs',
+      },
       variant: {
         default:
-          'btn border border-primary dark:border-white/20 bg-primary text-primary-foreground hover:bg-primary/90',
-        secondary:
-          'btn bg-secondary border border-secondary-foreground/20 text-secondary-foreground hover:bg-secondary/80',
+          'bg-primary text-primary-foreground shadow-raised hover:bg-primary/90',
         destructive:
-          'bg-destructive text-destructive-foreground hover:bg-destructive/90',
-        outline:
-          'border border-primary bg-transparent hover:bg-accent hover:text-accent-foreground',
+          'bg-destructive text-white shadow-raised hover:bg-destructive/90',
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         link: 'text-primary underline-offset-4 hover:underline',
+        outline:
+          'border border-border bg-transparent shadow-xs hover:bg-accent hover:text-accent-foreground',
+        secondary:
+          'border border-border bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
       },
-      size: {
-        default: 'px-3 py-2 font-bold rounded-lg',
-        rounded: 'px-4 py-2 rounded-full font-bold',
-      },
-    },
-    defaultVariants: {
-      variant: 'default',
-      size: 'default',
     },
   },
 )
 
 export interface ButtonProps
-  extends
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean
 }
@@ -44,7 +46,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const Comp = asChild ? Slot : 'button'
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ className, size, variant }))}
         ref={ref}
         {...props}
       />

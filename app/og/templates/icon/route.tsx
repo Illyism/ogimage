@@ -17,15 +17,16 @@ export async function GET() {
   return new ImageResponse(
     <div tw="flex items-center justify-center w-full h-full p-4 bg-pink-500 text-white border-20 border-pink-400">
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="256"
-        height="256"
-        viewBox="0 0 24 24"
+        aria-hidden="true"
         fill="none"
+        height="256"
         stroke="currentColor"
-        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
+        strokeWidth="2"
+        viewBox="0 0 24 24"
+        width="256"
+        xmlns="http://www.w3.org/2000/svg"
       >
         <circle cx="12" cy="12" r="10" />
         <path d="M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94" />
@@ -34,11 +35,11 @@ export async function GET() {
       </svg>
     </div>,
     {
-      width: 1200,
-      height: 630,
       headers: {
         'Cache-Control': 'public, max-age=3600, immutable',
       },
+      height: 630,
+      width: 1200,
     },
   )
 }

@@ -3,7 +3,7 @@
 import { Star } from 'lucide-react'
 import Image from 'next/image'
 import { useMemo } from 'react'
-import { Review, reviews } from './reviews'
+import { type Review, reviews } from './reviews'
 
 export const TestimonialMasonry = ({
   skip = 0,
@@ -35,23 +35,23 @@ const ReviewCard = ({ review }: { review: Review }) => {
       </span>
       <cite className="mb-2 flex items-center not-italic">
         <Image
-          className="mr-2 h-8 w-8 rounded-full object-cover"
-          src={review.endorser.avatar}
           alt={review.endorser.name}
-          width={32}
+          className="mr-2 h-8 w-8 rounded-full object-cover"
           height={32}
+          src={review.endorser.avatar}
+          width={32}
         />
         <div>
-          <p className="text-sm font-semibold">{review.endorser.name}</p>
+          <p className="font-semibold text-sm">{review.endorser.name}</p>
           <p className="text-xs">{review.endorser.tagline}</p>
         </div>
       </cite>
       <div className="mb-2 flex">
-        <Star fill="currentColor" className="h-4 w-4 text-yellow-500" />
-        <Star fill="currentColor" className="h-4 w-4 text-yellow-500" />
-        <Star fill="currentColor" className="h-4 w-4 text-yellow-500" />
-        <Star fill="currentColor" className="h-4 w-4 text-yellow-500" />
-        <Star fill="currentColor" className="h-4 w-4 text-yellow-500" />
+        <Star className="h-4 w-4 text-yellow-500" fill="currentColor" />
+        <Star className="h-4 w-4 text-yellow-500" fill="currentColor" />
+        <Star className="h-4 w-4 text-yellow-500" fill="currentColor" />
+        <Star className="h-4 w-4 text-yellow-500" fill="currentColor" />
+        <Star className="h-4 w-4 text-yellow-500" fill="currentColor" />
       </div>
       <header className="mb-2 font-bold">{review.title}</header>
       <blockquote className="whitespace-pre-line text-sm">
@@ -61,8 +61,8 @@ const ReviewCard = ({ review }: { review: Review }) => {
             <span key={index}>{part}</span>
           ) : (
             <mark
-              key={index}
               className="bg-sky-500/10 font-black text-inherit dark:bg-violet-700/20 dark:text-violet-400"
+              key={index}
             >
               {part}
             </mark>

@@ -1,6 +1,6 @@
-import { PostHog } from 'posthog-node'
-import { createHmac, timingSafeEqual } from 'crypto'
+import { createHmac, timingSafeEqual } from 'node:crypto'
 import { Octokit } from 'octokit'
+import { PostHog } from 'posthog-node'
 import { Resend } from 'resend'
 
 const resend = new Resend(process.env.RESEND_API_KEY!)
@@ -35,10 +35,12 @@ export async function POST(request: Request) {
 
     const data = JSON.parse(body)
 
-    const name = data.data.attributes.user_name
-    const email = data.data.attributes.user_email
-    const order_number = data.data.attributes.order_number
-    const variant_name = data.data.attributes.first_order_item.variant_name
+    const {
+      order_number,
+      user_email: email,
+      user_name: name,
+    } = data.data.attributes
+    const { variant_name } = data.data.attributes.first_order_item
     const distinct_id = data.meta?.custom_data?.distinct_id
 
     // Send to PostHog
@@ -50,13 +52,13 @@ export async function POST(request: Request) {
         distinctId: distinct_id,
         event: 'Order Completed',
         properties: {
-          order_number: order_number,
-          variant_name: variant_name,
-          price: data.data.attributes.total_usd,
           $set: {
-            email: email,
-            name: name,
+            email,
+            name,
           },
+          order_number,
+          price: data.data.attributes.total_usd,
+          variant_name,
         },
       })
       posthogClient.shutdown()
@@ -69,13 +71,13 @@ export async function POST(request: Request) {
           auth: process.env.GITHUB_TOKEN,
         })
         await octokit.request('POST /orgs/{org}/invitations', {
-          org: 'blogkit-org',
-          email: email,
-          role: 'direct_member',
-          team_ids: [9606305],
+          email,
           headers: {
             'X-GitHub-Api-Version': '2022-11-28',
           },
+          org: 'blogkit-org',
+          role: 'direct_member',
+          team_ids: [9_606_305],
         })
       } catch (error: any) {
         console.error('Failed to invite user to GitHub', error)
@@ -84,26 +86,7 @@ export async function POST(request: Request) {
 
     // Send order email
     await resend.emails.send({
-      to: email,
       from: 'Ilias from ogimage.org <contact@ogimage.org>',
-      replyTo: 'ilias@magicspace.agency',
-      subject: `[OG Image Kit - ${order_number}] Access to the GitHub repository and guide`,
-      text: `
-Hi ${name}!
-
-Thanks for purchasing ${variant_name}! We are excited to have you on board.
-
-Here is the link to the guide to get started with OG Image Kit:
-https://magic-space.notion.site/Open-Graph-Image-Kit-84ad575a680242d6ba64592b8a7988aa?pvs=4
-
-We also invited you to the OG Image Kit repository on GitHub. You can access it here:
-https://github.com/blogkit-org/ogimage-next
-
-Can you just confirm that you received this email and that you have access to the GitHub repository?
-
-Thanks,
-Ilias Ism
-  `.trim(),
       html: `
 <p>Hi ${name}!</p>
 
@@ -122,6 +105,25 @@ Ilias Ism
 <p>Thanks,<br />
 Ilias Ism</p>
     `.trim(),
+      replyTo: 'ilias@magicspace.agency',
+      subject: `[OG Image Kit - ${order_number}] Access to the GitHub repository and guide`,
+      text: `
+Hi ${name}!
+
+Thanks for purchasing ${variant_name}! We are excited to have you on board.
+
+Here is the link to the guide to get started with OG Image Kit:
+https://magic-space.notion.site/Open-Graph-Image-Kit-84ad575a680242d6ba64592b8a7988aa?pvs=4
+
+We also invited you to the OG Image Kit repository on GitHub. You can access it here:
+https://github.com/blogkit-org/ogimage-next
+
+Can you just confirm that you received this email and that you have access to the GitHub repository?
+
+Thanks,
+Ilias Ism
+  `.trim(),
+      to: email,
     })
 
     // Note: Follow-up email after 7 days would need to be handled separately

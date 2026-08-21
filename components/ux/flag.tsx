@@ -19,7 +19,7 @@ export const getCountry = async () => {
 export const FlagOnly = async ({ className }: { className?: string }) => {
   const country = await getCountry()
   return (
-    <span role="img" aria-label={country.name} className={className}>
+    <span aria-label={country.name} className={className} role="img">
       {country.emoji}
     </span>
   )

@@ -1,11 +1,11 @@
-import { withContentlayer } from 'next-contentlayer'
 import type { NextConfig } from 'next'
+import { withContentlayer } from 'next-contentlayer'
 
 // Helper to get S3 hostname from env vars (runs at build time)
 function getS3Hostname(): string | null {
   const endpoint = process.env.S3_ENDPOINT
   const bucket = process.env.S3_BUCKET
-  if (!endpoint || !bucket) {
+  if (!(endpoint && bucket)) {
     return null
   }
   try {
@@ -28,13 +28,26 @@ function getS3Hostname(): string | null {
 const s3Hostname = getS3Hostname()
 
 const nextConfig: NextConfig = {
-  reactStrictMode: false,
-  output: 'standalone',
   experimental: {
     useCache: true,
   },
-  turbopack: {},
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  async headers() {
+    return [
+      {
+        headers: [
+          {
+            key: 'Referrer-Policy',
+            value: 'no-referrer-when-downgrade',
+          },
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
+          },
+        ],
+        source: '/:path*',
+      },
+    ]
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -54,34 +67,26 @@ const nextConfig: NextConfig = {
       ...(s3Hostname ? [{ hostname: s3Hostname }] : []),
     ],
   },
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: [
-          {
-            key: 'Referrer-Policy',
-            value: 'no-referrer-when-downgrade',
-          },
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-        ],
-      },
-    ]
-  },
+  output: 'standalone',
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  reactStrictMode: false,
   async rewrites() {
     return [
       {
-        source: '/js/script.js',
         destination: 'https://datafa.st/js/script.js',
+        source: '/js/script.js',
       },
       {
-        source: '/api/events',
         destination: 'https://datafa.st/api/events',
+        source: '/api/events',
       },
     ]
+  },
+  turbopack: {},
+  typescript: {
+    // Skip Next's embedded tsc (typescript@6) in Docker builds. Real gate:
+    // CI/pre-commit `bun run typecheck` (TS7 via @typescript/native).
+    ignoreBuildErrors: process.env.DOCKER_BUILD === 'true',
   },
 }
 

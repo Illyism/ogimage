@@ -1,11 +1,11 @@
 'use client'
-import { cn } from '@/lib/utils'
 import { CheckCircle, Star } from 'lucide-react'
-import { ESSENTIAL_PRICE } from '@/lib/pricing'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
+import { ESSENTIAL_PRICE } from '@/lib/pricing'
+import { cn } from '@/lib/utils'
 import { Button } from '../ui/button'
 import { Logo } from '../ui/logo'
 import {
@@ -39,15 +39,15 @@ export function Header() {
   }, [tooltipOpen, setHasSeenHeader])
   return (
     <>
-      <ul className="container jc flex items-center gap-12 overflow-hidden whitespace-nowrap bg-background-body py-2 text-xs">
-        <li className="ml-1 flex items-center">
-          <CheckCircle size={14} className="mr-1 text-green-500" />
+      <ul className="container flex items-center justify-between gap-6 overflow-hidden whitespace-nowrap bg-background-body py-2 text-xs">
+        <li className="flex items-center">
+          <CheckCircle className="mr-1 text-green-500" size={14} />
           Created by&nbsp;
           <a
-            href="https://magicspace.agency"
-            target="_blank"
             className="font-medium hover:underline"
+            href="https://magicspace.agency"
             rel="noreferrer"
+            target="_blank"
           >
             SEO experts
           </a>
@@ -56,15 +56,15 @@ export function Header() {
         <li className="hidden items-center gap-0.5 sm:flex">
           {Array.from({ length: 5 }).map((_, i) => (
             <Star
+              className="text-green-500 transition hover:scale-125 hover:text-green-400"
+              fill="currentColor"
               key={i}
               size={14}
-              fill="currentColor"
-              className="text-green-500 transition hover:scale-125 hover:text-green-400"
             />
           ))}
           <span className="ml-1">
             Used by{' '}
-            <Link href="/customers" className="font-medium hover:underline">
+            <Link className="font-medium hover:underline" href="/customers">
               top startups
             </Link>
           </span>
@@ -73,16 +73,16 @@ export function Header() {
       <header className="container sticky top-0 z-50 flex w-full items-center justify-between bg-background/95 py-1 text-sm backdrop-blur-lg supports-backdrop-filter:bg-background/90">
         <div className="flex items-center space-x-4">
           <Link
+            className="flex flex-1 items-center gap-2 font-black"
             href="/"
             prefetch={false}
-            className="flex flex-1 items-center gap-2 font-black"
           >
-            <Logo className="text-primary" width={24} height={24} />
+            <Logo className="text-primary" height={24} width={24} />
             ogimage.org
           </Link>
           <nav className="hidden items-center justify-center sm:ml-8 sm:flex">
             {headerLinks.map((link, i) => (
-              <NavLink key={i} href={link.href}>
+              <NavLink href={link.href} key={i}>
                 {link.label}
               </NavLink>
             ))}
@@ -91,8 +91,8 @@ export function Header() {
         <div className="flex items-center justify-end space-x-4">
           <TooltipProvider delayDuration={0}>
             <Tooltip
-              open={isMounted ? tooltipOpen : false}
               onOpenChange={setTooltipOpen}
+              open={isMounted ? tooltipOpen : false}
             >
               <TooltipTrigger>
                 <Button asChild size="rounded">
@@ -100,13 +100,13 @@ export function Header() {
                 </Button>
               </TooltipTrigger>
               <TooltipContent
-                className="btn flex items-center rounded-xl"
-                side="bottom"
                 align="end"
+                className="flex items-center rounded-xl"
+                side="bottom"
               >
-                <Logo className="mr-2 text-primary" width={32} height={32} />
-                <div className="text-sm font-bold text-card-foreground">
-                  <div className="text-xs font-black uppercase opacity-80">
+                <Logo className="mr-2 text-primary" height={32} width={32} />
+                <div className="font-semibold text-card-foreground text-sm">
+                  <div className="font-medium text-[11px] uppercase tracking-wide opacity-80">
                     New Update
                   </div>
                   ${ESSENTIAL_PRICE} - Lifetime access
@@ -118,7 +118,7 @@ export function Header() {
       </header>
       <nav className="flex flex-wrap items-center pl-4 text-sm sm:hidden">
         {headerLinks.map((link, i) => (
-          <NavLink key={i} href={link.href}>
+          <NavLink href={link.href} key={i}>
             {link.label}
           </NavLink>
         ))}
@@ -137,17 +137,21 @@ const NavLink = ({ href, children }) => {
       return true
     }
 
+    if (!pathname) {
+      return false
+    }
+
     // Check for parameterized blog match
-    return pathname && pathname.startsWith(path)
+    return pathname.startsWith(path)
   }
 
   return (
     <Link
-      href={href}
       className={cn(
-        'px-2 py-2 font-medium text-foreground/60 transition-colors hover:text-foreground/80',
+        'rounded-md px-2 py-2 font-medium text-foreground/60 transition-colors hover:text-foreground',
         isActive(href) && 'text-foreground',
       )}
+      href={href}
     >
       {children}
     </Link>

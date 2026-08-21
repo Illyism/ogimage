@@ -1,29 +1,29 @@
-import { prisma } from '@/lib/prisma'
 import { cache } from 'react'
+import { prisma } from '@/lib/prisma'
 
 export interface Page {
+  block: string | null
+  content: string | null
+  createdAt: string | Date
+  description: string
   id: number
   slug: string
-  content: string | null
-  block: string | null
   title: string
-  description: string
-  createdAt: string | Date
   updatedAt: string | Date
 }
 
 export interface Inspiration {
-  slug: string
-  date_created: Date
-  date_updated: Date
-  domain: string
-  URL: string
-  name: string
   category: string[]
-  description: string
-  image: string
   color: string[]
   content?: string | null
+  date_created: Date
+  date_updated: Date
+  description: string
+  domain: string
+  image: string
+  name: string
+  slug: string
+  URL: string
 }
 
 export const getPages = cache(async function getPages() {
@@ -98,18 +98,18 @@ export const getLatestInspiration = cache(async function getLatestInspiration(
     }
 
     // Handle other filters
-    Object.keys(filter).forEach((key) => {
+    for (const key of Object.keys(filter)) {
       if (key !== 'category') {
         where[key] = filter[key]
       }
-    })
+    }
 
     const inspirations = await prisma.inspiration.findMany({
-      where,
       orderBy: {
         date_created: 'desc',
       },
       take: limit,
+      where,
     })
 
     return inspirations
@@ -124,7 +124,7 @@ export function getUniqueCategories(list: { category: string[] }[]) {
     (acc, curr) => {
       for (const category of curr.category) {
         if (acc[category]) {
-          acc[category]++
+          acc[category] += 1
         } else {
           acc[category] = 1
         }

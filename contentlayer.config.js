@@ -11,87 +11,117 @@ import remarkGfm from 'remark-gfm'
 import { capitalize } from './lib/utils'
 
 export const Review = defineNestedType(() => ({
-  name: 'Review',
   fields: {
-    name: { type: 'string', required: true },
-    href: { type: 'string', required: true },
-    summary: { type: 'string', required: true },
-    rating: { type: 'number', required: true },
-    domain: { type: 'string', required: false },
+    domain: { required: false, type: 'string' },
+    href: { required: true, type: 'string' },
+    name: { required: true, type: 'string' },
+    rating: { required: true, type: 'number' },
+    summary: { required: true, type: 'string' },
   },
+  name: 'Review',
 }))
 
 export const BlogPost = defineDocumentType(() => ({
-  name: 'BlogPost',
-  filePathPattern: `**/blog/*.mdx`,
+  // @ts-expect-error
+  computedFields: computedFields('blog'),
   contentType: 'mdx',
   fields: {
-    title: {
-      type: 'string',
-      required: true,
-    },
-    h1: {
-      type: 'string',
-      required: false,
-    },
-    publishedAt: {
-      type: 'string',
-      required: true,
-    },
-    updatedAt: {
-      type: 'string',
-      required: false,
-    },
-    summary: {
-      type: 'string',
-      required: true,
-    },
-    image: {
-      type: 'string',
-      required: false,
-    },
-    image_alt: {
-      type: 'string',
-      required: false,
-    },
     author: {
-      type: 'string',
       required: true,
+      type: 'string',
+    },
+    canonical: {
+      required: false,
+      type: 'string',
     },
     category: {
-      type: 'string',
       required: false,
+      type: 'string',
+    },
+    h1: {
+      required: false,
+      type: 'string',
+    },
+    hideOffers: {
+      default: false,
+      type: 'boolean',
+    },
+    image: {
+      required: false,
+      type: 'string',
+    },
+    image_alt: {
+      required: false,
+      type: 'string',
+    },
+    publishedAt: {
+      required: true,
+      type: 'string',
     },
     related: {
-      type: 'list',
       of: {
         type: 'string',
       },
-    },
-    hideOffers: {
-      type: 'boolean',
-      default: false,
+      type: 'list',
     },
     review: {
-      type: 'nested',
       of: Review,
+      type: 'nested',
     },
-    canonical: {
+    summary: {
+      required: true,
       type: 'string',
+    },
+    title: {
+      required: true,
+      type: 'string',
+    },
+    updatedAt: {
       required: false,
+      type: 'string',
     },
   },
-  // @ts-ignore
-  computedFields: computedFields('blog'),
+  filePathPattern: '**/blog/*.mdx',
+  name: 'BlogPost',
 }))
 
 const computedFields = (type) => ({
+  githubRepos: {
+    resolve: (doc) => {
+      // match all <GithubRepo url=""/> and extract the url
+      return doc.body.raw.match(
+        /(?<=<GithubRepo[^>]*\burl=")[^"]+(?="[^>]*\/>)/g,
+      )
+    },
+    type: 'array',
+  },
+  images: {
+    resolve: (doc) =>
+      doc.body.raw.match(/(?<=<Image[^>]*\bsrc=")[^"]+(?="[^>]*\/>)/g) || [],
+    type: 'array',
+  },
   slug: {
-    type: 'string',
     resolve: (doc) => doc._raw.flattenedPath.replace(`${type}/`, ''),
+    type: 'string',
+  },
+  structuredData: {
+    resolve: (doc) => ({
+      '@context': 'https://schema.org',
+      '@type': `${capitalize(type)}Posting`,
+      author: {
+        '@type': 'Person',
+        name: doc.author,
+      },
+      dateModified: doc.publishedAt,
+      datePublished: doc.publishedAt,
+      description: doc.summary,
+      headline: doc.title,
+      image: doc.image,
+      url: `https://ogimage.org/blog/${doc._raw.flattenedPath}`,
+    }),
+    type: 'object',
   },
   tableOfContents: {
-    type: 'array',
     resolve: (doc) => {
       // get all markdown heading 2 nodes (##)
       const headings = doc.body.raw.match(/^##\s.+/gm)
@@ -100,53 +130,20 @@ const computedFields = (type) => ({
         headings?.map((heading) => {
           const title = heading.replace(/^##\s/, '')
           return {
-            title,
             slug: slugger.slug(title),
+            title,
           }
         }) || []
       )
     },
-  },
-  images: {
     type: 'array',
-    resolve: (doc) => {
-      return (
-        doc.body.raw.match(/(?<=<Image[^>]*\bsrc=")[^"]+(?="[^>]*\/>)/g) || []
-      )
-    },
   },
   tweetIds: {
-    type: 'array',
     resolve: (doc) => {
       const tweetMatches = doc.body.raw.match(/<Tweet\sid="[0-9]+"\s\/>/g)
       return tweetMatches?.map((tweet) => tweet.match(/[0-9]+/g)[0]) || []
     },
-  },
-  githubRepos: {
     type: 'array',
-    resolve: (doc) => {
-      // match all <GithubRepo url=""/> and extract the url
-      return doc.body.raw.match(
-        /(?<=<GithubRepo[^>]*\burl=")[^"]+(?="[^>]*\/>)/g,
-      )
-    },
-  },
-  structuredData: {
-    type: 'object',
-    resolve: (doc) => ({
-      '@context': 'https://schema.org',
-      '@type': `${capitalize(type)}Posting`,
-      headline: doc.title,
-      datePublished: doc.publishedAt,
-      dateModified: doc.publishedAt,
-      description: doc.summary,
-      image: doc.image,
-      url: `https://ogimage.org/blog/${doc._raw.flattenedPath}`,
-      author: {
-        '@type': 'Person',
-        name: doc.author,
-      },
-    }),
   },
 })
 
@@ -155,13 +152,17 @@ export default makeSource({
   contentDirPath: 'content',
   documentTypes: [BlogPost],
   mdx: {
-    remarkPlugins: [remarkGfm],
     rehypePlugins: [
       rehypeSlug,
       [
         rehypePrettyCode,
         {
-          theme: 'one-dark-pro',
+          onVisitHighlightedLine(node) {
+            node.properties.className.push('line--highlighted')
+          },
+          onVisitHighlightedWord(node) {
+            node.properties.className = ['word--highlighted']
+          },
           onVisitLine(node) {
             // Prevent lines from collapsing in `display: grid` mode, and allow empty
             // lines to be copy/pasted
@@ -169,12 +170,7 @@ export default makeSource({
               node.children = [{ type: 'text', value: ' ' }]
             }
           },
-          onVisitHighlightedLine(node) {
-            node.properties.className.push('line--highlighted')
-          },
-          onVisitHighlightedWord(node) {
-            node.properties.className = ['word--highlighted']
-          },
+          theme: 'one-dark-pro',
         },
       ],
       [
@@ -187,5 +183,6 @@ export default makeSource({
         },
       ],
     ],
+    remarkPlugins: [remarkGfm],
   },
 })

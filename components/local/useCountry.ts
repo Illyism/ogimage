@@ -17,12 +17,13 @@ export const getCountry = async (): Promise<Country> => {
     headersList.get('x-vercel-ip-country') ?? // Vercel (fallback)
     'US'
 
-  if (!_country)
+  if (!_country) {
     return {
       code: 'US',
       emoji: '🇺🇸',
       name: 'United States',
     }
+  }
 
   return {
     code: _country,

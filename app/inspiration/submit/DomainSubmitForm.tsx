@@ -1,8 +1,9 @@
 'use client'
 
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { useState } from 'react'
+import { Label } from '@/components/ui/label'
 import { sendText } from './_actions.tsx'
 
 type State =
@@ -26,26 +27,30 @@ export default function DomainSubmitForm() {
   }
 
   return (
-    <>
-      <form
-        action={sendText}
-        onSubmit={handleSubmit}
-        className="flex w-full max-w-2xl flex-col gap-y-4"
-      >
+    <form
+      action={sendText}
+      className="flex w-full max-w-2xl flex-col gap-y-4"
+      onSubmit={handleSubmit}
+    >
+      <div className="flex flex-col gap-2">
+        <Label htmlFor="domain">Your website URL</Label>
         <Input
+          disabled={formState.status === 'submitting'}
+          id="domain"
           name="text"
-          value={formState.text}
           onChange={(e) =>
             setFormState({ status: 'idle', text: e.target.value })
           }
-          disabled={formState.status === 'submitting'}
+          placeholder="https://example.com"
+          type="url"
+          value={formState.text}
         />
-        <Button
-          disabled={formState.text === '' || formState.status === 'submitting'}
-        >
-          {formState.status === 'idle' ? '✨ Generate ✨' : 'Loading...'}
-        </Button>
-      </form>
-    </>
+      </div>
+      <Button
+        disabled={formState.text === '' || formState.status === 'submitting'}
+      >
+        {formState.status === 'idle' ? 'Generate preview' : 'Generating…'}
+      </Button>
+    </form>
   )
 }

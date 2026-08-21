@@ -55,8 +55,8 @@ export async function generateImage({
   const imgHeight = height - (alt ? 150 : 50)
   const imgWidth = width * 0.95
   const screenshot = takeScreenshot({
-    url,
     height: imgHeight,
+    url,
     width: imgWidth,
   })
 
@@ -79,34 +79,34 @@ export async function generateImage({
   }
   return new ImageResponse(
     <div
-      tw="flex flex-col items-center justify-end w-full h-full text-center text-[#282d33]"
       style={style}
+      tw="flex flex-col items-center justify-end w-full h-full text-center text-[#282d33]"
     >
-      {alt && (
+      {alt ? (
         <h1 tw="mb-8 font-black text-5xl tracking-tight leading-none flex items-center justify-center">
           {textBefore}
 
-          {textBold && (
+          {textBold ? (
             <span tw="-mt-2 ml-2 rounded-2xl bg-[#cee9fd] text-[#009dff] font-black px-2 py-2">
               {textBold}
             </span>
-          )}
+          ) : null}
         </h1>
-      )}
+      ) : null}
 
       {screenshot && (
         <img
-          tw="rounded-t-2xl shadow-2xl"
-          src={screenshot}
           alt=""
           height={imgHeight}
+          src={screenshot}
+          tw="rounded-t-2xl shadow-2xl"
           width={imgWidth}
         />
       )}
     </div>,
     {
-      width: 1200,
       height: 600,
+      width: 1200,
     },
   )
 }

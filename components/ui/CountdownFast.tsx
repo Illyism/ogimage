@@ -1,7 +1,7 @@
 'use client'
-import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { cn } from '@/lib/utils'
 
 export const CountdownFast = ({ className }: { className?: string }) => {
   // countdown 1 hour
@@ -20,13 +20,13 @@ export const CountdownFast = ({ className }: { className?: string }) => {
 
   return (
     <motion.div
+      animate={{ opacity: 1, y: 0 }}
       className={cn(
         'flex items-center justify-center font-mono proportional-nums',
         className,
       )}
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 10 }}
     >
       <div>{String(hours).padStart(2, '0')}</div>
       <div>:</div>

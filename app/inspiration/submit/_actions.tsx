@@ -12,11 +12,11 @@ export async function sendText(data: FormData) {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'}/api/inspiration/submit`,
     {
-      method: 'POST',
+      body: JSON.stringify({ content: text }),
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ content: text }),
+      method: 'POST',
     },
   )
 

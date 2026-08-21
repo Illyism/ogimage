@@ -1,6 +1,6 @@
-import { generateId } from '@/lib/gen-id'
 import { cookies } from 'next/headers'
 import { PostHog } from 'posthog-node'
+import { generateId } from '@/lib/gen-id'
 
 export function getPosthogClient() {
   const phProjectAPIKey = process.env.NEXT_PUBLIC_POSTHOG_KEY!
@@ -16,8 +16,7 @@ export async function getPosthogId() {
   const phCookie = cookieStore.get(phCookieName)
 
   if (phCookie) {
-    const phCookieParsed = JSON.parse(phCookie.value)
-    distinct_id = phCookieParsed.distinct_id
+    ;({ distinct_id } = JSON.parse(phCookie.value))
   }
   if (!distinct_id) {
     distinct_id = generateId()

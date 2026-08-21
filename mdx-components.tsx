@@ -15,18 +15,18 @@ const ResponsiveImage = (props: any) => {
     <span itemProp="image" itemScope itemType="https://schema.org/ImageObject">
       <Image
         alt={props.alt}
+        blurDataURL={props.src.blurDataURL}
         className="rounded-lg"
-        sizes="100vw"
-        style={{ width: '100%', height: 'auto' }}
         itemProp="thumbnailUrl"
         placeholder="blur"
-        blurDataURL={props.src.blurDataURL}
+        sizes="100vw"
+        style={{ height: 'auto', width: '100%' }}
         {...props}
       />
-      <span className="hidden" aria-hidden>
-        <link itemProp="contentUrl" href={abs} />
-        <span itemProp="creator" itemType="https://schema.org/Person" itemScope>
-          <meta itemProp="name" content="OGimage.org" />
+      <span aria-hidden className="hidden">
+        <link href={abs} itemProp="contentUrl" />
+        <span itemProp="creator" itemScope itemType="https://schema.org/Person">
+          <meta content="OGimage.org" itemProp="name" />
         </span>
         <span itemProp="copyrightNotice">&copy; OGimage.org</span>
         <span itemProp="creditText">OGimage.org</span>
@@ -42,10 +42,10 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ...components,
     Image: ResponsiveImage,
     Link: (props) => {
-      const isInternalLink = props.href && props.href.startsWith('/')
-      const isAnchorLink = props.href && props.href.startsWith('#')
-      const isExternalLink = props.href && props.href.startsWith('http')
-      const isMailtoLink = props.href && props.href.startsWith('mailto')
+      const isInternalLink = props.href?.startsWith('/')
+      const isAnchorLink = props.href?.startsWith('#')
+      const isExternalLink = props.href?.startsWith('http')
+      const isMailtoLink = props.href?.startsWith('mailto')
 
       if (isInternalLink) {
         return <Link href={props.href} {...props} />
@@ -56,7 +56,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       }
 
       if (isExternalLink) {
-        return <a {...props} target="_blank" rel={getRouteRel(props.href)} />
+        return <a {...props} rel={getRouteRel(props.href)} target="_blank" />
       }
 
       if (isMailtoLink) {

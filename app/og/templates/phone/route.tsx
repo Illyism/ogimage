@@ -10,15 +10,15 @@ export async function GET() {
   const width = 1200
   const height = 630
   const screenshot = getScreenshotURL({
+    height,
     url: 'https://en.wikipedia.org/wiki/Special:Random',
     width: 600,
-    height,
   })
 
   // Load font from public URL
   const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://ogimage.org'
   const fontUrl = `${appUrl}/styles/Hoefler%20Text%20Regular.ttf`
-  
+
   let Hoefler: ArrayBuffer | null = null
   try {
     const fontRes = await fetch(fontUrl)
@@ -41,13 +41,13 @@ export async function GET() {
         </div>
       </div>
       <img
-        tw="absolute right-0 top-[10px] bottom-0 border-l-[20px] border-t-[20px] border-black rounded-tl-[40px]"
+        alt=""
+        height={height}
+        src={screenshot}
         style={{
           boxShadow: '0 0 100px 4px rgba(0, 0, 0, 0.8)',
         }}
-        src={screenshot}
-        alt=""
-        height={height}
+        tw="absolute right-0 top-[10px] bottom-0 border-l-[20px] border-t-[20px] border-black rounded-tl-[40px]"
         width={600}
       />
       <div tw="absolute h-[90px] w-[10px] top-[240px] right-[595px] rounded-full bg-black">
@@ -55,19 +55,19 @@ export async function GET() {
       </div>
     </div>,
     {
-      width,
-      height,
-      headers: {
-        // 'Cache-Control': 'public, max-age=3600, immutable',
-      },
       fonts: Hoefler
         ? [
             {
-              name: 'Hoefler',
               data: Hoefler,
+              name: 'Hoefler',
             },
           ]
         : [],
+      headers: {
+        // 'Cache-Control': 'public, max-age=3600, immutable',
+      },
+      height,
+      width,
     },
   )
 }

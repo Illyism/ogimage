@@ -1,4 +1,4 @@
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
+import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3'
 
 // S3 Configuration (Hetzner)
 function getS3Config() {
@@ -8,23 +8,23 @@ function getS3Config() {
   const secretAccessKey = process.env.S3_SECRET_ACCESS_KEY
   const bucket = process.env.S3_BUCKET
 
-  if (!endpoint || !region || !accessKeyId || !secretAccessKey || !bucket) {
+  if (!(endpoint && region && accessKeyId && secretAccessKey && bucket)) {
     throw new Error(
       'Missing S3 configuration. Please set S3_ENDPOINT, S3_REGION, S3_ACCESS_KEY_ID, S3_SECRET_ACCESS_KEY, and S3_BUCKET environment variables.',
     )
   }
 
   return {
+    bucket,
     config: {
-      endpoint,
-      region,
       credentials: {
         accessKeyId,
         secretAccessKey,
       },
+      endpoint,
       forcePathStyle: true,
+      region,
     },
-    bucket,
   }
 }
 
@@ -35,7 +35,7 @@ function getS3BaseUrl(): string {
   const endpoint = process.env.S3_ENDPOINT
   const bucket = process.env.S3_BUCKET
 
-  if (!endpoint || !bucket) {
+  if (!(endpoint && bucket)) {
     throw new Error(
       'Missing S3 configuration. Please set S3_ENDPOINT and S3_BUCKET environment variables.',
     )
@@ -63,7 +63,9 @@ function getS3BaseUrl(): string {
 export function getS3Hostname(): string | null {
   try {
     const endpoint = process.env.S3_ENDPOINT
-    if (!endpoint) return null
+    if (!endpoint) {
+      return null
+    }
 
     // Extract hostname from endpoint
     if (endpoint.includes('://')) {
@@ -85,11 +87,11 @@ export async function uploadFile(
   const s3Key = `uploads/${filename}`
 
   const command = new PutObjectCommand({
-    Bucket: BUCKET,
-    Key: s3Key,
-    Body: buffer,
-    ContentType: file.type || 'image/jpeg',
     ACL: 'public-read',
+    Body: buffer,
+    Bucket: BUCKET,
+    ContentType: file.type || 'image/jpeg',
+    Key: s3Key,
   })
 
   await s3Client.send(command)
@@ -129,7 +131,7 @@ export function getFileUrl(filePath: string): string {
 
   // If it's a relative path starting with /uploads, convert to S3
   if (filePath.startsWith('/uploads/')) {
-    const s3Key = filePath.substring(1) // Remove leading /
+    const s3Key = filePath.slice(1) // Remove leading /
     return `${getS3BaseUrl()}/${s3Key}`
   }
 

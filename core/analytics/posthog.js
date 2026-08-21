@@ -4,20 +4,21 @@ import isbot from 'isbot'
 
 function makeDummies() {
   window.posthog = {
-    capture: () => void 0,
-    identify: () => void 0,
-    init: () => void 0,
-    reset: () => void 0,
+    capture: () => undefined,
+    identify: () => undefined,
+    init: () => undefined,
+    reset: () => undefined,
   }
-  window.fbq = () => void 0
-  window.twq = () => void 0
-  window.gtag = () => void 0
+  window.fbq = () => undefined
+  window.twq = () => undefined
+  window.gtag = () => undefined
 }
 
 // save all clicks in storage
 function getClick(slug) {
   if (window.location.search.includes(slug)) {
-    const param = window.location.search.split(slug + '=')[1].split('&')[0]
+    const [, rawParam] = window.location.search.split(`${slug}=`)
+    const [param] = rawParam.split('&')
     if (param) {
       window.localStorage.setItem(slug, param)
       return param
@@ -35,8 +36,8 @@ async function installGooglePixel() {
     return
   }
   window.dataLayer = window.dataLayer || []
-  function gtag() {
-    dataLayer.push(arguments)
+  function gtag(...args) {
+    window.dataLayer.push(args)
   }
   window.gtag = gtag
 
@@ -53,7 +54,9 @@ async function installGooglePixel() {
 
 let initialized = false
 export function initPosthog() {
-  if (initialized) return
+  if (initialized) {
+    return
+  }
   initialized = true
   if (isbot(navigator.userAgent)) {
     return makeDummies()
@@ -66,67 +69,67 @@ export function initPosthog() {
     return makeDummies()
   }
 
-  ;(function (t, e) {
+  ;((t, e) => {
     let o, n, p, r
-    if (e.__SV) return
+    if (e.__SV) {
+      return
+    }
     window.posthog = e
     e._i = []
-    e.init = function (i, s, a) {
+    e.init = (i, s, a) => {
       function g(t, e) {
         const o = e.split('.')
-        if (2 == o.length) {
-          t = t[o[0]]
-          e = o[1]
-        }
-        t[e] = function () {
-          t.push([e].concat(Array.prototype.slice.call(arguments, 0)))
+        const target = o.length === 2 ? t[o[0]] : t
+        const key = o.length === 2 ? o[1] : e
+        target[key] = (...args) => {
+          target.push([key].concat(args))
         }
       }
       p = t.createElement('script')
       p.type = 'text/javascript'
       p.async = !0
-      p.src = s.api_host + '/static/array.js'
-      r = t.getElementsByTagName('script')[0]
+      p.src = `${s.api_host}/static/array.js`
+      ;[r] = t.getElementsByTagName('script')
       r.parentNode.insertBefore(p, r)
       let u = e
-      if (void 0 !== a) {
-        u = e[a] = []
+      let name = a
+      if (a === undefined) {
+        name = 'posthog'
       } else {
-        a = 'posthog'
+        e[a] = []
+        u = e[a]
       }
       u.people = u.people || []
-      u.toString = function (t) {
+      u.toString = (t) => {
         let e = 'posthog'
-        if ('posthog' !== a) {
-          e += '.' + a
+        if (name !== 'posthog') {
+          e += `.${name}`
         }
         if (!t) {
           e += ' (stub)'
         }
         return e
       }
-      u.people.toString = function () {
-        return u.toString(1) + '.people (stub)'
-      }
+      u.people.toString = () => `${u.toString(1)}.people (stub)`
       o =
         'capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys'.split(
           ' ',
         )
-      for (n = 0; n < o.length; n++) {
+      for (n = 0; n < o.length; n += 1) {
         g(u, o[n])
       }
-      e._i.push([i, s, a])
+      e._i.push([i, s, name])
     }
     e.__SV = 1
   })(document, window.posthog || [])
 
   window.posthog.init('phc_shUEtlslpYfP6b4sucDAjcr2qLmIWgk2nYZzzsuNVrd', {
     api_host: 'https://magichog.il.ly',
-    ui_host: 'https://eu.posthog.com',
     loaded: () => {
       console.log('🦔')
       installGooglePixel()
     },
+    ui_host: 'https://eu.posthog.com',
   })
 }
 

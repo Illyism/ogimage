@@ -1,22 +1,22 @@
+import Image from 'next/image'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
-import Image from 'next/image'
 import { Customers } from './Customers'
 
-export const revalidate = 14400 // 4 hours
+export const revalidate = 14_400 // 4 hours
 
 export const metadata = generatePageMeta({
-  title: 'Customers & Examples - Open Graph Image as a Service',
   description:
     'Open Graph Image as a Service is a powerful and flexible open graph image generator that allows you to create dynamic, high-quality images for your website.',
+  title: 'Customers & Examples - Open Graph Image as a Service',
   url: '/customers',
 })
 
 export default function Templates() {
   return (
     <PageLayout>
-      <header className="container relative border-b border-border py-8">
-        <h1 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
+      <header className="container relative border-border border-b py-8">
+        <h1 className="mb-4 flex-1 text-balance font-bold text-3xl tracking-tight md:text-4xl">
           Customers & Examples
         </h1>
         <p className="text-md text-muted-foreground">
@@ -32,31 +32,30 @@ export default function Templates() {
   )
 }
 
-const Contact = () => {
-  return (
-    <div className="container">
-      <h2 className="mb-4 flex-1 text-3xl font-bold tracking-tighter  md:text-4xl">
-        Tell us your story
-      </h2>
-      <p className="text-md mb-4 text-muted-foreground">
-        <b>Want to be featured here?</b> DM us on{' '}
-        <a
-          href="https://x.com/illyism"
-          target="_blank"
-          className="font-bold text-primary hover:underline dark:text-yellow-400"
-        >
-          Twitter
-        </a>
-      </p>
-      <FounderCard
-        name="Ilias Ism"
-        img="/_static/ilias.png"
-        twitter="illyism"
-        description="Ilias is a SEO expert and loves to build products, transforming ideas into products. He is the creator of ogimage.org"
-      />
-    </div>
-  )
-}
+const Contact = () => (
+  <div className="container">
+    <h2 className="mb-4 flex-1 text-balance font-bold text-3xl tracking-tight md:text-4xl">
+      Tell us your story
+    </h2>
+    <p className="mb-4 text-md text-muted-foreground">
+      <b>Want to be featured here?</b> DM us on{' '}
+      <a
+        className="font-bold text-primary hover:underline dark:text-yellow-400"
+        href="https://x.com/illyism"
+        rel="noopener"
+        target="_blank"
+      >
+        Twitter
+      </a>
+    </p>
+    <FounderCard
+      description="Ilias is a SEO expert and loves to build products, transforming ideas into products. He is the creator of ogimage.org"
+      img="/_static/ilias.png"
+      name="Ilias Ism"
+      twitter="illyism"
+    />
+  </div>
+)
 
 const FounderCard = ({
   name,
@@ -68,30 +67,29 @@ const FounderCard = ({
   img: string
   twitter: string
   description: string
-}) => {
-  return (
-    <div className="not-prose rounded-2xl bg-white/5 p-4 leading-none">
-      <div className="mb-2 flex items-center">
-        <Image
-          src={img}
-          alt={name}
-          width={48}
-          height={48}
-          className="mr-2 rounded-full border-2 border-white/20 hover:rotate-6"
-        />
-        <div>
-          <h3 className="font-bold leading-none">{name}</h3>
-          <a
-            className=" text-sm font-bold leading-none underline"
-            href={`https://twitter.com/${twitter}`}
-            target="_blank"
-          >
-            @{twitter}
-          </a>
-        </div>
+}) => (
+  <div className="not-prose rounded-2xl bg-white/5 p-4 leading-none">
+    <div className="mb-2 flex items-center">
+      <Image
+        alt={name}
+        className="mr-2 rounded-full border-2 border-white/20 hover:rotate-6"
+        height={48}
+        src={img}
+        width={48}
+      />
+      <div>
+        <h3 className="font-bold leading-none">{name}</h3>
+        <a
+          className="font-bold text-sm leading-none underline"
+          href={`https://twitter.com/${twitter}`}
+          rel="noopener"
+          target="_blank"
+        >
+          @{twitter}
+        </a>
       </div>
-
-      <p className="text-sm">{description}</p>
     </div>
-  )
-}
+
+    <p className="text-sm">{description}</p>
+  </div>
+)

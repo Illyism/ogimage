@@ -1,15 +1,24 @@
-<?xml version="1.0" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
- "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
-<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
- width="1024.000000pt" height="1024.000000pt" viewBox="0 0 1024.000000 1024.000000"
- preserveAspectRatio="xMidYMid meet">
-<metadata>
-Created by potrace 1.14, written by Peter Selinger 2001-2017
-</metadata>
-<g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
-<path d="M4835 10233 c-1026 -54 -2032 -431 -2852 -1069 -169 -132 -262 -214
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg
+  height="1024.000000pt"
+  preserveAspectRatio="xMidYMid meet"
+  version="1.0"
+  viewBox="0 0 1024.000000 1024.000000"
+  width="1024.000000pt"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <title>ogimage.org</title>
+  <metadata>
+    Created by potrace 1.14, written by Peter Selinger 2001-2017
+  </metadata>
+  <g
+    fill="#000000"
+    stroke="none"
+    transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)"
+  >
+    <path
+      d="M4835 10233 c-1026 -54 -2032 -431 -2852 -1069 -169 -132 -262 -214
 -432 -379 -378 -369 -660 -738 -917 -1201 -844 -1518 -844 -3409 -1 -4927 239
 -429 483 -758 822 -1106 504 -516 1069 -898 1735 -1174 979 -404 2109 -486
 3155 -228 229 57 432 121 650 208 1058 418 1959 1188 2538 2169 575 974 806
@@ -20,6 +29,7 @@ fill="#000000" stroke="none">
 -94 -371 -298 -749 -599 -1116 -119 -144 -420 -443 -581 -577 -328 -273 -688
 -516 -965 -650 -229 -111 -282 -109 -544 27 -295 153 -728 461 -1033 735 -710
 637 -1092 1323 -1120 2012 -19 471 127 880 417 1170 190 190 438 319 690 360
-41 6 82 13 90 15 38 10 341 -5 405 -19z"/>
-</g>
+41 6 82 13 90 15 38 10 341 -5 405 -19z"
+    />
+  </g>
 </svg>

@@ -1,5 +1,5 @@
 import Script from 'next/script'
-import React from 'react'
+import type React from 'react'
 import type {
   Article,
   Graph,
@@ -11,13 +11,13 @@ import type {
 
 // Define a TypeScript type for the component's props
 interface ArticleProps {
-  id: string
-  title: string
-  datePublished: string
-  dateModified: string
-  authorName: string
   authorId: string
+  authorName: string
+  dateModified: string
+  datePublished: string
+  id: string
   imageUrl: string
+  title: string
 }
 
 // Define the component
@@ -37,16 +37,13 @@ export const ArticleStructuredData: React.FC<ArticleProps> = ({
   // Define the structured data
   const structuredData: WithContext<Article> = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
     '@id': id,
-    headline: title,
-    datePublished: isoDatePublished,
-    dateModified: isoDateModified,
+    '@type': 'Article',
     author: [
       {
+        '@id': authorId,
         '@type': 'Person',
         name: authorName,
-        '@id': authorId,
         url: authorId,
       },
       {
@@ -55,28 +52,31 @@ export const ArticleStructuredData: React.FC<ArticleProps> = ({
         url: 'https://ogimage.org',
       },
     ],
+    dateModified: isoDateModified,
+    datePublished: isoDatePublished,
+    headline: title,
     image: {
       '@type': 'ImageObject',
+      height: '630',
       url: imageUrl,
       width: '1200',
-      height: '630',
     },
+    inLanguage: 'en-US',
     mainEntityOfPage: {
-      '@type': 'WebPage',
       '@id': `https://ogimage.org/${id}`,
+      '@type': 'WebPage',
     },
     publisher: personData,
     thumbnailUrl: imageUrl,
-    inLanguage: 'en-US',
   }
 
   // Return the structured data inside a script tag
   return (
     <script
-      type="application/ld+json"
       dangerouslySetInnerHTML={{
         __html: JSON.stringify(structuredData, null, 2),
       }}
+      type="application/ld+json"
     />
   )
 }
@@ -85,15 +85,15 @@ export const ArticleStructuredData: React.FC<ArticleProps> = ({
 const personData: WithContext<Person> = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Ilias Ism',
-  url: 'https://il.ly',
   image: 'https://il.ly/me/ilias-ism.png',
+  jobTitle: 'CEO',
+  name: 'Ilias Ism',
   sameAs: [
     'https://twitter.com/illyism',
     'https://github.com/illyism',
     'https://linkedin.com/in/illyism',
   ],
-  jobTitle: 'CEO',
+  url: 'https://il.ly',
   worksFor: {
     '@type': 'Organization',
     name: 'OGimage.org',
@@ -104,9 +104,9 @@ const personData: WithContext<Person> = {
 const organizationData: WithContext<Organization> = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
+  logo: 'https://ogimage.org/img/1024/ogimage-black_1024.png',
   name: 'OGimage.org',
   url: 'https://ogimage.org',
-  logo: 'https://ogimage.org/img/1024/ogimage-black_1024.png',
 }
 
 const websiteData: WithContext<WebSite> = {
@@ -124,9 +124,9 @@ export const StructuredData: React.FC = () => {
   }
   return (
     <Script
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(graph, null, 2) }}
       id="structured-data"
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(graph, null, 2) }}
     />
   )
 }

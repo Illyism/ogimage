@@ -24,43 +24,45 @@ import type { NextRequest } from 'next/server'
  *
  */
 export function GET(request: NextRequest) {
-  const searchParams = request.nextUrl.searchParams
+  const { searchParams } = request.nextUrl
   const path = searchParams.get('path') || '/'
 
   const BASE =
-    path == '/blog/what' ? 'https://seoagency.tools' : 'https://ogimage.org'
+    path === '/blog/what' ? 'https://seoagency.tools' : 'https://ogimage.org'
 
   const width = 1200
   const height = 630
   const padding = 20 // adjust this to have a border around the screenshot
   const screenshot = getScreenshotURL({
+    height: 630 - padding,
     url: `${BASE}${path}`,
     width: 1200 - padding - padding,
-    height: 630 - padding,
   })
   return new ImageResponse(
     <div
-      tw="flex w-full h-full"
       style={{
-        paddingTop: padding,
-        paddingLeft: padding,
-        paddingRight: padding,
         background:
           'linear-gradient(to top left,#ff75c3,#ffa647,#ffe83f,#9fff5b,#70e2ff,#cd93ff)',
+        paddingLeft: padding,
+        paddingRight: padding,
+        paddingTop: padding,
       }}
+      tw="flex w-full h-full"
     >
       <img
-        tw="w-full h-full rounded-t-2xl shadow-2xl"
-        src={screenshot}
         alt=""
+        height={610}
+        src={screenshot}
+        tw="w-full h-full rounded-t-2xl shadow-2xl"
+        width={1160}
       />
     </div>,
     {
-      width,
-      height,
       headers: {
         'Cache-Control': 'public, max-age=3600, immutable',
       },
+      height,
+      width,
     },
   )
 }

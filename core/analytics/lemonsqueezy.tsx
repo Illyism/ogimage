@@ -8,13 +8,11 @@ export const LemonSqueezyProvider = () => {
   }
 
   return (
-    <>
-      <Script
-        id="lemon-squeezy"
-        src="https://assets.lemonsqueezy.com/lemon.js"
-        strategy="afterInteractive"
-        onLoad={onLoaded}
-      />
-    </>
+    <Script
+      id="lemon-squeezy"
+      onLoad={onLoaded}
+      src="https://assets.lemonsqueezy.com/lemon.js"
+      strategy="afterInteractive"
+    />
   )
 }

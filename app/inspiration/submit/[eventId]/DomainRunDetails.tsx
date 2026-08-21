@@ -1,19 +1,19 @@
 'use client'
 
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { getFileUrl } from '@/lib/file-storage'
-import Link from 'next/link'
-import Image from 'next/image'
-import { useEffect, useState } from 'react'
 import { Spinner } from '../Spinner'
 
 interface InspirationData {
-  slug: string
-  name: string
-  domain: string
-  URL: string
   description: string
+  domain: string
   image: string
+  name: string
+  slug: string
+  URL: string
 }
 
 export function DomainRunDetails({ slug }: { slug: string }) {
@@ -59,26 +59,28 @@ export function DomainRunDetails({ slug }: { slug: string }) {
   return (
     <>
       <header className="mb-6 space-y-2">
-        <h1 className="text-2xl font-bold">Submitted successfully</h1>
+        <h1 className="text-balance font-bold text-3xl tracking-tight md:text-4xl">
+          Submitted successfully
+        </h1>
       </header>
       <div className="flex w-full flex-col gap-4">
         <div>
-          <h2 className="text-xl font-bold">{data.name}</h2>
+          <h2 className="font-semibold text-xl tracking-tight">{data.name}</h2>
           <a
+            className="text-primary hover:underline"
             href={data.URL}
-            target="_blank"
             rel="noopener noreferrer"
-            className="text-blue-600 hover:underline"
+            target="_blank"
           >
             {data.domain}
           </a>
           <p className="mt-2">{data.description}</p>
           <Image
-            src={getFileUrl(data.image)}
             alt={data.name}
-            width={1200}
-            height={630}
             className="mt-4 rounded-lg"
+            height={630}
+            src={getFileUrl(data.image)}
+            width={1200}
           />
         </div>
         <div className="flex gap-2">

@@ -9,8 +9,8 @@ export const metadata = generatePageMeta()
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#18181b' },
+    { color: '#ffffff', media: '(prefers-color-scheme: light)' },
+    { color: '#18181b', media: '(prefers-color-scheme: dark)' },
   ],
 }
 
@@ -29,9 +29,9 @@ export default async function RootLayout({ children }: { children: any }) {
 
         {/* Datafa.st analytics (proxied) */}
         <Script
-          defer
-          data-website-id="68be834141365f9cca1ef126"
           data-domain="ogimage.org"
+          data-website-id="68be834141365f9cca1ef126"
+          defer
           src="/js/script.js"
           strategy="afterInteractive"
         />
@@ -40,10 +40,10 @@ export default async function RootLayout({ children }: { children: any }) {
           {"window.lemonSqueezyAffiliateConfig = { store: 'ogimage' }"}
         </Script>
         <Script
+          defer
           id="lemon-affiliate"
           src="https://lmsqueezy.com/affiliate.js"
           strategy="beforeInteractive"
-          defer
         />
       </body>
     </html>

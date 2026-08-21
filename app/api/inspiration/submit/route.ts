@@ -1,9 +1,9 @@
-import { Inspiration } from '@/lib/directus'
+import Anthropic from '@anthropic-ai/sdk'
+import sharp from 'sharp'
+import type { Inspiration } from '@/lib/directus'
 import { uploadFile } from '@/lib/file-storage'
 import { getMetaTags } from '@/lib/metatags'
 import { prisma } from '@/lib/prisma'
-import sharp from 'sharp'
-import Anthropic from '@anthropic-ai/sdk'
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY,
@@ -21,7 +21,7 @@ function rgbToHex(r: number, g: number, b: number) {
 
 function componentToHex(c: number) {
   const hex = c.toString(16)
-  return hex.length === 1 ? '0' + hex : hex
+  return hex.length === 1 ? `0${hex}` : hex
 }
 
 async function formatImage(blob: Blob) {
@@ -47,16 +47,16 @@ export async function POST(request: Request) {
     }
 
     const inspiration: Inspiration = {
-      slug: '',
+      category: [],
+      color: [],
       date_created: new Date(),
       date_updated: new Date(),
-      domain: '',
-      URL: '',
-      name: '',
-      category: [],
       description: '',
+      domain: '',
       image: '',
-      color: [],
+      name: '',
+      slug: '',
+      URL: '',
     }
 
     // we received a domain or URL
@@ -93,9 +93,8 @@ export async function POST(request: Request) {
 
     // Improve name, description and category with AI
     const result = await anthropic.completions.create({
-      model: 'claude-2.1',
       max_tokens_to_sample: 512,
-      temperature: 0.5,
+      model: 'claude-2.1',
       prompt: `
 ${Anthropic.HUMAN_PROMPT}
 Domain: ${inspiration.domain}
@@ -138,6 +137,7 @@ Return the name, description and category in the following format:
 <category>REPLACE THIS WITH THE CATEGORY</category>
 
 ${Anthropic.AI_PROMPT}`.trim(),
+      temperature: 0.5,
     })
 
     const text = result.completion
@@ -160,14 +160,14 @@ ${Anthropic.AI_PROMPT}`.trim(),
       const result = await prisma.inspiration.create({
         data: inspiration,
       })
-      return Response.json({ success: true, data: result })
+      return Response.json({ data: result, success: true })
     } catch {
       // Update if exists
       const result = await prisma.inspiration.update({
-        where: { slug: inspiration.slug },
         data: inspiration,
+        where: { slug: inspiration.slug },
       })
-      return Response.json({ success: true, data: result })
+      return Response.json({ data: result, success: true })
     }
   } catch (error: any) {
     console.error('Error submitting inspiration:', error)

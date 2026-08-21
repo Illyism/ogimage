@@ -1,7 +1,7 @@
 interface CookieOptions {
+  domain?: string
   expires?: string
   path?: string
-  domain?: string
   secure?: boolean
 }
 
@@ -10,34 +10,39 @@ interface Cookie {
   set: (key: string, value: string, opts?: CookieOptions) => string
 }
 
-function initCookie(doc: { cookie: string } | undefined): Cookie {
-  if (!doc)
-    doc = {
-      cookie: '',
-    }
-  if (typeof doc === 'string') doc = { cookie: doc }
-  if (doc.cookie === undefined) doc.cookie = ''
+function initCookie(initialDoc: { cookie: string } | undefined): Cookie {
+  const doc =
+    typeof initialDoc === 'string'
+      ? { cookie: initialDoc }
+      : (initialDoc ?? { cookie: '' })
 
   const self: Cookie = {} as Cookie
-  self.get = function (key) {
-    if (!doc) return undefined
+  self.get = (key) => {
     const splat = doc.cookie.split(/;\s*/)
-    for (let i = 0; i < splat.length; i++) {
-      const ps = splat[i].split('=')
+    for (const part of splat) {
+      const ps = part.split('=')
       const k = unescape(ps[0])
-      if (k === key) return unescape(ps[1])
+      if (k === key) {
+        return unescape(ps[1])
+      }
     }
-    return undefined
   }
 
-  self.set = function (key, value, opts) {
-    if (!doc) return ''
-    if (!opts) opts = {}
-    let s = escape(key) + '=' + escape(value)
-    if (opts.expires) s += '; expires=' + opts.expires
-    if (opts.path) s += '; path=' + escape(opts.path)
-    if (opts.domain) s += '; domain=' + escape(opts.domain)
-    if (opts.secure) s += '; secure'
+  self.set = (key, value, opts) => {
+    const options = opts ?? {}
+    let s = `${escape(key)}=${escape(value)}`
+    if (options.expires) {
+      s += `; expires=${options.expires}`
+    }
+    if (options.path) {
+      s += `; path=${escape(options.path)}`
+    }
+    if (options.domain) {
+      s += `; domain=${escape(options.domain)}`
+    }
+    if (options.secure) {
+      s += '; secure'
+    }
     doc.cookie = s
     return s
   }
@@ -45,5 +50,5 @@ function initCookie(doc: { cookie: string } | undefined): Cookie {
 }
 
 export const cookieCutter = initCookie(
-  typeof document !== 'undefined' ? document : undefined,
+  typeof document === 'undefined' ? undefined : document,
 )
