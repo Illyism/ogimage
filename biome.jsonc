@@ -33,7 +33,6 @@
         "noExplicitAny": "off",
         "noArrayIndexKey": "off",
         "noShadow": "off",
-        "noReactForwardRef": "off",
         "useAwait": "off"
       },
       "style": {
