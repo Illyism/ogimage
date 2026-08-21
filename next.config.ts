@@ -67,6 +67,8 @@ const nextConfig: NextConfig = {
   },
   output: 'standalone',
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  // App Shell for unknown params; prefetch upgrades the route after first visit.
+  partialPrefetching: true,
   reactStrictMode: false,
   async rewrites() {
     return [
@@ -85,15 +87,6 @@ const nextConfig: NextConfig = {
     // Skip Next's embedded tsc (typescript@6) in Docker builds. Real gate:
     // CI/pre-commit `bun run typecheck` (TS7 via @typescript/native).
     ignoreBuildErrors: process.env.DOCKER_BUILD === 'true',
-  },
-  webpack: (config) => {
-    // Pin this module. Webpack otherwise binds `@/lib/utils` to
-    // `app/lib/utils.ts` (cn only) and prerender of /[slug] dies.
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@/lib/utils': `${import.meta.dirname}/lib/utils.ts`,
-    }
-    return config
   },
 }
 

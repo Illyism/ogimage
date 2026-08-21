@@ -38,10 +38,10 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const list = await getLatestInspiration({}, 500)
-  // Build environments without DB access still need one entry.
-  return list.length > 0
-    ? list.map((item) => ({ slug: item.slug }))
-    : [{ slug: '_' }]
+  if (list.length > 0) {
+    return list.map((item) => ({ slug: item.slug }))
+  }
+  return [{ slug: '_' }]
 }
 
 export default async function Page(props: {

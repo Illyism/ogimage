@@ -24,10 +24,10 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const categories = await getCategories()
-  // Build environments without DB access still need one entry.
-  return categories.length > 0
-    ? categories.map((c) => ({ slug: c.category }))
-    : [{ slug: '_' }]
+  if (categories.length > 0) {
+    return categories.map((c) => ({ slug: c.category }))
+  }
+  return [{ slug: '_' }]
 }
 
 export default async function Page(props: {
