@@ -1,0 +1,44 @@
+{
+  "coolifyUrl": "https://cooler.il.ly",
+  "team": "Root Team",
+  "server": {
+    "localhost": {
+      "uuid": "vw4808okco48s4gosw4ks0s4",
+      "ip": "94.130.66.215",
+      "name": "localhost",
+      "ssh": "illyism@94.130.66.215 -p 10001"
+    }
+  },
+  "projects": {},
+  "applications": {
+    "swissobserver": {
+      "uuid": "u0wk4swck8kgkwogscwcsook",
+      "name": "illyism/swissobserver:main-u0wk4swck8kgkwogscwcsook",
+      "fqdn": "https://swissobserver.com,https://swissobserver.ch",
+      "git": "Illyism/swissobserver",
+      "branch": "main",
+      "server": "localhost"
+    },
+    "web": {
+      "uuid": "u0wk4swck8kgkwogscwcsook",
+      "name": "illyism/swissobserver:main-u0wk4swck8kgkwogscwcsook",
+      "fqdn": "https://swissobserver.com,https://swissobserver.ch",
+      "git": "Illyism/swissobserver",
+      "branch": "main",
+      "server": "localhost"
+    }
+  },
+  "databases": {
+    "postgres": {
+      "uuid": "yc0wc0c4w0s80kc8gowck8kg",
+      "name": "swiss-postgresql-database-yc0wc0c4w0s80kc8gowck8kg",
+      "server": "localhost"
+    },
+    "swiss": {
+      "uuid": "yc0wc0c4w0s80kc8gowck8kg",
+      "name": "swiss-postgresql-database-yc0wc0c4w0s80kc8gowck8kg",
+      "server": "localhost"
+    }
+  },
+  "services": {}
+}

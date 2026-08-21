@@ -5,6 +5,9 @@ FROM oven/bun:1 AS base
 FROM base AS deps
 WORKDIR /app
 
+# No .git in the image, so husky's prepare script would log a failure
+ENV HUSKY=0
+
 # Copy package files
 COPY package.json bun.lock* ./
 # Install dependencies

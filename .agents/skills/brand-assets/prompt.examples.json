@@ -1,0 +1,186 @@
+{
+  "best-ai-powerpoint-generators": {
+    "slug": "best-ai-powerpoint-generators",
+    "prompt": "Best AI presentation generator. Woman at a modern desk using an AI slide tool — floating UI shows slide thumbnails, a Generate button, and smart layout suggestions. Premium SaaS blog hero; confident creator energy, not a party scene."
+  },
+  "powerpoint-karaoke-rules-tips-generator": {
+    "slug": "powerpoint-karaoke-rules-tips-generator",
+    "prompt": "PowerPoint Karaoke party game. Presenter with mic improvising in front of friends; big projector screen shows absurd random slides they've never seen; crowd laughing and clapping. Warm event lighting — spontaneous improv game, not a quiet laptop desk."
+  },
+  "unhinged-powerpoint-night-ideas": {
+    "slug": "unhinged-powerpoint-night-ideas",
+    "prompt": "Unhinged PowerPoint Night with friends. Cozy living room — group on couch and floor pillows, snacks, dim warm lights, everyone laughing. One friend presenting ridiculous slides on a TV (conspiracy meme, hot take, absurd chart). Floating pills: \"50+ Ideas\", \"Chaos Encouraged\", \"Friends Only\". Playful, unhinged, social — not a solo person working seriously at a laptop."
+  },
+  "funny-slideshow-ideas": {
+    "slug": "funny-slideshow-ideas",
+    "prompt": "Funny slideshow ideas for friends. Casual hangout — small group reacting to a silly slide on a projector. Floating pills with humor tags. Lighthearted party energy, not corporate desk work."
+  },
+  "how-to-curve-text-in-powerpoint": {
+    "slug": "how-to-curve-text-in-powerpoint",
+    "prompt": "How to curve text in PowerPoint. Hands on laptop showing PowerPoint with curved title text highlighted. Floating step pills. Clean tutorial hero — focused learning moment."
+  },
+  "how-genppt-works-upload-source-material": {
+    "slug": "how-genppt-works-upload-source-material",
+    "prompt": "Flat SaaS product screenshot illustration on warm cream background. A single centered upload UI card: dashed drag-and-drop zone, cloud icon, two small file rows for Q3 Financials.pdf and Clinical_Trial_Data.docx. Two floating rounded callout labels with thin curved arrows — Accepts PDF Word and Text, Strict Mode Zero Hallucinations. UI mockup only; no people, desk props, or marketing headline."
+  },
+  "how-genppt-works-approve-outline-lock-text": {
+    "slug": "how-genppt-works-approve-outline-lock-text",
+    "prompt": "Flat SaaS product screenshot on pale mint background. Deck Outline card with 12 slides, one expanded slide showing auto-extracted metrics ($800k ARR, +140% YoY), source citation from Q3 Financials.pdf, editable bullet text, and layout intent buttons. Approve & Lock button top-right. Three callout labels with curved arrows. UI mockup only; no people or desk props."
+  },
+  "how-genppt-works-export-presentation-and-social": {
+    "slug": "how-genppt-works-export-presentation-and-social",
+    "prompt": "Flat SaaS product illustration on soft rose background. Three channel outputs side by side: 16:9 presentation slide, Instagram post inside phone mockup, Facebook ad card—all same Nova Life Research clinical trial campaign with pink glass 3D visuals. Bottom AI prompt bar: Adapt this campaign for every channel with Generate button. UI mockup only; no people or desk props."
+  },
+  "ai-copilot-slide-3": {
+    "slug": "ai-copilot-slide-3",
+    "prompt": "Single isolated 16:9 presentation slide only — nothing else in frame. Dark-mode slide card with rounded corners on a plain warm cream background: small Slide 3 pill top-left, bold white headline 32% EBITDA MARGIN, Q3 Margin Trend sublabel with orange dot, glassmorphic glowing amber 3D bar chart (Jul 18%, Aug 22%, Sep 25%, Oct 28%, Nov 32%) on a dark reflective base. Raw slide mockup — no chat UI, no app chrome, no floating badges, no menus, no logos, no people, no desk, no extra panels."
+  },
+  "affiliate-persona-founder": {
+    "slug": "affiliate-persona-founder",
+    "prompt": "Startup founder affiliate audience. Young founder rehearsing a pitch in a bright modern workspace — full-bleed investor deck on a large monitor showing metrics and product visuals. Floating pills: Pitch Deck, Series A, Investor Update. Confident pre-meeting energy on warm cream tones — not a party, not generic bullet slides."
+  },
+  "affiliate-persona-consultant": {
+    "slug": "affiliate-persona-consultant",
+    "prompt": "Strategy consultant affiliate audience. Consultant presenting a QBR to two executives in a glass conference room — polished slide with charts and recommendations on screen. Floating pills: QBR, Client Deck, Strategy Rec. Executive-ready, premium consulting energy — not a solo laptop tutorial."
+  },
+  "affiliate-persona-marketer": {
+    "slug": "affiliate-persona-marketer",
+    "prompt": "Marketing creator affiliate audience. Marketer at a creative desk reviewing a campaign launch deck on screen plus a phone mockup with a social carousel. Floating pills: Campaign Deck, Launch Plan, Social Carousel. Designed-not-templated SaaS marketing energy — not stock photo corporate."
+  },
+  "affiliate-persona-educator": {
+    "slug": "affiliate-persona-educator",
+    "prompt": "Educator affiliate audience. Professor or course creator in a modern lecture room — engaging full-slide visual on projector, small attentive student group. Floating pills: Lecture Deck, Course Module, Training Slides. Warm academic-but-modern energy — not old chalkboard clipart."
+  },
+  "affiliate-persona-operator": {
+    "slug": "affiliate-persona-operator",
+    "prompt": "Operator productivity affiliate audience. Ops lead presenting an internal roadmap to a small team in a bright meeting room — clean slide with timeline and KPIs on screen. Floating pills: Team Update, Roadmap, Ops Review. Credible internal-tools energy — not startup pitch hype or party scene."
+  },
+  "pdf-to-powerpoint-with-ai": {
+    "slug": "pdf-to-powerpoint-with-ai",
+    "prompt": "PDF to PowerPoint with AI tutorial hero. Flat SaaS product illustration on warm cream background. Left: stacked PDF pages labeled Q3 Board Report.pdf with extracted metrics callout. Center: GenPPT-style card showing slide outline list and one full-slide preview emerging from the PDF. Floating rounded pills with thin curved arrows: PDF Upload, Approve Outline, Export .pptx. Premium workflow energy — document-to-deck, not a party scene or generic file converter icon."
+  },
+  "best-powerpoint-templates": {
+    "slug": "best-powerpoint-templates",
+    "prompt": "Best PowerPoint templates listicle hero. Split composition on warm cream background: left side shows a messy grid of generic free template thumbnails (corporate blue, overused startup pitch layouts); right side shows one polished full-slide AI-generated deck slide with custom typography and a clean chart — clearly better than the template grid. Floating rounded pills with thin curved arrows: Free Templates, AI Full-Slide, Export .pptx. Premium SaaS blog energy — product comparison, not a party scene or solo confused person at laptop."
+  },
+  "what-is-a-slide-deck": {
+    "slug": "what-is-a-slide-deck",
+    "prompt": "What is a slide deck guide hero. Founder in a bright modern workspace reviewing stacked slide thumbnails on a large monitor — mix of business update and pitch slides visible. Floating pills: Slide Deck, Pitch Deck, Export PPTX. Confident planning energy on warm cream tones — not a party scene, not generic bullet-only slides."
+  },
+  "how-many-slides-per-minute": {
+    "slug": "how-many-slides-per-minute",
+    "prompt": "How many slides per minute for presentations. Presenter rehearsing at a desk with phone timer and laptop showing numbered slide thumbnails; floating pills: 1 Slide/Min, 15 Min Deck, Rehearse. Clean tutorial hero — focused prep energy, not a party scene or generic bullet slides."
+  },
+  "best-beautiful-ai-alternatives": {
+    "slug": "best-beautiful-ai-alternatives",
+    "prompt": "Best Beautiful.ai alternatives comparison. Split-screen SaaS blog hero on warm cream: left side shows smart-template slide builder with auto-alignment grid and brand kit swatches; right side shows full-slide AI deck generation with concept contact sheet and polished image-native slides. Floating pills: Smart Templates, Full-Slide AI, Export .pptx. Premium comparison energy for marketing teams — not a party scene or generic laptop stock photo."
+  },
+  "best-slidespeak-alternatives": {
+    "slug": "best-slidespeak-alternatives",
+    "prompt": "Best SlideSpeak alternatives comparison. Split-screen SaaS blog hero on warm cream: left side shows document chat UI with PDF upload and Q&A bubbles over a report; right side shows full-slide AI deck generation with outline approval, concept contact sheet, and polished image-native slides. Floating pills: Document Chat, Outline Lock, Export .pptx. Premium comparison energy for teams evaluating AI deck tools — not a party scene or generic laptop stock photo."
+  },
+  "tome-vs-gamma": {
+    "slug": "tome-vs-gamma",
+    "prompt": "Tome vs Gamma vs GenPPT comparison hero. Flat SaaS product illustration on warm cream background. Left side: two stacked web-native card UI panels side by side — scrollable card blocks with text sections labeled Gamma-style deck. Right side: one polished full-bleed 16:9 presentation slide labeled Export .pptx with bold headline and chart. Floating rounded pills with thin curved arrows: Web Cards, Full-Slide Export, PowerPoint Ready. Clean comparison energy — product UI mockups only, no people, no desk props, not a party scene."
+  },
+  "google-slides-vs-powerpoint": {
+    "slug": "google-slides-vs-powerpoint",
+    "prompt": "Google Slides vs PowerPoint comparison hero. Split-screen flat SaaS illustration on warm cream background: left panel shows Google Slides yellow slide canvas with simple collaborative cursors, right panel shows PowerPoint orange slide canvas with animation timeline hint. Center thin divider. Recognizable Google Slides and PowerPoint app icons at top of each panel. Floating rounded pills: Real-time Collab, Offline Editing, Export .pptx. Clean comparison energy — two tools side by side, not a person at a desk or party scene."
+  },
+  "think-cell-alternatives": {
+    "slug": "think-cell-alternatives",
+    "prompt": "Think-Cell alternatives comparison hero. Split-screen on warm cream background: left slide shows dense consulting-style Excel-linked waterfall and Mekko charts in classic navy PowerPoint chrome; right slide shows a modern AI-generated full-slide chart visual with bold typography and glassy 3D bars. Floating pills: Excel Charts, AI Visual Deck, Export .pptx. Premium strategy-consulting energy — chart automation vs narrative AI slides, not a party scene or solo laptop tutorial."
+  },
+  "10-20-30-presentation-rule": {
+    "slug": "10-20-30-presentation-rule",
+    "prompt": "Guy Kawasaki 10-20-30 presentation rule hero. Startup founder rehearsing a pitch in a bright minimal workspace — large monitor shows a clean 10-slide investor deck with large headlines, generous whitespace, and one idea per slide (Problem, Solution, Traction visible). Floating pills: 10 Slides, 20 Minutes, 30pt Font. Apple Keynote energy on warm cream tones — minimal, confident, not cluttered bullet slides, not a party scene."
+  },
+  "shark-tank-pitch-deck-examples": {
+    "slug": "shark-tank-pitch-deck-examples",
+    "prompt": "Shark Tank pitch deck examples. Confident founder on a modern TV pitch set presenting to seated investors — clean pitch deck on a large side monitor showing traction charts and product visuals. Floating pills: Product Demo, Unit Economics, The Ask. Professional investor-pitch energy, premium SaaS blog hero — not cheesy shark costumes or reality-TV parody."
+  },
+  "project-status-report-template": {
+    "slug": "project-status-report-template",
+    "prompt": "Project status report PowerPoint template hero. PM presenting a clean status deck on a monitor: RAG dashboard slide (schedule scope budget risk traffic lights), milestone timeline, and blockers table visible. Floating pills: RAG Dashboard, Milestones, Export .pptx. Professional steering-meeting energy on warm cream — not generic corporate clip art or party scene."
+  },
+  "mckinsey-slides": {
+    "slug": "mckinsey-slides",
+    "prompt": "McKinsey-style consulting slides guide hero. Strategy consultant presenting to two executives in a glass conference room — large monitor shows a navy-and-white slide with a bold action-title headline and a single clean bar chart, source footnote visible. Floating pills: Action Titles, MECE, Pyramid Principle. Executive boardroom energy on warm cream tones — premium consulting, not a solo laptop tutorial or party scene."
+  },
+  "mckinsey-slides-pyramid": {
+    "slug": "mckinsey-slides-pyramid",
+    "prompt": "Flat SaaS product illustration on warm cream background. Centered Pyramid Principle diagram for consulting decks: governing recommendation at the top, three key-line boxes in the middle row, evidence nodes at the base — navy and white palette, thin connecting lines, small labels Answer First and Supporting Proof. Floating rounded pills with thin curved arrows: Governing Thought, Key Lines, Evidence. UI explainer mockup only — no people, no desk props, not a party scene."
+  },
+  "mckinsey-slides-action-titles": {
+    "slug": "mckinsey-slides-action-titles",
+    "prompt": "Flat SaaS before-and-after illustration on warm cream background. Two slide cards side by side: left weak topic title Market Analysis with cluttered chart; right strong McKinsey action title Competitor price cuts drove a 3-point share loss in Q2 with one clean annotated chart. Thin arrow labeled Action Title between them. Floating pills: Topic Label, Action Title, One Message. UI mockup only — no people, no desk."
+  },
+  "mckinsey-slides-ghost-deck": {
+    "slug": "mckinsey-slides-ghost-deck",
+    "prompt": "Flat SaaS product illustration on warm cream background. PowerPoint slide-sorter view showing six consulting slides with only action-title headlines visible in navy text — no chart bodies yet, placeholder gray boxes. Floating pills: Ghost Deck, Read-Through Test, Then Design. Strategy workflow energy — structure before visuals, no people, no party scene."
+  },
+  "linkedin-carousel-generator": {
+    "slug": "linkedin-carousel-generator",
+    "prompt": "LinkedIn carousel generator tool hero. B2B marketer at a bright creative desk holding phone showing LinkedIn document carousel with square slides mid-swipe; laptop shows GenPPT-style carousel outline list and Export PDF button. Floating pills: Preview Outline, 1:1 Slides, Export PDF. Premium SaaS marketing energy on warm cream — designed slides, not generic bullet templates, not a party scene."
+  },
+  "linkedin-carousel-generator-outline": {
+    "slug": "linkedin-carousel-generator-outline",
+    "prompt": "LinkedIn carousel outline preview step. Flat SaaS product screenshot on warm cream background. Center card lists 7 square slide thumbnails with bold headlines (hook slide, three insight slides, CTA slide). Free Preview badge top-left, Preview Outline button bottom. Floating pills: Topic Input, Slide Outline, Free Preview. UI mockup only; no people, no desk props, not a party scene."
+  },
+  "linkedin-carousel-generator-post": {
+    "slug": "linkedin-carousel-generator-post",
+    "prompt": "LinkedIn carousel export and post step. Flat SaaS product illustration on soft sky-blue background. Phone mockup shows LinkedIn composer with document carousel uploaded — square slides visible in preview strip. Small PDF file chip labeled carousel.pdf with checkmark. Floating pills: Export PDF, Add Document, Post on LinkedIn. UI mockup only; no people, not a party scene."
+  },
+  "instagram-carousel-generator": {
+    "slug": "instagram-carousel-generator",
+    "prompt": "Instagram carousel generator tool hero. Creator at a bright desk holding phone showing Instagram feed carousel with 4:5 portrait slides mid-swipe and dot indicators; laptop shows GenPPT-style carousel outline list and Generate button. Floating pills: Add Topic, 4:5 Slides, Export PNG. Premium SaaS marketing energy on warm cream — designed portrait slides, Instagram aesthetic not LinkedIn, not a party scene."
+  },
+  "instagram-carousel-generator-outline": {
+    "slug": "instagram-carousel-generator-outline",
+    "prompt": "Instagram carousel outline preview step. Flat SaaS product screenshot on warm cream background. Center card shows Instagram-style post mockup with 4:5 portrait slide thumbnails in a swipe preview — bold hook headlines on slide cards. Free Preview badge top-left, outline panel on side with numbered headlines. Floating pills: Topic Input, Slide Outline, Free Preview. UI mockup only; no people, no LinkedIn branding, not a party scene."
+  },
+  "instagram-carousel-generator-post": {
+    "slug": "instagram-carousel-generator-post",
+    "prompt": "Instagram carousel export and post step. Flat SaaS product illustration on soft pink-gradient background. Phone mockup shows Instagram post composer with multi-image carousel uploaded — 4:5 portrait slides visible in thumbnail strip at bottom. Export PNG chip with checkmark, floating Post on Instagram button with Instagram gradient accent. Floating pills: Export PNG, Multi-Image Post, Upload to Instagram. UI mockup only; no people, no LinkedIn, not a party scene."
+  },
+  "mckinsey-slide-generator": {
+    "slug": "mckinsey-slide-generator",
+    "prompt": "McKinsey slide generator tool hero. Strategy consultant at a bright executive desk — laptop shows GenPPT-style consulting outline with numbered action-title headlines and MECE sections; large monitor displays a navy-and-white 16:9 slide with bold action-title headline and one clean bar chart. Floating pills: Governing Thought, Action Titles, Export PowerPoint. Premium consulting SaaS marketing energy on warm cream — executive deck workflow, not a party scene or generic bullet template."
+  },
+  "mckinsey-slide-generator-outline": {
+    "slug": "mckinsey-slide-generator-outline",
+    "prompt": "McKinsey slide generator outline preview step. Flat SaaS product screenshot on warm cream background. Center card lists 8 consulting slides with navy action-title headlines (Executive Summary, Key Findings, Recommendation) and Free Preview badge top-left. Side panel shows governing recommendation input filled in. Floating pills: Recommendation Input, Slide Outline, Free Preview. UI mockup only; no people, no desk props, not a party scene."
+  },
+  "mckinsey-slide-generator-export": {
+    "slug": "mckinsey-slide-generator-export",
+    "prompt": "McKinsey slide generator export step. Flat SaaS product illustration on soft navy-tinted cream background. Laptop mockup shows GenPPT deck viewer with navy consulting slides in 16:9 layout; download chip labeled deck.pptx with green checkmark and Export PowerPoint button. Floating pills: Approve Outline, Export .pptx, 16:9 Deck. UI mockup only; no people, executive consulting energy, not a party scene."
+  },
+  "ai-pitch-deck-generator": {
+    "slug": "ai-pitch-deck-generator",
+    "prompt": "AI pitch deck generator tool hero. Startup founder at a bright desk rehearsing a seed fundraise — laptop shows GenPPT investor outline with slide titles Problem, Traction, Market Size, The Ask; large monitor displays a polished 16:9 pitch slide with one traction chart and bold headline. Floating pills: Seed Deck, Investor Slides, Export PowerPoint. Premium startup SaaS marketing energy on warm cream — fundraising deck workflow, not McKinsey consulting navy, not a party scene."
+  },
+  "ai-pitch-deck-generator-grounding": {
+    "slug": "ai-pitch-deck-generator-grounding",
+    "prompt": "Pitch deck document grounding step. Flat SaaS product screenshot on warm cream background. Center upload card with PDF, memo, and Excel tabs; extracted metrics panel shows $420K ARR, 3 hospital pilots, and $1.5M ask mapped to pitch slide outline on the right. Floating pills: Executive Memo, Financial Model, Zero Hallucinations. UI mockup only; no people, metrics sourced from files, not party scene or generic chatbot."
+  },
+  "ai-pitch-deck-generator-sky": {
+    "slug": "ai-pitch-deck-generator-sky",
+    "prompt": "Painterly illustrated sky background for a SaaS marketing hero banner — warm golden-yellow and soft amber sky with fluffy white cumulus clouds, same dreamy cloudscape composition as a bright optimistic sky but recolored in sunshine yellow and cream tones instead of blue. Soft hand-painted illustration, wide 16:9 landscape, no text, no UI, no people, no logos. GenPPT warm brand energy."
+  },
+  "ai-pitch-deck-generator-cta": {
+    "slug": "ai-pitch-deck-generator-cta",
+    "prompt": "Painterly illustrated marketing CTA banner for an AI pitch deck generator — warm golden-yellow and soft amber sky with fluffy white cumulus clouds, same dreamy hand-painted cloudscape as GenPPT hero art but in sunshine yellow and cream tones, not blue. Lower-right corner on a grassy hill: a clean white fan of three investor pitch slides on a short pedestal — top slide shows a bold title block and mini traction bar chart, middle slide a market-size diagram, bottom slide partially visible. No envelope, no mailbox, no mail icons. Wide 16:9 landscape, open yellow sky dominates center-left for white text overlay, soft Studio-Ghibli-style illustration, no text, no UI chrome, no people, no logos."
+  },
+  "gen-alpha-translator-sky": {
+    "slug": "gen-alpha-translator-sky",
+    "prompt": "Painterly illustrated sky background for a Gen Alpha translator SaaS marketing hero — warm cream, soft peach, and pale lavender afternoon sky with fluffy white cumulus clouds, dreamy hand-painted cloudscape in GenPPT warm brand style. Wide 16:9 landscape, open sky for text overlay, gentle optimistic light. No text, no UI, no people, no logos, not purple neon gradients, not meme stickers or chaos."
+  },
+  "gen-alpha-translator": {
+    "slug": "gen-alpha-translator",
+    "prompt": "Gen Alpha translator tool hero. Parent or teacher at a bright home desk holding phone showing a teen group chat with slang phrases; laptop shows GenPPT-style translator card with pasted slang on the left and plain English translation on the right plus a small Gen Alpha to English direction badge. Floating pills: Paste Text, Auto Detect, Copy Result. Warm cream GenPPT SaaS marketing energy — helpful decode moment for adults, not cringe meme chaos, not purple gradient party scene, not a solo confused stock photo."
+  },
+  "auth-layout-sky": {
+    "slug": "auth-layout-sky",
+    "prompt": "Painterly illustrated sky background for a SaaS sign-in page — warm cream, soft golden-yellow, and pale peach sky with fluffy white cumulus clouds clustered along the top and lower edges, open soft luminous center for a login card overlay. Dreamy hand-painted cloudscape in GenPPT warm brand style, wide 16:9 landscape, gentle optimistic light. No text, no UI, no people, no logos, not dark, not purple, not a desk or product screenshot."
+  }
+}

@@ -1,0 +1,320 @@
+---
+description: How to use oRPC in this codebase
+---
+
+# oRPC Usage Guide
+
+Type-safe RPC procedures for API calls. Use instead of fetch.
+
+## Basic Usage
+
+```ts
+import { client } from '@/lib/orpc/client'
+
+// Client-side call
+const info = await client.getDomainQuickInfoForCell('example.com')
+```
+
+## TanStack Query Integration
+
+**Use for globally shared state that needs to stay in sync:**
+
+- ✅ App shell (navigation, sidebar, user menu)
+- ✅ Shared features (starred items, cart, preferences)
+- ✅ Data accessed across multiple pages/components
+
+**Consolidate in `modules/` when using React Query** - Once you use React Query for a feature, move everything to `modules/` so it's globally cached and accessible.
+
+For page-specific features, prefer Server Components + oRPC Server Actions.
+
+```ts
+import { orpc } from '@/lib/orpc/tanstack-query'
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+
+// Query
+const { data } = useQuery({
+  ...orpc.domains.starred.getAllDomains.queryOptions({
+    context: { cache: 'no-store' }, // Bypass HTTP cache if needed
+  }),
+  staleTime: 0, // Always refetch
+})
+
+// Mutation with optimistic updates
+const queryClient = useQueryClient()
+const mutation = useMutation({
+  ...orpc.domains.starred.star.mutationOptions({
+    onMutate: async (domain) => {
+      // Cancel outgoing refetches
+      await queryClient.cancelQueries({
+        queryKey: orpc.domains.starred.getAllDomains.key()
+      })
+
+      // Snapshot previous value
+      const previous = queryClient.getQueryData(
+        orpc.domains.starred.getAllDomains.queryKey()
+      )
+
+      // Optimistically update
+      queryClient.setQueryData(
+        orpc.domains.starred.getAllDomains.queryKey(),
+        (old) => [...(old ?? []), domain]
+      )
+
+      return { previous }
+    },
+    onError: (err, domain, context) => {
+      // Rollback on error
+      if (context?.previous) {
+        queryClient.setQueryData(
+          orpc.domains.starred.getAllDomains.queryKey(),
+          context.previous
+        )
+      }
+    },
+    onSuccess: () => {
+      // Refetch to ensure consistency
+      queryClient.refetchQueries({
+        queryKey: orpc.domains.starred.getAllDomains.key(),
+        type: 'active',
+      })
+    },
+  }),
+})
+```
+
+**Key methods:**
+
+- `.queryOptions()` - For `useQuery`, includes input and context
+- `.mutationOptions()` - For `useMutation`
+- `.key()` - Partial key for `invalidateQueries`, `refetchQueries`
+- `.queryKey()` - Full key for `getQueryData`, `setQueryData`
+
+## Collocated Procedures (Preferred)
+
+Create procedures next to the page/component that uses them:
+
+```ts
+// app/(app)/p/[p]/feature/procedures.ts
+import { os } from '@/lib/orpc/server'
+import type { BaseORPCContext } from '@/lib/orpc/router'
+import { z } from 'zod'
+
+export const getFeatureData = os
+  .$context<BaseORPCContext>()
+  .input(z.string())
+  .handler(async ({ input }) => {
+    return db.item.findUnique({ where: { id: input } })
+  })
+```
+
+Wire into router:
+
+```ts
+// lib/orpc/router.ts
+import { getFeatureData } from '@/app/(app)/p/[p]/feature/procedures'
+export const router = { getFeatureData }
+```
+
+## Caching
+
+### HTTP Caching (GET vs POST)
+
+**⚠️ CRITICAL: GET requests are aggressively cached by browsers!**
+
+**Use GET ONLY for stable, cacheable data:**
+
+```ts
+export const getDomainQuickInfoForCell = os
+  .$context<BaseORPCContext>()
+  .route({ method: 'GET' })
+  .use(({ context, next }) => {
+    // Set cache headers (1 day, stale-while-revalidate 2 days)
+    context.resHeaders?.set('Cache-Control', 'public, max-age=86400, stale-while-revalidate=172800')
+    return next()
+  })
+  .input(z.string())
+  .handler(async ({ input }) => {
+    return getDomainQuickInfo(input)
+  })
+```
+
+**Use POST for data that changes after mutations:**
+
+```ts
+// No .route() = defaults to POST = no HTTP cache!
+export const getAllDomains = os
+  .$context<BaseORPCContext>()
+  .output(z.array(z.string()))
+  .handler(async () => {
+    const { user } = await getAuthenticatedUserAndSession()
+    if (!user) return []
+    return kyselyDb
+      .selectFrom('UserHighlightedDomain')
+      .select(['domain'])
+      .where('userId', '=', user.id)
+      .execute()
+      .then(results => results.map(r => r.domain))
+  })
+```
+
+**Why POST for mutable data?**
+
+- ✅ Browsers don't cache POST requests
+- ✅ No need for cache-busting headers
+- ✅ Refetches always get fresh data
+- ✅ Works reliably with React Query `refetchQueries()`
+
+**Configure in `lib/orpc/client.ts`:**
+
+```ts
+method: ({ context }, path) => {
+  // Use GET for cached responses
+  if (context?.cache) return 'GET'
+
+  // Use GET only for stable operations
+  const lastSegment = path.at(-1)
+  if (lastSegment === 'quickInfo') return 'GET'
+
+  // Everything else uses POST (no HTTP cache)
+  return 'POST'
+}
+```
+
+### Server-Side Caching with `use cache`
+
+Extract the data-fetching logic into a separate cached function, then call it from the oRPC handler:
+
+```ts
+import { cache } from 'react'
+import { cacheLife } from 'next/cache'
+
+// Cached function with Next.js cache directives
+const getDomainQuickInfo = cache(async (domainName: string) => {
+  'use cache'
+  cacheLife('weeks') // or 'days', 'hours'
+
+  const domainData = await kyselyDb
+    .selectFrom('Domain')
+    .select(['domainRating', 'domainTraffic', 'screenshotPath'])
+    .where('domain', '=', domainName)
+    .executeTakeFirst()
+
+  return domainData
+})
+
+// oRPC procedure that uses the cached function
+export const quickInfo = os
+  .$context<BaseORPCContext>()
+  .route({ method: 'GET' })
+  .use(({ context, next }) => {
+    // HTTP cache headers (for browser/CDN caching)
+    context.resHeaders?.set('Cache-Control', 'public, max-age=86400, stale-while-revalidate=172800')
+    return next()
+  })
+  .input(z.string())
+  .handler(async ({ input }) => {
+    // Calls the cached function
+    const domainInfo = await getDomainQuickInfo(input)
+    return domainInfo
+  })
+```
+
+**Key points:**
+
+- `cache()` + `'use cache'` + `cacheLife()` = Server-side cache (persistent across requests)
+- HTTP `Cache-Control` headers = Browser/CDN cache (separate layer)
+- Both caches work together for maximum performance
+
+## Authentication
+
+Use middleware for protected procedures:
+
+```ts
+export const protectedProcedure = os
+  .$context<BaseORPCContext>()
+  .use(async ({ context, next }) => {
+    await requireAuth()
+    return next()
+  })
+  .handler(async ({ input }) => {
+    // Protected logic
+  })
+```
+
+## Server Actions (`.actionable()`)
+
+For mutations and internal API calls, use Server Actions for better performance:
+
+```ts
+// procedures.ts
+export const starDomain = os
+  .$context<BaseORPCContext>()
+  .input(z.string().min(1))
+  .output(z.void())
+  .handler(async ({ input }) => {
+    await starDomainAction(input)
+  })
+  .actionable() // Makes it a Server Action
+```
+
+Use in client components:
+
+```tsx
+'use client'
+import { starDomain } from '../_procedures/starred/star'
+import { useTransition } from 'react'
+
+export function StarButton() {
+  const [isPending, startTransition] = useTransition()
+
+  const handleStar = () => {
+    startTransition(async () => {
+      const [error] = await starDomain('example.com')
+      if (error) {
+        // Type-safe error handling
+        console.error(error)
+      }
+    })
+  }
+}
+```
+
+**When to use Server Actions vs HTTP Client vs React Query:**
+
+- ✅ **Server Actions** (`.actionable()`): Page-specific mutations, internal calls, faster (no HTTP overhead)
+- ✅ **HTTP Client**: Cross-origin, public API endpoints
+- ✅ **React Query**: Globally shared state (starred items, cart, user preferences, app shell)
+  - Once you use React Query, consolidate in `modules/` for app-wide caching
+- ❌ **Don't use React Query** for page-specific data - use Server Components instead
+
+## Error Handling
+
+### HTTP Client Error Handling
+
+```ts
+import { isDefinedError } from '@orpc/client'
+
+try {
+  await client.getDomainQuickInfoForCell('example.com')
+} catch (error) {
+  if (isDefinedError(error)) {
+    // Handle type-safe error
+  }
+}
+```
+
+### Server Action Error Handling
+
+```ts
+const [error, data] = await starDomain('example.com')
+if (error) {
+  if (error.defined) {
+    // Type-safe error data
+    console.error(error.data)
+  }
+  // Handle unknown errors
+} else {
+  // Handle success
+  console.log(data)
+}
+```

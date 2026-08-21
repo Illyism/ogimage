@@ -1,0 +1,36 @@
+---
+description: Canonical error handling for the web app
+globs: apps/web/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Error handling
+
+Use the existing utilities in `@/lib/utils/error-handler` so logging,
+observability, and user feedback have one owner.
+
+## Choose one path
+
+- Server Actions, API routes, database, and external services:
+  `handleServerError`.
+- User-facing client operations and hooks: `handleClientError`.
+- Fire-and-forget work: `handleBackgroundError`.
+- oRPC tuple results: `handleORPCError` from
+  `@/lib/utils/orpc-error-handler`.
+- React error boundaries: capture the error with Sentry directly.
+
+Each utility logs to the console and captures exceptions as appropriate.
+`handleClientError` also shows a toast unless `showToast: false` is set.
+Do not call Sentry, `console.error`, or `toast.error` again for the same error.
+
+## Rules
+
+- Include a descriptive `logMessage` and safe debugging context such as IDs,
+  operation names, or route parameters. Never include secrets or raw credentials.
+- Give users a short, non-technical toast title. Keep expected validation and
+  user-input errors out of Sentry when they are not application failures.
+- Do not silently catch an error. Return a useful response, show feedback, or
+  rethrow with `rethrow: true` when the caller must fail.
+- Do not wrap a function that already owns handling for the same failure.
+- Keep one handler per logical operation; avoid nested catch blocks and
+  duplicate reporting.

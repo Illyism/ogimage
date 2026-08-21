@@ -5,6 +5,7 @@
   "scripts": {
     "build": "next build --webpack",
     "check": "ultracite check && bun run typecheck",
+    "db:generate": "prisma generate",
     "dev": "next dev",
     "fix": "ultracite fix",
     "lint": "ultracite check",

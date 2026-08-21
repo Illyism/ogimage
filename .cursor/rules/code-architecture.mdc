@@ -1,0 +1,44 @@
+---
+description: Feature boundaries and data ownership for the monorepo
+alwaysApply: true
+---
+
+# Feature boundaries
+
+Optimize for the smallest clear ownership boundary. Keep code close to the
+route or feature that owns it; do not create abstractions to avoid a few
+duplicated lines.
+
+## Default layout
+
+```text
+app/(app)/feature/
+  page.tsx              # Server Component and page-level data
+  _components/          # UI used only by this feature
+  _actions/             # Server actions and action-specific helpers
+  _procedures/          # Feature-local oRPC procedures
+modules/feature/         # Only for genuinely shared client state or behavior
+```
+
+## Placement decisions
+
+- Fetch page-specific data in the Server Component and pass it to the UI.
+- Keep interactive UI in a client component.
+- Use an actionable oRPC procedure or a colocated Server Action for
+  page-specific mutations.
+- Use `modules/` only when the same state or behavior is used by multiple
+  routes/components or must stay synchronized globally.
+- Use React Query for shared client lifecycle, caching, polling, or invalidation.
+  Keep its query options, hooks, and operations inside the owning module.
+- Follow `orpc.mdc` for oRPC transport, caching, and authentication details.
+
+## Simplification rules
+
+- A one-page feature stays colocated, even if a shared-looking name is tempting.
+- Duplicate a short query, auth check, or CRUD operation when that is clearer.
+- Extract after the third real use, or when a complex 50+ line algorithm has a
+  clear owner.
+- Delete pass-through wrappers and speculative “service” or “operations”
+  layers that add no decision or invariant.
+- Preserve semantic HTML, framework boundaries, and existing public contracts
+  while simplifying structure.

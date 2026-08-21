@@ -1,185 +1,111 @@
-# Repository Guidelines
+# OG Image Agent Rules
 
-## Dev server
+OG Image (`ogimage.org`) is an Open Graph image generator. Users create
+social preview images from templates. Production runs on Coolify/Docker.
 
-- Do **not** start a second Next.js dev server. Reuse a running `bun dev` / `npm run dev` (check existing terminals first) instead of launching another one.
+## Next.js
 
-## Project Structure & Module Organization
+Before any Next.js work, read the relevant guide in `node_modules/next/dist/docs/`.
+The bundled docs are the source of truth. Check deprecation notices before using
+an API or pattern.
 
-- Source: `app/` (App Router), legacy routes in `pages/`.
-- UI: `components/`, styles in `styles/`, static assets in `public/`.
-- Domain code: `core/`, utilities in `lib/`, types in `types/`.
-- Content: `content/` with Contentlayer config in `contentlayer.config.js` and outputs in `.contentlayer/`.
-- Background/automation: `jobs/`.
-- Path aliases are defined in `tsconfig.json` (e.g., `@/components/*`).
+## Writing and comments
 
-## Build, Test, and Development Commands
+- Write in ASD-STE100 unless the user asks for another style.
+- Use short sentences, active voice, and direct instructions.
+- Comments must explain **why**: an invariant, incident, security rule, or product
+  constraint. Names already explain what code does.
+- Do not keep a comment that a future reader could delete without losing context.
 
-- `bun install` (or `npm install`): install deps (repo includes `bun.lock`).
-- `bun dev` / `npm run dev`: start Next.js dev server.
-- `bun run build` / `npm run build`: production build.
-- `bun start` / `npm start`: run the built app.
-- `bun run fix`: format + autofix (Ultracite/Biome). Whole repo — fine manually/CI; hooks must pass file paths.
-- `bun run lint`: check only (`ultracite check`).
-- `bun run typecheck`: TypeScript 7 CLI (`@typescript/native`) with 8 checkers. Authoritative type gate.
-- `bun run check`: full gate — ultracite + typecheck.
+## Layout
 
-## Toolchain notes
+This is a single Next.js App Router app (not a monorepo). English only.
 
-- Dual TypeScript: `typescript@6` (Next/Vercel build needs the compiler API) + `@typescript/native` (TS7 CLI for `typecheck`, editor via `js/ts.tsdk.path`). Do not replace `typescript` with TS7-only on Next.js.
-- Docker/Coolify builds set `DOCKER_BUILD=true` and skip lint/typecheck entirely — CI and pre-commit own those gates.
-- Pre-commit: staged `ultracite fix <paths>` then `scripts/pre-commit-checks.mjs` (prisma generate if Prisma files staged, then TS7 typecheck). Never a whole-tree fix in hooks.
-- Cursor agent hooks live in `.cursor/hooks.json` → `.cursor/hooks/after-file-edit.mjs` (scoped fix per edited file, never blocks).
+| Path | Role |
+| --- | --- |
+| `app/` | App Router pages, layouts, route handlers, and server actions |
+| `app/og/templates/` | `next/og` `ImageResponse` templates (headline, screenshot, blog-post, …) |
+| `app/inspiration/` | Gallery, category/post pages, and domain submit flow |
+| `app/api/` | HTTP boundaries (inspiration submit/lookup, LemonSqueezy webhooks) |
+| `app/[slug]/` | CMS pages from Postgres (`lib/directus.ts` is Prisma, not live Directus) |
+| `content/blog/` | Contentlayer MDX posts |
+| `components/` | Shared UI (home, nav, reviews, generator) |
+| `core/` | SEO, OG helpers, structured data, PostHog, LemonSqueezy |
+| `lib/` | Prisma, S3, pricing, metatags, cookies |
+| `prisma/` | Schema, migrations, and generated client config |
+| `public/` | Static assets |
+| `scripts/` | Pre-commit typecheck and Prisma generate |
 
-## Coding Style & Naming Conventions
+Fetch page-specific data in Server Components. Use Client Components for
+interaction. Use server actions or route handlers for mutations.
 
-- TypeScript (`.ts/.tsx`); prefer functional React components.
-- Formatting via Biome (Ultracite): 2‑space indent, LF, 80‑col width, single quotes; JSX attributes use double quotes; trailing commas enabled.
-- Linting: Ultracite/Biome (`bun run lint`); no unused vars/imports (errors).
-- File naming: components `PascalCase.tsx`, hooks `useThing.ts`, helpers `camelCase.ts`.
-- Keep modules small; colocate component styles and tests next to the file.
+Do not create a new abstraction for one small use. Keep code next to the
+route that owns it. Duplicate small code until the shared boundary is clear.
 
-## Testing Guidelines
+## Commands
 
-- No repository test runner is configured yet. If adding tests:
-  - Use Vitest or Jest + React Testing Library.
-  - Place specs as `*.test.ts(x)` next to sources or under `__tests__/`.
-  - Aim for coverage on core logic in `core/` and `lib/`; include minimal repro for bug fixes.
+- Runtime: Bun
+- Dev: `bun run dev`; reuse an existing dev server
+- Format and safe lint: `bun run fix`
+- Lint check: `bun x ultracite check`
+- Typecheck: `bun run typecheck` (TypeScript 7 via `@typescript/native`)
+- Final gate: `bun run check` (`ultracite` + typecheck)
+- Production build: `bun run build` (`next build --webpack`)
+- Prisma client: `bunx prisma generate` (Dockerfile and pre-commit run this)
+- Pre-commit: Husky runs staged Ultracite, then `scripts/pre-commit-checks.mjs`
 
-## Commit & Pull Request Guidelines
+The final gate is `bun run check`. Do not start a second Next.js server.
+There is no test runner in `package.json`.
 
-- Use clear, imperative messages: “Add pricing card animation”, “Fix OG image text wrap”.
-- Reference issues (`Fixes #123`) and describe user impact.
-- For UI changes, add before/after screenshots or a short clip.
-- PRs should include: summary, scope of change, testing notes, any env/config updates.
+## Project conventions
 
-## Security & Configuration Tips
+- Use `import Link from 'next/link'` for internal navigation.
+- Prefer `<Link>` over raw `<a>` for internal links.
+- Use Lucide 1.x icons with the `*Icon` suffix, such as `SearchIcon`.
+- Keep external input as `unknown` until it passes boundary validation.
+- Do not log tokens, authorization headers, email addresses, or other PII.
+- OG template routes return `ImageResponse` from `next/og` at 1200×630.
 
-- Do not commit secrets. Use `.env.local`; document new vars in PRs.
-- Be mindful of Edge/runtime code paths (e.g., `app/*/route.ts`); avoid Node‑only APIs there.
-- Large assets belong in `public/`; import images via Next/Image where applicable.
+## Environment and production data
 
+- Never commit `.env` files, credentials, PATs, or generated secrets.
+- Do not mutate production rows to test a theory. Use read-only queries for
+  diagnosis. Apply schema changes through reviewed Prisma migrations.
+- Do not assume that PostgreSQL is running locally.
+- Production is Coolify on `https://cooler.il.ly` (FQDN `ogimage.org`).
+  Coolify `resources.json` in this repo may still list other apps. Resolve
+  this app with `apps` / FQDN `ogimage.org` before status, logs, or deploy.
 
-# Ultracite Code Standards
+  ```bash
+  bun .agents/skills/coolify/scripts/coolify.mjs apps
+  bun .agents/skills/docker-doctor/scripts/doctor.mjs
+  ```
 
-This project uses **Ultracite**, a zero-config preset that enforces strict code quality standards through automated formatting and linting.
+## Docker and Coolify
 
-## Quick Reference
+Coolify builds the repo-root `Dockerfile` on deploy. Base image is
+`oven/bun:1` (Debian, not Alpine).
 
-- **Format code**: `bun x ultracite fix`
-- **Check for issues**: `bun x ultracite check`
-- **Diagnose setup**: `bun x ultracite doctor`
+| Stage | Purpose |
+| --- | --- |
+| `deps` | `bun install --frozen-lockfile` from lockfile |
+| `builder` | `bunx prisma generate` then `bun run build`; `DOCKER_BUILD=true` skips Next tsc |
+| `runner` | Copies `.next/standalone`, `.next/static`, `public`, and Prisma client; `CMD ["bun", "server.js"]` |
 
-Biome (the underlying engine) provides robust linting and formatting. Most issues are automatically fixable.
+Keep Coolify Advanced **Inject Build Args**, **Include Source Commit**, and
+**Disable Build Cache** **OFF**. Mark only import-time keys as build-time
+(`NEXT_PUBLIC_*`, `DATABASE_URL` for Prisma generate).
 
----
+Do not add a `.next/cache` mount. Webpack persistent cache poisoned a deploy
+after the Next 16.3 upgrade.
 
-## Core Principles
+## Ultracite
 
-Write code that is **accessible, performant, type-safe, and maintainable**. Focus on clarity and explicit intent over brevity.
+This project uses Ultracite with Biome.
 
-### Type Safety & Explicitness
+- Diagnose setup: `bun x ultracite doctor`
+- Format: `bun run fix`
+- Check: `bun x ultracite check`
 
-- Use explicit types for function parameters and return values when they enhance clarity
-- Prefer `unknown` over `any` when the type is genuinely unknown
-- Use const assertions (`as const`) for immutable values and literal types
-- Leverage TypeScript's type narrowing instead of type assertions
-- Use meaningful variable names instead of magic numbers - extract constants with descriptive names
-
-### Modern JavaScript/TypeScript
-
-- Use arrow functions for callbacks and short functions
-- Prefer `for...of` loops over `.forEach()` and indexed `for` loops
-- Use optional chaining (`?.`) and nullish coalescing (`??`) for safer property access
-- Prefer template literals over string concatenation
-- Use destructuring for object and array assignments
-- Use `const` by default, `let` only when reassignment is needed, never `var`
-
-### Async & Promises
-
-- Always `await` promises in async functions - don't forget to use the return value
-- Use `async/await` syntax instead of promise chains for better readability
-- Handle errors appropriately in async code with try-catch blocks
-- Don't use async functions as Promise executors
-
-### React & JSX
-
-- Use function components over class components
-- Call hooks at the top level only, never conditionally
-- Specify all dependencies in hook dependency arrays correctly
-- Use the `key` prop for elements in iterables (prefer unique IDs over array indices)
-- Nest children between opening and closing tags instead of passing as props
-- Don't define components inside other components
-- Use semantic HTML and ARIA attributes for accessibility:
-  - Provide meaningful alt text for images
-  - Use proper heading hierarchy
-  - Add labels for form inputs
-  - Include keyboard event handlers alongside mouse events
-  - Use semantic elements (`<button>`, `<nav>`, etc.) instead of divs with roles
-
-### Error Handling & Debugging
-
-- Remove `console.log`, `debugger`, and `alert` statements from production code
-- Throw `Error` objects with descriptive messages, not strings or other values
-- Use `try-catch` blocks meaningfully - don't catch errors just to rethrow them
-- Prefer early returns over nested conditionals for error cases
-
-### Code Organization
-
-- Keep functions focused and under reasonable cognitive complexity limits
-- Extract complex conditions into well-named boolean variables
-- Use early returns to reduce nesting
-- Prefer simple conditionals over nested ternary operators
-- Group related code together and separate concerns
-
-### Security
-
-- Add `rel="noopener"` when using `target="_blank"` on links
-- Avoid `dangerouslySetInnerHTML` unless absolutely necessary
-- Don't use `eval()` or assign directly to `document.cookie`
-- Validate and sanitize user input
-
-### Performance
-
-- Avoid spread syntax in accumulators within loops
-- Use top-level regex literals instead of creating them in loops
-- Prefer specific imports over namespace imports
-- Avoid barrel files (index files that re-export everything)
-- Use proper image components (e.g., Next.js `<Image>`) over `<img>` tags
-
-### Framework-Specific Guidance
-
-**Next.js:**
-- Use Next.js `<Image>` component for images
-- Use `next/head` or App Router metadata API for head elements
-- Use Server Components for async data fetching instead of async Client Components
-
-**React 19+:**
-- Use ref as a prop instead of `React.forwardRef`
-
-**Solid/Svelte/Vue/Qwik:**
-- Use `class` and `for` attributes (not `className` or `htmlFor`)
-
----
-
-## Testing
-
-- Write assertions inside `it()` or `test()` blocks
-- Avoid done callbacks in async tests - use async/await instead
-- Don't use `.only` or `.skip` in committed code
-- Keep test suites reasonably flat - avoid excessive `describe` nesting
-
-## When Biome Can't Help
-
-Biome's linter will catch most issues automatically. Focus your attention on:
-
-1. **Business logic correctness** - Biome can't validate your algorithms
-2. **Meaningful naming** - Use descriptive names for functions, variables, and types
-3. **Architecture decisions** - Component structure, data flow, and API design
-4. **Edge cases** - Handle boundary conditions and error states
-5. **User experience** - Accessibility, performance, and usability considerations
-6. **Documentation** - Add comments for complex logic, but prefer self-documenting code
-
----
-
-Most formatting and common issues are automatically fixed by Biome. Run `bun x ultracite fix` before committing to ensure compliance.
+Most formatting issues are automatic. Review business logic, architecture, and
+edge cases that lint rules cannot validate.
