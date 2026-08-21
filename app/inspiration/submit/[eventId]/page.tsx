@@ -1,8 +1,7 @@
+import { Suspense } from 'react'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { DomainRunDetails } from './DomainRunDetails'
-
-export const revalidate = 3600 // revalidate at most every hour
 
 export async function generateMetadata({
   params,
@@ -17,11 +16,7 @@ export async function generateMetadata({
   })
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ eventId: string }>
-}) {
+async function Content({ params }: { params: Promise<{ eventId: string }> }) {
   const { eventId } = await params
   // eventId is now the slug
   return (
@@ -30,5 +25,17 @@ export default async function Page({
         <DomainRunDetails slug={eventId} />
       </div>
     </PageLayout>
+  )
+}
+
+export default function Page({
+  params,
+}: {
+  params: Promise<{ eventId: string }>
+}) {
+  return (
+    <Suspense fallback={null}>
+      <Content params={params} />
+    </Suspense>
   )
 }

@@ -1,5 +1,6 @@
 'use client'
 
+import type { HTMLMotionProps } from 'framer-motion'
 import { motion, useReducedMotion } from 'framer-motion'
 import { createContext, useContext } from 'react'
 
@@ -7,7 +8,7 @@ const FadeInStaggerContext = createContext(false)
 
 const viewport = { margin: '0px 0px -200px', once: true }
 
-export function FadeIn(props: any) {
+export function FadeIn(props: HTMLMotionProps<'div'>) {
   const shouldReduceMotion = useReducedMotion()
   const isInStaggerGroup = useContext(FadeInStaggerContext)
 
@@ -29,7 +30,10 @@ export function FadeIn(props: any) {
   )
 }
 
-export function FadeInStagger({ faster = false, ...props }: any) {
+export function FadeInStagger({
+  faster = false,
+  ...props
+}: HTMLMotionProps<'div'> & { faster?: boolean }) {
   return (
     <FadeInStaggerContext.Provider value={true}>
       <motion.div

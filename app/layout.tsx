@@ -14,7 +14,11 @@ export const viewport: Viewport = {
   ],
 }
 
-export default async function RootLayout({ children }: { children: any }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="dark h-full font-sans antialiased">

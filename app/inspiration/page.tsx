@@ -5,8 +5,6 @@ import { getLatestInspiration, getUniqueCategories } from '@/lib/directus'
 import { getFileUrl } from '@/lib/file-storage'
 import { ImageCard } from './post/[slug]/ImageCard'
 
-export const revalidate = 300 // 5 minutes
-
 export const metadata = generatePageMeta({
   description:
     'Need open graph image inspiration? We have the best OG image inspiration, design and templates in our gallery.',

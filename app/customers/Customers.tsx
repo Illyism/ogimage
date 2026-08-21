@@ -236,7 +236,15 @@ const Wodily = () => (
   </div>
 )
 
-const TwitterPreview = ({ title, description, image }: any) => (
+const TwitterPreview = ({
+  title,
+  description,
+  image,
+}: {
+  title: string
+  description: string
+  image: string
+}) => (
   <div className="relative flex max-w-xl items-start gap-2 border border-border border-b-0 bg-card px-4 pt-4 pb-6 text-left last:rounded-b-xl last:border-b dark:bg-card">
     <Image
       alt=""

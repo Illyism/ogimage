@@ -2,8 +2,6 @@ import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { TemplatePreview } from '../og/components/TemplatePreview'
 
-export const revalidate = 14_400 // 4 hours
-
 export const metadata = generatePageMeta({
   description:
     'Generate beautiful Open Graph Images for your website, blog, or social media.',

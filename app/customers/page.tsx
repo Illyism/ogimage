@@ -3,8 +3,6 @@ import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { Customers } from './Customers'
 
-export const revalidate = 14_400 // 4 hours
-
 export const metadata = generatePageMeta({
   description:
     'Open Graph Image as a Service is a powerful and flexible open graph image generator that allows you to create dynamic, high-quality images for your website.',

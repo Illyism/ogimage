@@ -8,24 +8,29 @@ import {
   GalleryThumbnails,
   Globe2,
   Heart,
-  LinkedinIcon,
   Lock,
   MessageCircleIcon,
   Repeat2,
   Share,
   Smile,
-  TwitterIcon,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
+import { LinkedInIcon, TwitterIcon } from '@/components/icons/SocialIcons'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { cn } from '@/lib/utils'
 
 /* eslint-disable @next/next/no-img-element */
+
+interface TemplateProps {
+  description: string
+  image: string
+  title: string
+}
 
 interface Store {
   preview: 'twitter' | 'simple' | 'linkedin' | 'source'
@@ -144,13 +149,13 @@ const PreviewType = ({ className }: { className?: string }) => {
       onSubmit={(e) => e.preventDefault()}
     >
       <Toggle
-        icon={<TwitterIcon size={14} />}
+        icon={<TwitterIcon className="size-3.5" />}
         label="Twitter"
         onChange={(checked) => setPreview(checked ? 'twitter' : 'simple')}
         value={preview === 'twitter'}
       />
       <Toggle
-        icon={<LinkedinIcon size={14} />}
+        icon={<LinkedInIcon className="size-3.5" />}
         label="LinkedIn"
         onChange={(checked) => setPreview(checked ? 'linkedin' : 'simple')}
         value={preview === 'linkedin'}
@@ -171,7 +176,17 @@ const PreviewType = ({ className }: { className?: string }) => {
   )
 }
 
-const Toggle = ({ label, icon, value, onChange }: any) => (
+const Toggle = ({
+  label,
+  icon,
+  value,
+  onChange,
+}: {
+  label: string
+  icon: React.ReactNode
+  value: boolean
+  onChange: (checked: boolean) => void
+}) => (
   <div
     className={cn(
       'flex cursor-pointer items-center gap-2 rounded-lg border bg-card px-2.5 py-1 font-medium text-sm transition-colors hover:bg-accent',
@@ -193,7 +208,7 @@ const Toggle = ({ label, icon, value, onChange }: any) => (
   </div>
 )
 
-const TemplateCard = (props: any) => {
+const TemplateCard = (props: TemplateProps) => {
   const { preview } = usePreviewState()
 
   if (preview === 'twitter') {
@@ -211,7 +226,7 @@ const TemplateCard = (props: any) => {
   return <SimplePreview {...props} />
 }
 
-const SimplePreview = ({ title, description, image }: any) => {
+const SimplePreview = ({ title, description, image }: TemplateProps) => {
   const [loaded, setLoaded] = useState(false)
   return (
     <Card className="max-w-md p-4 text-left">
@@ -236,7 +251,7 @@ const SimplePreview = ({ title, description, image }: any) => {
   )
 }
 
-const TwitterPreview = ({ title, description, image }: any) => {
+const TwitterPreview = ({ title, description, image }: TemplateProps) => {
   const [loaded, setLoaded] = useState(false)
   return (
     <div className="relative flex max-w-xl items-start gap-2 border border-border border-b-0 bg-card px-4 pt-4 pb-6 text-left last:rounded-b-xl last:border-b dark:bg-card">
@@ -296,7 +311,7 @@ const TwitterPreview = ({ title, description, image }: any) => {
   )
 }
 
-const LinkedInPreview = ({ title, description, image }: any) => {
+const LinkedInPreview = ({ title, description, image }: TemplateProps) => {
   const [loaded, setLoaded] = useState(false)
   return (
     <div className="relative rounded-lg border border-border bg-white text-left dark:bg-black">
@@ -350,7 +365,7 @@ const LinkedInPreview = ({ title, description, image }: any) => {
   )
 }
 
-const SourcePreview = ({ title, description, image }: any) => (
+const SourcePreview = ({ title, description, image }: TemplateProps) => (
   <div className="relative rounded-lg border border-border bg-card p-4 text-left dark:bg-black">
     <img
       alt={title}

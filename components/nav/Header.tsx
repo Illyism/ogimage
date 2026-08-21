@@ -2,7 +2,7 @@
 import { CheckCircle, Star } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
 import { ESSENTIAL_PRICE } from '@/lib/pricing'
 import { cn } from '@/lib/utils'
@@ -81,11 +81,9 @@ export function Header() {
             ogimage.org
           </Link>
           <nav className="hidden items-center justify-center sm:ml-8 sm:flex">
-            {headerLinks.map((link, i) => (
-              <NavLink href={link.href} key={i}>
-                {link.label}
-              </NavLink>
-            ))}
+            <Suspense fallback={<NavLinks />}>
+              <ActiveNavLinks />
+            </Suspense>
           </nav>
         </div>
         <div className="flex items-center justify-end space-x-4">
@@ -117,43 +115,50 @@ export function Header() {
         </div>
       </header>
       <nav className="flex flex-wrap items-center pl-4 text-sm sm:hidden">
-        {headerLinks.map((link, i) => (
-          <NavLink href={link.href} key={i}>
-            {link.label}
-          </NavLink>
-        ))}
+        <Suspense fallback={<NavLinks />}>
+          <ActiveNavLinks />
+        </Suspense>
       </nav>
     </>
   )
 }
 
-const NavLink = ({ href, children }) => {
+const NavLinks = () => (
+  <>
+    {headerLinks.map((link, i) => (
+      <Link
+        className="rounded-md px-2 py-2 font-medium text-foreground/60 transition-colors hover:text-foreground"
+        href={link.href}
+        key={i}
+      >
+        {link.label}
+      </Link>
+    ))}
+  </>
+)
+
+const ActiveNavLinks = () => {
   const pathname = usePathname()
 
-  // Function to determine if the link is active
-  const isActive = (path) => {
-    // Check for exact match
-    if (pathname === path) {
-      return true
-    }
-
-    if (!pathname) {
-      return false
-    }
-
-    // Check for parameterized blog match
-    return pathname.startsWith(path)
-  }
-
   return (
-    <Link
-      className={cn(
-        'rounded-md px-2 py-2 font-medium text-foreground/60 transition-colors hover:text-foreground',
-        isActive(href) && 'text-foreground',
-      )}
-      href={href}
-    >
-      {children}
-    </Link>
+    <>
+      {headerLinks.map((link, i) => {
+        const isActive =
+          pathname === link.href || pathname.startsWith(link.href)
+
+        return (
+          <Link
+            className={cn(
+              'rounded-md px-2 py-2 font-medium text-foreground/60 transition-colors hover:text-foreground',
+              isActive && 'text-foreground',
+            )}
+            href={link.href}
+            key={i}
+          >
+            {link.label}
+          </Link>
+        )
+      })}
+    </>
   )
 }

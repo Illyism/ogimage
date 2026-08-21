@@ -2,6 +2,7 @@ import { Star } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '../ui/button'
 import { Logo } from '../ui/logo'
+import { Year } from '../ui/year'
 
 const productLinks = [
   {
@@ -156,7 +157,7 @@ export const Footer = () => (
         </div>
 
         <div className="flex flex-col items-center gap-2 text-muted-foreground text-sm sm:flex-row">
-          &copy; {new Date().getFullYear()} MagicSpace SEO
+          &copy; <Year /> MagicSpace SEO
         </div>
       </div>
     </div>

@@ -4,13 +4,15 @@ import { redirect } from 'next/navigation'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { ArticleStructuredData } from '@/core/structured'
-import { getInspiration, type Inspiration } from '@/lib/directus'
+import {
+  getInspiration,
+  getLatestInspiration,
+  type Inspiration,
+} from '@/lib/directus'
 import { getFileUrl } from '@/lib/file-storage'
 import { getRouteRel } from '@/lib/route-rel'
 import { cn } from '@/lib/utils'
 import { ImageCard } from './ImageCard'
-
-export const revalidate = 300 // 5 minutes
 
 export async function generateMetadata({
   params,
@@ -32,6 +34,14 @@ export async function generateMetadata({
     title: `${inspiration.name} - OG Image for ${inspiration.domain} - Open Graph Image Inspiration`,
     url: `/inspiration/post/${slug}`,
   })
+}
+
+export async function generateStaticParams() {
+  const list = await getLatestInspiration({}, 500)
+  // Build environments without DB access still need one entry.
+  return list.length > 0
+    ? list.map((item) => ({ slug: item.slug }))
+    : [{ slug: '_' }]
 }
 
 export default async function Page(props: {

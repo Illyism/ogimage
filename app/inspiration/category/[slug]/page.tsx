@@ -2,10 +2,8 @@ import Link from 'next/link'
 import { ImageCard } from '@/app/inspiration/post/[slug]/ImageCard'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
-import { getLatestInspiration } from '@/lib/directus'
+import { getCategories, getLatestInspiration } from '@/lib/directus'
 import { getFileUrl } from '@/lib/file-storage'
-
-export const revalidate = 300 // 5 minutes
 
 export async function generateMetadata({
   params,
@@ -22,6 +20,14 @@ export async function generateMetadata({
     )} - Design Inspiration`,
     url: `/inspiration/category/${tag}`,
   })
+}
+
+export async function generateStaticParams() {
+  const categories = await getCategories()
+  // Build environments without DB access still need one entry.
+  return categories.length > 0
+    ? categories.map((c) => ({ slug: c.category }))
+    : [{ slug: '_' }]
 }
 
 export default async function Page(props: {

@@ -28,9 +28,7 @@ function getS3Hostname(): string | null {
 const s3Hostname = getS3Hostname()
 
 const nextConfig: NextConfig = {
-  experimental: {
-    useCache: true,
-  },
+  cacheComponents: true,
   async headers() {
     return [
       {

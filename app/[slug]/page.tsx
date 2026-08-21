@@ -1,6 +1,6 @@
 import { notFound } from 'next/navigation'
 import { generatePageMeta } from '@/core/seo'
-import { getPost, type Page } from '@/lib/directus'
+import { getPages, getPost, type Page } from '@/lib/directus'
 import { cn, formatDate } from '@/lib/utils'
 
 export async function generateMetadata({
@@ -27,6 +27,14 @@ export async function generateMetadata({
         : post.updatedAt,
     url: `/${post.slug}`,
   })
+}
+
+export async function generateStaticParams() {
+  const pages = await getPages()
+  // Build environments without DB access still need one entry.
+  return pages.length > 0
+    ? pages.map((page) => ({ slug: page.slug }))
+    : [{ slug: '_' }]
 }
 
 export default async function BlogArticle({

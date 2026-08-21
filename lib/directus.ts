@@ -1,3 +1,4 @@
+import { cacheLife } from 'next/cache'
 import { cache } from 'react'
 import { prisma } from '@/lib/prisma'
 
@@ -28,6 +29,7 @@ export interface Inspiration {
 
 export const getPages = cache(async function getPages() {
   'use cache'
+  cacheLife({ revalidate: 14_400, stale: 14_400 })
   try {
     const pages = await prisma.page.findMany({
       select: {
@@ -47,6 +49,7 @@ export const getPages = cache(async function getPages() {
 
 export const getPost = cache(async function getPost(slug: string) {
   'use cache'
+  cacheLife({ revalidate: 3600, stale: 3600 })
   try {
     const post = await prisma.page.findUnique({
       where: { slug },
@@ -70,6 +73,7 @@ export const getInspiration = cache(async function getInspiration(
   slug: string,
 ) {
   'use cache'
+  cacheLife({ revalidate: 300, stale: 300 })
   try {
     const inspiration = await prisma.inspiration.findUnique({
       where: { slug },
@@ -86,6 +90,7 @@ export const getLatestInspiration = cache(async function getLatestInspiration(
   limit = 500,
 ) {
   'use cache'
+  cacheLife({ revalidate: 300, stale: 300 })
   try {
     // Build Prisma where clause
     const where: any = {}
@@ -143,6 +148,7 @@ export function getUniqueCategories(list: { category: string[] }[]) {
 
 export const getCategories = cache(async function getCategories() {
   'use cache'
+  cacheLife({ revalidate: 300, stale: 300 })
   try {
     const inspirations = await prisma.inspiration.findMany({
       select: {

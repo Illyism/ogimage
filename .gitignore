@@ -39,7 +39,6 @@ dist
 
 # cache files
 .eslintcache
-.prettiercache
 
 # migration data
 migration-data/

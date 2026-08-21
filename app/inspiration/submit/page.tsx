@@ -11,8 +11,6 @@ export const metadata = generatePageMeta({
   url: '/inspiration/submit',
 })
 
-export const revalidate = 3600 // revalidate at most every hour
-
 export default async function Page() {
   return (
     <PageLayout>
