@@ -86,6 +86,15 @@ const nextConfig: NextConfig = {
     // CI/pre-commit `bun run typecheck` (TS7 via @typescript/native).
     ignoreBuildErrors: process.env.DOCKER_BUILD === 'true',
   },
+  webpack: (config) => {
+    // Pin this module. Webpack otherwise binds `@/lib/utils` to
+    // `app/lib/utils.ts` (cn only) and prerender of /[slug] dies.
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@/lib/utils': `${import.meta.dirname}/lib/utils.ts`,
+    }
+    return config
+  },
 }
 
 module.exports = withContentlayer(nextConfig)

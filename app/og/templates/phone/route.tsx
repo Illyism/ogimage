@@ -15,20 +15,6 @@ export async function GET() {
     width: 600,
   })
 
-  // Load font from public URL
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://ogimage.org'
-  const fontUrl = `${appUrl}/styles/Hoefler%20Text%20Regular.ttf`
-
-  let Hoefler: ArrayBuffer | null = null
-  try {
-    const fontRes = await fetch(fontUrl)
-    if (fontRes.ok) {
-      Hoefler = await fontRes.arrayBuffer()
-    }
-  } catch (e) {
-    console.error('Failed to load font:', e)
-  }
-
   return new ImageResponse(
     <div tw="flex w-full h-full bg-blue-500 text-black relative p-4">
       <div tw="flex w-full flex-col pl-10 items-start justify-end pb-10 bg-white relative rounded-[20px] text-center">
@@ -55,14 +41,6 @@ export async function GET() {
       </div>
     </div>,
     {
-      fonts: Hoefler
-        ? [
-            {
-              data: Hoefler,
-              name: 'Hoefler',
-            },
-          ]
-        : [],
       headers: {
         // 'Cache-Control': 'public, max-age=3600, immutable',
       },
