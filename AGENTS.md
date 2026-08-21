@@ -1,5 +1,9 @@
 # Repository Guidelines
 
+## Dev server
+
+- Do **not** start a second Next.js dev server. Reuse a running `bun dev` / `npm run dev` (check existing terminals first) instead of launching another one.
+
 ## Project Structure & Module Organization
 
 - Source: `app/` (App Router), legacy routes in `pages/`.
