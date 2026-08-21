@@ -60,15 +60,10 @@ docker-compose up -d
 - `NEXT_PUBLIC_POSTHOG_KEY` - PostHog project API key
 - `NEXT_PUBLIC_POSTHOG_HOST` - PostHog host URL
 
-#### LemonSqueezy (Payment Processing)
-
-- `LMSQUEEZY` - LemonSqueezy API key
-- `LMSQUEEZY_SECRET` - LemonSqueezy webhook secret for signature verification
-- `LMSQUEEZY_ENV` - Environment (`development` or `production`)
-
 #### Resend (Email)
 
-- `RESEND_API_KEY` - Resend API key for sending emails
+- `RESEND_API_KEY` - Resend API key. Needs **Contacts** permission (send-only keys cannot save signups)
+- `RESEND_AUDIENCE_ID` - Resend audience (segment) ID for free-access emails
 
 #### Anthropic (AI)
 
@@ -82,7 +77,7 @@ docker-compose up -d
 
 #### GitHub Integration
 
-- `GITHUB_TOKEN` - GitHub personal access token (used for webhook integrations)
+- `GITHUB_TOKEN` - GitHub personal access token (invites signups to the kit org)
 
 ## License
 

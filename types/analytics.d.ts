@@ -64,12 +64,8 @@ type Twq = (
 
 export declare global {
   interface Window {
-    createLemonSqueezy: () => void
     fbq: Fbq
     gtag: any
-    lemonSqueezyAffiliateConfig: {
-      store: string
-    }
     posthog: Posthog
     twq: Twq
   }

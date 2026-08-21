@@ -26,12 +26,12 @@ This is a single Next.js App Router app (not a monorepo). English only.
 | `app/` | App Router pages, layouts, route handlers, and server actions |
 | `app/og/templates/` | `next/og` `ImageResponse` templates (headline, screenshot, blog-post, …) |
 | `app/inspiration/` | Gallery, category/post pages, and domain submit flow |
-| `app/api/` | HTTP boundaries (inspiration submit/lookup, LemonSqueezy webhooks) |
+| `app/api/` | HTTP boundaries (inspiration submit/lookup) |
 | `app/[slug]/` | CMS pages from Postgres (`lib/directus.ts` is Prisma, not live Directus) |
 | `content/blog/` | Contentlayer MDX posts |
 | `components/` | Shared UI (home, nav, reviews, generator) |
-| `core/` | SEO, OG helpers, structured data, PostHog, LemonSqueezy |
-| `lib/` | Prisma, S3, pricing, metatags, cookies |
+| `core/` | SEO, OG helpers, structured data, PostHog |
+| `lib/` | Prisma, S3, metatags, cookies |
 | `prisma/` | Schema, migrations, and generated client config |
 | `public/` | Static assets |
 | `scripts/` | Pre-commit typecheck and Prisma generate |

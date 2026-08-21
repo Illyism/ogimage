@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Suspense, useEffect, useState } from 'react'
 import { useLocalStorage } from 'usehooks-ts'
-import { ESSENTIAL_PRICE } from '@/lib/pricing'
 import { cn } from '@/lib/utils'
 import { Button } from '../ui/button'
 import { Logo } from '../ui/logo'
@@ -94,7 +93,7 @@ export function Header() {
             >
               <TooltipTrigger>
                 <Button asChild size="rounded">
-                  <Link href="/buy">Buy now</Link>
+                  <Link href="/#get-access">Get free access</Link>
                 </Button>
               </TooltipTrigger>
               <TooltipContent
@@ -107,7 +106,7 @@ export function Header() {
                   <div className="font-medium text-[11px] uppercase tracking-wide opacity-80">
                     New Update
                   </div>
-                  ${ESSENTIAL_PRICE} - Lifetime access
+                  Free access. Leave your email.
                 </div>
               </TooltipContent>
             </Tooltip>

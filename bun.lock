@@ -7,7 +7,6 @@
       "dependencies": {
         "@anthropic-ai/sdk": "^0.120.0",
         "@aws-sdk/client-s3": "^3.1115.0",
-        "@lemonsqueezy/lemonsqueezy.js": "^4.0.0",
         "@prisma/adapter-pg": "^7.9.1",
         "@prisma/client": "^7.9.1",
         "@radix-ui/react-label": "^2.1.15",
@@ -297,8 +296,6 @@
     "@js-sdsl/ordered-map": ["@js-sdsl/ordered-map@4.4.2", "", {}, "sha512-iUKgm52T8HOE/makSxjqoWhe95ZJA1/G1sYsGev2JDKUSS14KAgg1LHb+Ba+IPow0xflbnSkOsZcO08C7w1gYw=="],
 
     "@js-temporal/polyfill": ["@js-temporal/polyfill@0.4.4", "", { "dependencies": { "jsbi": "^4.3.0", "tslib": "^2.4.1" } }, "sha512-2X6bvghJ/JAoZO52lbgyAPFj8uCflhTo2g7nkFzEQdXd/D8rEeD4HtmTEpmtGCva260fcd66YNXBOYdnmHqSOg=="],
-
-    "@lemonsqueezy/lemonsqueezy.js": ["@lemonsqueezy/lemonsqueezy.js@4.0.0", "", {}, "sha512-xcY1/lDrY7CpIF98WKiL1ElsfoVhddP7FT0fw7ssOzrFqQsr44HgolKrQZxd9SywsCPn12OTOUieqDIokI3mFg=="],
 
     "@mdx-js/esbuild": ["@mdx-js/esbuild@2.3.0", "", { "dependencies": { "@mdx-js/mdx": "^2.0.0", "node-fetch": "^3.0.0", "vfile": "^5.0.0" }, "peerDependencies": { "esbuild": ">=0.11.0" } }, "sha512-r/vsqsM0E+U4Wr0DK+0EfmABE/eg+8ITW4DjvYdh3ve/tK2safaqHArNnaqbOk1DjYGrhxtoXoGaM3BY8fGBTA=="],
 

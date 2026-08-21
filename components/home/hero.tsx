@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { TestimonialReviews } from '@/components/reviews/testimonial-reviews'
 import { Button } from '@/components/ui/button'
 import { StarGlow } from '@/components/ui/StarGlow'
-import { ESSENTIAL_PRICE } from '@/lib/pricing'
 export const Hero = () => (
   <div className="container flex flex-col items-center justify-center gap-12 pt-4 pb-8 sm:pt-16 xl:flex-row">
     <div>
@@ -61,9 +60,8 @@ export const Hero = () => (
       </ul>
       <div className="mt-6 flex flex-col items-center gap-2 sm:flex-row lg:mt-12">
         <Button asChild className="w-full sm:w-auto" size="lg">
-          <Link className="flex" href="/buy?plan=essential">
-            Buy now
-            <b className="font-black tabular-nums">${ESSENTIAL_PRICE}</b>
+          <Link className="flex" href="/#get-access">
+            Get free access
           </Link>
         </Button>
       </div>

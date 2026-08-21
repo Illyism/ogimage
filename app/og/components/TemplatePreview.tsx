@@ -379,11 +379,11 @@ const SourcePreview = ({ title, description, image }: TemplateProps) => (
     <p className="mb-2 text-muted-foreground text-xs">{description}</p>
     <pre className="relative h-48 overflow-hidden whitespace-pre-wrap rounded-2xl border-2 border-border bg-gray-50 p-4 text-xs dark:bg-gray-950">
       <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 rounded-2xl bg-linear-to-b from-white/30 via-white/90 to-white text-center font-medium font-sans text-lg transition dark:from-black/30 dark:via-black/90 dark:to-black">
-        Purchase the kit to get the full source code
+        Leave your email to get the full source code
         <Button asChild>
-          <Link href="/buy">
+          <Link href="/#get-access">
             <Lock className="mr-2" size={16} />
-            Unlock the source
+            Get free access
           </Link>
         </Button>
       </div>
@@ -393,7 +393,7 @@ return new ImageResponse((
     <div tw="flex items-center justify-center w-full h-full bg-gray-900">
       <div tw="flex flex-col text-white">
         <div tw="text-[72px]">Nice try</div>
-        <div tw="text-[32px] opacity-90">If you want the source code, you'll have to purchase the kit</div>
+        <div tw="text-[32px] opacity-90">Leave your email to get the source code for free</div>
       </div>
     </div>
   ),

@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ESSENTIAL_PRICE } from '@/lib/pricing'
 export const FinalCallToAction = () => (
   <div className="container pt-16 pb-24 text-center">
     <a
@@ -22,13 +21,12 @@ export const FinalCallToAction = () => (
     </h2>
     <p className="mx-auto mt-4 max-w-2xl text-balance text-lg text-muted-foreground">
       Automate open graph images for your website, blog, or social media posts.
-      Customizable. Open source. Lifetime access.
+      Customizable. Open source. Free access.
     </p>
     <div className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row">
       <Button asChild className="w-full sm:w-auto" size="lg">
-        <Link className="flex" href="/buy?plan=essential">
-          Buy now
-          <b className="font-black tabular-nums">${ESSENTIAL_PRICE}</b>
+        <Link className="flex" href="/#get-access">
+          Get free access
         </Link>
       </Button>
 

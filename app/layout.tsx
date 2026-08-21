@@ -1,4 +1,3 @@
-import { LemonSqueezyProvider } from '@/core/analytics/lemonsqueezy'
 import { generatePageMeta } from '@/core/seo'
 import { StructuredData } from '@/core/structured'
 import '@/app/globals.css'
@@ -24,7 +23,6 @@ export default async function RootLayout({
       <body className="dark h-full font-sans antialiased">
         <StructuredData />
         {children}
-        <LemonSqueezyProvider />
         <Script
           data-domain="ogimage.org"
           src="https://p.il.ly/js/script.js"
@@ -38,16 +36,6 @@ export default async function RootLayout({
           defer
           src="/js/script.js"
           strategy="afterInteractive"
-        />
-
-        <Script id="lemon-aff" strategy="beforeInteractive">
-          {"window.lemonSqueezyAffiliateConfig = { store: 'ogimage' }"}
-        </Script>
-        <Script
-          defer
-          id="lemon-affiliate"
-          src="https://lmsqueezy.com/affiliate.js"
-          strategy="beforeInteractive"
         />
       </body>
     </html>

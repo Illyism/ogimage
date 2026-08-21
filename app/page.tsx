@@ -1,7 +1,7 @@
 import { Faq } from '@/components/home/faq'
 import { FinalCallToAction } from '@/components/home/final-cta'
+import { GetAccess } from '@/components/home/get-access'
 import { Hero } from '@/components/home/hero'
-import { Pricing } from '@/components/home/pricing'
 import { ProblemSolution } from '@/components/home/problem-solution'
 import { WhatIs } from '@/components/home/what-is'
 import { PageLayout } from '@/components/nav/PageLayout'
@@ -36,7 +36,7 @@ export default function Page() {
         </p>
       </div>
       <Customers />
-      <Pricing />
+      <GetAccess />
       <Faq />
       <FinalCallToAction />
       <TestimonialMasonry limit={9999} />

@@ -25,10 +25,6 @@ const productLinks = [
 
 const moreLinks = [
   {
-    href: 'https://store.ogimage.org/affiliates',
-    label: 'Affiliate Program (40%)',
-  },
-  {
     href: '/privacy',
     label: 'Privacy',
   },
@@ -140,8 +136,8 @@ export const Footer = () => (
       <div className="mt-12 flex flex-col gap-8 pt-12 sm:flex-row sm:items-center sm:justify-between xl:mt-8 xl:pt-8">
         <div className="flex flex-col items-center justify-center gap-3 text-muted-foreground text-sm leading-tight sm:flex-row">
           <Button asChild>
-            <Link className="w-full sm:w-auto" href="/buy">
-              Buy now
+            <Link className="w-full sm:w-auto" href="/#get-access">
+              Get free access
             </Link>
           </Button>
           <div className="flex items-center gap-0.5">
