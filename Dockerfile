@@ -29,7 +29,10 @@ ENV DOCKER_BUILD=true
 RUN bunx prisma generate
 
 # Build Next.js app (build script may include db:generate — that is fine)
-RUN --mount=type=cache,id=ogimage-next,target=/app/.next/cache bun run build
+# No .next/cache mount: webpack's persistent cache poisoned a deploy after
+# the Next 16.3 upgrade (phantom "not exported" errors from stale module
+# graphs). Cold compiles are ~10s — not worth the risk.
+RUN bun run build
 
 # Production image, copy all the files and run next
 FROM base AS runner

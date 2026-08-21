@@ -10,10 +10,10 @@ export async function GET() {
     <div tw="flex items-center justify-center w-full h-full bg-gray-900">
       <img
         alt=""
-        height="150"
+        height={150}
         src="https://ogimage.org/me/ilias.png"
         tw="mr-4"
-        width="150"
+        width={150}
       />
       <div tw="flex flex-col text-white">
         <div tw="text-[72px]">Ilias Ism</div>

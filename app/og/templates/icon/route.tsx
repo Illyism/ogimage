@@ -15,7 +15,7 @@ export async function GET() {
   // 4. Remove the "class" attribute
 
   return new ImageResponse(
-    <div tw="flex items-center justify-center w-full h-full p-4 bg-pink-500 text-white border-20 border-pink-400">
+    <div tw="flex items-center justify-center w-full h-full p-4 bg-pink-500 text-white border-[20px] border-pink-400">
       <svg
         aria-hidden="true"
         fill="none"
