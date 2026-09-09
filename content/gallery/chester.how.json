@@ -1,0 +1,19 @@
+{
+  "slug": "chester.how",
+  "name": "Chester's Garden",
+  "domain": "chester.how",
+  "URL": "https://chester.how/",
+  "category": [
+    "personal",
+    "blog",
+    "wiki"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Chester's Garden is a personal digital garden and online space that grows over time.",
+  "image": "/og/chester.how.jpg",
+  "content": null,
+  "date_created": "2023-12-12T14:59:33.412Z",
+  "date_updated": "2025-12-11T19:33:04.305Z"
+}

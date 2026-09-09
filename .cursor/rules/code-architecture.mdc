@@ -1,0 +1,36 @@
+---
+description: Feature boundaries and data ownership
+alwaysApply: true
+---
+
+# Feature boundaries
+
+Optimize for the smallest clear ownership boundary. Keep code close to the
+route or feature that owns it; do not create abstractions to avoid a few
+duplicated lines.
+
+## Default layout
+
+```text
+app/feature/
+  page.tsx       # Server Component and page-level data
+  _components/   # UI used only by this feature
+  _actions/      # Server actions and action-specific helpers
+```
+
+## Placement decisions
+
+- Fetch page-specific data in the Server Component and pass it to the UI.
+- Keep interactive UI in a client component.
+- Use a colocated Server Action for page-specific mutations.
+- Keep helpers next to the route until a third real use appears.
+
+## Simplification rules
+
+- A one-page feature stays colocated.
+- Duplicate a short query or auth check when that is clearer.
+- Extract after the third real use, or when a complex 50+ line algorithm has a
+  clear owner.
+- Delete pass-through wrappers that add no decision or invariant.
+- Preserve semantic HTML, framework boundaries, and existing public contracts
+  while simplifying structure.

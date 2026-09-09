@@ -1,0 +1,20 @@
+#!/bin/sh
+# Ultracite: format only the staged files, then run type checks.
+# Never run a whole-tree fix here.
+
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACMR)
+if [ -z "$STAGED_FILES" ]; then
+  echo "No staged files"
+  exit 0
+fi
+
+LINTABLE=$(printf '%s\n' "$STAGED_FILES" | grep -E '\.(ts|tsx|js|jsx|mjs|cjs|json|jsonc|css|mdx?)$' || true)
+if [ -n "$LINTABLE" ]; then
+  # shellcheck disable=SC2086
+  bun x ultracite fix $LINTABLE || exit 1
+  printf '%s\n' "$LINTABLE" | while IFS= read -r file; do
+    [ -f "$file" ] && git add -- "$file"
+  done
+fi
+
+node scripts/pre-commit-checks.mjs

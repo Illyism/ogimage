@@ -1,0 +1,20 @@
+{
+  "slug": "mojo-app.com",
+  "name": "Mojo",
+  "domain": "mojo-app.com",
+  "URL": "https://www.mojo-app.com/",
+  "category": [
+    "social",
+    "video",
+    "content",
+    "small-business"
+  ],
+  "color": [
+    "#f8e8e8"
+  ],
+  "description": "Mojo is a social video and content app for small businesses to easily create stunning social media content using templates, text effects and animations.",
+  "image": "/og/mojo-app.com.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:47.527Z",
+  "date_updated": "2025-12-11T19:33:06.708Z"
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "pitch.com",
+  "name": "Pitch",
+  "domain": "pitch.com",
+  "URL": "https://pitch.com/",
+  "category": [
+    "saas",
+    "productivity",
+    "collaboration"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Pitch is a presentation software that enables teams to quickly create sleek decks that get results.",
+  "image": "/og/pitch.com.jpg",
+  "content": null,
+  "date_created": "2023-12-12T15:02:07.626Z",
+  "date_updated": "2025-12-11T19:33:07.085Z"
+}

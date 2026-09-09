@@ -1,0 +1,18 @@
+{
+  "slug": "onekey.so",
+  "name": "OneKey",
+  "domain": "onekey.so",
+  "URL": "https://onekey.so/",
+  "category": [
+    "finance",
+    "technology"
+  ],
+  "color": [
+    "#e8e8e8"
+  ],
+  "description": "OneKey is a open source crypto wallet trusted by millions for keeping crypto assets safe. It provides the best way to secure bitcoin, ethereum, solana, and other cryptocurrencies.",
+  "image": "/og/onekey.so.jpg",
+  "content": null,
+  "date_created": "2023-12-12T14:58:32.440Z",
+  "date_updated": "2025-12-11T19:33:06.827Z"
+}

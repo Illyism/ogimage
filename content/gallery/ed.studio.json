@@ -1,0 +1,19 @@
+{
+  "slug": "ed.studio",
+  "name": "Ed",
+  "domain": "ed.studio",
+  "URL": "https://ed.studio/",
+  "category": [
+    "agency",
+    "portfolio",
+    "landing"
+  ],
+  "color": [
+    "#e8e8e8"
+  ],
+  "description": "Ed is a digital-first brand and web studio based in Australia working across AUS and US timezones.",
+  "image": "/og/ed.studio.jpg",
+  "content": null,
+  "date_created": "2023-12-12T14:59:15.083Z",
+  "date_updated": "2025-12-11T19:33:05.029Z"
+}

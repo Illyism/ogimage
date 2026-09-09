@@ -1,0 +1,19 @@
+{
+  "slug": "magicbuddy.chat",
+  "name": "MagicBuddy",
+  "domain": "magicbuddy.chat",
+  "URL": "https://magicbuddy.chat",
+  "category": [
+    "chatbot",
+    "ai",
+    "telegram"
+  ],
+  "color": [
+    "#e8d8e8"
+  ],
+  "description": "MagicBuddy is a telegram chatbot that uses AI to answer questions and have conversations.",
+  "image": "/og/magicbuddy.chat.jpg",
+  "content": null,
+  "date_created": "2023-12-15T08:09:09.090Z",
+  "date_updated": "2025-12-11T19:33:06.338Z"
+}

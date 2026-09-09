@@ -1,0 +1,19 @@
+{
+  "slug": "cleanup.pictures",
+  "name": "Cleanup Pictures",
+  "domain": "cleanup.pictures",
+  "URL": "https://cleanup.pictures/",
+  "category": [
+    "photo-editing",
+    "saas",
+    "design"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Cleanup Pictures is a photo editing service that removes unwanted objects, people, text, and defects from photos through an easy-to-use online editing tool.",
+  "image": "/og/cleanup.pictures.jpg",
+  "content": null,
+  "date_created": "2023-12-12T18:49:05.255Z",
+  "date_updated": "2025-12-11T19:33:04.357Z"
+}

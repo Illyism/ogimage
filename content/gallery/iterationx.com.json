@@ -1,0 +1,19 @@
+{
+  "slug": "iterationx.com",
+  "name": "Iteration X",
+  "domain": "iterationx.com",
+  "URL": "https://www.iterationx.com/",
+  "category": [
+    "saas",
+    "bug-tracking",
+    "web-apps"
+  ],
+  "color": [
+    "#080808"
+  ],
+  "description": "Iteration X is a software-as-a-service platform for teams to easily capture, manage, and share issues and bugs on live websites and web applications in seconds.",
+  "image": "/og/iterationx.com.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:42.790Z",
+  "date_updated": "2025-12-11T19:33:06.061Z"
+}

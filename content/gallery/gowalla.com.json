@@ -1,0 +1,18 @@
+{
+  "slug": "gowalla.com",
+  "name": "Gowalla",
+  "domain": "gowalla.com",
+  "URL": "https://www.gowalla.com/",
+  "category": [
+    "social",
+    "location"
+  ],
+  "color": [
+    "#f85848"
+  ],
+  "description": "Gowalla is a social media platform for users to share their location and keep up with friends in real life",
+  "image": "/og/gowalla.com.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:43:34.614Z",
+  "date_updated": "2025-12-11T19:33:09.048Z"
+}

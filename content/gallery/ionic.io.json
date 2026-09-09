@@ -1,0 +1,19 @@
+{
+  "slug": "ionic.io",
+  "name": "Ionic",
+  "domain": "ionic.io",
+  "URL": "https://ionic.io/",
+  "category": [
+    "saas",
+    "mobile-development",
+    "web-development"
+  ],
+  "color": [
+    "#080818"
+  ],
+  "description": "Ionic is a platform for building, securing and delivering cross-platform mobile, web and desktop apps using shared code and open web standards.",
+  "image": "/og/ionic.io.jpg",
+  "content": null,
+  "date_created": "2023-12-12T19:41:49.461Z",
+  "date_updated": "2025-12-11T19:33:06.043Z"
+}

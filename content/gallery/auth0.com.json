@@ -1,0 +1,15 @@
+{
+  "slug": "auth0.com",
+  "name": "Auth0",
+  "domain": "auth0.com",
+  "URL": "https://auth0.com/",
+  "category": [],
+  "color": [
+    "#e8e8f8"
+  ],
+  "description": "Rapidly integrate authentication and authorization for web, mobile, and legacy applications so you can focus on your core business.",
+  "image": "/og/auth0.com.png",
+  "content": null,
+  "date_created": "2023-12-12T10:42:04.529Z",
+  "date_updated": "2025-12-11T19:33:03.930Z"
+}

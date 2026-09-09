@@ -1,0 +1,19 @@
+{
+  "slug": "around.co",
+  "name": "Around",
+  "domain": "around.co",
+  "URL": "https://www.around.co/",
+  "category": [
+    "saas",
+    "video-conferencing",
+    "remote-work"
+  ],
+  "color": [
+    "#282828"
+  ],
+  "description": "Around is a video calling platform designed to help hybrid and remote teams create, collaborate and celebrate together through uniquely tailored video call experiences.",
+  "image": "/og/around.co.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:41.990Z",
+  "date_updated": "2025-12-11T19:33:03.744Z"
+}

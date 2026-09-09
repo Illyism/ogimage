@@ -1,0 +1,19 @@
+{
+  "slug": "sprout.place",
+  "name": "Sprout",
+  "domain": "sprout.place",
+  "URL": "https://sprout.place/",
+  "category": [
+    "video-chat",
+    "collaboration",
+    "productivity"
+  ],
+  "color": [
+    "#f8d868"
+  ],
+  "description": "Sprout is a video chat and collaboration platform that provides customizable spaces for meetings, creating and playing in groups. No login is required.",
+  "image": "/og/sprout.place.jpg",
+  "content": null,
+  "date_created": "2023-12-12T14:58:16.572Z",
+  "date_updated": "2025-12-11T19:33:07.868Z"
+}

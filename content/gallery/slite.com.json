@@ -1,0 +1,19 @@
+{
+  "slug": "slite.com",
+  "name": "Slite",
+  "domain": "slite.com",
+  "URL": "https://slite.com/",
+  "category": [
+    "saas",
+    "wiki",
+    "productivity"
+  ],
+  "color": [
+    "#f8e8e8"
+  ],
+  "description": "Slite is a knowledge base software with AI-powered search to quickly find trusted company information. Users can simply ask Slite to get the answers they need.",
+  "image": "/og/slite.com.jpg",
+  "content": null,
+  "date_created": "2023-12-12T13:03:36.212Z",
+  "date_updated": "2025-12-11T19:33:07.816Z"
+}

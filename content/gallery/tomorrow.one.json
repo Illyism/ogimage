@@ -1,0 +1,19 @@
+{
+  "slug": "tomorrow.one",
+  "name": "Tomorrow",
+  "domain": "tomorrow.one",
+  "URL": "https://www.tomorrow.one/",
+  "category": [
+    "finance",
+    "technology",
+    "sustainability"
+  ],
+  "color": [
+    "#f8a8a8"
+  ],
+  "description": "Tomorrow is a financial technology company that combines mobile banking with sustainability to offer an environmentally-friendly alternative to traditional banks.",
+  "image": "/og/tomorrow.one.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:43:35.422Z",
+  "date_updated": "2025-12-11T19:33:08.406Z"
+}

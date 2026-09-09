@@ -1,0 +1,18 @@
+{
+  "slug": "canvas.com",
+  "name": "Canvas",
+  "domain": "canvas.com",
+  "URL": "https://www.canvas.com/",
+  "category": [
+    "education",
+    "software"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Canvas is a learning management system for educational institutions to manage online courses and content.",
+  "image": "/og/canvas.com.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:44.593Z",
+  "date_updated": "2025-12-11T19:33:04.178Z"
+}

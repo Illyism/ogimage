@@ -1,0 +1,17 @@
+{
+  "slug": "google.com",
+  "name": "Google Doodles",
+  "domain": "google.com",
+  "URL": "https://google.com",
+  "category": [
+    "entertainment"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Google Doodles is an entertainment website by Google that publishes fun, seasonal illustrations and animations on their homepage",
+  "image": "/og/google.com.gif",
+  "content": null,
+  "date_created": "2023-12-12T12:51:15.946Z",
+  "date_updated": "2025-12-11T19:33:05.582Z"
+}

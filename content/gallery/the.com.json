@@ -1,0 +1,19 @@
+{
+  "slug": "the.com",
+  "name": "The",
+  "domain": "the.com",
+  "URL": "https://www.the.com/",
+  "category": [
+    "saas",
+    "ecommerce",
+    "marketing"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "The is a saas platform that provides tools to create and publish personalized web content, enhancing visitor journeys. They guide audiences to desired actions through innovative, user-centric digital experiences.",
+  "image": "/og/the.com.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:42.473Z",
+  "date_updated": "2025-12-11T19:33:08.250Z"
+}

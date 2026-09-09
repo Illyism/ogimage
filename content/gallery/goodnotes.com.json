@@ -1,0 +1,18 @@
+{
+  "slug": "goodnotes.com",
+  "name": "Goodnotes",
+  "domain": "goodnotes.com",
+  "URL": "https://www.goodnotes.com/",
+  "category": [
+    "education",
+    "productivity"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Goodnotes is a note-taking and annotation app that allows users to take handwritten notes, draw, annotate PDFs and more on their mobile devices.",
+  "image": "/og/goodnotes.com.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:41.475Z",
+  "date_updated": "2025-12-11T19:33:05.565Z"
+}

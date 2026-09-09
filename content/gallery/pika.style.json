@@ -1,0 +1,19 @@
+{
+  "slug": "pika.style",
+  "name": "Pika",
+  "domain": "pika.style",
+  "URL": "https://pika.style",
+  "category": [
+    "design",
+    "prototyping",
+    "mockups"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Pika is a website that allows you to quickly create beautiful website and app mockups from screenshots for free. It lets you capture website screenshots from URLs, add device and browser frames, customize backgrounds and more.",
+  "image": "/og/pika.style.jpg",
+  "content": null,
+  "date_created": "2023-12-12T13:44:51.687Z",
+  "date_updated": "2025-12-11T19:33:07.051Z"
+}

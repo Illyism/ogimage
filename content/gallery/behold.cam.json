@@ -1,0 +1,19 @@
+{
+  "slug": "behold.cam",
+  "name": "Behold",
+  "domain": "behold.cam",
+  "URL": "https://www.behold.cam/",
+  "category": [
+    "cameras",
+    "wildlife",
+    "outdoors"
+  ],
+  "color": [
+    "#080808"
+  ],
+  "description": "Behold is a clever little wildlife camera that helps you see, track, and share local wildlife",
+  "image": "/og/behold.cam.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:43:35.092Z",
+  "date_updated": "2025-12-11T19:33:04.035Z"
+}

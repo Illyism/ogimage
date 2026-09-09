@@ -1,0 +1,19 @@
+{
+  "slug": "mailpost.io",
+  "name": "Mailpost",
+  "domain": "mailpost.io",
+  "URL": "https://mailpost.io/",
+  "category": [
+    "email-marketing",
+    "newsletters",
+    "saas"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Mailpost is an email marketing software that allows users to send mass email newsletters with high deliverability rates so subscribers are more likely to receive the email campaigns.",
+  "image": "/og/mailpost.io.jpg",
+  "content": null,
+  "date_created": "2023-12-12T14:59:58.327Z",
+  "date_updated": "2025-12-11T19:33:06.568Z"
+}

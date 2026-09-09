@@ -1,0 +1,18 @@
+{
+  "slug": "openai.com",
+  "name": "OpenAI",
+  "domain": "openai.com",
+  "URL": "https://openai.com",
+  "category": [
+    "ai",
+    "research"
+  ],
+  "color": [
+    "#281808"
+  ],
+  "description": "OpenAI is an artificial intelligence research company aiming to create safe artificial general intelligence that benefits humanity.",
+  "image": "/og/openai.com.jpg",
+  "content": null,
+  "date_created": "2023-12-12T12:50:36.576Z",
+  "date_updated": "2025-12-11T19:33:06.880Z"
+}

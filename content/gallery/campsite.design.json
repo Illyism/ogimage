@@ -1,0 +1,19 @@
+{
+  "slug": "campsite.design",
+  "name": "Campsite",
+  "domain": "campsite.design",
+  "URL": "https://www.campsite.design/",
+  "category": [
+    "software",
+    "productivity",
+    "design"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Campsite is a software platform that helps design teams share work-in-progress content and keep up with project updates.",
+  "image": "/og/campsite.design.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:47.693Z",
+  "date_updated": "2025-12-11T19:33:04.160Z"
+}

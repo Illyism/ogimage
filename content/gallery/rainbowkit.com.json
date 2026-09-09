@@ -1,0 +1,19 @@
+{
+  "slug": "rainbowkit.com",
+  "name": "RainbowKit",
+  "domain": "rainbowkit.com",
+  "URL": "https://www.rainbowkit.com/",
+  "category": [
+    "blockchain",
+    "cryptocurrency",
+    "finance"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "RainbowKit is a wallet connection library that makes it easy to connect a crypto wallet to dapps",
+  "image": "/og/rainbowkit.com.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:43.119Z",
+  "date_updated": "2025-12-11T19:33:07.294Z"
+}

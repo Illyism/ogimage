@@ -1,0 +1,19 @@
+{
+  "slug": "m3.material.io",
+  "name": "Material Design",
+  "domain": "m3.material.io",
+  "URL": "https://m3.material.io/",
+  "category": [
+    "design",
+    "ui",
+    "ux"
+  ],
+  "color": [
+    "#d8e8c8"
+  ],
+  "description": "Material Design is a design system backed by open-source code that helps teams build high quality digital experiences.",
+  "image": "/og/m3.material.io.jpg",
+  "content": null,
+  "date_created": "2023-12-12T15:00:38.120Z",
+  "date_updated": "2025-12-11T19:33:06.515Z"
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "custo.io",
+  "name": "Custo",
+  "domain": "custo.io",
+  "URL": "https://custo.io/",
+  "category": [
+    "delivery",
+    "ecommerce",
+    "logistics"
+  ],
+  "color": [
+    "#98a898"
+  ],
+  "description": "Custo is a service that delivers parcels directly to your doorstep, eliminating the need to pick up packages from around your neighbourhood.",
+  "image": "/og/custo.io.jpg",
+  "content": null,
+  "date_created": "2023-12-12T18:49:39.031Z",
+  "date_updated": "2025-12-11T19:33:04.637Z"
+}

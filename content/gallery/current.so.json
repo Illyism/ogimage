@@ -1,0 +1,19 @@
+{
+  "slug": "current.so",
+  "name": "Current",
+  "domain": "current.so",
+  "URL": "https://current.so/",
+  "category": [
+    "saas",
+    "productivity",
+    "collaboration"
+  ],
+  "color": [
+    "#e8f878"
+  ],
+  "description": "Current is a saas platform to increase team speed, collaboration and alignment by finding and sharing work in progress across a company.",
+  "image": "/og/current.so.jpg",
+  "content": null,
+  "date_created": "2023-12-12T14:59:30.437Z",
+  "date_updated": "2025-12-11T19:33:04.619Z"
+}

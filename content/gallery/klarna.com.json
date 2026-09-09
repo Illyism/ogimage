@@ -1,0 +1,19 @@
+{
+  "slug": "klarna.com",
+  "name": "Klarna",
+  "domain": "klarna.com",
+  "URL": "https://www.klarna.com/",
+  "category": [
+    "fintech",
+    "ecommerce",
+    "payments"
+  ],
+  "color": [
+    "#684888"
+  ],
+  "description": "Klarna is a global payments and shopping service that offers direct payments, pay later options, and installment plans for a smooth one-click purchase experience.",
+  "image": "/og/klarna.com.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:50.524Z",
+  "date_updated": "2025-12-11T19:33:06.219Z"
+}

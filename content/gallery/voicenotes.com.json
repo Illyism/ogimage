@@ -1,0 +1,19 @@
+{
+  "slug": "voicenotes.com",
+  "name": "Voicenotes",
+  "domain": "voicenotes.com",
+  "URL": "https://voicenotes.com/",
+  "category": [
+    "saas",
+    "productivity",
+    "transcription"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Voicenotes is an ai-powered note-taking app that transcribes recordings and allows users to ask questions about the content.",
+  "image": "/og/voicenotes.com.jpg",
+  "content": "<h2 id=\"what-is-voicenotes-\">What is Voicenotes?</h2>\n<p><a href=\"https://voicenotes.com/\" target=\"_blank\" rel=\"noopener\">Voicenotes</a> is an AI-powered note-taking app that automatically transcribes voice recordings into text notes. It allows users to record voice memos which are then converted to written notes. Users can also ask questions about the content of their notes and get answers from the app's AI.</p>\n<h2 id=\"how-does-the-voice-transcription-work-\">How does the voice transcription work?</h2>\n<p>Voicenotes uses advanced speech recognition AI to automatically convert spoken words in a recording into text. It supports many languages and accents with a high degree of accuracy, over 95% in most cases. The transcription happens quickly, usually within a few minutes of uploading a recording.</p>\n<h2 id=\"can-i-edit-the-transcribed-notes-\">Can I edit the transcribed notes?</h2>\n<p>Yes, after a recording is transcribed, you can review and edit the text notes as needed. Voicenotes provides a built-in text editor to modify and format your notes.</p>\n<h2 id=\"how-do-i-ask-questions-about-my-notes-\">How do I ask questions about my notes?</h2>\n<p>Voicenotes has a chat-based interface where you can ask natural language questions about the content of a specific note or your entire collection of notes. The AI will analyze the relevant notes and provide an answer based on that content.</p>\n<h2 id=\"is-there-a-limit-to-recording-length-or-number-of-notes-\">Is there a limit to recording length or number of notes?</h2>\n<p>The free version of Voicenotes has some limitations, like a 5 minute cap on recording length and a maximum of 10 voice notes. Paid plans remove these limits and allow unlimited recording and notes.</p>\n<h2 id=\"how-is-my-data-kept-private-and-secure-\">How is my data kept private and secure?</h2>\n<p>Voicenotes encrypts all data in transit and at rest. Notes are stored securely and not shared with any third parties. However, it's important to understand that Voicenotes staff may have the ability to access user recordings and notes since there is no end-to-end encryption. The company has a privacy policy detailing what data is collected and how it is used.</p>\n<h2 id=\"can-i-share-my-notes-or-transcripts-with-others-\">Can I share my notes or transcripts with others?</h2>\n<p>Yes, Voicenotes allows you to generate shareable links to notes that you can send to others. You can also export your notes in common formats like PDF, Word, and text files.</p>\n<h2 id=\"what-platforms-is-voicenotes-available-on-\">What platforms is Voicenotes available on?</h2>\n<p>Voicenotes has apps for iOS, Android, Mac, Windows, and web browsers. It can be accessed and synced across devices.</p>\n<h2 id=\"how-much-does-voicenotes-cost-\">How much does Voicenotes cost?</h2>\n<p>Voicenotes has a free plan with limited features. Paid plans start at $9/month and provide additional capabilities like unlimited recordings, advanced AI question answering, and exporting options.</p>",
+  "date_created": "2024-04-29T11:11:42.341Z",
+  "date_updated": "2025-12-11T19:33:08.683Z"
+}

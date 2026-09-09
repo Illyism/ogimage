@@ -1,0 +1,19 @@
+{
+  "slug": "clay.earth",
+  "name": "Clay Vision",
+  "domain": "clay.earth",
+  "URL": "https://clay.earth/apple-vision-pro",
+  "category": [
+    "ar",
+    "spatial-computing",
+    "social"
+  ],
+  "color": [
+    "#080808"
+  ],
+  "description": "Clay Vision is a spatial computing service that allows you to browse, explore and interact with people in your life in new ways through the power of augmented reality.",
+  "image": "/og/clay.earth.jpg",
+  "content": null,
+  "date_created": "2024-02-27T16:16:13.054Z",
+  "date_updated": "2025-12-11T19:33:04.340Z"
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "feyapp.com",
+  "name": "Fey",
+  "domain": "feyapp.com",
+  "URL": "https://feyapp.com/",
+  "category": [
+    "finance",
+    "research",
+    "analytics"
+  ],
+  "color": [
+    "#080808"
+  ],
+  "description": "Fey is a financial research and analytics platform empowering investors with real-time market intelligence and insights.",
+  "image": "/og/feyapp.com.jpg",
+  "content": null,
+  "date_created": "2023-12-12T15:00:28.315Z",
+  "date_updated": "2025-12-11T19:33:05.154Z"
+}

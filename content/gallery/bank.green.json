@@ -1,0 +1,18 @@
+{
+  "slug": "bank.green",
+  "name": "Bank Green",
+  "domain": "bank.green",
+  "URL": "https://bank.green",
+  "category": [
+    "finance",
+    "sustainability"
+  ],
+  "color": [
+    "#e8f8f8"
+  ],
+  "description": "Bank Green is a website that helps people find ethical and sustainable banks in their area.",
+  "image": "/og/bank.green.jpg",
+  "content": null,
+  "date_created": "2023-12-15T08:09:20.113Z",
+  "date_updated": "2025-12-11T19:33:03.984Z"
+}

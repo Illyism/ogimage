@@ -1,0 +1,19 @@
+{
+  "slug": "press.stripe.com",
+  "name": "Stripe Press",
+  "domain": "press.stripe.com",
+  "URL": "https://press.stripe.com/",
+  "category": [
+    "finance",
+    "technology",
+    "publishing"
+  ],
+  "color": [
+    "#282828"
+  ],
+  "description": "Stripe Press is a publisher that produces works about technological, economic, and scientific advancement.",
+  "image": "/og/press.stripe.com.jpg",
+  "content": null,
+  "date_created": "2023-12-12T15:00:21.147Z",
+  "date_updated": "2025-12-11T19:33:07.483Z"
+}

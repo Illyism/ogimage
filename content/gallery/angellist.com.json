@@ -1,0 +1,19 @@
+{
+  "slug": "angellist.com",
+  "name": "AngelList",
+  "domain": "angellist.com",
+  "URL": "https://www.angellist.com/",
+  "category": [
+    "finance",
+    "startups",
+    "investing"
+  ],
+  "color": [
+    "#081828"
+  ],
+  "description": "AngelList is an online platform that provides tools and services to connect startups with investors.",
+  "image": "/og/angellist.com.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:49.866Z",
+  "date_updated": "2025-12-11T19:33:03.687Z"
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "raycast.com",
+  "name": "Raycast",
+  "domain": "raycast.com",
+  "URL": "https://www.raycast.com/",
+  "category": [
+    "productivity",
+    "utility"
+  ],
+  "color": [
+    "#180838"
+  ],
+  "description": "Raycast is a productivity app that lets you control your tools and keep focused with just a few keystrokes.",
+  "image": "/og/raycast.com.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:50.688Z",
+  "date_updated": "2025-12-11T19:33:07.329Z"
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "glitterly.app",
+  "name": "Glitterly",
+  "domain": "glitterly.app",
+  "URL": "https://www.glitterly.app/",
+  "category": [
+    "saas",
+    "ecommerce",
+    "social"
+  ],
+  "color": [
+    "#080808"
+  ],
+  "description": "Glitterly is a saas platform that provides image and video generation tools and APIs to help create graphics, banners, and more for social media and publishing.",
+  "image": "/og/glitterly.app.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:49.712Z",
+  "date_updated": "2025-12-11T19:33:05.513Z"
+}

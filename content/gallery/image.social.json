@@ -1,0 +1,19 @@
+{
+  "slug": "image.social",
+  "name": "Image.Social",
+  "domain": "image.social",
+  "URL": "https://image.social/",
+  "category": [
+    "social",
+    "saas",
+    "marketing"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "ImageSocial is a service that generates open-graph social images for websites using screenshots to increase click rates.",
+  "image": "/og/image.social.jpg",
+  "content": "<h2 class=\"whitespace-pre-wrap break-words\">What is Image.Social?</h2>\n<p class=\"whitespace-pre-wrap break-words\">Image.Social is a service that automatically generates engaging open graph (OG) social images for your website's pages. It creates optimized screenshots of your web pages to use as OG images, helping increase click-through rates when your content is shared on social media.</p>\n<h2 class=\"whitespace-pre-wrap break-words\">Why should I use Image.Social for my website's OG images?</h2>\n<p class=\"whitespace-pre-wrap break-words\">Using Image.Social provides several benefits:</p>\n<ul class=\"list-disc pl-8 space-y-2 -mt-1\">\n<li class=\"whitespace-normal break-words\"><strong>Engaging visuals</strong>: Show an actual preview of your page content, giving users a better idea of what to expect before clicking through</li>\n<li class=\"whitespace-normal break-words\"><strong>Increased CTR</strong>: In-context, relevant OG images tend to drive higher click-through rates compared to generic images</li>\n<li class=\"whitespace-normal break-words\"><strong>Fully automated</strong>: OG images are generated for every page without needing manual work or coding</li>\n<li class=\"whitespace-normal break-words\"><strong>Optimized</strong>: Images are the optimal size, high resolution, and fast-loading for social media</li>\n</ul>\n<h2 class=\"whitespace-pre-wrap break-words\">How does Image.Social work?</h2>\n<p class=\"whitespace-pre-wrap break-words\">Simply use the provided Image.Social URL as the OG image in your page's HTML head tag: &lt;meta property=\"og:image\" content=\"https://image.social/get?url=yourwebsite.com/page\" /&gt; Image.Social will automatically generate an optimized screenshot of that URL to use as the OG image when shared on social media.</p>",
+  "date_created": "2024-05-02T08:27:36.773Z",
+  "date_updated": "2025-12-11T19:33:09.380Z"
+}

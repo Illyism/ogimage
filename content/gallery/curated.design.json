@@ -1,0 +1,19 @@
+{
+  "slug": "curated.design",
+  "name": "Curated Web Design",
+  "domain": "curated.design",
+  "URL": "https://www.curated.design/",
+  "category": [
+    "web-design",
+    "inspiration",
+    "creativity"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Curated Web Design is a catalog of creative web design inspiration collected from across the internet.",
+  "image": "/og/curated.design.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:42.340Z",
+  "date_updated": "2025-12-11T19:33:04.938Z"
+}

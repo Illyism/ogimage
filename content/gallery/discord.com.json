@@ -1,0 +1,18 @@
+{
+  "slug": "discord.com",
+  "name": "Discord",
+  "domain": "discord.com",
+  "URL": "https://discord.com/",
+  "category": [
+    "social",
+    "communication"
+  ],
+  "color": [
+    "#3848e8"
+  ],
+  "description": "Discord is a social platform that allows users to communicate via voice, video and text.",
+  "image": "/og/discord.com.jpg",
+  "content": null,
+  "date_created": "2023-12-12T15:01:25.796Z",
+  "date_updated": "2025-12-11T19:33:04.848Z"
+}

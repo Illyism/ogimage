@@ -1,0 +1,19 @@
+{
+  "slug": "theorg.com",
+  "name": "The Org",
+  "domain": "theorg.com",
+  "URL": "https://theorg.com/",
+  "category": [
+    "career",
+    "recruiting",
+    "job-search"
+  ],
+  "color": [
+    "#080808"
+  ],
+  "description": "The Org is a platform to explore public org charts, discover open jobs, and apply with a single click.",
+  "image": "/og/theorg.com.jpg",
+  "content": null,
+  "date_created": "2023-12-12T15:02:40.124Z",
+  "date_updated": "2025-12-11T19:33:08.267Z"
+}

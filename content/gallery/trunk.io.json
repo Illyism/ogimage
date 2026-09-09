@@ -1,0 +1,19 @@
+{
+  "slug": "trunk.io",
+  "name": "Trunk",
+  "domain": "trunk.io",
+  "URL": "https://trunk.io/",
+  "category": [
+    "saas",
+    "productivity",
+    "engineering"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Trunk is a SaaS platform that brings industry-leading best practices to engineering organizations of all sizes to optimize and streamline pull request workflows.",
+  "image": "/og/trunk.io.jpg",
+  "content": null,
+  "date_created": "2024-01-03T14:54:46.542Z",
+  "date_updated": "2025-12-11T19:33:08.423Z"
+}

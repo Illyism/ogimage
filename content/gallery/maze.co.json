@@ -1,0 +1,19 @@
+{
+  "slug": "maze.co",
+  "name": "Maze Podcast",
+  "domain": "maze.co",
+  "URL": "https://maze.co/podcast/",
+  "category": [
+    "education",
+    "business",
+    "technology"
+  ],
+  "color": [
+    "#f8e8e8"
+  ],
+  "description": "Maze Podcast is a podcast about product decision-making brought to you by the Maze team.",
+  "image": "/og/maze.co.jpg",
+  "content": null,
+  "date_created": "2023-12-12T14:58:59.469Z",
+  "date_updated": "2025-12-11T19:33:06.810Z"
+}

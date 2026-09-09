@@ -1,0 +1,19 @@
+{
+  "slug": "dock.us",
+  "name": "Dock",
+  "domain": "dock.us",
+  "URL": "https://dock.us/",
+  "category": [
+    "saas",
+    "sales",
+    "onboarding"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Dock is a client-facing workspace software that makes it easy to create sales proposals, onboarding plans, client portals, and project hubs for customers.",
+  "image": "/og/dock.us.jpg",
+  "content": null,
+  "date_created": "2023-12-12T14:59:00.650Z",
+  "date_updated": "2025-12-11T19:33:04.884Z"
+}

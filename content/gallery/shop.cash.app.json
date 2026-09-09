@@ -1,0 +1,18 @@
+{
+  "slug": "shop.cash.app",
+  "name": "Cash by Cash App",
+  "domain": "shop.cash.app",
+  "URL": "https://shop.cash.app/",
+  "category": [
+    "ecommerce",
+    "fashion"
+  ],
+  "color": [
+    "#e8e8e8"
+  ],
+  "description": "Cash by Cash App is a limited edition apparel line and collaborations by the mobile payment app Cash App.",
+  "image": "/og/shop.cash.app.jpg",
+  "content": null,
+  "date_created": "2023-12-12T18:50:50.733Z",
+  "date_updated": "2025-12-11T19:33:08.008Z"
+}

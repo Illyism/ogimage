@@ -1,0 +1,19 @@
+{
+  "slug": "rig.dev",
+  "name": "Rig",
+  "domain": "rig.dev",
+  "URL": "https://rig.dev/",
+  "category": [
+    "saas",
+    "developer-tools",
+    "cloud-computing"
+  ],
+  "color": [
+    "#f8f8f8"
+  ],
+  "description": "Rig is a platform for building applications in Kubernetes without complexity.",
+  "image": "/og/rig.dev.jpg",
+  "content": null,
+  "date_created": "2023-12-12T18:49:22.071Z",
+  "date_updated": "2025-12-11T19:33:07.640Z"
+}

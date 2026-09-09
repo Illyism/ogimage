@@ -1,0 +1,19 @@
+{
+  "slug": "intercom.com",
+  "name": "Intercom",
+  "domain": "intercom.com",
+  "URL": "https://www.intercom.com/",
+  "category": [
+    "saas",
+    "customer-service",
+    "automation"
+  ],
+  "color": [
+    "#081828"
+  ],
+  "description": "Intercom is a software-as-a-service platform that combines automation and human support to resolve customer issues faster, improve customer satisfaction, and reduce support volumes.",
+  "image": "/og/intercom.com.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:41.662Z",
+  "date_updated": "2025-12-11T19:33:06.290Z"
+}

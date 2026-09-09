@@ -1,0 +1,20 @@
+{
+  "slug": "gencup.art",
+  "name": "GenCup",
+  "domain": "gencup.art",
+  "URL": "https://www.gencup.art/",
+  "category": [
+    "art",
+    "design",
+    "generative",
+    "sports"
+  ],
+  "color": [
+    "#181818"
+  ],
+  "description": "GenCup is a generative art project that combines graphic design, football, and data. It uses the statistics of FIFA Women's World Cup games to generate abstract poster compositions, with a new poster for every match.",
+  "image": "/og/gencup.art.jpg",
+  "content": null,
+  "date_created": "2024-01-03T15:40:47.063Z",
+  "date_updated": "2025-12-11T19:33:05.339Z"
+}

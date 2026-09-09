@@ -1,0 +1,19 @@
+{
+  "slug": "www.figma.com",
+  "name": "Figjam",
+  "domain": "figma.com",
+  "URL": "https://www.figma.com/figjam/",
+  "category": [
+    "collaboration",
+    "productivity",
+    "design"
+  ],
+  "color": [
+    "#e8e8f8"
+  ],
+  "description": "Figjam is a visual collaborative whiteboard where teams can diagram, brainstorm, and organize ideas together online.",
+  "image": "/og/www.figma.com.jpg",
+  "content": null,
+  "date_created": "2023-12-12T14:59:48.206Z",
+  "date_updated": "2025-12-11T19:33:08.771Z"
+}
