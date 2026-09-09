@@ -34,8 +34,8 @@ Do not paste remote S3 URLs. The image file in `public/og/` is the source.
 
 ## Templates
 
-OG templates live in `app/og/templates/`. Those files are MIT. Change them in a PR the same way.
+OG templates live in `app/og/templates/`. Change them in a PR the same way.
 
 ## Site chrome
 
-`components/`, layout, and Tailwind UI-derived UI are **not** MIT. See [README](./README.md#license). Do not extract those files into a component library.
+`components/` and layouts use [shadcn/ui](https://ui.shadcn.com). Keep new UI on those primitives.

@@ -3,6 +3,15 @@ import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { GetAccess } from '@/components/home/get-access'
 import { PageLayout } from '@/components/nav/PageLayout'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import {
+  Empty,
+  EmptyContent,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyTitle,
+} from '@/components/ui/empty'
 import { generatePageMeta } from '@/core/seo'
 import { ArticleStructuredData } from '@/core/structured'
 import {
@@ -12,7 +21,6 @@ import {
   getRelatedInspiration,
   type Inspiration,
 } from '@/lib/gallery'
-import { cn } from '@/lib/utils'
 import { GalleryGrid } from '../../GalleryGrid'
 import { ImageCard } from './ImageCard'
 
@@ -77,25 +85,25 @@ const InspirationPage = ({
       imageUrl={inspiration.image}
       title={inspiration.name}
     />
-    <div className="container mx-auto max-w-3xl py-4 lg:pb-16">
+    <div className="container mx-auto flex max-w-3xl flex-col gap-6 py-12">
       <nav
-        className="mb-4 flex gap-2 lg:mb-16"
+        className="flex flex-wrap items-center gap-2 text-sm"
         itemScope
         itemType="http://schema.org/BreadcrumbList"
       >
         <Link
-          className="font-bold underline"
+          className="text-muted-foreground underline underline-offset-4"
           href="/inspiration"
           itemProp="itemListElement"
           itemScope
           itemType="http://schema.org/ListItem"
         >
-          <span itemProp="name">Inspiration</span>
+          <span itemProp="name">Gallery</span>
           <meta content="1" itemProp="position" />
         </Link>
-        /
+        <span className="text-muted-foreground">/</span>
         <Link
-          className="font-bold capitalize underline"
+          className="text-muted-foreground underline underline-offset-4"
           href={`/inspiration/category/${inspiration.category[0]}`}
           itemProp="itemListElement"
           itemScope
@@ -106,24 +114,22 @@ const InspirationPage = ({
           </span>
           <meta content="2" itemProp="position" />
         </Link>
-        /
-        <Link
-          className="font-bold"
-          href={`/inspiration/post/${inspiration.slug}`}
+        <span className="text-muted-foreground">/</span>
+        <span
           itemProp="itemListElement"
           itemScope
           itemType="http://schema.org/ListItem"
         >
           <span itemProp="name">{inspiration.name}</span>
           <meta content="3" itemProp="position" />
-        </Link>
+        </span>
       </nav>
-      <h1 className="mb-2 text-balance font-bold text-3xl tracking-tight md:text-4xl">
-        {inspiration.name}
-      </h1>
-      <p className="mb-4 font-normal text-base text-muted-foreground leading-7">
-        {inspiration.description}
-      </p>
+      <div className="flex flex-col gap-2">
+        <h1 className="text-balance font-semibold text-3xl tracking-tight md:text-4xl">
+          {inspiration.name}
+        </h1>
+        <p className="text-muted-foreground">{inspiration.description}</p>
+      </div>
 
       <ImageCard
         alt={`OG Image for ${inspiration.domain}`}
@@ -131,50 +137,33 @@ const InspirationPage = ({
         src={inspiration.image}
       />
 
-      <div className="group mt-3 flex items-center space-x-6">
-        <a
-          className="flex items-center gap-2 font-bold underline"
-          href={inspiration.URL}
-          rel="noopener"
-          target="_blank"
-        >
-          {inspiration.domain} <ExternalLinkIcon size={14} />
-        </a>
-        <div className="flex-1" />
-
-        {inspiration.color.length > 0 && (
-          <div className="flex flex-wrap content-center items-center justify-start space-x-2">
-            {inspiration.color.map((c) => (
-              <div
-                className="h-5 w-5 rounded-full border-2 border-gray-100 hover:border-gray-50 hover:shadow-xs"
-                key={c}
-                style={{ backgroundColor: c }}
-                title={c}
-              />
-            ))}
-          </div>
-        )}
-        {inspiration.category.length > 0 && (
-          <div className="flex flex-wrap content-center items-center justify-start space-x-2">
-            {inspiration.category.map((c) => (
-              <Link
-                className="inline-flex items-center rounded-full border border-border bg-card px-2.5 py-0.5 font-bold text-card-foreground text-sm"
-                href={`/inspiration/category/${c}`}
-                key={c}
-              >
-                {formatCategoryLabel(c)}
-              </Link>
-            ))}
-          </div>
-        )}
+      <div className="flex flex-wrap items-center gap-3">
+        <Button asChild variant="outline">
+          <a href={inspiration.URL} rel="noopener" target="_blank">
+            {inspiration.domain}
+            <ExternalLinkIcon data-icon="inline-end" />
+          </a>
+        </Button>
+        {inspiration.color.map((c) => (
+          <span
+            className="size-5 rounded-full border"
+            key={c}
+            style={{ backgroundColor: c }}
+            title={c}
+          />
+        ))}
+        {inspiration.category.map((c) => (
+          <Badge asChild key={c} variant="outline">
+            <Link href={`/inspiration/category/${c}`}>
+              {formatCategoryLabel(c)}
+            </Link>
+          </Badge>
+        ))}
       </div>
 
-      <p className="mt-6 text-muted-foreground text-sm">
-        Generate a card like this with the{' '}
-        <Link
-          className="font-medium text-foreground underline"
-          href="/templates"
-        >
+      <p className="text-muted-foreground text-sm">
+        Make a card like this with the{' '}
+        <Link className="underline underline-offset-4" href="/templates">
           free templates
         </Link>
         .
@@ -182,18 +171,15 @@ const InspirationPage = ({
 
       {inspiration.content ? (
         <div
-          className={cn(
-            'prose prose-zinc dark:prose-invert prose-headings:relative max-w-none prose-headings:scroll-mt-20 prose-headings:font-bold transition-all',
-            'py-16',
-          )}
+          className="prose prose-zinc dark:prose-invert max-w-none prose-headings:scroll-mt-20 py-8 prose-headings:font-semibold"
           dangerouslySetInnerHTML={{ __html: inspiration.content }}
           data-mdx-container
         />
       ) : null}
     </div>
     {related.length > 0 ? (
-      <div className="container pb-16">
-        <h2 className="mb-6 text-balance font-bold text-2xl tracking-tight">
+      <div className="container flex flex-col gap-6 pb-16">
+        <h2 className="text-balance font-semibold text-2xl tracking-tight">
           More {formatCategoryLabel(inspiration.category[0] ?? '')} OG images
         </h2>
         <GalleryGrid eagerCount={0} items={related} />
@@ -205,18 +191,20 @@ const InspirationPage = ({
 
 const NotFoundInspiration = ({ slug }: { slug: string }) => (
   <PageLayout>
-    <div className="container pt-16 text-center">
-      <h1 className="mt-4 text-balance font-bold text-4xl tracking-tight sm:text-5xl">
-        Add {slug}?
-      </h1>
-      <p className="mt-4 text-base text-muted-foreground">
-        Suggest this site for the gallery.
-      </p>
-      <p className="mt-4">
-        <Link className="font-bold underline" href="/inspiration/submit">
-          Submit a URL
-        </Link>
-      </p>
+    <div className="container py-16">
+      <Empty>
+        <EmptyHeader>
+          <EmptyTitle>Add {slug}?</EmptyTitle>
+          <EmptyDescription>
+            This domain is not in the gallery yet. Send the URL.
+          </EmptyDescription>
+        </EmptyHeader>
+        <EmptyContent>
+          <Button asChild>
+            <Link href="/inspiration/submit">Submit a URL</Link>
+          </Button>
+        </EmptyContent>
+      </Empty>
     </div>
   </PageLayout>
 )

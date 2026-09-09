@@ -46,39 +46,39 @@ export default async function Page(props: {
   )
   return (
     <PageLayout>
-      <div className="container py-4 lg:py-16">
-        <h1 className="mb-2 text-balance font-bold text-3xl tracking-tight md:text-4xl">
-          Best {label} OG Image Examples
-        </h1>
-        <p className="mb-8 font-normal text-base text-muted-foreground leading-7">
-          {label} open graph and Twitter card examples from live sites.
-        </p>
+      <div className="container flex flex-col gap-8 py-12">
+        <div className="flex flex-col gap-2">
+          <h1 className="text-balance font-semibold text-3xl tracking-tight md:text-4xl">
+            Best {label} OG image examples
+          </h1>
+          <p className="text-muted-foreground">
+            {label} Open Graph and Twitter card examples from live sites.
+          </p>
+        </div>
         <nav
-          className="mb-8 flex gap-2"
+          className="flex flex-wrap items-center gap-2 text-sm"
           itemScope
           itemType="http://schema.org/BreadcrumbList"
         >
           <Link
-            className="font-bold underline"
+            className="text-muted-foreground underline underline-offset-4"
             href="/inspiration"
             itemProp="itemListElement"
             itemScope
             itemType="http://schema.org/ListItem"
           >
-            <span itemProp="name">Inspiration</span>
+            <span itemProp="name">Gallery</span>
             <meta content="1" itemProp="position" />
           </Link>
-          /
-          <Link
-            className="font-bold capitalize underline"
-            href={`/inspiration/category/${tag}`}
+          <span className="text-muted-foreground">/</span>
+          <span
             itemProp="itemListElement"
             itemScope
             itemType="http://schema.org/ListItem"
           >
             <span itemProp="name">{label}</span>
             <meta content="2" itemProp="position" />
-          </Link>
+          </span>
         </nav>
 
         <GalleryGrid items={items} />

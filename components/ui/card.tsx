@@ -1,78 +1,91 @@
+import { cn } from 'cn'
 import type * as React from 'react'
 
-import { cn } from '@/lib/utils'
-
-type DivProps = React.HTMLAttributes<HTMLDivElement> & {
-  ref?: React.Ref<HTMLDivElement>
-}
-
-function Card({ className, ref, ...props }: DivProps) {
+function Card({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       className={cn(
-        'rounded-xl border bg-card text-card-foreground shadow-raised',
+        'flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground shadow-sm',
         className,
       )}
-      ref={ref}
+      data-slot="card"
       {...props}
     />
   )
 }
 
-function CardHeader({ className, ref, ...props }: DivProps) {
+function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
-      className={cn('flex flex-col gap-1.5 p-6', className)}
-      ref={ref}
+      className={cn(
+        '@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6',
+        className,
+      )}
+      data-slot="card-header"
       {...props}
     />
   )
 }
 
-function CardTitle({
-  className,
-  ref,
-  ...props
-}: React.HTMLAttributes<HTMLHeadingElement> & {
-  ref?: React.Ref<HTMLHeadingElement>
-}) {
+function CardTitle({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <h3
-      className={cn('font-semibold leading-none tracking-tight', className)}
-      ref={ref}
+    <div
+      className={cn('font-semibold leading-none', className)}
+      data-slot="card-title"
       {...props}
     />
   )
 }
 
-function CardDescription({
-  className,
-  ref,
-  ...props
-}: React.HTMLAttributes<HTMLParagraphElement> & {
-  ref?: React.Ref<HTMLParagraphElement>
-}) {
+function CardDescription({ className, ...props }: React.ComponentProps<'div'>) {
   return (
-    <p
+    <div
       className={cn('text-muted-foreground text-sm', className)}
-      ref={ref}
+      data-slot="card-description"
       {...props}
     />
   )
 }
 
-function CardContent({ className, ref, ...props }: DivProps) {
-  return <div className={cn('p-6 pt-0', className)} ref={ref} {...props} />
-}
-
-function CardFooter({ className, ref, ...props }: DivProps) {
+function CardAction({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
-      className={cn('flex items-center p-6 pt-0', className)}
-      ref={ref}
+      className={cn(
+        'col-start-2 row-span-2 row-start-1 self-start justify-self-end',
+        className,
+      )}
+      data-slot="card-action"
       {...props}
     />
   )
 }
 
-export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
+function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
+  return (
+    <div
+      className={cn('px-6', className)}
+      data-slot="card-content"
+      {...props}
+    />
+  )
+}
+
+function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {
+  return (
+    <div
+      className={cn('flex items-center px-6 [.border-t]:pt-6', className)}
+      data-slot="card-footer"
+      {...props}
+    />
+  )
+}
+
+export {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+}

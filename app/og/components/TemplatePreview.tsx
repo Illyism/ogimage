@@ -19,8 +19,16 @@ import { useEffect, useState } from 'react'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { LinkedInIcon, TwitterIcon } from '@/components/icons/SocialIcons'
-import { Card } from '@/components/ui/card'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { cn } from '@/lib/utils'
+import type { Preview } from './preview'
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -171,16 +179,6 @@ return new ImageResponse(
   },
 ]
 
-export type Preview = 'twitter' | 'simple' | 'linkedin' | 'source'
-
-const PREVIEWS: Preview[] = ['twitter', 'simple', 'linkedin', 'source']
-
-export function parsePreview(value?: string): Preview | undefined {
-  if (value && PREVIEWS.includes(value as Preview)) {
-    return value as Preview
-  }
-}
-
 interface Store {
   preview: Preview
   setPreview: (preview: Preview) => void
@@ -200,9 +198,11 @@ export const usePreviewState = create(
 )
 
 export const TemplatePreview = ({
+  hideIntro = false,
   initialPreview,
   syncUrl = false,
 }: {
+  hideIntro?: boolean
   initialPreview?: Preview
   syncUrl?: boolean
 } = {}) => {
@@ -235,23 +235,19 @@ export const TemplatePreview = ({
   }
 
   return (
-    <div className="grid grid-cols-1 gap-4 pt-16 pb-24 md:grid-cols-3">
-      <div className="relative">
-        <div className="container top-32 w-full">
-          <h2 className="text-balance font-bold text-3xl tracking-tight md:text-4xl">
-            OG Image Templates
-          </h2>
-          <p className="mb-2 max-w-2xl text-balance text-lg text-muted-foreground">
-            All templates are <b>included</b> in the kit and can be customized
-            to your liking. You get the <b>full source code</b> to modify and
-            use however you like.
-          </p>
-          <PreviewType
-            className="mb-4"
-            preview={preview}
-            setPreview={setPreview}
-          />
-        </div>
+    <div className="container grid grid-cols-1 gap-8 py-16 md:grid-cols-3">
+      <div className="flex flex-col gap-4">
+        {hideIntro ? null : (
+          <>
+            <h2 className="text-balance font-semibold text-3xl tracking-tight">
+              OG image templates
+            </h2>
+            <p className="max-w-2xl text-muted-foreground">
+              Every template is in the kit. You get the route source. Change it.
+            </p>
+          </>
+        )}
+        <PreviewType preview={preview} setPreview={setPreview} />
       </div>
 
       <div
@@ -275,75 +271,40 @@ export const TemplatePreview = ({
 }
 
 const PreviewType = ({
-  className,
   preview,
   setPreview,
 }: {
-  className?: string
   preview: Preview
   setPreview: (preview: Preview) => void
 }) => (
-  <form
-    className={cn('flex flex-wrap items-center gap-1', className)}
-    onSubmit={(e) => e.preventDefault()}
+  <ToggleGroup
+    className="flex-wrap justify-start"
+    onValueChange={(value) => {
+      if (value) {
+        setPreview(value as Preview)
+      }
+    }}
+    type="single"
+    value={preview}
+    variant="outline"
   >
-    <Toggle
-      icon={<TwitterIcon className="size-3.5" />}
-      label="Twitter"
-      onChange={(checked) => setPreview(checked ? 'twitter' : 'simple')}
-      value={preview === 'twitter'}
-    />
-    <Toggle
-      icon={<LinkedInIcon className="size-3.5" />}
-      label="LinkedIn"
-      onChange={(checked) => setPreview(checked ? 'linkedin' : 'simple')}
-      value={preview === 'linkedin'}
-    />
-    <Toggle
-      icon={<GalleryThumbnails size={14} />}
-      label="Simple"
-      onChange={(checked) => setPreview(checked ? 'simple' : 'twitter')}
-      value={preview === 'simple'}
-    />
-    <Toggle
-      icon={<Code size={14} />}
-      label="Source code"
-      onChange={(checked) => setPreview(checked ? 'source' : 'twitter')}
-      value={preview === 'source'}
-    />
-  </form>
-)
-
-const Toggle = ({
-  label,
-  icon,
-  value,
-  onChange,
-}: {
-  label: string
-  icon: React.ReactNode
-  value: boolean
-  onChange: (checked: boolean) => void
-}) => (
-  <div
-    className={cn(
-      'flex cursor-pointer items-center gap-2 rounded-lg border bg-card px-2.5 py-1 font-medium text-sm transition-colors hover:bg-accent',
-      value ? 'border-primary text-primary' : 'border-border',
-    )}
-  >
-    <label className="flex items-center gap-1" htmlFor={label}>
-      {icon}
-      {label}
-    </label>
-    <input
-      checked={value}
-      className="sr-only"
-      id={label}
-      name="preview"
-      onChange={(e) => onChange(e.target.checked)}
-      type="radio"
-    />
-  </div>
+    <ToggleGroupItem aria-label="Twitter preview" value="twitter">
+      <TwitterIcon />
+      Twitter
+    </ToggleGroupItem>
+    <ToggleGroupItem aria-label="LinkedIn preview" value="linkedin">
+      <LinkedInIcon />
+      LinkedIn
+    </ToggleGroupItem>
+    <ToggleGroupItem aria-label="Simple preview" value="simple">
+      <GalleryThumbnails />
+      Simple
+    </ToggleGroupItem>
+    <ToggleGroupItem aria-label="Source preview" value="source">
+      <Code />
+      Source
+    </ToggleGroupItem>
+  </ToggleGroup>
 )
 
 const TemplateCard = ({
@@ -368,24 +329,26 @@ const TemplateCard = ({
 const SimplePreview = ({ title, description, image }: TemplateProps) => {
   const [loaded, setLoaded] = useState(false)
   return (
-    <Card className="max-w-md p-4 text-left">
-      <img
-        alt={title}
-        className={cn(
-          'aspect-1200/630 rounded-md bg-black object-cover transition duration-500 dark:bg-gray-800',
-          !loaded && 'animate-pulse',
-        )}
-        height={630}
-        loading="lazy"
-        onError={() => setLoaded(true)}
-        onLoad={() => setLoaded(true)}
-        src={image}
-        width={1200}
-      />
-      <h3 className="mt-4 mb-2 font-semibold text-lg tracking-tight">
-        {title}
-      </h3>
-      <p className="text-muted-foreground">{description}</p>
+    <Card className="max-w-md">
+      <CardContent>
+        <img
+          alt={title}
+          className={cn(
+            'aspect-1200/630 rounded-md bg-muted object-cover',
+            !loaded && 'animate-pulse',
+          )}
+          height={630}
+          loading="lazy"
+          onError={() => setLoaded(true)}
+          onLoad={() => setLoaded(true)}
+          src={image}
+          width={1200}
+        />
+      </CardContent>
+      <CardHeader>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>{description}</CardDescription>
+      </CardHeader>
     </Card>
   )
 }

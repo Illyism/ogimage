@@ -13,20 +13,22 @@ export function GalleryGrid({
       {items.map((item, index) => {
         const eager = index < eagerCount
         return (
-          <Link href={`/inspiration/post/${item.slug}`} key={item.slug}>
+          <Link
+            className="flex flex-col gap-2"
+            href={`/inspiration/post/${item.slug}`}
+            key={item.slug}
+          >
             <img
               alt={`${item.name} Open Graph card`}
-              className="aspect-1200/630 rounded-lg object-cover"
+              className="aspect-1200/630 rounded-lg border object-cover"
               fetchPriority={eager ? 'high' : undefined}
               height={630}
               loading={eager ? 'eager' : 'lazy'}
               src={item.image}
               width={1200}
             />
-            <div className="flex items-center justify-between gap-2 pt-2">
-              <div className="truncate font-semibold text-base">
-                {item.name}
-              </div>
+            <div className="flex items-center justify-between gap-2">
+              <div className="truncate font-medium text-sm">{item.name}</div>
               <div className="truncate text-muted-foreground text-sm">
                 {item.domain}
               </div>

@@ -3,7 +3,7 @@
     "slug": "about",
     "title": "About OGImage.org",
     "description": "Free open-source Open Graph image kit and gallery of real startup OG cards.",
-    "content": "<h2>What this is</h2>\n<p>ogimage.org is a free, open-source kit for Open Graph images. You get Next.js templates, Satori rendering, and Tailwind. The repo is public at <a href=\"https://github.com/Illyism/ogimage\">github.com/Illyism/ogimage</a>. Leave your email for the guide.</p>\n<p>The other half is the gallery: 300+ real startup cards, grouped by category. People search for SaaS OG examples. They land here. Then they take the kit.</p>\n<h2>Who built it</h2>\n<p>Ilias Ism. Also <a href=\"https://linkdr.com\">LinkDR</a> and <a href=\"https://seoroast.co\">SEO Roast</a>.</p>\n<p><a href=\"/#get-access\">Get the kit</a> or <a href=\"/inspiration\">browse the gallery</a>.</p>",
+    "content": "<h2>What this is</h2>\n<p>ogimage.org is a free MIT kit for Open Graph images. You get Next.js templates, Satori rendering, and Tailwind. The repo is public at <a href=\"https://github.com/Illyism/ogimage\">github.com/Illyism/ogimage</a>. Leave your email for the guide.</p>\n<p>The other half is the gallery: 300+ real startup cards, grouped by category. People search for SaaS OG examples. They land here. Then they take the kit.</p>\n<h2>Who built it</h2>\n<p>Ilias Ism. Also <a href=\"https://linkdr.com\">LinkDR</a> and <a href=\"https://seoroast.co\">SEO Roast</a>.</p>\n<p><a href=\"/#get-access\">Get the kit</a> or <a href=\"/inspiration\">browse the gallery</a>.</p>",
     "createdAt": "2023-11-02T10:50:08.965Z",
     "updatedAt": "2023-11-02T10:50:08.965Z"
   },

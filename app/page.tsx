@@ -24,9 +24,7 @@ export default function Page() {
       <Hero />
       <GalleryPreview categories={categories} items={gallery} />
       <ProblemSolution />
-      <div className="sm:py-8">
-        <TestimonialMarquee big />
-      </div>
+      <TestimonialMarquee />
       <TemplatePreview />
       <GetAccess />
       <Faq />

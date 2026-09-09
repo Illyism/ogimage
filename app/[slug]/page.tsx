@@ -1,8 +1,9 @@
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
+import { Skeleton } from '@/components/ui/skeleton'
 import { generatePageMeta } from '@/core/seo'
 import { getPages, getPost, type Page } from '@/lib/pages'
-import { cn, formatDate } from '@/lib/utils'
+import { formatDate } from '@/lib/utils'
 
 export async function generateMetadata({
   params,
@@ -52,13 +53,9 @@ async function Article({ params }: { params: Promise<{ slug: string }> }) {
 
 function ArticleFallback() {
   return (
-    <article className="flex min-h-screen flex-col justify-between">
-      <header className="container pt-16 lg:max-w-5xl">
-        <div className="flex max-w-(--breakpoint-sm) flex-col space-y-4">
-          <div className="h-10 w-2/3 animate-pulse rounded-md bg-muted" />
-          <div className="h-4 w-32 animate-pulse rounded-md bg-muted" />
-        </div>
-      </header>
+    <article className="container flex max-w-3xl flex-col gap-4 py-16">
+      <Skeleton className="h-10 w-2/3" />
+      <Skeleton className="h-4 w-32" />
     </article>
   )
 }
@@ -67,42 +64,25 @@ const BlogTemplate = ({ post }: { post: Page }) => {
   const published = post.updatedAt || post.createdAt
 
   return (
-    <article className="flex min-h-screen flex-col justify-between">
-      <header className="container pt-16 lg:max-w-5xl">
-        <div className="flex max-w-(--breakpoint-sm) flex-col space-y-4">
-          <h1
-            className="text-balance font-bold text-3xl text-foreground tracking-tight sm:text-4xl"
-            itemProp="headline"
-          >
-            {post.title}
-          </h1>
-          <div className="flex items-center space-x-4">
-            <time
-              className="text-foreground/90 text-sm transition-colors hover:text-foreground"
-              dateTime={published}
-            >
-              {formatDate(published)}
-            </time>
-          </div>
-        </div>
+    <article className="container flex max-w-3xl flex-col gap-8 py-16">
+      <header className="flex flex-col gap-2">
+        <h1
+          className="text-balance font-semibold text-3xl tracking-tight sm:text-4xl"
+          itemProp="headline"
+        >
+          {post.title}
+        </h1>
+        <time className="text-muted-foreground text-sm" dateTime={published}>
+          {formatDate(published)}
+        </time>
       </header>
-
-      <div className="relative">
-        <div className="container grid grid-cols-4 gap-10 pt-6 pb-10 lg:max-w-5xl">
-          <div className="relative col-span-4 mb-10 flex flex-col space-y-8 bg-card/20 sm:rounded-xl md:col-span-3">
-            <div
-              className={cn(
-                'prose prose-zinc dark:prose-invert prose-headings:relative max-w-none prose-headings:scroll-mt-20 prose-headings:font-bold transition-all',
-                'px-5 pt-4 pb-20 md:px-10',
-              )}
-              dangerouslySetInnerHTML={{
-                __html: post.content,
-              }}
-              data-mdx-container
-            />
-          </div>
-        </div>
-      </div>
+      <div
+        className="prose prose-zinc dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold"
+        dangerouslySetInnerHTML={{
+          __html: post.content,
+        }}
+        data-mdx-container
+      />
     </article>
   )
 }

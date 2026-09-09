@@ -12,11 +12,11 @@ Clone the repo, run it locally, and ship social preview images from Next.js rout
 
 ## What you get
 
-| Piece | Path | License |
-| --- | --- | --- |
-| OG templates (Satori + Tailwind) | [`app/og/templates/`](./app/og/templates/) | [MIT](./LICENSE.md) |
-| Inspiration gallery (git CMS) | [`content/gallery/`](./content/gallery/) + [`public/og/`](./public/og/) | MIT |
-| Marketing site chrome | [`components/`](./components/), layouts | [Tailwind UI](./licenses/TAILWIND-UI.md) |
+| Piece | Path |
+| --- | --- |
+| OG templates (Satori + Tailwind) | [`app/og/templates/`](./app/og/templates/) |
+| Inspiration gallery (git CMS) | [`content/gallery/`](./content/gallery/) + [`public/og/`](./public/og/) |
+| Site chrome (shadcn) | [`components/`](./components/), layouts |
 
 Templates render at **1200×630** through `next/og` `ImageResponse`. Preview them at [/templates](https://ogimage.org/templates) or browse examples at [/inspiration](https://ogimage.org/inspiration).
 
@@ -126,12 +126,7 @@ Without screenshot env vars, screenshot templates fall back to a placeholder ima
 
 ## License
 
-Two licenses in one repo:
-
-- **MIT** — `app/og/templates/`, `content/gallery/`, `public/og/`, `lib/gallery.ts`, `scripts/add-og.ts`. Fork and reuse freely.
-- **Tailwind UI** — site chrome in `components/` and layouts. Use as part of this app; do not republish as a component library.
-
-See [LICENSE.md](./LICENSE.md) and [licenses/TAILWIND-UI.md](./licenses/TAILWIND-UI.md).
+[MIT](./LICENSE.md). Fork the kit, the gallery, and the site.
 
 ## Links
 

@@ -1,10 +1,16 @@
 'use client'
 
-import { CheckCircleIcon } from 'lucide-react'
 import { useActionState } from 'react'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
+import {
+  Field,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+} from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { Spinner } from '@/components/ui/spinner'
 import { type SuggestState, suggestSite } from './_actions.tsx'
 
 const initialState: SuggestState = { status: 'idle' }
@@ -14,38 +20,36 @@ export default function DomainSubmitForm() {
 
   if (state.status === 'success') {
     return (
-      <div className="flex flex-col items-center gap-3 py-8 text-center">
-        <CheckCircleIcon className="text-green-500" size={32} />
-        <p className="font-semibold text-lg">Got it.</p>
-        <p className="text-muted-foreground text-sm">
+      <Alert>
+        <AlertTitle>Got it.</AlertTitle>
+        <AlertDescription>
           We add real OG cards by hand. If it fits the gallery, it goes live.
-        </p>
-      </div>
+        </AlertDescription>
+      </Alert>
     )
   }
 
   return (
-    <form
-      action={formAction}
-      className="flex w-full max-w-2xl flex-col gap-y-4"
-    >
-      <div className="flex flex-col gap-2">
-        <Label htmlFor="url">Website URL</Label>
-        <Input
-          disabled={pending}
-          id="url"
-          name="url"
-          placeholder="https://example.com"
-          required
-          type="url"
-        />
-      </div>
-      {state.status === 'error' && state.error ? (
-        <p aria-live="polite" className="text-destructive text-sm">
-          {state.error}
-        </p>
-      ) : null}
+    <form action={formAction} className="flex w-full max-w-2xl flex-col gap-4">
+      <FieldGroup>
+        <Field data-invalid={state.status === 'error' || undefined}>
+          <FieldLabel htmlFor="url">Website URL</FieldLabel>
+          <Input
+            aria-invalid={state.status === 'error'}
+            disabled={pending}
+            id="url"
+            name="url"
+            placeholder="https://example.com"
+            required
+            type="url"
+          />
+          {state.status === 'error' && state.error ? (
+            <FieldError>{state.error}</FieldError>
+          ) : null}
+        </Field>
+      </FieldGroup>
       <Button disabled={pending} type="submit">
+        {pending ? <Spinner data-icon="inline-start" /> : null}
         {pending ? 'Sending…' : 'Suggest this site'}
       </Button>
     </form>

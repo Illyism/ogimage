@@ -75,26 +75,12 @@
   --color-sidebar-border: var(--sidebar-border);
 
   --color-sidebar-ring: var(--sidebar-ring);
-
-  --shadow-raised: var(--elev-1);
-
-  --shadow-raised-lg: var(--elev-2);
 }
 
 :root {
   --radius: 0.625rem;
 
   --background: oklch(1 0 0);
-
-  --background-body: oklch(0.985 0 0);
-
-  --elev-1:
-    0 0 0 1px rgb(0 0 0 / 0.05), 0 1px 2px rgb(0 0 0 / 0.05),
-    0 2px 8px -2px rgb(0 0 0 / 0.08);
-
-  --elev-2:
-    0 0 0 1px rgb(0 0 0 / 0.06), 0 2px 4px rgb(0 0 0 / 0.06),
-    0 12px 32px -8px rgb(0 0 0 / 0.12);
 
   --foreground: oklch(0.145 0 0);
 
@@ -159,16 +145,6 @@
 
 .dark {
   --background: oklch(0.145 0 0);
-
-  --background-body: oklch(0.13 0 0);
-
-  --elev-1:
-    0 0 0 1px rgb(255 255 255 / 0.07), 0 1px 2px rgb(0 0 0 / 0.4),
-    0 2px 8px -2px rgb(0 0 0 / 0.3);
-
-  --elev-2:
-    0 0 0 1px rgb(255 255 255 / 0.09), 0 2px 4px rgb(0 0 0 / 0.4),
-    0 12px 32px -8px rgb(0 0 0 / 0.5);
 
   --foreground: oklch(0.985 0 0);
 
