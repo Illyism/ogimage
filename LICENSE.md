@@ -19,15 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
-This license covers:
-
-- `app/og/templates/`
-- `app/og/components/screenshot.ts`
-- `content/gallery/`
-- `public/og/`
-- `lib/gallery.ts`
-- `scripts/add-og.ts`
-
-The rest of this repository (marketing UI, Tailwind UI-derived components,
-layouts) stays under `licenses/TAILWIND-UI.md` (Tailwind UI License).
