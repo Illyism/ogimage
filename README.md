@@ -4,15 +4,19 @@ Free, open-source Open Graph image kit and a gallery of 300+ real startup OG car
 
 **Live site:** [ogimage.org](https://ogimage.org)
 
+<p align="center">
+  <img src=".github/social-preview.png" alt="ogimage.org Open Graph image generator" width="800" />
+</p>
+
 Clone the repo, run it locally, and ship social preview images from Next.js route handlers. No hosted API. No database. Gallery data lives in git.
 
 ## What you get
 
 | Piece | Path | License |
 | --- | --- | --- |
-| OG templates (Satori + Tailwind) | [`app/og/templates/`](./app/og/templates/) | [MIT](./LICENSE-KIT.md) |
+| OG templates (Satori + Tailwind) | [`app/og/templates/`](./app/og/templates/) | [MIT](./LICENSE.md) |
 | Inspiration gallery (git CMS) | [`content/gallery/`](./content/gallery/) + [`public/og/`](./public/og/) | MIT |
-| Marketing site chrome | [`components/`](./components/), layouts | [Tailwind UI](./LICENSE.md) |
+| Marketing site chrome | [`components/`](./components/), layouts | [Tailwind UI](./licenses/TAILWIND-UI.md) |
 
 Templates render at **1200×630** through `next/og` `ImageResponse`. Preview them at [/templates](https://ogimage.org/templates) or browse examples at [/inspiration](https://ogimage.org/inspiration).
 
@@ -127,7 +131,7 @@ Two licenses in one repo:
 - **MIT** — `app/og/templates/`, `content/gallery/`, `public/og/`, `lib/gallery.ts`, `scripts/add-og.ts`. Fork and reuse freely.
 - **Tailwind UI** — site chrome in `components/` and layouts. Use as part of this app; do not republish as a component library.
 
-See [LICENSE-KIT.md](./LICENSE-KIT.md) and [LICENSE.md](./LICENSE.md).
+See [LICENSE.md](./LICENSE.md) and [licenses/TAILWIND-UI.md](./licenses/TAILWIND-UI.md).
 
 ## Links
 
