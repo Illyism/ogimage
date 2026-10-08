@@ -1,7 +1,7 @@
 'use client'
 
 import { MailIcon } from 'lucide-react'
-import { useActionState } from 'react'
+import { useActionState, useEffect } from 'react'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import {
@@ -33,6 +33,12 @@ export const GetAccess = ({ compact = false }: { compact?: boolean }) => {
     initialState,
   )
   const emailId = compact ? 'email-kit' : 'email'
+
+  useEffect(() => {
+    if (state.status === 'success') {
+      window.plausible?.('Signup')
+    }
+  }, [state.status])
 
   return (
     <section

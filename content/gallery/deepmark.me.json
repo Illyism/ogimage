@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "security"
+  ],
+  "color": [
+    "#141416",
+    "#1fd6d6"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:56.310Z",
+  "date_updated": "2026-10-08T05:20:56.310Z",
+  "description": "DeepMark embeds imperceptible, machine-readable watermarks into AI-generated voice and media so calls and content can be verified as authentic.",
+  "domain": "deepmark.me",
+  "image": "/og/deepmark.me.jpg",
+  "name": "DeepMark",
+  "slug": "deepmark.me",
+  "URL": "https://www.deepmark.me"
+}

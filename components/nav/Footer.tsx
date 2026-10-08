@@ -5,10 +5,19 @@ import { Logo } from '../ui/logo'
 import { Year } from '../ui/year'
 
 const productLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/inspiration', label: 'Gallery' },
-  { href: '/templates', label: 'Templates' },
+  { href: '/generator', label: 'OG image generator' },
+  { href: '/checker', label: 'OG image checker' },
+  { href: '/inspiration', label: 'OG image gallery' },
+  { href: '/templates', label: 'OG image templates' },
   { href: '/inspiration/submit', label: 'Add a site' },
+]
+
+const guideLinks = [
+  { href: '/what-is-an-og-image', label: 'What is an OG image?' },
+  { href: '/og-image-size', label: 'OG image size' },
+  { href: '/og-image-meta-tag', label: 'og:image meta tag' },
+  { href: '/nextjs-og-image', label: 'Next.js OG image' },
+  { href: '/open-graph-tags', label: 'Open Graph tags' },
 ]
 
 const moreLinks = [
@@ -45,8 +54,9 @@ export const Footer = () => (
             </span>
           </span>
         </Link>
-        <div className="grid gap-8 sm:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           <FooterNav heading="Product" links={productLinks} />
+          <FooterNav heading="Guides" links={guideLinks} />
           <FooterNav heading="More" links={moreLinks} />
           <FooterNav external heading="Learn" links={learnLinks} />
         </div>

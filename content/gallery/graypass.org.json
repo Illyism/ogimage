@@ -1,0 +1,19 @@
+{
+  "category": [
+    "security",
+    "technology"
+  ],
+  "color": [
+    "#111216",
+    "#ef3b55"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:26.727Z",
+  "date_updated": "2026-10-08T05:20:26.727Z",
+  "description": "GrayPass verifies that the expected person is still in control before sensitive digital actions and returns an enforceable decision.",
+  "domain": "graypass.org",
+  "image": "/og/graypass.org.jpg",
+  "name": "GrayPass",
+  "slug": "graypass.org",
+  "URL": "https://www.graypass.org"
+}

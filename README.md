@@ -1,36 +1,36 @@
-# ogimage.org
+# OG Image: open-source generator, templates, checker, and gallery
 
-Free, open-source Open Graph image kit and a gallery of 300+ real startup OG cards.
-
-**Live site:** [ogimage.org](https://ogimage.org)
+Make an **OG image** (Open Graph image) for every page of your site. This repo is the full source of [ogimage.org](https://ogimage.org): a free OG image generator, nine Next.js + Satori templates, an Open Graph checker, and a gallery of 340+ real OG image examples.
 
 <p align="center">
-  <img src=".github/social-preview.png" alt="ogimage.org Open Graph image generator" width="800" />
+  <a href="https://ogimage.org">
+    <img src=".github/social-preview.png" alt="OG image generator and gallery by ogimage.org" width="800" />
+  </a>
 </p>
 
-Clone the repo, run it locally, and ship social preview images from Next.js route handlers. No hosted API. No database. Gallery data lives in git.
+No hosted API. No database. MIT license. Clone it, self-host it, and ship your own images.
 
-## What you get
+| Tool | What it does | Live |
+| --- | --- | --- |
+| **OG image generator** | Type a title, pick colors, download a 1200×630 PNG | [ogimage.org/generator](https://ogimage.org/generator) |
+| **OG image templates** | Nine `ImageResponse` routes you can copy into a Next.js app | [ogimage.org/templates](https://ogimage.org/templates) |
+| **OG image checker** | Tests the Open Graph tags, image size, and link preview of a URL | [ogimage.org/checker](https://ogimage.org/checker) |
+| **OG image gallery** | 340+ real OG image examples from live startups, by category | [ogimage.org/inspiration](https://ogimage.org/inspiration) |
 
-| Piece | Path |
-| --- | --- |
-| OG templates (Satori + Tailwind) | [`app/og/templates/`](./app/og/templates/) |
-| Inspiration gallery (git CMS) | [`content/gallery/`](./content/gallery/) + [`public/og/`](./public/og/) |
-| Site chrome (shadcn) | [`components/`](./components/), layouts |
+## What is an OG image?
 
-Templates render at **1200×630** through `next/og` `ImageResponse`. Preview them at [/templates](https://ogimage.org/templates) or browse examples at [/inspiration](https://ogimage.org/inspiration).
+An OG image is the picture that X, Facebook, LinkedIn, Slack, Discord, WhatsApp, and iMessage show when someone shares a link. One meta tag sets it:
 
-### Included templates
+```html
+<meta property="og:image" content="https://your-domain.com/og/home.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+```
 
-- **emoji** — single emoji on a gradient
-- **icon** — Lucide-style icon grid
-- **image** — avatar + name card
-- **button** — emoji, headline, and CTA pill
-- **headline** — bold headline block
-- **screenshot** — live page capture in a frame (needs screenshot API env)
-- **phone** — mobile-style screenshot mock
-- **city** — geo + Unsplash background (needs `UNSPLASH_KEY`)
-- **blog-post** — title, excerpt, and author (`?title=` / `?excerpt=` / `?author=`)
+The standard **OG image size is 1200×630 pixels** (ratio 1.91:1), as PNG or JPEG, below 1 MB.
+
+Guides: [What is an OG image?](https://ogimage.org/what-is-an-og-image) · [OG image size](https://ogimage.org/og-image-size) · [og:image meta tag](https://ogimage.org/og-image-meta-tag) · [Next.js OG image](https://ogimage.org/nextjs-og-image) · [Open Graph tags](https://ogimage.org/open-graph-tags)
 
 ## Quick start
 
@@ -44,38 +44,93 @@ cp .env.example .env
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open [http://localhost:3000](http://localhost:3000). The generator, the templates, the checker, and the gallery run without any keys.
 
-Email signup and gallery suggestions need Resend keys in `.env`. Everything else runs without them.
+## Generate an OG image in Next.js
 
-## Use a template in your app
+Each template is a route handler that returns a 1200×630 PNG through `next/og` `ImageResponse`. Satori renders the JSX. Tailwind classes go in the `tw` prop.
 
-Each template is a route under `/og/templates/{name}`. Point `og:image` at your deployed URL:
+```tsx
+// app/og/route.tsx
+import { ImageResponse } from 'next/og'
+import type { NextRequest } from 'next/server'
 
-```html
-<meta property="og:image" content="https://your-domain.com/og/templates/headline" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
+export async function GET(request: NextRequest) {
+  const title = request.nextUrl.searchParams.get('title') ?? 'Hello'
+
+  return new ImageResponse(
+    <div tw="flex h-full w-full items-center justify-center bg-black p-20 text-7xl font-bold text-white">
+      {title}
+    </div>,
+    { width: 1200, height: 630 },
+  )
+}
 ```
 
-For dynamic titles, pass query params where the route supports them:
+Point `og:image` at the route:
 
-```html
-<meta
-  property="og:image"
-  content="https://your-domain.com/og/templates/blog-post?title=Launch%20week&author=Acme"
-/>
+```tsx
+export const metadata = {
+  metadataBase: new URL('https://your-domain.com'),
+  openGraph: { images: ['/og?title=Launch%20week'] },
+  twitter: { card: 'summary_large_image' },
+}
 ```
 
-Wire defaults through your metadata helper. This repo uses [`core/seo.tsx`](./core/seo.tsx) as a reference.
+This repo uses [`core/seo.tsx`](./core/seo.tsx) as the metadata helper.
 
-## Add a site to the gallery
+### Included OG image templates
+
+All templates are in [`app/og/templates/`](./app/og/templates/).
+
+| Template | Card |
+| --- | --- |
+| `headline` | Bold headline block with a call to action |
+| `blog-post` | Title, excerpt, and author (`?title=`, `?excerpt=`, `?author=`) |
+| `screenshot` | Live page capture in a frame (needs the screenshot API env) |
+| `phone` | Mobile screenshot mock |
+| `button` | Emoji, headline, and a button |
+| `emoji` | One emoji on a dark card |
+| `icon` | Lucide-style icon |
+| `image` | Avatar and name |
+| `city` | Geo-located city photo (needs `UNSPLASH_KEY`) |
+
+The generator at `/generator` uses one more route, [`app/og/generator/route.tsx`](./app/og/generator/route.tsx), with `?title=`, `?subtitle=`, `?site=`, `?layout=`, `?bg=`, and `?accent=`.
+
+## OG image gallery
+
+The gallery is a git CMS. One site is two files: `content/gallery/{domain}.json` and `public/og/{domain}.{ext}`.
+
+Add one site:
 
 ```bash
 bun run gallery:add https://example.com saas productivity
 ```
 
-That writes `content/gallery/example.com.json` and `public/og/example.com.jpg`. Open a PR with both files. Details in [CONTRIBUTING.md](./CONTRIBUTING.md).
+Find good cards automatically:
+
+```bash
+bun run gallery:find                      # YC companies, newest first
+bun run gallery:find --source hn          # popular Show HN launches
+bun run gallery:find --file sites.txt     # your list, one URL per line
+bun run gallery:find --limit 80 --add 15 --min-score 8 --dry-run
+```
+
+`gallery:find` fetches each site, rejects images with the wrong size or ratio, and asks Claude to score the design from 1 to 10. Cards that pass get a name, a description, categories, and colors. It needs `ANTHROPIC_API_KEY`.
+
+Open a pull request with the new files. Details are in [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## Project layout
+
+| Path | Role |
+| --- | --- |
+| [`app/og/templates/`](./app/og/templates/) | OG image templates (Satori + Tailwind) |
+| [`app/generator/`](./app/generator/) | Browser OG image generator |
+| [`app/checker/`](./app/checker/) | Open Graph tag and image checker |
+| [`app/inspiration/`](./app/inspiration/) | Gallery, category pages, and post pages |
+| [`content/gallery/`](./content/gallery/) + [`public/og/`](./public/og/) | Gallery data and images |
+| [`content/pages.json`](./content/pages.json) | Guides and static pages |
+| [`scripts/`](./scripts/) | `add-og.ts` and `find-og.ts` |
 
 ## Production
 
@@ -97,32 +152,37 @@ bun run build   # production build
 
 ## Environment variables
 
-Copy [`.env.example`](./.env.example) to `.env`.
-
-### Email signup (optional locally)
+Copy [`.env.example`](./.env.example) to `.env`. All variables are optional for local work.
 
 | Variable | Purpose |
 | --- | --- |
-| `RESEND_API_KEY` | Resend API key (Contacts permission for audience) |
+| `RESEND_API_KEY` | Resend API key for email signup and gallery suggestions |
 | `RESEND_AUDIENCE_ID` | Audience for kit signups |
 | `CONTACT_EMAIL` | Reply-to and inbox for gallery suggestions (default: `contact@ogimage.org`) |
-
-### Analytics (optional)
-
-| Variable | Purpose |
-| --- | --- |
 | `NEXT_PUBLIC_POSTHOG_KEY` | PostHog project key |
 | `NEXT_PUBLIC_POSTHOG_HOST` | PostHog ingest host |
-
-### Template extras (optional)
-
-| Variable | Purpose |
-| --- | --- |
 | `SCREENSHOT_API_URL` | Base URL for screenshot capture (`screenshot`, `phone` templates) |
 | `SCREENSHOT_API_KEY` | API key for that service |
 | `UNSPLASH_KEY` | Unsplash access key for the `city` template |
+| `ANTHROPIC_API_KEY` | Design review in `bun run gallery:find` |
 
-Without screenshot env vars, screenshot templates fall back to a placeholder image.
+Without the screenshot variables, the screenshot templates show a placeholder image.
+
+Plausible page views are sent only when the site runs on `ogimage.org`. A fork sends nothing. To use your own Plausible site, change the host and the domain in [`app/layout.tsx`](./app/layout.tsx).
+
+## FAQ
+
+**What size must an OG image be?**
+1200×630 pixels. See the [OG image size guide](https://ogimage.org/og-image-size).
+
+**Can I use this without Next.js?**
+Yes. Deploy this repo and point the `og:image` tag of any site at a template URL. Or use the [generator](https://ogimage.org/generator) and upload the PNG.
+
+**How do I test my OG image?**
+Paste the URL of your page into the [OG image checker](https://ogimage.org/checker).
+
+**Is it free for commercial use?**
+Yes. The code is MIT. The gallery images belong to their sites and are shown as examples.
 
 ## License
 
@@ -131,5 +191,5 @@ Without screenshot env vars, screenshot templates fall back to a placeholder ima
 ## Links
 
 - [Next.js `ImageResponse`](https://nextjs.org/docs/app/api-reference/functions/image-response)
-- [Satori](https://github.com/vercel/satori) (underlying renderer)
+- [Satori](https://github.com/vercel/satori), the renderer
 - [Open Graph protocol](https://ogp.me/)

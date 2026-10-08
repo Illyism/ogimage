@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "developer-tools",
+    "collaboration"
+  ],
+  "color": [
+    "#0f1a24",
+    "#c2643f"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:35.803Z",
+  "date_updated": "2026-10-08T05:20:35.803Z",
+  "description": "Agent Relay coordinates coding agents like Claude and Codex in shared channels. It handles shared work, approvals, and long-running workflows.",
+  "domain": "agentrelay.com",
+  "image": "/og/agentrelay.com.png",
+  "name": "Agent Relay",
+  "slug": "agentrelay.com",
+  "URL": "https://agentrelay.com"
+}

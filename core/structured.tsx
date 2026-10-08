@@ -63,7 +63,7 @@ export const ArticleStructuredData: React.FC<ArticleProps> = ({
     },
     inLanguage: 'en-US',
     mainEntityOfPage: {
-      '@id': `https://ogimage.org/${id}`,
+      '@id': id,
       '@type': 'WebPage',
     },
     publisher: personData,

@@ -1,0 +1,20 @@
+{
+  "category": [
+    "health",
+    "ai",
+    "data"
+  ],
+  "color": [
+    "#f7f9fa",
+    "#1f2a3a"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:03.349Z",
+  "date_updated": "2026-10-08T05:20:03.349Z",
+  "description": "Ascenix analyzes unstructured clinical notes from the EHR in long-term care facilities to surface incident, financial, clinical and operational insights.",
+  "domain": "ascenix.co",
+  "image": "/og/ascenix.co.png",
+  "name": "Ascenix",
+  "slug": "ascenix.co",
+  "URL": "https://www.ascenix.co/"
+}

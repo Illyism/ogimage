@@ -41,7 +41,7 @@ export async function generateMetadata({
   return generatePageMeta({
     description: inspiration.description,
     image: inspiration.image,
-    title: `${inspiration.name} - OG Image for ${inspiration.domain} - Open Graph Image Inspiration`,
+    title: `${inspiration.name} OG Image Example (${inspiration.domain})`,
     url: `/inspiration/post/${slug}`,
   })
 }
@@ -126,7 +126,7 @@ const InspirationPage = ({
       </nav>
       <div className="flex flex-col gap-2">
         <h1 className="text-balance font-semibold text-3xl tracking-tight md:text-4xl">
-          {inspiration.name}
+          {inspiration.name} OG image
         </h1>
         <p className="text-muted-foreground">{inspiration.description}</p>
       </div>

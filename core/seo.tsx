@@ -3,9 +3,9 @@ import type { OpenGraph } from 'next/dist/lib/metadata/types/opengraph-types'
 import type { Twitter } from 'next/dist/lib/metadata/types/twitter-types'
 import type { StaticImageData } from 'next/image'
 
-const title = 'ogimage.org: The Ultimate Open Graph Image Generator'
+const title = 'OG Image Generator, Templates, and Examples'
 const description =
-  'Generate open graph images with ease using OGimage.org, your reliable open graph image generator.'
+  'Free OG image generator, open-source Next.js templates, a gallery of real OG image examples, and a checker for your Open Graph tags.'
 
 export const rootOpenGraph: OpenGraph = {
   description,

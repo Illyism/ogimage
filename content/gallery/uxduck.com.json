@@ -1,0 +1,20 @@
+{
+  "category": [
+    "software",
+    "developer-tools",
+    "hardware"
+  ],
+  "color": [
+    "#4a90d9",
+    "#1a2433"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:19:50.829Z",
+  "date_updated": "2026-10-08T05:19:50.829Z",
+  "description": "UXDuck builds software tools for drones and unmanned systems, aimed at hobbyists, engineers, and enterprise teams.",
+  "domain": "uxduck.com",
+  "image": "/og/uxduck.com.png",
+  "name": "UXDuck",
+  "slug": "uxduck.com",
+  "URL": "https://uxduck.com"
+}

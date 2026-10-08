@@ -32,6 +32,16 @@ Open a pull request against `main`. Featured sites get a follow link when the PR
 
 Do not paste remote S3 URLs. The image file in `public/og/` is the source.
 
+## Find cards automatically
+
+```bash
+bun scripts/find-og.ts --source yc --limit 60 --add 12
+```
+
+The script reads a list of sites (YC companies, Show HN launches, or your file with `--file`). It rejects images that are not about 1200×630, then asks Claude to score the design. Only cards with a score of 8 or more are written. It needs `ANTHROPIC_API_KEY` in `.env`.
+
+Look at each new image before you open the pull request. Rejected sites are stored in `.find-og-cache.json`, so the next run does not check them again.
+
 ## Templates
 
 OG templates live in `app/og/templates/`. Change them in a PR the same way.

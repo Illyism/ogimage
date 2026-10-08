@@ -1,0 +1,19 @@
+{
+  "category": [
+    "hardware",
+    "ai"
+  ],
+  "color": [
+    "#ffffff",
+    "#13261f"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:01.035Z",
+  "date_updated": "2026-10-08T05:20:01.035Z",
+  "description": "Hundred makes automated cosmetic inspection systems that compare incoming manufactured parts against a single reference sample to find sub-millimeter defects before assembly.",
+  "domain": "hundred.systems",
+  "image": "/og/hundred.systems.png",
+  "name": "Hundred",
+  "slug": "hundred.systems",
+  "URL": "http://hundred.systems/"
+}

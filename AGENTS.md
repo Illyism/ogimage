@@ -26,6 +26,8 @@ This is a single Next.js App Router app (not a monorepo). English only.
 | `app/` | App Router pages, layouts, route handlers, and server actions |
 | `app/og/templates/` | `next/og` `ImageResponse` templates (headline, screenshot, blog-post, …) |
 | `app/inspiration/` | Gallery, category/post pages, and suggest-a-site form |
+| `app/generator/` | Browser OG image generator (`app/og/generator` renders the card) |
+| `app/checker/` | Open Graph checker (server action fetches the visitor's URL) |
 | `app/[slug]/` | Static CMS pages from `content/pages.json` |
 | `content/gallery/` | One JSON file per site (git CMS) |
 | `content/pages.json` | About, privacy, FAQ, and guides |
@@ -33,7 +35,7 @@ This is a single Next.js App Router app (not a monorepo). English only.
 | `components/` | Shared UI (home, nav, reviews, generator) |
 | `core/` | SEO, structured data, PostHog |
 | `lib/` | Gallery/pages loaders and shared helpers |
-| `scripts/` | Pre-commit typecheck and `add-og.ts` |
+| `scripts/` | Pre-commit typecheck, `add-og.ts`, and `find-og.ts` |
 
 Fetch page-specific data in Server Components. Use Client Components for
 interaction. Use server actions or route handlers for mutations.

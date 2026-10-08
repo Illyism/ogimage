@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "data",
+    "real-estate"
+  ],
+  "color": [
+    "#0b1f3a",
+    "#c0392b"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:21.268Z",
+  "date_updated": "2026-10-08T05:20:21.268Z",
+  "description": "Ageospatial provides geospatial AI that analyzes properties, infrastructure and land, reporting location, attributes, surroundings and changes over time.",
+  "domain": "ageospatial.com",
+  "image": "/og/ageospatial.com.jpg",
+  "name": "Ageospatial",
+  "slug": "ageospatial.com",
+  "URL": "https://ageospatial.com/"
+}

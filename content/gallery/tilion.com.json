@@ -1,0 +1,19 @@
+{
+  "category": [
+    "developer-tools",
+    "software"
+  ],
+  "color": [
+    "#3d4a1f",
+    "#ffffff"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:50.856Z",
+  "date_updated": "2026-10-08T05:20:50.856Z",
+  "description": "Tilion provides browser infrastructure for running automated browsers at scale without getting blocked.",
+  "domain": "tilion.com",
+  "image": "/og/tilion.com.jpg",
+  "name": "Tilion",
+  "slug": "tilion.com",
+  "URL": "https://tilion.com"
+}

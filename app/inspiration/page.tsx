@@ -24,16 +24,18 @@ export async function generateMetadata({ searchParams }: InspirationSearch) {
   if (category) {
     const label = formatCategoryLabel(category)
     return generatePageMeta({
-      description: `Best ${label} OG image examples and Twitter card inspiration from live sites.`,
-      title: `Best ${label} OG Image Examples`,
-      url: `/inspiration?category=${category}`,
+      description: `${label} OG image examples and Twitter card inspiration from live sites.`,
+      title: `${label} OG Image Examples`,
+      // The filter view and the category page list the same cards. The
+      // category page is the one that must rank.
+      url: `/inspiration/category/${category}`,
     })
   }
 
+  const count = Math.floor(getGalleryCount() / 10) * 10
   return generatePageMeta({
-    description:
-      'Best SaaS OG image examples and Twitter card inspiration. 300+ real startup Open Graph images, ranked by category.',
-    title: 'OG Image Gallery: 100+ Real Startup Examples',
+    description: `${count}+ real OG image examples from live startups. Browse Open Graph image inspiration by category: SaaS, design, ecommerce, and more.`,
+    title: `OG Image Gallery: ${count}+ Real OG Image Examples`,
     url: '/inspiration',
   })
 }
@@ -83,12 +85,12 @@ async function GallerySection({
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div className="flex flex-col gap-2">
           <h1 className="text-balance font-semibold text-3xl tracking-tight md:text-4xl">
-            Open Graph image gallery
+            OG image gallery
           </h1>
           <p className="max-w-2xl text-muted-foreground">
             {category
-              ? `${total} ${formatCategoryLabel(category)} OG images.`
-              : `${getGalleryCount()} real OG images from live startups. Filter by SaaS, design, ecommerce.`}
+              ? `${total} ${formatCategoryLabel(category)} OG image examples from live sites.`
+              : `${getGalleryCount()} real OG image examples from live startups. Use them as inspiration for your own Open Graph image.`}
           </p>
         </div>
         <Link

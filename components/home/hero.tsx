@@ -38,11 +38,11 @@ export const Hero = () => (
   <section className="container grid items-center gap-12 py-12 lg:grid-cols-2 lg:py-20">
     <div className="flex flex-col gap-6">
       <h1 className="text-balance font-semibold text-4xl tracking-tight md:text-5xl">
-        Open Graph image generator
+        Free OG image generator
       </h1>
       <p className="max-w-xl text-balance text-lg text-muted-foreground">
-        Free Next.js templates for 1200×630 social cards. Copy the kit,
-        self-host it, and ship your own images.
+        Make a 1200×630 OG image in your browser. Or clone the open-source
+        Next.js kit and render one for every page.
       </p>
       <ul className="flex flex-col gap-2 text-sm">
         {points.map((point) => (
@@ -54,9 +54,12 @@ export const Hero = () => (
       </ul>
       <div className="flex flex-col gap-2 sm:flex-row">
         <Button asChild size="lg">
-          <Link href="/inspiration">Browse the gallery</Link>
+          <Link href="/generator">Make an OG image</Link>
         </Button>
         <Button asChild size="lg" variant="outline">
+          <Link href="/inspiration">Browse examples</Link>
+        </Button>
+        <Button asChild size="lg" variant="ghost">
           <a
             href="https://github.com/Illyism/ogimage"
             rel="noreferrer"

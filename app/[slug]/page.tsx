@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 import { Skeleton } from '@/components/ui/skeleton'
 import { generatePageMeta } from '@/core/seo'
+import { ArticleStructuredData } from '@/core/structured'
 import { getPages, getPost, type Page } from '@/lib/pages'
 import { formatDate } from '@/lib/utils'
 
@@ -65,6 +66,15 @@ const BlogTemplate = ({ post }: { post: Page }) => {
 
   return (
     <article className="container flex max-w-3xl flex-col gap-8 py-16">
+      <ArticleStructuredData
+        authorId="https://il.ly"
+        authorName="Ilias Ism"
+        dateModified={published}
+        datePublished={post.createdAt}
+        id={`https://ogimage.org/${post.slug}`}
+        imageUrl={`https://ogimage.org/og/templates/screenshot?path=/${post.slug}`}
+        title={post.title}
+      />
       <header className="flex flex-col gap-2">
         <h1
           className="text-balance font-semibold text-3xl tracking-tight sm:text-4xl"
@@ -77,7 +87,7 @@ const BlogTemplate = ({ post }: { post: Page }) => {
         </time>
       </header>
       <div
-        className="prose prose-zinc dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold"
+        className="prose prose-zinc dark:prose-invert max-w-none prose-headings:scroll-mt-20 prose-headings:font-semibold prose-code:before:content-none prose-code:after:content-none"
         dangerouslySetInnerHTML={{
           __html: post.content,
         }}

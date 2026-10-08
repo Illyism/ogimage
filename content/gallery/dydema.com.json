@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "health",
+    "research"
+  ],
+  "color": [
+    "#0f1412",
+    "#3fd6c4"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:00.050Z",
+  "date_updated": "2026-10-08T05:20:00.050Z",
+  "description": "Dydema builds AI models for neurotech and brain-computer interfaces and records the brain data used to train them.",
+  "domain": "dydema.com",
+  "image": "/og/dydema.com.png",
+  "name": "Dydema",
+  "slug": "dydema.com",
+  "URL": "https://dydema.com/"
+}

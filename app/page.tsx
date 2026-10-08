@@ -2,6 +2,7 @@ import { Faq } from '@/components/home/faq'
 import { GalleryPreview } from '@/components/home/gallery-preview'
 import { GetAccess } from '@/components/home/get-access'
 import { Hero } from '@/components/home/hero'
+import { Learn } from '@/components/home/learn'
 import { ProblemSolution } from '@/components/home/problem-solution'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
@@ -10,7 +11,9 @@ import { getLatestInspiration, getUniqueCategories } from '@/lib/gallery'
 import { TemplatePreview } from './og/components/TemplatePreview'
 
 export const metadata = generatePageMeta({
-  title: 'OG Image Generator - Create Beautiful OG Images in Minutes',
+  description:
+    'Make an OG image in your browser, copy open-source Next.js templates, browse real OG image examples, and check how your link looks when you share it.',
+  title: 'OG Image: Free Generator, Templates, and Examples',
   url: '/',
 })
 
@@ -26,6 +29,7 @@ export default function Page() {
       <ProblemSolution />
       <TestimonialMarquee />
       <TemplatePreview />
+      <Learn />
       <GetAccess />
       <Faq />
     </PageLayout>
