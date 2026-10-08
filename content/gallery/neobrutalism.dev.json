@@ -1,0 +1,20 @@
+{
+  "category": [
+    "developer-tools",
+    "design",
+    "web-development"
+  ],
+  "color": [
+    "#dbe9fe",
+    "#5294ff"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:56:21.315Z",
+  "date_updated": "2026-10-08T05:56:21.315Z",
+  "description": "Neobrutalism.dev is a collection of UI components in the neobrutalism style, built on shadcn/ui.",
+  "domain": "neobrutalism.dev",
+  "image": "/og/neobrutalism.dev.png",
+  "name": "Neobrutalism components",
+  "slug": "neobrutalism.dev",
+  "URL": "https://www.neobrutalism.dev"
+}

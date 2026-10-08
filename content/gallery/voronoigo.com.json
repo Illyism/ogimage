@@ -1,0 +1,19 @@
+{
+  "category": [
+    "gaming",
+    "entertainment"
+  ],
+  "color": [
+    "#0e0e12",
+    "#fcfcf5"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:56:29.640Z",
+  "date_updated": "2026-10-08T05:56:29.640Z",
+  "description": "Voronoi Go is a browser game that plays Go without a grid, using Voronoi cells to decide territory between black and white stones.",
+  "domain": "voronoigo.com",
+  "image": "/og/voronoigo.com.png",
+  "name": "Voronoi Go",
+  "slug": "voronoigo.com",
+  "URL": "https://voronoigo.com"
+}

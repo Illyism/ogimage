@@ -1,0 +1,20 @@
+{
+  "category": [
+    "music",
+    "art",
+    "entertainment"
+  ],
+  "color": [
+    "#0e0f1e",
+    "#c98a3a"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:56:13.772Z",
+  "date_updated": "2026-10-08T05:56:13.772Z",
+  "description": "Lofi Cities is a free browser app that generates endless lofi music live over pixel-art night scenes of world cities.",
+  "domain": "loficities.com",
+  "image": "/og/loficities.com.png",
+  "name": "Lofi Cities",
+  "slug": "loficities.com",
+  "URL": "https://loficities.com"
+}

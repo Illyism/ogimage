@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "business",
+    "saas"
+  ],
+  "color": [
+    "#f6f5f2",
+    "#1a1a1a"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:54:47.246Z",
+  "date_updated": "2026-10-08T05:54:47.246Z",
+  "description": "Tenor provides tools for domain experts to build, run, and scale AI-native service businesses.",
+  "domain": "heytenor.com",
+  "image": "/og/heytenor.com.png",
+  "name": "Tenor",
+  "slug": "heytenor.com",
+  "URL": "https://heytenor.com/"
+}

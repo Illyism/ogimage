@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "security"
+  ],
+  "color": [
+    "#f2f2f2",
+    "#1a1f1a"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:56:42.627Z",
+  "date_updated": "2026-10-08T05:56:42.627Z",
+  "description": "CTGT builds enterprise AI software focused on accuracy, speed, and compliance, positioned as a deterministic layer for AI models.",
+  "domain": "ctgt.ai",
+  "image": "/og/ctgt.ai.jpg",
+  "name": "CTGT",
+  "slug": "ctgt.ai",
+  "URL": "https://www.ctgt.ai"
+}

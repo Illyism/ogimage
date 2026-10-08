@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "developer-tools",
+    "software"
+  ],
+  "color": [
+    "#ffffff",
+    "#111111"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:54:04.997Z",
+  "date_updated": "2026-10-08T05:54:04.997Z",
+  "description": "Boat provides persistent Linux virtual machines for AI agents, with SSH, Docker, and fast forking, billed per second.",
+  "domain": "boat.dev",
+  "image": "/og/boat.dev.png",
+  "name": "boat",
+  "slug": "boat.dev",
+  "URL": "https://boat.dev"
+}

@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "software"
+  ],
+  "color": [
+    "#e8e5df",
+    "#2ed3a8"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:55:28.116Z",
+  "date_updated": "2026-10-08T05:55:28.116Z",
+  "description": "Spaceflow deploys and runs an enterprise AI stack, including open frontier models, a governance gateway, and AI agents that work inside existing company systems.",
+  "domain": "spaceflow.tech",
+  "image": "/og/spaceflow.tech.png",
+  "name": "Spaceflow",
+  "slug": "spaceflow.tech",
+  "URL": "https://spaceflow.tech"
+}

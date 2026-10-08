@@ -1,0 +1,20 @@
+{
+  "category": [
+    "fintech",
+    "marketplace",
+    "finance"
+  ],
+  "color": [
+    "#8a5a1c",
+    "#ffffff"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:55:30.430Z",
+  "date_updated": "2026-10-08T05:55:30.430Z",
+  "description": "Tash is an investment platform where users buy shares of managed indexes of graded trading cards like Pokémon and sports cards.",
+  "domain": "tradetash.com",
+  "image": "/og/tradetash.com.png",
+  "name": "tash",
+  "slug": "tradetash.com",
+  "URL": "https://www.tradetash.com"
+}

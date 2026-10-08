@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "video",
+    "entertainment"
+  ],
+  "color": [
+    "#f5c4c8",
+    "#3a2358"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:54:39.436Z",
+  "date_updated": "2026-10-08T05:54:39.436Z",
+  "description": "Familiar uses AI to dub films into 30 languages, keeping the original actor's voice and matching lip movements to the scene.",
+  "domain": "thefamiliarlab.com",
+  "image": "/og/thefamiliarlab.com.png",
+  "name": "Familiar",
+  "slug": "thefamiliarlab.com",
+  "URL": "https://thefamiliarlab.com"
+}

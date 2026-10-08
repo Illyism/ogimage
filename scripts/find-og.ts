@@ -142,8 +142,10 @@ async function candidates() {
 }
 
 function fileProblem(card: OgCard) {
-  if (!card.size || card.size.format === 'gif') {
-    return 'not a PNG, JPEG, or WebP image'
+  // Each gallery page uses the card as its own og:image. Some platforms do
+  // not read WebP, and a GIF shows only its first frame.
+  if (card.size?.format !== 'png' && card.size?.format !== 'jpeg') {
+    return 'not a PNG or JPEG image'
   }
   const { height, width } = card.size
   if (width < MIN_WIDTH) {
@@ -200,7 +202,6 @@ async function review(
   card: OgCard,
   categories: string[],
 ): Promise<Review | null> {
-  const format = card.size?.format === 'jpeg' ? 'jpeg' : card.size?.format
   const response = await client.messages.parse({
     max_tokens: 4000,
     messages: [
@@ -209,7 +210,7 @@ async function review(
           {
             source: {
               data: card.bytes.toString('base64'),
-              media_type: `image/${format}` as 'image/png',
+              media_type: `image/${card.size?.format}` as 'image/png',
               type: 'base64',
             },
             type: 'image',

@@ -1,0 +1,19 @@
+{
+  "category": [
+    "photography",
+    "software"
+  ],
+  "color": [
+    "#0a2a0a",
+    "#1f6b1f"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:56:36.033Z",
+  "date_updated": "2026-10-08T05:56:36.033Z",
+  "description": "Photosynthesis is an iPhone camera app that combines images from two lenses into one higher-resolution photo without generative AI.",
+  "domain": "photosynthesis.camera",
+  "image": "/og/photosynthesis.camera.png",
+  "name": "Photosynthesis",
+  "slug": "photosynthesis.camera",
+  "URL": "https://photosynthesis.camera"
+}

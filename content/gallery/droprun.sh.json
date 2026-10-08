@@ -1,0 +1,20 @@
+{
+  "category": [
+    "developer-tools",
+    "security",
+    "software"
+  ],
+  "color": [
+    "#f9f9f9",
+    "#121315"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:56:14.503Z",
+  "date_updated": "2026-10-08T05:56:14.503Z",
+  "description": "Drop is a rootless Linux sandbox for developers that isolates coding agents and third-party packages while keeping the user's work environment intact.",
+  "domain": "droprun.sh",
+  "image": "/og/droprun.sh.png",
+  "name": "drop",
+  "slug": "droprun.sh",
+  "URL": "https://droprun.sh"
+}

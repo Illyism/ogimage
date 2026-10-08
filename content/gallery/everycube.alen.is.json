@@ -1,0 +1,19 @@
+{
+  "category": [
+    "entertainment",
+    "gaming"
+  ],
+  "color": [
+    "#fafafa",
+    "#009a44"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:56:33.334Z",
+  "date_updated": "2026-10-08T05:56:33.334Z",
+  "description": "Every Cube is a website that lets you scroll through all 43,252,003,274,489,856,000 reachable Rubik's Cube permutations.",
+  "domain": "everycube.alen.is",
+  "image": "/og/everycube.alen.is.png",
+  "name": "Every Cube",
+  "slug": "everycube.alen.is",
+  "URL": "https://everycube.alen.is"
+}

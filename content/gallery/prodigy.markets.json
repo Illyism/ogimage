@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "fintech",
+    "research"
+  ],
+  "color": [
+    "#f9f8f5",
+    "#0f2350"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:55:03.886Z",
+  "date_updated": "2026-10-08T05:55:03.886Z",
+  "description": "Prodigy Research is an AI lab training a foundation model for quantitative trading and trading it live in financial markets.",
+  "domain": "prodigy.markets",
+  "image": "/og/prodigy.markets.png",
+  "name": "Prodigy Research",
+  "slug": "prodigy.markets",
+  "URL": "https://prodigy.markets"
+}
