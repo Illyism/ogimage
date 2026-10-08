@@ -1,61 +1,56 @@
-import { ImageResponse } from 'next/og'
 import type { NextRequest } from 'next/server'
+import {
+  colorParam,
+  MONO,
+  readableOn,
+  renderCard,
+  SANS,
+  textParam,
+} from '../components/render'
 
 const LAYOUTS = ['center', 'left', 'badge'] as const
 type Layout = (typeof LAYOUTS)[number]
 
-function text(value: string | null, fallback: string, max: number) {
-  return (value?.trim() || fallback).slice(0, max)
-}
-
-function color(value: string | null, fallback: string) {
-  return value && /^#[0-9a-f]{6}$/i.test(value) ? value : fallback
-}
-
-// Text must stay readable on any background that a visitor picks.
-function readableOn(background: string) {
-  const [r, g, b] = [1, 3, 5].map((start) =>
-    Number.parseInt(background.slice(start, start + 2), 16),
-  ) as [number, number, number]
-  return (r * 299 + g * 587 + b * 114) / 1000 > 150 ? '#0a0a0a' : '#ffffff'
-}
-
 function titleSize(title: string) {
   if (title.length > 70) {
-    return 56
+    return 60
   }
-  return title.length > 40 ? 68 : 84
+  return title.length > 40 ? 74 : 92
 }
 
 /**
  * @name Generator
- * @description Card for /generator. Text, layout, and colors come from the query string.
+ * @description Card for /generator and for the link previews of this site.
+ * Text, layout, and colors come from the query string.
  */
-export async function GET(request: NextRequest) {
+export function GET(request: NextRequest) {
   const params = request.nextUrl.searchParams
   const layoutParam = params.get('layout') as Layout
   const layout = LAYOUTS.includes(layoutParam) ? layoutParam : 'center'
-  const title = text(params.get('title'), 'Your title goes here', 110)
-  const subtitle = text(params.get('subtitle'), '', 160)
-  const site = text(params.get('site'), '', 40)
-  const background = color(params.get('bg'), '#0a0a0a')
-  const accent = color(params.get('accent'), '#facc15')
+  const title = textParam(params, 'title', 'Your title goes here', 110)
+  const subtitle = params.get('subtitle')?.trim().slice(0, 160) ?? ''
+  const site = params.get('site')?.trim().slice(0, 40) ?? ''
+  const background = colorParam(params, 'bg', '#0a0a0a')
+  const accent = colorParam(params, 'accent', '#facc15')
   const foreground = readableOn(background)
   const onAccent = readableOn(accent)
   const centered = layout !== 'left'
 
-  return new ImageResponse(
+  return renderCard(
     <div
       style={{
         alignItems: centered ? 'center' : 'flex-start',
         backgroundColor: background,
-        borderBottom: `24px solid ${accent}`,
+        // A soft light in the accent color gives the flat color some depth.
+        backgroundImage: `radial-gradient(circle at ${centered ? '50% 0%' : '100% 0%'}, ${accent}33, transparent 55%)`,
+        borderBottom: `20px solid ${accent}`,
         color: foreground,
         display: 'flex',
         flexDirection: 'column',
+        fontFamily: SANS,
         height: '100%',
         justifyContent: layout === 'left' ? 'space-between' : 'center',
-        padding: '72px 80px',
+        padding: '76px 84px',
         textAlign: centered ? 'center' : 'left',
         width: '100%',
       }}
@@ -74,9 +69,10 @@ export async function GET(request: NextRequest) {
               borderRadius: 999,
               color: onAccent,
               display: 'flex',
-              fontSize: 30,
-              fontWeight: 700,
-              marginBottom: 36,
+              fontFamily: MONO,
+              fontSize: 26,
+              letterSpacing: '0.04em',
+              marginBottom: 40,
               padding: '10px 28px',
             }}
           >
@@ -87,9 +83,9 @@ export async function GET(request: NextRequest) {
           style={{
             display: 'flex',
             fontSize: titleSize(title),
-            fontWeight: 800,
-            letterSpacing: '-0.03em',
-            lineHeight: 1.08,
+            fontWeight: 700,
+            letterSpacing: '-0.045em',
+            lineHeight: 1.04,
           }}
         >
           {title}
@@ -99,9 +95,11 @@ export async function GET(request: NextRequest) {
             style={{
               display: 'flex',
               fontSize: 34,
+              letterSpacing: '-0.01em',
               lineHeight: 1.3,
               marginTop: 28,
-              opacity: 0.75,
+              maxWidth: 900,
+              opacity: 0.7,
             }}
           >
             {subtitle}
@@ -113,9 +111,10 @@ export async function GET(request: NextRequest) {
           style={{
             alignItems: 'center',
             display: 'flex',
-            fontSize: 32,
-            fontWeight: 700,
-            marginTop: centered ? 48 : 0,
+            fontFamily: MONO,
+            fontSize: 28,
+            letterSpacing: '0.02em',
+            marginTop: centered ? 52 : 0,
           }}
         >
           <div
@@ -123,21 +122,14 @@ export async function GET(request: NextRequest) {
               backgroundColor: accent,
               borderRadius: 999,
               display: 'flex',
-              height: 28,
+              height: 22,
               marginRight: 16,
-              width: 28,
+              width: 22,
             }}
           />
           {site}
         </div>
       ) : null}
     </div>,
-    {
-      headers: {
-        'Cache-Control': 'public, max-age=3600, immutable',
-      },
-      height: 630,
-      width: 1200,
-    },
   )
 }

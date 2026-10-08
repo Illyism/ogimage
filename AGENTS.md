@@ -25,6 +25,7 @@ This is a single Next.js App Router app (not a monorepo). English only.
 | --- | --- |
 | `app/` | App Router pages, layouts, route handlers, and server actions |
 | `app/og/templates/` | `next/og` `ImageResponse` templates (headline, screenshot, blog-post, …) |
+| `app/og/components/render.ts` | Shared card renderer: loads fonts from `assets/fonts/`, reads query params |
 | `app/inspiration/` | Gallery, category/post pages, and suggest-a-site form |
 | `app/generator/` | Browser OG image generator (`app/og/generator` renders the card) |
 | `app/checker/` | Open Graph checker (server action fetches the visitor's URL) |

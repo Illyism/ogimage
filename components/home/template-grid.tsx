@@ -5,10 +5,10 @@ import { SectionHeading } from './section-heading'
 const templates = [
   { file: 'headline', title: 'Headline' },
   { file: 'blog-post', title: 'Blog post' },
+  { file: 'screenshot', title: 'Live screenshot' },
+  { file: 'phone', title: 'Phone' },
   { file: 'button', title: 'Button' },
-  { file: 'emoji', title: 'Emoji' },
-  { file: 'icon', title: 'Icon' },
-  { file: 'image', title: 'Image' },
+  { file: 'image', title: 'Profile' },
 ]
 
 export function TemplateGrid() {

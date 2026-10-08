@@ -153,12 +153,21 @@ export function generatePageMeta({
 
   const img = getImage(image, image_alt || title, image_width, image_height)
   const baseUrl = metadata.metadataBase?.toString() || 'https://ogimage.org'
-  const path = url || '/'
+  // The site makes its own previews with the generator route. No external
+  // service, and each page gets a card with its title.
+  const card = new URLSearchParams({
+    accent: '#e879f9',
+    bg: '#0b090c',
+    layout: 'left',
+    site: 'ogimage.org',
+    subtitle: description.slice(0, 140),
+    title,
+  })
   const screenshot = {
     alt: title,
     height: 630,
     type: 'image/png',
-    url: `${baseUrl.replace(/\/$/, '')}/og/templates/screenshot?path=${path}`,
+    url: `${baseUrl.replace(/\/$/, '')}/og/generator?${card}`,
     width: 1200,
   }
   metadata.openGraph!.images = img ? [img] : [screenshot]

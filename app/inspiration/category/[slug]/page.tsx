@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Suspense } from 'react'
-import { GetAccess } from '@/components/home/get-access'
+import { StarCta } from '@/components/home/star-cta'
 import { PageHeader } from '@/components/nav/PageHeader'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { Skeleton } from '@/components/ui/skeleton'
@@ -42,7 +42,7 @@ export default function Page(props: {
       <Suspense fallback={<CategoryFallback />}>
         <CategorySection {...props} />
       </Suspense>
-      <GetAccess compact />
+      <StarCta compact />
     </PageLayout>
   )
 }

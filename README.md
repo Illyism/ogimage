@@ -8,7 +8,9 @@ Make an **OG image** (Open Graph image) for every page of your site. This repo i
   </a>
 </p>
 
-No hosted API. No database. MIT license. Clone it, self-host it, and ship your own images.
+No hosted API. No database. No sign-up. MIT license. Clone it, self-host it, and ship your own images.
+
+If it helps you, **star the repo**. Made by [Ilias Ism](https://il.ly) ([@illyism](https://x.com/illyism)).
 
 | Tool | What it does | Live |
 | --- | --- | --- |
@@ -81,21 +83,32 @@ This repo uses [`core/seo.tsx`](./core/seo.tsx) as the metadata helper.
 
 ### Included OG image templates
 
-All templates are in [`app/og/templates/`](./app/og/templates/).
+All templates are in [`app/og/templates/`](./app/og/templates/). Each one reads its text from the query string, so one route serves every page.
 
-| Template | Card |
-| --- | --- |
-| `headline` | Bold headline block with a call to action |
-| `blog-post` | Title, excerpt, and author (`?title=`, `?excerpt=`, `?author=`) |
-| `screenshot` | Live page capture in a frame (needs the screenshot API env) |
-| `phone` | Mobile screenshot mock |
-| `button` | Emoji, headline, and a button |
-| `emoji` | One emoji on a dark card |
-| `icon` | Lucide-style icon |
-| `image` | Avatar and name |
-| `city` | Geo-located city photo (needs `UNSPLASH_KEY`) |
+| Template | Card | Query |
+| --- | --- | --- |
+| `headline` | Two-line headline with a marker on the second line | `title`, `highlight`, `subtitle`, `cta`, `site` |
+| `blog-post` | Title, excerpt, and author | `title`, `excerpt`, `author`, `tag`, `site` |
+| `screenshot` | Live capture of a page in a browser window | `path` |
+| `phone` | Live capture of the mobile page in a phone, beside a headline | `title`, `subtitle`, `cta`, `site` |
+| `button` | Emoji, headline, and one large button | `emoji`, `title`, `cta` |
+| `image` | Profile card: picture, name, role, handle | `name`, `role`, `handle` |
+| `icon` | Icon tile beside a title | `title`, `subtitle` |
+| `emoji` | One large emoji | `emoji`, `label` |
+| `city` | Photo of the city of the visitor (needs `UNSPLASH_KEY`) | `brand`, `prefix` |
 
-The generator at `/generator` uses one more route, [`app/og/generator/route.tsx`](./app/og/generator/route.tsx), with `?title=`, `?subtitle=`, `?site=`, `?layout=`, `?bg=`, and `?accent=`.
+```html
+<meta
+  property="og:image"
+  content="https://your-domain.com/og/templates/blog-post?title=Launch%20week&author=Jane"
+/>
+```
+
+The generator at `/generator` uses one more route, [`app/og/generator/route.tsx`](./app/og/generator/route.tsx), with `title`, `subtitle`, `site`, `layout`, `bg`, and `accent`. This site uses that route for its own link previews. See [`core/seo.tsx`](./core/seo.tsx).
+
+**Fonts.** The cards use Geist, Geist Mono, and Instrument Serif from [`assets/fonts/`](./assets/fonts/). [`app/og/components/render.ts`](./app/og/components/render.ts) loads them once. Satori reads TTF, OTF, and WOFF, not WOFF2.
+
+**Screenshots.** The `screenshot` and `phone` templates capture a live page through [ScreenshotOne](https://screenshotone.com/?via=illy) (affiliate link). Set `SCREENSHOT_API_URL` and `SCREENSHOT_API_KEY`. Without them, both templates show a sample capture.
 
 ## OG image gallery
 
@@ -156,17 +169,16 @@ Copy [`.env.example`](./.env.example) to `.env`. All variables are optional for 
 
 | Variable | Purpose |
 | --- | --- |
-| `RESEND_API_KEY` | Resend API key for email signup and gallery suggestions |
-| `RESEND_AUDIENCE_ID` | Audience for kit signups |
+| `RESEND_API_KEY` | Resend API key for gallery suggestions |
 | `CONTACT_EMAIL` | Reply-to and inbox for gallery suggestions (default: `contact@ogimage.org`) |
 | `NEXT_PUBLIC_POSTHOG_KEY` | PostHog project key |
 | `NEXT_PUBLIC_POSTHOG_HOST` | PostHog ingest host |
-| `SCREENSHOT_API_URL` | Base URL for screenshot capture (`screenshot`, `phone` templates) |
+| `SCREENSHOT_API_URL` | Base URL of the screenshot API (`screenshot`, `phone` templates). Works with [ScreenshotOne](https://screenshotone.com/?via=illy) |
 | `SCREENSHOT_API_KEY` | API key for that service |
 | `UNSPLASH_KEY` | Unsplash access key for the `city` template |
 | `ANTHROPIC_API_KEY` | Design review in `bun run gallery:find` |
 
-Without the screenshot variables, the screenshot templates show a placeholder image.
+Without the screenshot variables, the screenshot templates show a sample capture.
 
 Plausible page views are sent only when the site runs on `ogimage.org`. A fork sends nothing. To use your own Plausible site, change the host and the domain in [`app/layout.tsx`](./app/layout.tsx).
 

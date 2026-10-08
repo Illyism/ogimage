@@ -1,9 +1,9 @@
 import { Bento } from '@/components/home/bento'
 import { Faq } from '@/components/home/faq'
 import { GalleryPreview } from '@/components/home/gallery-preview'
-import { GetAccess } from '@/components/home/get-access'
 import { Hero } from '@/components/home/hero'
 import { Learn } from '@/components/home/learn'
+import { StarCta } from '@/components/home/star-cta'
 import { TemplateGrid } from '@/components/home/template-grid'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
@@ -50,7 +50,7 @@ export default function Page() {
       <TemplateGrid />
       <TestimonialMarquee />
       <Learn />
-      <GetAccess />
+      <StarCta />
       <Faq />
     </PageLayout>
   )

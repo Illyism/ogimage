@@ -1,68 +1,104 @@
 /* eslint-disable @next/next/no-img-element */
-import { ImageResponse } from 'next/og'
 import type { NextRequest } from 'next/server'
+import { MONO, publicImage, renderCard } from '../../components/render'
 import { getScreenshotURL } from '../../components/screenshot'
 
+const BASE = 'https://ogimage.org'
+const WINDOW_WIDTH = 1064
+const BAR_HEIGHT = 60
+const SHOT_HEIGHT = 506
+
+const sample = publicImage('_static/examples/site-desktop.jpg')
+
 /**
- * @name Screenshot Template
- * @description Take a screenshot of a page on your website
+ * @name Screenshot template
+ * @description A live capture of a page in a browser window. Each page gets
+ * its own card with no design work.
+ * Query: ?path=/pricing
  *
- * @example
- * You can use this with the `generatePageMeta` function to generate autimatic screenshots for your website like this:
- *
- * ```tsx
- * import { generatePageMeta } from '@lib/seo'
- * export const metadata = generatePageMeta({
- *   title: 'My Page Title',
- *   description: 'My page description',
- *   // image: '/og/templates/emoji', -> Will use the emoji template instead of the default
- *   url: '/'
- * })
- * ```
- *
- * set the open graph metadata as follows:
- * [{ url: '/og/templates/screenshot?path=/${url}' }]
- *
+ * Point `og:image` at `/og/templates/screenshot?path=${url}` in your
+ * metadata helper. The capture needs a screenshot API key. See
+ * `app/og/components/screenshot.ts`.
  */
-export function GET(request: NextRequest) {
-  const { searchParams } = request.nextUrl
-  const path = searchParams.get('path') || '/'
+export async function GET(request: NextRequest) {
+  const param = request.nextUrl.searchParams.get('path') ?? '/'
+  // Only paths of this site. A full URL in the query must not be captured.
+  const path = param.startsWith('/') && !param.startsWith('//') ? param : '/'
+  const screenshot =
+    getScreenshotURL({
+      height: SHOT_HEIGHT,
+      url: `${BASE}${path}`,
+      width: WINDOW_WIDTH,
+    }) ?? (await sample)
 
-  const base = 'https://ogimage.org'
-
-  const width = 1200
-  const height = 630
-  const padding = 20 // adjust this to have a border around the screenshot
-  const screenshot = getScreenshotURL({
-    height: 630 - padding,
-    url: `${base}${path}`,
-    width: 1200 - padding - padding,
-  })
-  return new ImageResponse(
+  return renderCard(
     <div
       style={{
-        background:
-          'linear-gradient(to top left,#ff75c3,#ffa647,#ffe83f,#9fff5b,#70e2ff,#cd93ff)',
-        paddingLeft: padding,
-        paddingRight: padding,
-        paddingTop: padding,
+        alignItems: 'flex-end',
+        backgroundImage:
+          'linear-gradient(135deg, #f0abfc 0%, #818cf8 50%, #22d3ee 100%)',
+        display: 'flex',
+        height: '100%',
+        justifyContent: 'center',
+        width: '100%',
       }}
-      tw="flex w-full h-full"
     >
-      <img
-        alt=""
-        height={610}
-        src={screenshot}
-        tw="w-full h-full rounded-t-2xl shadow-2xl"
-        width={1160}
-      />
+      <div
+        style={{
+          backgroundColor: '#0b090c',
+          borderRadius: '24px 24px 0 0',
+          boxShadow: '0 40px 100px -10px #1e1b4b',
+          display: 'flex',
+          flexDirection: 'column',
+          overflow: 'hidden',
+          width: WINDOW_WIDTH,
+        }}
+      >
+        <div
+          style={{
+            alignItems: 'center',
+            backgroundColor: '#18181b',
+            display: 'flex',
+            height: BAR_HEIGHT,
+            padding: '0 24px',
+          }}
+        >
+          {['#f87171', '#fbbf24', '#4ade80'].map((color) => (
+            <div
+              key={color}
+              style={{
+                backgroundColor: color,
+                borderRadius: 999,
+                display: 'flex',
+                height: 16,
+                marginRight: 10,
+                width: 16,
+              }}
+            />
+          ))}
+          <div
+            style={{
+              backgroundColor: '#27272a',
+              borderRadius: 999,
+              color: '#a1a1aa',
+              display: 'flex',
+              fontFamily: MONO,
+              fontSize: 20,
+              marginLeft: 20,
+              padding: '6px 24px',
+            }}
+          >
+            {`ogimage.org${path === '/' ? '' : path}`.slice(0, 60)}
+          </div>
+        </div>
+        <img
+          alt=""
+          height={SHOT_HEIGHT}
+          src={screenshot}
+          style={{ objectFit: 'cover', objectPosition: 'top' }}
+          width={WINDOW_WIDTH}
+        />
+      </div>
     </div>,
-    {
-      headers: {
-        'Cache-Control': 'public, max-age=3600, immutable',
-      },
-      height,
-      width,
-    },
   )
 }

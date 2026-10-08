@@ -1,8 +1,9 @@
-const PLACEHOLDER = 'https://ogimage.org/img/1024w/ogimage-black_1024.png'
-
 /**
  * Screenshot API for OG templates. Set SCREENSHOT_API_URL and
- * SCREENSHOT_API_KEY in env. Without both, templates use a placeholder image.
+ * SCREENSHOT_API_KEY in env. Without both, this returns null and the
+ * templates show a sample capture from public/_static/examples.
+ *
+ * The query matches ScreenshotOne: https://screenshotone.com/?via=illy
  */
 export function getScreenshotURL({
   url,
@@ -16,7 +17,7 @@ export function getScreenshotURL({
   const accessKey = process.env.SCREENSHOT_API_KEY
   const base = process.env.SCREENSHOT_API_URL
   if (!(accessKey && base)) {
-    return PLACEHOLDER
+    return null
   }
 
   const query = new URLSearchParams()

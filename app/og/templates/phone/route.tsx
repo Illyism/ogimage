@@ -1,51 +1,144 @@
 /* eslint-disable @next/next/no-img-element */
-import { ImageResponse } from 'next/og'
+import type { NextRequest } from 'next/server'
+import {
+  MONO,
+  publicImage,
+  renderCard,
+  SANS,
+  textParam,
+} from '../../components/render'
 import { getScreenshotURL } from '../../components/screenshot'
 
-/**
- * @name Phone Template
- * @description Mobile-style screenshot preview
- */
-export async function GET() {
-  const width = 1200
-  const height = 630
-  const screenshot = getScreenshotURL({
-    height,
-    url: 'https://en.wikipedia.org/wiki/Special:Random',
-    width: 600,
-  })
+const PHONE_WIDTH = 330
+const PHONE_HEIGHT = 680
 
-  return new ImageResponse(
-    <div tw="flex w-full h-full bg-blue-500 text-black relative p-4">
-      <div tw="flex w-full flex-col pl-10 items-start justify-end pb-10 bg-white relative rounded-[20px] text-center">
-        <div tw="text-[40px] ml-1 mb-4">Enjoy a random article from</div>
-        <div tw="text-[60px] leading-none font-black flex items-center mb-4">
-          W<div tw="-ml-1 text-[40px]">IKIPEDI</div>A
+const sample = publicImage('_static/examples/site-mobile.jpg')
+
+/**
+ * @name Phone template
+ * @description A live capture of your mobile site in a phone, beside a
+ * headline. Good for apps and mobile-first products.
+ * Query: ?title= &subtitle= &cta= &site=
+ */
+export async function GET(request: NextRequest) {
+  const params = request.nextUrl.searchParams
+  const title = textParam(params, 'title', 'Your site, in your pocket', 48)
+  const subtitle = textParam(
+    params,
+    'subtitle',
+    'A live capture of the mobile page, in a card.',
+    90,
+  )
+  const cta = textParam(params, 'cta', 'Open the app', 24)
+  const site = textParam(params, 'site', 'ogimage.org', 40)
+  const screenshot =
+    getScreenshotURL({
+      height: PHONE_HEIGHT * 2,
+      url: 'https://ogimage.org/',
+      width: 390,
+    }) ?? (await sample)
+
+  return renderCard(
+    <div
+      style={{
+        backgroundColor: '#eef2ff',
+        backgroundImage:
+          'radial-gradient(circle at 100% 100%, #a5b4fc, transparent 55%)',
+        color: '#1e1b4b',
+        display: 'flex',
+        fontFamily: SANS,
+        height: '100%',
+        justifyContent: 'space-between',
+        paddingLeft: 80,
+        paddingRight: 110,
+        width: '100%',
+      }}
+    >
+      <div
+        style={{
+          alignItems: 'flex-start',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          maxWidth: 600,
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            fontFamily: MONO,
+            fontSize: 24,
+            letterSpacing: '0.06em',
+            marginBottom: 28,
+            opacity: 0.7,
+            textTransform: 'uppercase',
+          }}
+        >
+          {site}
         </div>
-        <div tw="bg-black text-white rounded-full px-4 pt-4 text-[30px] shadow-2xl leading-none border-[10px] border-white/20 shadow-2xl">
-          Read More
+        <div
+          style={{
+            display: 'flex',
+            fontSize: 84,
+            fontWeight: 700,
+            letterSpacing: '-0.05em',
+            lineHeight: 1.02,
+          }}
+        >
+          {title}
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            fontSize: 32,
+            lineHeight: 1.35,
+            marginTop: 24,
+            opacity: 0.75,
+          }}
+        >
+          {subtitle}
+        </div>
+        <div
+          style={{
+            backgroundColor: '#4338ca',
+            borderRadius: 999,
+            color: '#ffffff',
+            display: 'flex',
+            fontSize: 30,
+            fontWeight: 700,
+            marginTop: 40,
+            padding: '18px 40px',
+          }}
+        >
+          {cta}
         </div>
       </div>
-      <img
-        alt=""
-        height={height}
-        src={screenshot}
+      <div
         style={{
-          boxShadow: '0 0 100px 4px rgba(0, 0, 0, 0.8)',
+          backgroundColor: '#0b090c',
+          border: '14px solid #0b090c',
+          borderRadius: 60,
+          boxShadow: '0 50px 100px -20px #312e81',
+          display: 'flex',
+          height: PHONE_HEIGHT,
+          marginTop: 56,
+          overflow: 'hidden',
+          transform: 'rotate(4deg)',
+          width: PHONE_WIDTH,
         }}
-        tw="absolute right-0 top-[10px] bottom-0 border-l-[20px] border-t-[20px] border-black rounded-tl-[40px]"
-        width={600}
-      />
-      <div tw="absolute h-[90px] w-[10px] top-[240px] right-[595px] rounded-full bg-black">
-        &nbsp;
+      >
+        <img
+          alt=""
+          height={PHONE_HEIGHT - 28}
+          src={screenshot}
+          style={{
+            borderRadius: 46,
+            objectFit: 'cover',
+            objectPosition: 'top',
+          }}
+          width={PHONE_WIDTH - 28}
+        />
       </div>
     </div>,
-    {
-      headers: {
-        // 'Cache-Control': 'public, max-age=3600, immutable',
-      },
-      height,
-      width,
-    },
   )
 }

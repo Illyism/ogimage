@@ -11,12 +11,11 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
+import { GITHUB_URL } from '@/lib/products'
 import { cn } from '@/lib/utils'
 import { GitHubIcon } from '../icons/SocialIcons'
 import { Logo } from '../ui/logo'
 import { headerLinks } from './nav'
-
-const GITHUB_URL = 'https://github.com/Illyism/ogimage'
 
 export function Header() {
   return (
@@ -36,7 +35,7 @@ export function Header() {
           <Button asChild className="hidden sm:inline-flex" variant="ghost">
             <a href={GITHUB_URL} rel="noreferrer" target="_blank">
               <GitHubIcon className="fill-current" />
-              GitHub
+              Star
             </a>
           </Button>
           <Button asChild>
