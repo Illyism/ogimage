@@ -6,6 +6,19 @@
 @plugin "@tailwindcss/typography";
 
 @theme inline {
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+
+  --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
+
+  /* The built-in ease-out is too weak to read as intentional. */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+
+  --animate-enter: enter 700ms var(--ease-out-strong) both;
+
+  --animate-marquee: marquee var(--marquee-duration, 90s) linear infinite;
+
   --radius-sm: calc(var(--radius) - 4px);
 
   --radius-md: calc(var(--radius) - 2px);
@@ -13,6 +26,10 @@
   --radius-lg: var(--radius);
 
   --radius-xl: calc(var(--radius) + 4px);
+
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --radius-3xl: calc(var(--radius) + 14px);
 
   --color-background: var(--background);
 
@@ -75,10 +92,24 @@
   --color-sidebar-border: var(--sidebar-border);
 
   --color-sidebar-ring: var(--sidebar-ring);
+
+  @keyframes enter {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+      filter: blur(4px);
+    }
+  }
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.75rem;
 
   --background: oklch(1 0 0);
 
@@ -144,31 +175,31 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: oklch(0.13 0.006 310);
 
   --foreground: oklch(0.985 0 0);
 
-  --card: oklch(0.205 0 0);
+  --card: oklch(0.175 0.008 310);
 
   --card-foreground: oklch(0.985 0 0);
 
-  --popover: oklch(0.205 0 0);
+  --popover: oklch(0.175 0.008 310);
 
   --popover-foreground: oklch(0.985 0 0);
 
-  --primary: oklch(0.75 0.22 320);
+  --primary: oklch(0.78 0.2 320);
 
   --primary-foreground: oklch(0.145 0 0);
 
-  --secondary: oklch(0.269 0 0);
+  --secondary: oklch(0.24 0.008 310);
 
   --secondary-foreground: oklch(0.985 0 0);
 
-  --muted: oklch(0.269 0 0);
+  --muted: oklch(0.22 0.008 310);
 
-  --muted-foreground: oklch(0.708 0 0);
+  --muted-foreground: oklch(0.7 0.01 310);
 
-  --accent: oklch(0.269 0 0);
+  --accent: oklch(0.24 0.008 310);
 
   --accent-foreground: oklch(0.985 0 0);
 
@@ -178,7 +209,7 @@
 
   --input: oklch(1 0 0 / 15%);
 
-  --ring: oklch(0.75 0.22 320);
+  --ring: oklch(0.78 0.2 320);
 
   --chart-1: oklch(0.488 0.243 264.376);
 
@@ -211,7 +242,12 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
     @apply bg-background text-foreground;
   }
   ::selection {
@@ -226,6 +262,133 @@
 
 @utility container {
   max-width: 80rem;
-  padding-inline: 2rem;
+  padding-inline: 1.25rem;
   margin-inline: auto;
+
+  @media (width >= 48rem) {
+    padding-inline: 2rem;
+  }
+}
+
+/* Depth comes from layered shadows. Borders stay for structure and state. */
+@utility surface {
+  background-color: var(--card);
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.06),
+    0 0 0 1px oklch(1 0 0 / 0.08),
+    0 16px 40px -20px oklch(0 0 0 / 0.8);
+}
+
+/* Pure white at low opacity. A tinted outline reads as dirt on the edge. */
+@utility image-outline {
+  outline: 1px solid oklch(1 0 0 / 0.1);
+  outline-offset: -1px;
+}
+
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: var(--muted-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+@utility display {
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+@utility accent-serif {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+}
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to right, oklch(1 0 0 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(1 0 0 / 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+@utility mask-fade-b {
+  mask-image: radial-gradient(ellipse 70% 70% at 50% 0%, black, transparent);
+}
+
+/* Guides come from the CMS as HTML strings, so the styles hang on a class. */
+.article {
+  & :where(h2) {
+    letter-spacing: -0.02em;
+    scroll-margin-top: 5rem;
+  }
+  & :where(p, li) {
+    text-wrap: pretty;
+  }
+  & :where(pre) {
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    background-color: var(--card);
+    border-radius: var(--radius-lg);
+    box-shadow:
+      inset 0 1px 0 0 oklch(1 0 0 / 0.06),
+      0 0 0 1px oklch(1 0 0 / 0.08);
+  }
+  & :where(:not(pre) > code) {
+    padding: 0.125rem 0.375rem;
+    font-size: 0.875em;
+    font-weight: 500;
+    background-color: var(--muted);
+    border-radius: 0.375rem;
+  }
+  & :where(:not(pre) > code)::before,
+  & :where(:not(pre) > code)::after {
+    content: none;
+  }
+  & :where(table) {
+    font-size: 0.875rem;
+  }
+  & :where(thead th) {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--muted-foreground);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  & :where(a) {
+    text-decoration-color: color-mix(in oklch, var(--primary) 60%, transparent);
+    text-underline-offset: 4px;
+    transition: text-decoration-color 150ms ease;
+  }
+  & :where(a):hover {
+    text-decoration-color: var(--primary);
+  }
+}
+
+/* Reduced motion keeps the fade and removes the movement. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-enter {
+    animation: none;
+  }
+  .animate-marquee {
+    animation: none;
+  }
 }

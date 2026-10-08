@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
 import { Logo } from '../ui/logo'
 import { Year } from '../ui/year'
 
@@ -21,8 +20,11 @@ const guideLinks = [
 ]
 
 const moreLinks = [
+  { href: '/about', label: 'About' },
   { href: '/privacy', label: 'Privacy' },
   { href: 'https://github.com/Illyism/ogimage', label: 'GitHub' },
+  { href: 'https://linkdr.com', label: 'LinkDR' },
+  { href: 'https://seoroast.co', label: 'SEO Roast' },
 ]
 
 const learnLinks = [
@@ -42,56 +44,42 @@ const learnLinks = [
 ]
 
 export const Footer = () => (
-  <footer className="border-t">
-    <div className="container flex flex-col gap-10 py-12">
-      <div className="flex flex-col gap-8 md:flex-row md:justify-between">
-        <Link className="flex items-start gap-3" href="/">
-          <Logo className="size-8 text-primary" />
-          <span className="flex flex-col gap-1">
-            <span className="font-semibold">ogimage.org</span>
-            <span className="text-muted-foreground text-sm">
-              Free Open Graph image kit
-            </span>
-          </span>
-        </Link>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+  <footer className="relative isolate mt-24 overflow-hidden border-t">
+    <div className="container flex flex-col gap-12 pt-16">
+      <div className="flex flex-col gap-10 lg:flex-row lg:justify-between">
+        <div className="flex max-w-xs flex-col items-start gap-4">
+          <Link
+            className="flex items-center gap-2 font-semibold tracking-tight"
+            href="/"
+          >
+            <Logo className="size-7 text-primary" />
+            ogimage.org
+          </Link>
+          <p className="text-pretty text-muted-foreground text-sm">
+            A free generator, open-source templates, a checker, and a gallery of
+            real OG images.
+          </p>
+          <Button asChild size="sm">
+            <Link href="/generator">Make an OG image</Link>
+          </Button>
+        </div>
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
           <FooterNav heading="Product" links={productLinks} />
           <FooterNav heading="Guides" links={guideLinks} />
           <FooterNav heading="More" links={moreLinks} />
-          <FooterNav external heading="Learn" links={learnLinks} />
+          <FooterNav heading="Learn" links={learnLinks} />
         </div>
       </div>
-      <Separator />
-      <div className="flex flex-col gap-4 text-muted-foreground text-sm sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap items-center gap-3">
-          <Button asChild size="sm">
-            <Link href="/#get-access">Get the kit</Link>
-          </Button>
-          <span>
-            Also{' '}
-            <a
-              className="underline underline-offset-4 hover:text-foreground"
-              href="https://linkdr.com"
-              rel="noreferrer"
-              target="_blank"
-            >
-              LinkDR
-            </a>{' '}
-            and{' '}
-            <a
-              className="underline underline-offset-4 hover:text-foreground"
-              href="https://seoroast.co"
-              rel="noreferrer"
-              target="_blank"
-            >
-              SEO Roast
-            </a>
-          </span>
-        </div>
-        <p>
-          &copy; <Year /> ogimage.org
-        </p>
-      </div>
+      <p className="text-muted-foreground text-sm">
+        &copy; <Year /> ogimage.org. MIT license.
+      </p>
+    </div>
+    {/* Decoration. Screen readers already have the name from the logo link. */}
+    <div
+      aria-hidden="true"
+      className="pointer-events-none -mb-[0.22em] select-none bg-linear-to-b from-foreground/15 to-transparent bg-clip-text text-center font-semibold text-[19vw] text-transparent leading-none tracking-tighter"
+    >
+      ogimage
     </div>
   </footer>
 )
@@ -99,19 +87,17 @@ export const Footer = () => (
 function FooterNav({
   heading,
   links,
-  external = false,
 }: {
   heading: string
   links: { href: string; label: string }[]
-  external?: boolean
 }) {
   return (
-    <nav className="flex flex-col gap-2 text-sm">
-      <p className="font-medium">{heading}</p>
+    <nav className="flex flex-col gap-2.5 text-sm">
+      <p className="eyebrow mb-1">{heading}</p>
       {links.map((link) =>
-        external || link.href.startsWith('http') ? (
+        link.href.startsWith('http') ? (
           <a
-            className="text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground transition-colors hover:text-foreground"
             href={link.href}
             key={link.href}
             rel="noreferrer"
@@ -121,7 +107,7 @@ function FooterNav({
           </a>
         ) : (
           <Link
-            className="text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground transition-colors hover:text-foreground"
             href={link.href}
             key={link.href}
           >

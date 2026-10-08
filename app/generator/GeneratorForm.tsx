@@ -1,6 +1,7 @@
 'use client'
 
 import { CheckIcon, CopyIcon, DownloadIcon } from 'lucide-react'
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
@@ -33,13 +34,39 @@ const initial = {
   title: 'Your page title goes here',
 }
 
-function imageUrl(card: typeof initial) {
+type Card = typeof initial
+
+const HEX = /^#[0-9a-f]{6}$/i
+
+// The home page and the gallery link here with a card in the query string.
+function fromSearch(search: URLSearchParams): Card {
+  const text = (key: keyof Card, max: number) =>
+    search.get(key)?.slice(0, max) ?? initial[key]
+  const color = (key: 'accent' | 'bg') => {
+    const value = search.get(key)
+    return value && HEX.test(value) ? value.toLowerCase() : initial[key]
+  }
+  const layout = search.get('layout')
+  return {
+    accent: color('accent'),
+    bg: color('bg'),
+    layout: LAYOUTS.some((item) => item.value === layout)
+      ? (layout as string)
+      : initial.layout,
+    site: text('site', 40),
+    subtitle: text('subtitle', 160),
+    title: text('title', 110),
+  }
+}
+
+function imageUrl(card: Card) {
   return `/og/generator?${new URLSearchParams(card)}`
 }
 
 export function GeneratorForm() {
-  const [card, setCard] = useState(initial)
-  const [src, setSrc] = useState(() => imageUrl(initial))
+  const search = useSearchParams()
+  const [card, setCard] = useState(() => fromSearch(search))
+  const [src, setSrc] = useState(() => imageUrl(card))
   const [copied, setCopied] = useState(false)
 
   // Each new src renders an image on the server. Wait until typing stops.
@@ -48,7 +75,7 @@ export function GeneratorForm() {
     return () => clearTimeout(timer)
   }, [card])
 
-  const set = (field: keyof typeof initial) => (value: string) =>
+  const set = (field: keyof Card) => (value: string) =>
     setCard((current) => ({ ...current, [field]: value }))
 
   const snippet = `<meta property="og:image" content="https://your-domain.com/og-image.png" />
@@ -64,8 +91,8 @@ export function GeneratorForm() {
   }
 
   return (
-    <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,22rem)_1fr]">
-      <FieldGroup>
+    <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,24rem)_1fr]">
+      <FieldGroup className="surface rounded-3xl p-6">
         <Field>
           <FieldLabel htmlFor="og-title">Title</FieldLabel>
           <Textarea
@@ -98,7 +125,7 @@ export function GeneratorForm() {
         <Field>
           <FieldLabel>Layout</FieldLabel>
           <ToggleGroup
-            className="justify-start"
+            className="w-full"
             onValueChange={(value) => {
               if (value) {
                 set('layout')(value)
@@ -109,7 +136,11 @@ export function GeneratorForm() {
             variant="outline"
           >
             {LAYOUTS.map((layout) => (
-              <ToggleGroupItem key={layout.value} value={layout.value}>
+              <ToggleGroupItem
+                className="flex-1"
+                key={layout.value}
+                value={layout.value}
+              >
                 {layout.label}
               </ToggleGroupItem>
             ))}
@@ -117,64 +148,69 @@ export function GeneratorForm() {
         </Field>
         <Field>
           <FieldLabel>Colors</FieldLabel>
-          <div className="flex flex-wrap items-center gap-2">
-            {PRESETS.map((preset) => (
-              <button
-                aria-label={`${preset.name} colors`}
-                className={cn(
-                  'size-8 rounded-full border-4',
-                  card.bg === preset.bg &&
-                    card.accent === preset.accent &&
-                    'ring-2 ring-ring ring-offset-2 ring-offset-background',
-                )}
-                key={preset.name}
-                onClick={() =>
-                  setCard((current) => ({
-                    ...current,
-                    accent: preset.accent,
-                    bg: preset.bg,
-                  }))
-                }
-                style={{
-                  backgroundColor: preset.bg,
-                  borderColor: preset.accent,
-                }}
-                title={preset.name}
-                type="button"
-              />
-            ))}
+          <div className="flex flex-wrap items-center gap-2.5">
+            {PRESETS.map((preset) => {
+              const isActive =
+                card.bg === preset.bg && card.accent === preset.accent
+              return (
+                <button
+                  aria-label={`${preset.name} colors`}
+                  aria-pressed={isActive}
+                  className={cn(
+                    'size-9 rounded-full border-4 transition-[scale,box-shadow] duration-150 ease-out active:scale-[0.96]',
+                    isActive &&
+                      'ring-2 ring-ring ring-offset-2 ring-offset-card',
+                  )}
+                  key={preset.name}
+                  onClick={() =>
+                    setCard((current) => ({
+                      ...current,
+                      accent: preset.accent,
+                      bg: preset.bg,
+                    }))
+                  }
+                  style={{
+                    backgroundColor: preset.bg,
+                    borderColor: preset.accent,
+                  }}
+                  title={preset.name}
+                  type="button"
+                />
+              )
+            })}
           </div>
-          <div className="flex gap-4 text-sm">
-            <label className="flex items-center gap-2">
-              <input
-                className="size-8 cursor-pointer rounded border bg-transparent"
-                onChange={(event) => set('bg')(event.target.value)}
-                type="color"
-                value={card.bg}
-              />
-              Background
-            </label>
-            <label className="flex items-center gap-2">
-              <input
-                className="size-8 cursor-pointer rounded border bg-transparent"
-                onChange={(event) => set('accent')(event.target.value)}
-                type="color"
-                value={card.accent}
-              />
-              Accent
-            </label>
+          <div className="grid grid-cols-2 gap-3 text-sm">
+            <ColorInput
+              label="Background"
+              onChange={set('bg')}
+              value={card.bg}
+            />
+            <ColorInput
+              label="Accent"
+              onChange={set('accent')}
+              value={card.accent}
+            />
           </div>
         </Field>
       </FieldGroup>
 
-      <div className="flex flex-col gap-6">
-        <img
-          alt={`Preview of the card: ${card.title}`}
-          className="aspect-1200/630 w-full rounded-xl border bg-muted"
-          height={630}
-          src={src}
-          width={1200}
-        />
+      <div className="flex flex-col gap-6 lg:sticky lg:top-24">
+        <div className="relative isolate">
+          {/* The glow takes the colors of the card. */}
+          <div
+            className="absolute inset-6 -z-10 opacity-40 blur-3xl transition-[background] duration-500"
+            style={{
+              background: `linear-gradient(135deg, ${card.accent}, ${card.bg})`,
+            }}
+          />
+          <img
+            alt={`Preview of the card: ${card.title}`}
+            className="image-outline aspect-1200/630 w-full rounded-3xl bg-card shadow-[0_40px_100px_-30px_oklch(0_0_0/0.9)]"
+            height={630}
+            src={src}
+            width={1200}
+          />
+        </div>
         <div className="flex flex-wrap items-center gap-3">
           <Button asChild size="lg">
             <a
@@ -186,29 +222,61 @@ export function GeneratorForm() {
               Download PNG
             </a>
           </Button>
-          <span className="text-muted-foreground text-sm">
-            1200×630 px. Free, no watermark.
+          <span className="font-mono text-muted-foreground text-xs">
+            1200×630 · PNG · no watermark
           </span>
         </div>
-        <div className="flex flex-col gap-2">
+        <div className="surface flex flex-col gap-3 rounded-2xl p-4">
           <div className="flex items-center justify-between gap-2">
-            <h2 className="font-medium text-sm">
-              Meta tags for your page head
-            </h2>
+            <h2 className="eyebrow">Meta tags for your page head</h2>
             <Button onClick={copy} size="sm" variant="outline">
-              {copied ? (
-                <CheckIcon data-icon="inline-start" />
-              ) : (
-                <CopyIcon data-icon="inline-start" />
-              )}
+              <span className="relative size-4">
+                <CopyIcon
+                  className={cn(
+                    'absolute inset-0 transition-[opacity,scale,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]',
+                    copied && 'scale-25 opacity-0 blur-xs',
+                  )}
+                />
+                <CheckIcon
+                  className={cn(
+                    'absolute inset-0 transition-[opacity,scale,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]',
+                    !copied && 'scale-25 opacity-0 blur-xs',
+                  )}
+                />
+              </span>
               {copied ? 'Copied' : 'Copy'}
             </Button>
           </div>
-          <pre className="overflow-x-auto rounded-lg border bg-muted p-4 text-xs">
+          <pre className="overflow-x-auto font-mono text-muted-foreground text-xs leading-relaxed">
             <code>{snippet}</code>
           </pre>
         </div>
       </div>
     </div>
+  )
+}
+
+function ColorInput({
+  label,
+  onChange,
+  value,
+}: {
+  label: string
+  onChange: (value: string) => void
+  value: string
+}) {
+  return (
+    <label className="flex cursor-pointer items-center gap-2.5 rounded-lg border border-input bg-input/30 p-1.5 pr-3">
+      <input
+        className="size-7 cursor-pointer rounded-md border-0 bg-transparent p-0"
+        onChange={(event) => onChange(event.target.value)}
+        type="color"
+        value={value}
+      />
+      <span className="flex min-w-0 flex-col leading-tight">
+        <span className="text-muted-foreground text-xs">{label}</span>
+        <span className="font-mono text-xs uppercase">{value}</span>
+      </span>
+    </label>
   )
 }

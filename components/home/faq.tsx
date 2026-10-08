@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import { SectionHeading } from './section-heading'
 
 const items = [
   {
@@ -50,20 +51,23 @@ const items = [
 ]
 
 export const Faq = () => (
-  <section className="container flex flex-col gap-8 py-16">
-    <div className="flex flex-col gap-2">
-      <h2 className="text-balance font-semibold text-3xl tracking-tight">
-        Questions
-      </h2>
-      <p className="max-w-2xl text-muted-foreground">
-        The kit is public. The gallery is a swipe file. You host the images.
-      </p>
-    </div>
-    <Accordion className="max-w-2xl" collapsible type="single">
+  <section className="container grid grid-cols-1 gap-12 py-20 lg:grid-cols-[1fr_1.3fr]">
+    <SectionHeading
+      description="The kit is public. The gallery is a swipe file. You host the images."
+      eyebrow="FAQ"
+      title={
+        <>
+          Questions, <span className="accent-serif">answered</span>
+        </>
+      }
+    />
+    <Accordion collapsible type="single">
       {items.map((item) => (
         <AccordionItem key={item.value} value={item.value}>
           <AccordionTrigger>{item.question}</AccordionTrigger>
-          <AccordionContent>{item.answer}</AccordionContent>
+          <AccordionContent className="text-base text-muted-foreground">
+            {item.answer}
+          </AccordionContent>
         </AccordionItem>
       ))}
     </Accordion>

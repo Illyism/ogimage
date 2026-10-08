@@ -1,4 +1,4 @@
-import { ExternalLinkIcon } from 'lucide-react'
+import { ExternalLinkIcon, PaletteIcon } from 'lucide-react'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { GetAccess } from '@/components/home/get-access'
@@ -68,126 +68,197 @@ export default async function Page(props: {
   return <InspirationPage inspiration={inspiration} related={related} />
 }
 
+function generatorHref(inspiration: Inspiration) {
+  const [bg, accent] = inspiration.color
+  const params = new URLSearchParams({
+    site: inspiration.domain,
+    title: inspiration.name,
+  })
+  if (bg) {
+    params.set('bg', bg)
+  }
+  if (accent) {
+    params.set('accent', accent)
+  }
+  return `/generator?${params}`
+}
+
 const InspirationPage = ({
   inspiration,
   related,
 }: {
   inspiration: Inspiration
   related: Inspiration[]
-}) => (
-  <PageLayout>
-    <ArticleStructuredData
-      authorId={'https://il.ly'}
-      authorName={'Ilias Ism'}
-      dateModified={inspiration.date_updated}
-      datePublished={inspiration.date_created}
-      id={`https://ogimage.org/inspiration/post/${inspiration.slug}`}
-      imageUrl={inspiration.image}
-      title={inspiration.name}
-    />
-    <div className="container mx-auto flex max-w-3xl flex-col gap-6 py-12">
-      <nav
-        className="flex flex-wrap items-center gap-2 text-sm"
-        itemScope
-        itemType="http://schema.org/BreadcrumbList"
-      >
-        <Link
-          className="text-muted-foreground underline underline-offset-4"
-          href="/inspiration"
-          itemProp="itemListElement"
-          itemScope
-          itemType="http://schema.org/ListItem"
-        >
-          <span itemProp="name">Gallery</span>
-          <meta content="1" itemProp="position" />
-        </Link>
-        <span className="text-muted-foreground">/</span>
-        <Link
-          className="text-muted-foreground underline underline-offset-4"
-          href={`/inspiration/category/${inspiration.category[0]}`}
-          itemProp="itemListElement"
-          itemScope
-          itemType="http://schema.org/ListItem"
-        >
-          <span itemProp="name">
-            {formatCategoryLabel(inspiration.category[0] ?? '')}
-          </span>
-          <meta content="2" itemProp="position" />
-        </Link>
-        <span className="text-muted-foreground">/</span>
-        <span
-          itemProp="itemListElement"
-          itemScope
-          itemType="http://schema.org/ListItem"
-        >
-          <span itemProp="name">{inspiration.name}</span>
-          <meta content="3" itemProp="position" />
-        </span>
-      </nav>
-      <div className="flex flex-col gap-2">
-        <h1 className="text-balance font-semibold text-3xl tracking-tight md:text-4xl">
-          {inspiration.name} OG image
-        </h1>
-        <p className="text-muted-foreground">{inspiration.description}</p>
-      </div>
+}) => {
+  const category = inspiration.category[0] ?? ''
 
-      <ImageCard
-        alt={`OG Image for ${inspiration.domain}`}
-        color={inspiration.color[0]}
-        src={inspiration.image}
+  return (
+    <PageLayout>
+      <ArticleStructuredData
+        authorId={'https://il.ly'}
+        authorName={'Ilias Ism'}
+        dateModified={inspiration.date_updated}
+        datePublished={inspiration.date_created}
+        id={`https://ogimage.org/inspiration/post/${inspiration.slug}`}
+        imageUrl={inspiration.image}
+        title={inspiration.name}
       />
-
-      <div className="flex flex-wrap items-center gap-3">
-        <Button asChild variant="outline">
-          <a href={inspiration.URL} rel="noopener" target="_blank">
-            {inspiration.domain}
-            <ExternalLinkIcon data-icon="inline-end" />
-          </a>
-        </Button>
-        {inspiration.color.map((c) => (
-          <span
-            className="size-5 rounded-full border"
-            key={c}
-            style={{ backgroundColor: c }}
-            title={c}
-          />
-        ))}
-        {inspiration.category.map((c) => (
-          <Badge asChild key={c} variant="outline">
-            <Link href={`/inspiration/category/${c}`}>
-              {formatCategoryLabel(c)}
-            </Link>
-          </Badge>
-        ))}
-      </div>
-
-      <p className="text-muted-foreground text-sm">
-        Make a card like this with the{' '}
-        <Link className="underline underline-offset-4" href="/templates">
-          free templates
-        </Link>
-        .
-      </p>
-
-      {inspiration.content ? (
+      <div className="relative isolate overflow-hidden">
+        {/* The stage takes the dominant color of the card. */}
         <div
-          className="prose prose-zinc dark:prose-invert max-w-none prose-headings:scroll-mt-20 py-8 prose-headings:font-semibold"
-          dangerouslySetInnerHTML={{ __html: inspiration.content }}
-          data-mdx-container
+          className="absolute inset-x-0 top-0 -z-10 h-[40rem] opacity-25 blur-3xl"
+          style={{
+            background: `radial-gradient(50% 60% at 50% 35%, ${inspiration.color[0] ?? 'var(--primary)'}, transparent)`,
+          }}
         />
-      ) : null}
-    </div>
-    {related.length > 0 ? (
-      <div className="container flex flex-col gap-6 pb-16">
-        <h2 className="text-balance font-semibold text-2xl tracking-tight">
-          More {formatCategoryLabel(inspiration.category[0] ?? '')} OG images
-        </h2>
-        <GalleryGrid eagerCount={0} items={related} />
+        <div className="container flex max-w-5xl flex-col gap-10 pt-12 pb-16 md:pt-16">
+          <nav
+            className="eyebrow flex animate-enter flex-wrap items-center gap-2"
+            itemScope
+            itemType="http://schema.org/BreadcrumbList"
+          >
+            <Link
+              className="transition-colors hover:text-foreground"
+              href="/inspiration"
+              itemProp="itemListElement"
+              itemScope
+              itemType="http://schema.org/ListItem"
+            >
+              <span itemProp="name">Gallery</span>
+              <meta content="1" itemProp="position" />
+            </Link>
+            <span>/</span>
+            <Link
+              className="transition-colors hover:text-foreground"
+              href={`/inspiration/category/${category}`}
+              itemProp="itemListElement"
+              itemScope
+              itemType="http://schema.org/ListItem"
+            >
+              <span itemProp="name">{formatCategoryLabel(category)}</span>
+              <meta content="2" itemProp="position" />
+            </Link>
+            <span>/</span>
+            <span
+              className="text-foreground"
+              itemProp="itemListElement"
+              itemScope
+              itemType="http://schema.org/ListItem"
+            >
+              <span itemProp="name">{inspiration.name}</span>
+              <meta content="3" itemProp="position" />
+            </span>
+          </nav>
+
+          <div
+            className="flex animate-enter flex-col gap-4"
+            style={{ animationDelay: '80ms' }}
+          >
+            <h1 className="display text-4xl md:text-6xl">
+              {inspiration.name} <span className="accent-serif">OG image</span>
+            </h1>
+            <p className="max-w-2xl text-pretty text-lg text-muted-foreground">
+              {inspiration.description}
+            </p>
+          </div>
+
+          <div className="animate-enter" style={{ animationDelay: '160ms' }}>
+            <ImageCard
+              alt={`OG Image for ${inspiration.domain}`}
+              src={inspiration.image}
+            />
+          </div>
+
+          <dl className="grid grid-cols-1 gap-8 border-y py-8 sm:grid-cols-3">
+            <div className="flex flex-col items-start gap-3">
+              <dt className="eyebrow">Site</dt>
+              <dd>
+                <a
+                  className="group flex items-center gap-1.5 font-medium transition-colors hover:text-primary"
+                  href={inspiration.URL}
+                  rel="noopener"
+                  target="_blank"
+                >
+                  {inspiration.domain}
+                  <ExternalLinkIcon className="size-4 text-muted-foreground transition-colors group-hover:text-primary" />
+                </a>
+              </dd>
+            </div>
+            <div className="flex flex-col items-start gap-3">
+              <dt className="eyebrow">Colors</dt>
+              <dd className="flex flex-wrap gap-2">
+                {inspiration.color.map((c) => (
+                  <span
+                    className="flex items-center gap-2 rounded-full bg-secondary py-1 pr-3 pl-1 font-mono text-xs"
+                    key={c}
+                  >
+                    <span
+                      className="size-5 rounded-full ring-1 ring-white/15"
+                      style={{ backgroundColor: c }}
+                    />
+                    {c}
+                  </span>
+                ))}
+              </dd>
+            </div>
+            <div className="flex flex-col items-start gap-3">
+              <dt className="eyebrow">Categories</dt>
+              <dd className="flex flex-wrap gap-2">
+                {inspiration.category.map((c) => (
+                  <Badge
+                    asChild
+                    className="px-3 py-1 text-sm"
+                    key={c}
+                    variant="outline"
+                  >
+                    <Link href={`/inspiration/category/${c}`}>
+                      {formatCategoryLabel(c)}
+                    </Link>
+                  </Badge>
+                ))}
+              </dd>
+            </div>
+          </dl>
+
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-pretty text-muted-foreground">
+              Like this card? Start from its colors and make your own.
+            </p>
+            <div className="flex flex-wrap gap-2">
+              <Button asChild>
+                <Link href={generatorHref(inspiration)}>
+                  <PaletteIcon />
+                  Use these colors
+                </Link>
+              </Button>
+              <Button asChild variant="outline">
+                <Link href="/templates">See the templates</Link>
+              </Button>
+            </div>
+          </div>
+
+          {inspiration.content ? (
+            <div
+              className="article prose prose-zinc dark:prose-invert max-w-none"
+              dangerouslySetInnerHTML={{ __html: inspiration.content }}
+              data-mdx-container
+            />
+          ) : null}
+        </div>
       </div>
-    ) : null}
-    <GetAccess compact />
-  </PageLayout>
-)
+      {related.length > 0 ? (
+        <div className="container flex flex-col gap-8 pb-8">
+          <h2 className="display text-2xl md:text-4xl">
+            More {formatCategoryLabel(category)}{' '}
+            <span className="accent-serif">OG images</span>
+          </h2>
+          <GalleryGrid eagerCount={0} items={related} />
+        </div>
+      ) : null}
+      <GetAccess compact />
+    </PageLayout>
+  )
+}
 
 const NotFoundInspiration = ({ slug }: { slug: string }) => (
   <PageLayout>

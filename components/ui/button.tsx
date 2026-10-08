@@ -4,7 +4,7 @@ import { Slot } from 'radix-ui'
 import type * as React from 'react'
 
 const buttonVariants = cva(
-  "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium text-sm outline-none transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium text-sm outline-none transition-[color,background-color,border-color,box-shadow,scale] duration-150 ease-out focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:scale-[0.96] disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     defaultVariants: {
       size: 'default',
@@ -17,12 +17,13 @@ const buttonVariants = cva(
         'icon-lg': 'size-10',
         'icon-sm': 'size-8',
         'icon-xs': "size-6 rounded-md [&_svg:not([class*='size-'])]:size-3",
-        lg: 'h-10 rounded-md px-6 has-[>svg]:px-4',
+        lg: 'h-11 rounded-lg px-6 text-[0.9375rem] has-[>svg]:px-4',
         sm: 'h-8 gap-1.5 rounded-md px-3 has-[>svg]:px-2.5',
         xs: "h-6 gap-1 rounded-md px-2 text-xs has-[>svg]:px-1.5 [&_svg:not([class*='size-'])]:size-3",
       },
       variant: {
-        default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+        default:
+          'bg-primary text-primary-foreground shadow-[inset_0_1px_0_0_oklch(1_0_0/0.25),0_8px_24px_-8px_color-mix(in_oklch,var(--primary)_60%,transparent)] hover:bg-primary/90',
         destructive:
           'bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40',
         ghost:

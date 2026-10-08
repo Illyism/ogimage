@@ -3,6 +3,8 @@ import { Badge } from '@/components/ui/badge'
 import { formatCategoryLabel } from '@/lib/gallery'
 import { galleryHref } from './paginate'
 
+const chip = 'gap-1.5 px-3 py-1.5 text-sm transition-colors'
+
 export function CategoryChips({
   active,
   allCount,
@@ -15,10 +17,14 @@ export function CategoryChips({
   return (
     <div className="flex flex-wrap gap-2">
       {allCount === undefined ? null : (
-        <Badge asChild variant={active ? 'outline' : 'default'}>
+        <Badge
+          asChild
+          className={chip}
+          variant={active ? 'outline' : 'default'}
+        >
           <Link href="/inspiration" scroll={false}>
             All
-            <span className="tabular-nums opacity-70">{allCount}</span>
+            <span className="tabular-nums opacity-60">{allCount}</span>
           </Link>
         </Badge>
       )}
@@ -27,6 +33,7 @@ export function CategoryChips({
         return (
           <Badge
             asChild
+            className={chip}
             key={item.category}
             variant={isActive ? 'default' : 'outline'}
           >
@@ -39,7 +46,7 @@ export function CategoryChips({
               scroll={false}
             >
               {formatCategoryLabel(item.category)}
-              <span className="tabular-nums opacity-70">{item.count}</span>
+              <span className="tabular-nums opacity-60">{item.count}</span>
             </Link>
           </Badge>
         )

@@ -36,6 +36,9 @@ export function getScreenshotURL({
   query.append('block_cookie_banners', 'true')
   query.append('block_trackers', 'true')
   query.append('ignore_host_errors', 'true')
+  // Page headers fade in over about one second. Without the delay, the
+  // capture shows an empty header.
+  query.append('delay', '2')
   query.append('cache', 'true')
   query.append('cache_ttl', '86400')
   return `${base}?${query.toString()}`

@@ -1,4 +1,5 @@
 import { Suspense } from 'react'
+import { PageHeader } from '@/components/nav/PageHeader'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { parsePreview } from '../og/components/preview'
@@ -18,17 +19,15 @@ export default function Templates({
 }) {
   return (
     <PageLayout>
-      <div className="container">
-        <header className="flex flex-col gap-3 border-b py-8">
-          <h1 className="max-w-3xl text-balance font-semibold text-3xl tracking-tight md:text-4xl">
-            OG image templates
-          </h1>
-          <p className="max-w-2xl text-muted-foreground">
-            Headline, screenshot, blog post, and more. Copy a route, change the
-            text, ship a 1200×630 card.
-          </p>
-        </header>
-      </div>
+      <PageHeader
+        description="Headline, screenshot, blog post, and more. Copy a route, change the text, ship a 1200×630 card."
+        eyebrow="Templates"
+        title={
+          <>
+            <span className="accent-serif">OG image</span> templates
+          </>
+        }
+      />
       <Suspense fallback={null}>
         <TemplatesView searchParams={searchParams} />
       </Suspense>
