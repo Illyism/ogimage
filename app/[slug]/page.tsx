@@ -96,7 +96,7 @@ const BlogTemplate = ({ post }: { post: Page }) => {
         dateModified={published}
         datePublished={post.createdAt}
         id={`https://ogimage.org/${post.slug}`}
-        imageUrl={`https://ogimage.org/og/templates/screenshot?path=/${post.slug}`}
+        imageUrl={`https://ogimage.org/og/generator?${new URLSearchParams({ accent: '#e879f9', bg: '#0b090c', layout: 'left', site: 'ogimage.org', title: post.title })}`}
         title={post.title}
       />
       <PageHeader

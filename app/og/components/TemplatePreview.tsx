@@ -27,6 +27,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+import { SCREENSHOT_API_URL } from '@/lib/products'
 import { cn } from '@/lib/utils'
 import type { Preview } from './preview'
 
@@ -36,146 +37,168 @@ interface TemplateProps {
   description: string
   file: string
   image: string
+  /** Set on templates that need the screenshot API. */
+  needsScreenshots?: boolean
   source: string
   title: string
 }
 
 const TEMPLATES: TemplateProps[] = [
   {
-    description: 'No icons, no text, just a beautiful emoji',
-    file: 'emoji',
-    image: '/og/templates/emoji',
-    source: `return new ImageResponse(
-  <div tw="flex items-center justify-center w-full h-full p-4 bg-black border-[20px] border-white/10">
-    <span style={{ fontSize: '300px' }}>🔥</span>
-  </div>,
-  { width: 1200, height: 630 }
-)`,
-    title: 'Emoji',
-  },
-  {
-    description: 'These lucide icons look great',
-    file: 'icon',
-    image: '/og/templates/icon',
-    source: `return new ImageResponse(
-  <div tw="flex items-center justify-center w-full h-full p-4 bg-pink-500 text-white border-[20px] border-pink-400">
-    <svg width="256" height="256" viewBox="0 0 24 24" stroke="currentColor" fill="none">
-      <circle cx="12" cy="12" r="10" />
-    </svg>
-  </div>,
-  { width: 1200, height: 630 }
-)`,
-    title: 'Icon',
-  },
-  {
-    description: 'Any image, logo or profile picture',
-    file: 'image',
-    image: '/og/templates/image',
-    source: `return new ImageResponse(
-  <div tw="flex items-center justify-center w-full h-full bg-gray-900">
-    <img src="https://ogimage.org/img/1024w/ogimage-black_1024.png" width={150} height={150} tw="mr-4 rounded-full" />
-    <div tw="flex flex-col text-white">
-      <div tw="text-[72px]">Jane Doe</div>
-      <div tw="text-[32px] opacity-90">Your Company</div>
-    </div>
-  </div>,
-  { width: 1200, height: 630 }
-)`,
-    title: 'Image',
-  },
-  {
-    description: 'Highly converting call to action button',
-    file: 'button',
-    image: '/og/templates/button',
-    source: `return new ImageResponse(
-  <div tw="flex flex-col items-center justify-center w-full h-full bg-[#2663ec]">
-    <div tw="text-[150px] -mb-2">🤯</div>
-    <div tw="text-[64px] text-white mb-10">OG Image Generator</div>
-    <div tw="bg-[#ffd400] rounded-full px-12 py-4 text-[60px] text-black">
-      Create beautiful OG images
-    </div>
-  </div>,
-  { width: 1200, height: 630 }
-)`,
-    title: 'Button',
-  },
-  {
-    description: 'Headline with a background box',
+    description: 'A two-line headline with a marker on the second line',
     file: 'headline',
     image: '/og/templates/headline',
-    source: `return new ImageResponse(
-  <div tw="flex flex-col items-center justify-center w-full h-full bg-white text-black p-4 text-[90px]">
-    <div tw="bg-yellow-400 rounded-2xl">Better social previews</div>
-    <div tw="font-bold flex items-center">
-      with <div tw="ml-4 text-violet-500">OG Image</div>
+    source: `// /og/templates/headline?title=Launch%20week&highlight=starts%20Monday
+return renderCard(
+  <div style={{ backgroundColor: '#faf7f2', padding: '64px 76px' }}>
+    <div style={{ fontFamily: MONO }}>{site}</div>
+    <div style={{ fontSize: 104, fontWeight: 700 }}>
+      <div>{title}</div>
+      <div style={{ backgroundColor: '#fde047', borderRadius: 20 }}>
+        {highlight}
+      </div>
     </div>
+    <div>{cta} →</div>
   </div>,
-  { width: 1200, height: 630 }
 )`,
     title: 'Headline',
   },
   {
-    description: 'Make automatic screenshots for every page',
+    description: 'Title, excerpt, and author for each article',
+    file: 'blog-post',
+    image: '/og/templates/blog-post',
+    source: `// /og/templates/blog-post?title=...&excerpt=...&author=Jane&tag=Guide
+return renderCard(
+  <div style={{ backgroundColor: '#0b090c', padding: '68px 76px' }}>
+    <div style={{ color: '#e879f9', fontFamily: MONO }}>{tag}</div>
+    <div style={{ fontSize: 78, fontWeight: 700 }}>{title}</div>
+    <div style={{ color: '#a1a1aa', fontSize: 32 }}>{excerpt}</div>
+    <div>{author}</div>
+  </div>,
+)`,
+    title: 'Blog post',
+  },
+  {
+    description: 'A live capture of each page in a browser window',
     file: 'screenshot',
     image: '/og/templates/screenshot',
-    source: `return new ImageResponse(
-  <div
-    style={{ background: 'linear-gradient(to top left,#ff75c3,#ffa647,#ffe83f,#9fff5b,#70e2ff,#cd93ff)' }}
-    tw="flex w-full h-full"
-  >
-    <img src={screenshot} tw="w-full h-full rounded-t-2xl shadow-2xl" />
+    needsScreenshots: true,
+    source: `// /og/templates/screenshot?path=/pricing
+const screenshot = getScreenshotURL({
+  url: \`https://your-site.com\${path}\`,
+  width: 1064,
+  height: 506,
+})
+
+return renderCard(
+  <div style={{ backgroundImage: 'linear-gradient(135deg, #f0abfc, #818cf8, #22d3ee)' }}>
+    <div style={{ borderRadius: '24px 24px 0 0', overflow: 'hidden' }}>
+      <BrowserBar url={path} />
+      <img src={screenshot} width={1064} height={506} />
+    </div>
   </div>,
-  { width: 1200, height: 630 }
 )`,
     title: 'Live screenshot',
   },
   {
-    description: 'Real-time live screenshot of your mobile website',
+    description: 'Your mobile page in a phone, beside a headline',
     file: 'phone',
     image: '/og/templates/phone',
-    source: `return new ImageResponse(
-  <div tw="flex w-full h-full bg-blue-500 relative p-4">
-    <div tw="flex w-full flex-col pl-10 items-start justify-end pb-10 bg-white rounded-[20px]">
-      <div tw="text-[60px] font-black">WIKIPEDIA</div>
+    needsScreenshots: true,
+    source: `// /og/templates/phone?title=...&subtitle=...&cta=Open%20the%20app
+return renderCard(
+  <div style={{ backgroundColor: '#eef2ff', justifyContent: 'space-between' }}>
+    <div>
+      <div style={{ fontSize: 84, fontWeight: 700 }}>{title}</div>
+      <div style={{ fontSize: 32 }}>{subtitle}</div>
+      <div style={{ backgroundColor: '#4338ca', borderRadius: 999 }}>{cta}</div>
     </div>
-    <img src={screenshot} tw="absolute right-0 top-[10px]" width={600} />
+    <div style={{ borderRadius: 60, transform: 'rotate(4deg)' }}>
+      <img src={screenshot} width={302} height={652} />
+    </div>
   </div>,
-  { width: 1200, height: 630 }
 )`,
     title: 'Phone',
   },
   {
-    description: 'Use Unsplash API + Vercel geolocation to get a city picture',
-    file: 'city',
-    image: '/og/templates/city',
-    source: `const city = headers().get('x-vercel-ip-city') ?? 'New York'
-
-return new ImageResponse(
-  <div tw="flex flex-col items-center justify-center w-full h-full p-[40px]">
-    <div tw="text-[64px] bg-blue-500 px-2 text-white rounded-2xl mb-2">Your Brand</div>
-    <div tw="bg-[#ffd400] rounded-full px-12 py-4 text-[40px]">
-      Events in {city}
+    description: 'An emoji, a headline, and one large call to action',
+    file: 'button',
+    image: '/og/templates/button',
+    source: `// /og/templates/button?emoji=🚀&title=Launch%20day&cta=Try%20it%20free
+return renderCard(
+  <div style={{ backgroundColor: '#1d4ed8', alignItems: 'center' }}>
+    <div style={{ fontSize: 150 }}>{emoji}</div>
+    <div style={{ fontSize: 76, fontWeight: 700 }}>{title}</div>
+    <div style={{ backgroundColor: '#fde047', borderRadius: 999 }}>
+      {cta}
     </div>
   </div>,
-  { width: 1200, height: 630 }
 )`,
-    title: 'City',
+    title: 'Button',
   },
   {
-    description: 'Blog post with a screenshot, title, and author',
-    file: 'blog-post',
-    image: '/og/templates/blog-post',
-    source: `return new ImageResponse(
-  <div tw="flex flex-col items-center justify-center w-full h-full bg-[#261e36] p-4">
-    <div tw="text-[48px] font-black text-white mb-2">How to design Open Graph images</div>
-    <div tw="text-[24px] text-white mb-8">Sizing, typography, and templates for social previews</div>
-    <div tw="flex items-center mt-auto">
-      <div tw="text-[42px] font-black text-white">ogimage.org</div>
+    description: 'A profile card: picture, name, role, and handle',
+    file: 'image',
+    image: '/og/templates/image',
+    source: `// /og/templates/image?name=Jane%20Doe&role=Designer&handle=@jane
+return renderCard(
+  <div style={{ backgroundColor: '#0c0a09', alignItems: 'center' }}>
+    <img src={avatar} width={240} height={240} style={{ borderRadius: 999 }} />
+    <div>
+      <div style={{ fontFamily: SERIF, fontSize: 108 }}>{name}</div>
+      <div style={{ fontSize: 34 }}>{role}</div>
+      <div style={{ fontFamily: MONO, color: '#fbbf24' }}>{handle}</div>
     </div>
   </div>,
-  { width: 1200, height: 630 }
 )`,
-    title: 'Blog post',
+    title: 'Profile',
+  },
+  {
+    description: 'An icon tile beside a title. Paste any Lucide SVG',
+    file: 'icon',
+    image: '/og/templates/icon',
+    source: `// /og/templates/icon?title=Dribbble%20shots&subtitle=New%20every%20week
+return renderCard(
+  <div style={{ backgroundImage: 'linear-gradient(135deg, #ec4899, #be185d)' }}>
+    <div style={{ backgroundColor: '#fff', borderRadius: 56, transform: 'rotate(-4deg)' }}>
+      <svg width="168" height="168" viewBox="0 0 24 24" stroke="currentColor" fill="none">
+        <circle cx="12" cy="12" r="10" />
+      </svg>
+    </div>
+    <div style={{ fontSize: 84, fontWeight: 700 }}>{title}</div>
+  </div>,
+)`,
+    title: 'Icon',
+  },
+  {
+    description: 'One large emoji. The least effort that works',
+    file: 'emoji',
+    image: '/og/templates/emoji',
+    source: `// /og/templates/emoji?emoji=🔥&label=Hot%20take
+return renderCard(
+  <div style={{ backgroundColor: '#0a0a0a', border: '20px solid #1c1917' }}>
+    <div style={{ fontSize: 300 }}>{emoji}</div>
+    <div style={{ fontFamily: MONO }}>{label}</div>
+  </div>,
+)`,
+    title: 'Emoji',
+  },
+  {
+    description: 'A photo of the city of each visitor, from the geo header',
+    file: 'city',
+    image: '/og/templates/city',
+    source: `// /og/templates/city?brand=Acme&prefix=Events%20in
+const city = headers().get('x-vercel-ip-city') ?? 'New York'
+const photo = await getCityPicture(city) // Unsplash
+
+return renderCard(
+  <div style={{ backgroundImage: \`url(\${photo})\` }}>
+    <div style={{ backgroundColor: '#fff', borderRadius: 999 }}>{brand}</div>
+    <div style={{ fontFamily: MONO }}>{prefix}</div>
+    <div style={{ fontSize: 132, fontWeight: 700 }}>{city}</div>
+  </div>,
+)`,
+    title: 'City',
   },
 ]
 
@@ -287,11 +310,11 @@ const PreviewType = ({
     variant="outline"
   >
     <ToggleGroupItem aria-label="Twitter preview" value="twitter">
-      <TwitterIcon />
+      <TwitterIcon className="fill-current" />
       Twitter
     </ToggleGroupItem>
     <ToggleGroupItem aria-label="LinkedIn preview" value="linkedin">
-      <LinkedInIcon />
+      <LinkedInIcon className="fill-current" />
       LinkedIn
     </ToggleGroupItem>
     <ToggleGroupItem aria-label="Simple preview" value="simple">
@@ -324,7 +347,24 @@ const TemplateCard = ({
   return <SimplePreview {...props} />
 }
 
-const SimplePreview = ({ title, description, image }: TemplateProps) => {
+// An affiliate link. rel="sponsored" tells search engines that.
+const ScreenshotApiLink = () => (
+  <a
+    className="underline"
+    href={SCREENSHOT_API_URL}
+    rel="sponsored noopener"
+    target="_blank"
+  >
+    Captures by ScreenshotOne
+  </a>
+)
+
+const SimplePreview = ({
+  title,
+  description,
+  image,
+  needsScreenshots,
+}: TemplateProps) => {
   const [loaded, setLoaded] = useState(false)
   return (
     <Card className="max-w-md">
@@ -346,6 +386,11 @@ const SimplePreview = ({ title, description, image }: TemplateProps) => {
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
+        {needsScreenshots ? (
+          <div className="text-muted-foreground text-xs">
+            <ScreenshotApiLink />
+          </div>
+        ) : null}
       </CardHeader>
     </Card>
   )
@@ -469,6 +514,7 @@ const SourcePreview = ({
   title,
   description,
   image,
+  needsScreenshots,
   source,
   file,
 }: TemplateProps) => (
@@ -486,13 +532,16 @@ const SourcePreview = ({
     <pre className="h-48 overflow-auto whitespace-pre-wrap rounded-2xl border border-border bg-muted p-4 text-xs">
       <code>{source}</code>
     </pre>
-    <a
-      className="mt-2 inline-block font-sans text-muted-foreground text-xs underline"
-      href={`https://github.com/Illyism/ogimage/blob/main/app/og/templates/${file}/route.tsx`}
-      rel="noreferrer"
-      target="_blank"
-    >
-      View {file}/route.tsx
-    </a>
+    <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 font-sans text-muted-foreground text-xs">
+      <a
+        className="underline"
+        href={`https://github.com/Illyism/ogimage/blob/main/app/og/templates/${file}/route.tsx`}
+        rel="noreferrer"
+        target="_blank"
+      >
+        View {file}/route.tsx
+      </a>
+      {needsScreenshots ? <ScreenshotApiLink /> : null}
+    </div>
   </div>
 )

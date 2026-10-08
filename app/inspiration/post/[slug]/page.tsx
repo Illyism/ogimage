@@ -1,7 +1,7 @@
 import { ExternalLinkIcon, PaletteIcon } from 'lucide-react'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
-import { GetAccess } from '@/components/home/get-access'
+import { StarCta } from '@/components/home/star-cta'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -255,7 +255,7 @@ const InspirationPage = ({
           <GalleryGrid eagerCount={0} items={related} />
         </div>
       ) : null}
-      <GetAccess compact />
+      <StarCta compact />
     </PageLayout>
   )
 }

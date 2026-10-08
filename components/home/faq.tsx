@@ -27,7 +27,7 @@ const items = [
   },
   {
     answer:
-      'Clone the public repo. Leave your email if you want the Notion walkthrough.',
+      'Clone the public repo on GitHub. There is no sign-up. If it helps you, give it a star.',
     question: 'How do I get the code?',
     value: 'code',
   },

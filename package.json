@@ -24,7 +24,6 @@
     "next": "^16.3.1",
     "node-html-parser": "^9.0.1",
     "posthog-js": "^1.418.6",
-    "posthog-node": "^5.49.2",
     "radix-ui": "^1.6.7",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",

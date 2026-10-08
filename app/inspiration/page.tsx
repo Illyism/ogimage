@@ -1,7 +1,7 @@
 import { PlusIcon } from 'lucide-react'
 import Link from 'next/link'
 import { Suspense } from 'react'
-import { GetAccess } from '@/components/home/get-access'
+import { StarCta } from '@/components/home/star-cta'
 import { PageHeader } from '@/components/nav/PageHeader'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { Button } from '@/components/ui/button'
@@ -49,7 +49,7 @@ export default function Page({ searchParams }: InspirationSearch) {
       <Suspense fallback={<GalleryFallback />}>
         <GallerySection searchParams={searchParams} />
       </Suspense>
-      <GetAccess compact />
+      <StarCta compact />
     </PageLayout>
   )
 }

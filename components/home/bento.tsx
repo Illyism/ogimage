@@ -22,7 +22,7 @@ const checks = [
   { ok: true, text: 'og:title is set' },
 ]
 
-const templates = ['headline', 'button', 'emoji']
+const templates = ['blog-post', 'headline', 'button']
 
 function Tile({
   children,

@@ -3,6 +3,7 @@ import { GitHubIcon } from '@/components/icons/SocialIcons'
 import { TestimonialReviews } from '@/components/reviews/testimonial-reviews'
 import { Button } from '@/components/ui/button'
 import type { Inspiration } from '@/lib/gallery'
+import { CREATOR, GITHUB_URL } from '@/lib/products'
 import { HeroCard } from './hero-card'
 
 const stack = ['Next.js', 'Satori', 'Tailwind CSS', '1200×630']
@@ -55,13 +56,9 @@ export const Hero = ({
             <Link href="/inspiration">Browse examples</Link>
           </Button>
           <Button asChild size="lg" variant="ghost">
-            <a
-              href="https://github.com/Illyism/ogimage"
-              rel="noreferrer"
-              target="_blank"
-            >
+            <a href={GITHUB_URL} rel="noreferrer" target="_blank">
               <GitHubIcon className="fill-current" />
-              GitHub
+              Star on GitHub
             </a>
           </Button>
         </div>
@@ -72,7 +69,16 @@ export const Hero = ({
           <div className="flex items-center gap-3">
             <TestimonialReviews />
             <p className="text-muted-foreground text-sm">
-              Used on live startup cards
+              Used on live startup cards. Made by{' '}
+              <a
+                className="text-foreground underline decoration-primary/60 underline-offset-4 transition-colors hover:decoration-primary"
+                href={CREATOR.x}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {CREATOR.handle}
+              </a>
+              .
             </p>
           </div>
           <ul className="flex flex-wrap gap-x-4 gap-y-1 font-mono text-muted-foreground text-xs">

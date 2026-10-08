@@ -1,5 +1,8 @@
+import { StarIcon } from 'lucide-react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { CREATOR, GITHUB_URL } from '@/lib/products'
 import { Logo } from '../ui/logo'
 import { Year } from '../ui/year'
 
@@ -22,7 +25,7 @@ const guideLinks = [
 const moreLinks = [
   { href: '/about', label: 'About' },
   { href: '/privacy', label: 'Privacy' },
-  { href: 'https://github.com/Illyism/ogimage', label: 'GitHub' },
+  { href: GITHUB_URL, label: 'GitHub' },
   { href: 'https://linkdr.com', label: 'LinkDR' },
   { href: 'https://seoroast.co', label: 'SEO Roast' },
 ]
@@ -59,9 +62,17 @@ export const Footer = () => (
             A free generator, open-source templates, a checker, and a gallery of
             real OG images.
           </p>
-          <Button asChild size="sm">
-            <Link href="/generator">Make an OG image</Link>
-          </Button>
+          <div className="flex flex-wrap gap-2">
+            <Button asChild size="sm">
+              <Link href="/generator">Make an OG image</Link>
+            </Button>
+            <Button asChild size="sm" variant="outline">
+              <a href={GITHUB_URL} rel="noreferrer" target="_blank">
+                <StarIcon className="fill-current" />
+                Star on GitHub
+              </a>
+            </Button>
+          </div>
         </div>
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
           <FooterNav heading="Product" links={productLinks} />
@@ -70,9 +81,42 @@ export const Footer = () => (
           <FooterNav heading="Learn" links={learnLinks} />
         </div>
       </div>
-      <p className="text-muted-foreground text-sm">
-        &copy; <Year /> ogimage.org. MIT license.
-      </p>
+      <div className="flex flex-col gap-3 text-muted-foreground text-sm sm:flex-row sm:items-center sm:justify-between">
+        <p>
+          &copy; <Year /> ogimage.org. MIT license.
+        </p>
+        <p className="flex items-center gap-2">
+          <Image
+            alt=""
+            className="size-6 rounded-full"
+            height={24}
+            src="/me/ilias.png"
+            width={24}
+          />
+          <span>
+            Made by{' '}
+            {/* No rel. il.ly must get the referrer and a followed link. */}
+            <a
+              className="text-foreground transition-colors hover:text-primary"
+              href={CREATOR.site}
+              rel="noopener"
+              target="_blank"
+            >
+              {CREATOR.name}
+            </a>
+            . Follow{' '}
+            <a
+              className="text-foreground transition-colors hover:text-primary"
+              href={CREATOR.x}
+              rel="noreferrer"
+              target="_blank"
+            >
+              {CREATOR.handle}
+            </a>{' '}
+            on X.
+          </span>
+        </p>
+      </div>
     </div>
     {/* Decoration. Screen readers already have the name from the logo link. */}
     <div

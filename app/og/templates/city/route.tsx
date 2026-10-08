@@ -1,11 +1,17 @@
 import { headers } from 'next/headers'
-import { ImageResponse } from 'next/og'
+import type { NextRequest } from 'next/server'
+import { MONO, renderCard, SANS, textParam } from '../../components/render'
 
 /**
- * @name City Template
- * @description GeoIP with Unsplash
+ * @name City template
+ * @description A photo of the city of the visitor, from the geo header of
+ * your host and the Unsplash API. Each visitor shares a different card.
+ * Query: ?brand= &prefix=
  */
-export async function GET() {
+export async function GET(request: NextRequest) {
+  const params = request.nextUrl.searchParams
+  const brand = textParam(params, 'brand', 'Your Brand', 32)
+  const prefix = textParam(params, 'prefix', 'Events in', 24)
   const headersList = await headers()
   const city =
     headersList.get('cf-ipcity') ??
@@ -15,37 +21,83 @@ export async function GET() {
   const img = await getCityPicture(city)
   const decodedCity = decodeURIComponent(city)
 
-  return new ImageResponse(
+  return renderCard(
     <div
       style={{
         backgroundImage: img
           ? `url(${img})`
-          : 'linear-gradient(to bottom, #4F46E5, #7C3AED)',
+          : 'linear-gradient(135deg, #4f46e5, #7c3aed)',
         backgroundPosition: 'center',
         backgroundSize: '100% 100%',
+        color: '#ffffff',
+        display: 'flex',
+        fontFamily: SANS,
+        height: '100%',
+        width: '100%',
       }}
-      tw="flex flex-col items-center justify-center w-full h-full p-[40px]"
     >
-      <div tw="text-[64px] bg-blue-500 px-2 text-white rounded-2xl mb-2">
-        Your Brand
-      </div>
-      <div tw="bg-[#ffd400] flex rounded-full px-12 py-4 text-[40px] text-black shadow-2xl border-[10px] border-purple-400/70">
-        Events in {decodedCity}
+      {/* The dark fade keeps the text readable on any photo. */}
+      <div
+        style={{
+          backgroundImage:
+            'linear-gradient(to top, #000000dd 0%, #00000055 55%, #00000022 100%)',
+          display: 'flex',
+          flexDirection: 'column',
+          height: '100%',
+          justifyContent: 'space-between',
+          padding: '64px 76px',
+          width: '100%',
+        }}
+      >
+        <div
+          style={{
+            alignSelf: 'flex-start',
+            backgroundColor: '#ffffff',
+            borderRadius: 999,
+            color: '#0a0a0a',
+            display: 'flex',
+            fontSize: 28,
+            fontWeight: 700,
+            padding: '12px 28px',
+          }}
+        >
+          {brand}
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <div
+            style={{
+              display: 'flex',
+              fontFamily: MONO,
+              fontSize: 28,
+              letterSpacing: '0.08em',
+              opacity: 0.85,
+              textTransform: 'uppercase',
+            }}
+          >
+            {prefix}
+          </div>
+          <div
+            style={{
+              display: 'flex',
+              fontSize: 132,
+              fontWeight: 700,
+              letterSpacing: '-0.05em',
+              lineHeight: 1,
+            }}
+          >
+            {decodedCity}
+          </div>
+        </div>
       </div>
     </div>,
     {
-      headers: {
-        'Cache-Control': 'no-store',
-        'Surrogate-Control': 'no-store',
-        Vary: 'cf-ipcity, x-vercel-ip-city',
-      },
-      height: 630,
-      width: 1200,
+      'Cache-Control': 'no-store',
+      'Surrogate-Control': 'no-store',
+      Vary: 'cf-ipcity, x-vercel-ip-city',
     },
   )
 }
 
-/** Set UNSPLASH_KEY in .env for live city photos. */
 async function getCityPicture(city: string) {
   const key = process.env.UNSPLASH_KEY
   if (!key) {

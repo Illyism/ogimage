@@ -35,6 +35,10 @@ const nextConfig: NextConfig = {
     ],
   },
   output: 'standalone',
+  // The image routes read fonts from disk. The standalone server needs them.
+  outputFileTracingIncludes: {
+    '/og/**': ['./assets/fonts/*.woff'],
+  },
   // App Shell for unknown params; prefetch upgrades the route after first visit.
   partialPrefetching: true,
   reactStrictMode: true,
