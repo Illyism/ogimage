@@ -42,6 +42,12 @@ const nextConfig: NextConfig = {
     return [
       { destination: '/', permanent: true, source: '/contact' },
       { destination: '/templates', permanent: true, source: '/customers' },
+      { destination: '/og-image-size', permanent: true, source: '/sizes' },
+      {
+        destination: '/open-graph-tags',
+        permanent: true,
+        source: '/best-practices',
+      },
     ]
   },
   turbopack: {},

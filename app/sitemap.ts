@@ -11,6 +11,14 @@ export default function Sitemap() {
     },
     {
       lastModified: new Date(),
+      url: `https://${domain}/generator`,
+    },
+    {
+      lastModified: new Date(),
+      url: `https://${domain}/checker`,
+    },
+    {
+      lastModified: new Date(),
       url: `https://${domain}/templates`,
     },
     {

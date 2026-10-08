@@ -11,19 +11,36 @@
 import { existsSync } from 'node:fs'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
-import { parse } from 'node-html-parser'
+import { type ImageSize, readImageSize } from '../lib/image-size'
+import { parsePageMeta, resolveUrl } from '../lib/og-meta'
 
 const ROOT = join(import.meta.dir, '..')
-const GALLERY_DIR = join(ROOT, 'content/gallery')
+export const GALLERY_DIR = join(ROOT, 'content/gallery')
 const IMAGE_DIR = join(ROOT, 'public/og')
-const FORCE = process.argv.includes('--force')
+const USER_AGENT = 'ogimage.org gallery bot'
 
-function normalizeUrl(raw: string) {
+export interface OgCard {
+  bytes: Buffer
+  description: string
+  ext: string
+  imageUrl: string
+  name: string
+  pageUrl: string
+  /** Null when the format is not PNG, JPEG, GIF, or WebP. */
+  size: ImageSize | null
+  slug: string
+}
+
+export function normalizeUrl(raw: string) {
   const trimmed = raw.trim()
   if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
     return trimmed
   }
   return `https://${trimmed}`
+}
+
+export function slugFor(pageUrl: string) {
+  return new URL(pageUrl).hostname.replace(/^www\./, '')
 }
 
 function extFrom(url: string, contentType: string | null) {
@@ -40,128 +57,135 @@ function extFrom(url: string, contentType: string | null) {
   return 'jpg'
 }
 
-async function fetchHtml(url: string) {
-  const res = await fetch(url, {
-    headers: { 'User-Agent': 'ogimage.org gallery bot' },
+/** Fetches the page and its og:image. Throws when either step fails. */
+export async function fetchOgCard(rawUrl: string): Promise<OgCard> {
+  const pageUrl = normalizeUrl(rawUrl)
+  const pageRes = await fetch(pageUrl, {
+    headers: { 'User-Agent': USER_AGENT },
     redirect: 'follow',
     signal: AbortSignal.timeout(10_000),
   })
-  if (!res.ok) {
-    throw new Error(`Could not fetch ${url} (${res.status})`)
+  if (!pageRes.ok) {
+    throw new Error(`Could not fetch ${pageUrl} (${pageRes.status})`)
   }
-  return res.text()
-}
 
-function absoluteUrl(pageUrl: string, imageUrl: string) {
-  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-    return imageUrl
+  const { tags, title } = parsePageMeta(await pageRes.text())
+  const imageRaw = tags['og:image'] || tags['twitter:image']
+  const imageUrl = imageRaw ? resolveUrl(pageUrl, imageRaw) : null
+  if (!imageUrl) {
+    throw new Error('No og:image on that page.')
   }
-  return new URL(imageUrl, pageUrl).toString()
-}
 
-function meta(html: string, pageUrl: string) {
-  const ast = parse(html)
-  const tags = ast.querySelectorAll('meta')
-  const map: Record<string, string> = {}
-  for (const tag of tags) {
-    const key = tag.getAttribute('property') || tag.getAttribute('name')
-    const content = tag.getAttribute('content')
-    if (key && content) {
-      map[key] = content
-    }
+  const imageRes = await fetch(imageUrl, {
+    headers: { 'User-Agent': USER_AGENT },
+    redirect: 'follow',
+    signal: AbortSignal.timeout(15_000),
+  })
+  if (!imageRes.ok) {
+    throw new Error(`Could not download og:image (${imageRes.status})`)
   }
-  const title =
-    map['og:title'] ||
-    map['twitter:title'] ||
-    ast.querySelector('title')?.innerText?.trim() ||
-    pageUrl
-  const description =
-    map['og:description'] || map['twitter:description'] || map.description || ''
-  const imageRaw = map['og:image'] || map['twitter:image']
-  const name = map['og:site_name'] || title
+
+  const bytes = Buffer.from(await imageRes.arrayBuffer())
+  const pageTitle = tags['og:title'] || tags['twitter:title'] || title
   return {
-    description,
-    image: imageRaw ? absoluteUrl(pageUrl, imageRaw) : null,
-    name,
-    title,
+    bytes,
+    description:
+      tags['og:description'] ||
+      tags['twitter:description'] ||
+      tags.description ||
+      '',
+    ext: extFrom(imageUrl, imageRes.headers.get('content-type')),
+    imageUrl,
+    name: (tags['og:site_name'] || pageTitle || pageUrl).replace(/^@/, ''),
+    pageUrl,
+    size: readImageSize(bytes),
+    slug: slugFor(pageUrl),
   }
 }
 
-const args = process.argv.slice(2).filter((arg) => arg !== '--force')
-const rawUrl = args.find(
-  (arg) =>
-    arg.startsWith('http://') ||
-    arg.startsWith('https://') ||
-    arg.includes('.'),
-)
-if (!rawUrl) {
-  console.error(
-    'Usage: bun scripts/add-og.ts https://example.com [categories…]',
+/** Writes the image and the gallery row. Keeps fields of an existing row. */
+export async function saveOgCard(
+  card: OgCard,
+  fields: {
+    category?: string[]
+    color?: string[]
+    description?: string
+    name?: string
+  } = {},
+) {
+  const jsonPath = join(GALLERY_DIR, `${card.slug}.json`)
+  const filename = `${card.slug}.${card.ext}`
+  await mkdir(IMAGE_DIR, { recursive: true })
+  await mkdir(GALLERY_DIR, { recursive: true })
+  await writeFile(join(IMAGE_DIR, filename), card.bytes)
+
+  const now = new Date().toISOString()
+  const existing = existsSync(jsonPath)
+    ? JSON.parse(await readFile(jsonPath, 'utf8'))
+    : null
+
+  const name = fields.name || card.name
+  const row = {
+    category: fields.category?.length
+      ? fields.category
+      : (existing?.category ?? []),
+    color: fields.color?.length ? fields.color : (existing?.color ?? []),
+    content: existing?.content ?? null,
+    date_created: existing?.date_created ?? now,
+    date_updated: now,
+    description:
+      fields.description || card.description || `${name} Open Graph image.`,
+    domain: card.slug,
+    image: `/og/${filename}`,
+    name,
+    slug: card.slug,
+    URL: card.pageUrl,
+  }
+
+  await writeFile(jsonPath, `${JSON.stringify(row, null, 2)}\n`)
+  return { filename, jsonPath }
+}
+
+async function main() {
+  const force = process.argv.includes('--force')
+  const args = process.argv.slice(2).filter((arg) => arg !== '--force')
+  const rawUrl = args.find(
+    (arg) =>
+      arg.startsWith('http://') ||
+      arg.startsWith('https://') ||
+      arg.includes('.'),
   )
-  process.exit(1)
+  if (!rawUrl) {
+    console.error(
+      'Usage: bun scripts/add-og.ts https://example.com [categories…]',
+    )
+    process.exit(1)
+  }
+
+  const slug = slugFor(normalizeUrl(rawUrl))
+  if (!force && existsSync(join(GALLERY_DIR, `${slug}.json`))) {
+    console.error(`${slug} already exists. Pass --force to overwrite.`)
+    process.exit(1)
+  }
+
+  console.log(`Fetching ${normalizeUrl(rawUrl)}`)
+  let card: OgCard
+  try {
+    card = await fetchOgCard(rawUrl)
+  } catch (error) {
+    console.error(error instanceof Error ? error.message : error)
+    process.exit(1)
+  }
+
+  const category = args
+    .filter((arg) => arg !== rawUrl)
+    .map((arg) => arg.toLowerCase())
+  const { filename, jsonPath } = await saveOgCard(card, { category })
+  console.log(`Wrote ${jsonPath}`)
+  console.log(`Wrote public/og/${filename}`)
+  console.log('Open a PR with those two files.')
 }
 
-const pageUrl = normalizeUrl(rawUrl)
-const page = new URL(pageUrl)
-const slug = page.hostname.replace(/^www\./, '')
-const categories = args
-  .filter((arg) => arg !== rawUrl)
-  .map((arg) => arg.toLowerCase())
-
-const jsonPath = join(GALLERY_DIR, `${slug}.json`)
-if (!FORCE && existsSync(jsonPath)) {
-  console.error(`${slug} already exists. Pass --force to overwrite.`)
-  process.exit(1)
+if (import.meta.main) {
+  await main()
 }
-
-console.log(`Fetching ${pageUrl}`)
-const html = await fetchHtml(pageUrl)
-const tags = meta(html, pageUrl)
-if (!tags.image) {
-  console.error('No og:image on that page.')
-  process.exit(1)
-}
-
-console.log(`Downloading ${tags.image}`)
-const imageRes = await fetch(tags.image, {
-  headers: { 'User-Agent': 'ogimage.org gallery bot' },
-  redirect: 'follow',
-  signal: AbortSignal.timeout(15_000),
-})
-if (!imageRes.ok) {
-  console.error(`Could not download og:image (${imageRes.status})`)
-  process.exit(1)
-}
-
-const ext = extFrom(tags.image, imageRes.headers.get('content-type'))
-const filename = `${slug}.${ext}`
-await mkdir(IMAGE_DIR, { recursive: true })
-await mkdir(GALLERY_DIR, { recursive: true })
-await writeFile(
-  join(IMAGE_DIR, filename),
-  Buffer.from(await imageRes.arrayBuffer()),
-)
-
-const now = new Date().toISOString()
-const existing = existsSync(jsonPath)
-  ? JSON.parse(await readFile(jsonPath, 'utf8'))
-  : null
-
-const row = {
-  category: categories.length > 0 ? categories : (existing?.category ?? []),
-  color: existing?.color ?? [],
-  content: existing?.content ?? null,
-  date_created: existing?.date_created ?? now,
-  date_updated: now,
-  description: tags.description || `${tags.name} Open Graph image.`,
-  domain: slug,
-  image: `/og/${filename}`,
-  name: tags.name.replace(/^@/, ''),
-  slug,
-  URL: pageUrl,
-}
-
-await writeFile(jsonPath, `${JSON.stringify(row, null, 2)}\n`)
-console.log(`Wrote ${jsonPath}`)
-console.log(`Wrote public/og/${filename}`)
-console.log('Open a PR with those two files.')

@@ -45,3 +45,5 @@ dist
 # migration data
 migration-data/
 temp-images/
+# gallery finder cache (rejected sites)
+.find-og-cache.json

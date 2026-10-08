@@ -6,8 +6,8 @@ import { TemplatePreview } from '../og/components/TemplatePreview'
 
 export const metadata = generatePageMeta({
   description:
-    'Generate beautiful Open Graph Images for your website, blog, or social media.',
-  title: 'Best Open Graph Image Templates for Every Website',
+    'Nine free OG image templates for Next.js and Satori. Copy the ImageResponse route, change the text, and ship a 1200×630 Open Graph image.',
+  title: 'OG Image Templates: 9 Free Next.js and Satori Designs',
   url: '/templates',
 })
 
@@ -21,7 +21,7 @@ export default function Templates({
       <div className="container">
         <header className="flex flex-col gap-3 border-b py-8">
           <h1 className="max-w-3xl text-balance font-semibold text-3xl tracking-tight md:text-4xl">
-            Open Graph image templates
+            OG image templates
           </h1>
           <p className="max-w-2xl text-muted-foreground">
             Headline, screenshot, blog post, and more. Copy a route, change the

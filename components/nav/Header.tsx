@@ -19,7 +19,7 @@ const GITHUB_URL = 'https://github.com/Illyism/ogimage'
 
 export function Header() {
   return (
-    <header className="sticky top-0 border-b bg-background/95 backdrop-blur-lg supports-backdrop-filter:bg-background/80">
+    <header className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur-lg supports-backdrop-filter:bg-background/80">
       <div className="container flex h-14 items-center gap-4">
         <Link className="flex items-center gap-2 font-semibold" href="/">
           <Logo className="size-6 text-primary" />

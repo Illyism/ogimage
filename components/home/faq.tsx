@@ -8,13 +8,13 @@ import {
 const items = [
   {
     answer:
-      'The preview card that shows when you share a link on X, LinkedIn, Slack, or iMessage. The usual size is 1200×630.',
-    question: 'What is an Open Graph image?',
+      'OG image is short for Open Graph image. It is the preview picture that shows when you share a link on X, LinkedIn, Slack, or iMessage. The usual size is 1200×630.',
+    question: 'What is an OG image?',
     value: 'what',
   },
   {
     answer:
-      'Next.js + Satori templates, a gallery of real startup cards, and this site. Clone github.com/Illyism/ogimage and host it on Vercel, Docker, or any Node host.',
+      'A browser generator, Next.js + Satori templates, a checker for your tags, and a gallery of real startup cards. Clone github.com/Illyism/ogimage and host it on Vercel, Docker, or any Node host.',
     question: 'What do I get?',
     value: 'get',
   },

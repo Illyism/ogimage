@@ -20,9 +20,10 @@ export async function generateMetadata({
 }) {
   const { slug } = await params
   const label = formatCategoryLabel(slug)
+  const count = getLatestInspiration({ category: slug }).length
   return generatePageMeta({
-    description: `Best ${label} OG image examples and Twitter card inspiration from live sites.`,
-    title: `Best ${label} OG Image Examples`,
+    description: `${count} ${label} OG image examples from live sites. Open Graph and Twitter card inspiration for your next ${label} launch.`,
+    title: `${label} OG Image Examples: ${count} Real Open Graph Images`,
     url: `/inspiration/category/${slug}`,
   })
 }
@@ -77,10 +78,11 @@ async function CategorySection({
     <div className="container flex flex-col gap-8 py-12">
       <div className="flex flex-col gap-2">
         <h1 className="text-balance font-semibold text-3xl tracking-tight md:text-4xl">
-          Best {label} OG image examples
+          {label} OG image examples
         </h1>
         <p className="text-muted-foreground">
-          {label} Open Graph and Twitter card examples from live sites.
+          {list.length} {label} Open Graph images and Twitter cards from live
+          sites.
         </p>
       </div>
       <nav
