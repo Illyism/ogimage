@@ -1,6 +1,6 @@
 # OG Image: open-source generator, templates, checker, and gallery
 
-Make an **OG image** (Open Graph image) for every page of your site. This repo is the full source of [ogimage.org](https://ogimage.org): a free OG image generator, nine Next.js + Satori templates, an Open Graph checker, and a gallery of 340+ real OG image examples.
+Make an **OG image** (Open Graph image) for every page of your site. This repo is the full source of [ogimage.org](https://ogimage.org): a free OG image generator, nine Next.js + Satori templates, an Open Graph checker, and a gallery of 380+ real OG image examples.
 
 <p align="center">
   <a href="https://ogimage.org">
@@ -15,7 +15,7 @@ No hosted API. No database. MIT license. Clone it, self-host it, and ship your o
 | **OG image generator** | Type a title, pick colors, download a 1200×630 PNG | [ogimage.org/generator](https://ogimage.org/generator) |
 | **OG image templates** | Nine `ImageResponse` routes you can copy into a Next.js app | [ogimage.org/templates](https://ogimage.org/templates) |
 | **OG image checker** | Tests the Open Graph tags, image size, and link preview of a URL | [ogimage.org/checker](https://ogimage.org/checker) |
-| **OG image gallery** | 340+ real OG image examples from live startups, by category | [ogimage.org/inspiration](https://ogimage.org/inspiration) |
+| **OG image gallery** | 380+ real OG image examples from live startups, by category | [ogimage.org/inspiration](https://ogimage.org/inspiration) |
 
 ## What is an OG image?
 
