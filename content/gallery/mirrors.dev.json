@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "developer-tools"
+  ],
+  "color": [
+    "#0b0c10",
+    "#7f93c4"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:55.638Z",
+  "date_updated": "2026-10-08T05:20:55.638Z",
+  "description": "Mirrors is a developer tool that turns observations from AI agent traces into guidance and routes it to the agent mid-conversation without redeploying.",
+  "domain": "mirrors.dev",
+  "image": "/og/mirrors.dev.png",
+  "name": "Mirrors",
+  "slug": "mirrors.dev",
+  "URL": "https://www.mirrors.dev"
+}

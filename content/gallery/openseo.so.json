@@ -1,0 +1,20 @@
+{
+  "category": [
+    "seo",
+    "ai",
+    "developer-tools"
+  ],
+  "color": [
+    "#e8ecef",
+    "#0f1b2d"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:05.944Z",
+  "date_updated": "2026-10-08T05:20:05.944Z",
+  "description": "OpenSEO is an open source SEO tool for keyword research, backlinks, rank tracking, and site audits. It can be self-hosted or connected to AI agents over MCP.",
+  "domain": "openseo.so",
+  "image": "/og/openseo.so.jpg",
+  "name": "OpenSEO",
+  "slug": "openseo.so",
+  "URL": "https://openseo.so/"
+}

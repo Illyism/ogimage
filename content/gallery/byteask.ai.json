@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "developer-tools",
+    "software"
+  ],
+  "color": [
+    "#f7f6f2",
+    "#4f7d6c"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:58.351Z",
+  "date_updated": "2026-10-08T05:20:58.351Z",
+  "description": "ByteAsk is an AI coding agent that writes C++ code and checks it with sanitizers, a debugger, and tests before showing a diff. It installs from the command line.",
+  "domain": "byteask.ai",
+  "image": "/og/byteask.ai.png",
+  "name": "ByteAsk",
+  "slug": "byteask.ai",
+  "URL": "https://byteask.ai/"
+}

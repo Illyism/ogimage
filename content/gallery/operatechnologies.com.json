@@ -1,0 +1,20 @@
+{
+  "category": [
+    "software",
+    "ai",
+    "business-intelligence"
+  ],
+  "color": [
+    "#0a0a0a",
+    "#ffffff"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:17.078Z",
+  "date_updated": "2026-10-08T05:20:17.078Z",
+  "description": "OpEra builds and deploys routing, allocation, scheduling, and sales-planning optimization software for logistics, agribusiness, and industrial companies, modeled on their own data.",
+  "domain": "operatechnologies.com",
+  "image": "/og/operatechnologies.com.jpg",
+  "name": "OpEra",
+  "slug": "operatechnologies.com",
+  "URL": "https://operatechnologies.com"
+}

@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "creativity",
+    "software"
+  ],
+  "color": [
+    "#1e1466",
+    "#ffffff"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:15.259Z",
+  "date_updated": "2026-10-08T05:20:15.259Z",
+  "description": "Voyager is an open harness for creative work that offers AI skills and lets users build their own skills with memory that learns how they work.",
+  "domain": "voyager.so",
+  "image": "/og/voyager.so.jpg",
+  "name": "Voyager",
+  "slug": "voyager.so",
+  "URL": "https://voyager.so"
+}

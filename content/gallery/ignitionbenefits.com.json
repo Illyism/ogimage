@@ -1,0 +1,20 @@
+{
+  "category": [
+    "business",
+    "ai",
+    "health"
+  ],
+  "color": [
+    "#0b0b0b",
+    "#6b6b22"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:20:43.182Z",
+  "date_updated": "2026-10-08T05:20:43.182Z",
+  "description": "Ignition is an employee benefits brokerage that uses workforce data to shop company health plans with carriers, supported by licensed experts.",
+  "domain": "ignitionbenefits.com",
+  "image": "/og/ignitionbenefits.com.png",
+  "name": "Ignition",
+  "slug": "ignitionbenefits.com",
+  "URL": "https://www.ignitionbenefits.com/"
+}
