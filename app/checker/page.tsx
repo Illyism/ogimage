@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import type React from 'react'
+import { PageHeader } from '@/components/nav/PageHeader'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { generatePageMeta } from '@/core/seo'
 import { CheckerForm } from './CheckerForm'
@@ -9,6 +11,9 @@ export const metadata = generatePageMeta({
   title: 'OG Image Checker: Test Open Graph Tags and Link Previews',
   url: '/checker',
 })
+
+const link =
+  'text-foreground underline decoration-primary/60 underline-offset-4 transition-colors hover:decoration-primary'
 
 const checks = [
   {
@@ -96,86 +101,113 @@ export default function Page() {
         }}
         type="application/ld+json"
       />
-      <div className="container flex flex-col gap-16 py-12">
-        <header className="flex flex-col gap-3">
-          <h1 className="max-w-3xl text-balance font-semibold text-3xl tracking-tight md:text-4xl">
-            OG image checker
-          </h1>
-          <p className="max-w-2xl text-muted-foreground">
-            Paste a URL. Test its Open Graph tags, the real size of the
-            og:image, and the link preview on X, Facebook, LinkedIn, and Slack.
-            Free, no sign-up.
-          </p>
-        </header>
-
+      <PageHeader
+        description="Paste a URL. Test its Open Graph tags, the real size of the og:image, and the link preview on X, Facebook, LinkedIn, and Slack. Free, no sign-up."
+        eyebrow="Checker"
+        title={
+          <>
+            <span className="accent-serif">OG image</span> checker
+          </>
+        }
+      />
+      <div className="container flex flex-col gap-24 pb-12">
         <CheckerForm />
 
-        <section className="flex flex-col gap-6">
-          <h2 className="font-semibold text-2xl tracking-tight">
-            What the Open Graph checker tests
+        <section className="flex flex-col gap-10">
+          <h2 className="display text-2xl md:text-4xl">
+            What the Open Graph checker{' '}
+            <span className="accent-serif">tests</span>
           </h2>
-          <dl className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <dl className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {checks.map((check) => (
-              <div className="flex flex-col gap-1" key={check.title}>
-                <dt className="font-medium">{check.title}</dt>
-                <dd className="text-muted-foreground text-sm">{check.text}</dd>
+              <div
+                className="surface flex flex-col gap-2 rounded-3xl p-6"
+                key={check.title}
+              >
+                <dt className="font-semibold text-lg tracking-tight">
+                  {check.title}
+                </dt>
+                <dd className="text-pretty text-muted-foreground">
+                  {check.text}
+                </dd>
               </div>
             ))}
           </dl>
         </section>
 
-        <section className="flex max-w-3xl flex-col gap-4">
-          <h2 className="font-semibold text-2xl tracking-tight">
-            How to fix a failed OG image test
+        <section className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.3fr]">
+          <h2 className="display text-2xl md:text-4xl">
+            How to fix a <span className="accent-serif">failed</span> OG image
+            test
           </h2>
-          <ol className="flex list-decimal flex-col gap-2 pl-5 text-muted-foreground">
-            <li>
+          <ol className="flex flex-col text-lg text-muted-foreground">
+            <Step index={1}>
               Make a 1200×630 image. Use the{' '}
-              <Link className="underline underline-offset-4" href="/generator">
+              <Link className={link} href="/generator">
                 OG image generator
               </Link>{' '}
               or copy one of the{' '}
-              <Link className="underline underline-offset-4" href="/templates">
+              <Link className={link} href="/templates">
                 free templates
               </Link>
               .
-            </li>
-            <li>
+            </Step>
+            <Step index={2}>
               Add the{' '}
-              <Link
-                className="underline underline-offset-4"
-                href="/og-image-meta-tag"
-              >
+              <Link className={link} href="/og-image-meta-tag">
                 og:image meta tag
               </Link>{' '}
               with an absolute https URL to the head of the page.
-            </li>
-            <li>
+            </Step>
+            <Step index={3}>
               Add og:image:width, og:image:height, and og:image:alt. See the{' '}
-              <Link
-                className="underline underline-offset-4"
-                href="/og-image-size"
-              >
+              <Link className={link} href="/og-image-size">
                 OG image size guide
               </Link>{' '}
               for each platform.
-            </li>
-            <li>Deploy, then run the test again.</li>
+            </Step>
+            <Step index={4}>Deploy, then run the test again.</Step>
           </ol>
         </section>
 
-        <section className="flex max-w-3xl flex-col gap-6">
-          <h2 className="font-semibold text-2xl tracking-tight">
-            OG image tester questions
+        <section className="grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1.3fr]">
+          <h2 className="display text-2xl md:text-4xl">
+            OG image tester <span className="accent-serif">questions</span>
           </h2>
-          {faqs.map((faq) => (
-            <div className="flex flex-col gap-2" key={faq.question}>
-              <h3 className="font-medium">{faq.question}</h3>
-              <p className="text-muted-foreground">{faq.answer}</p>
-            </div>
-          ))}
+          <dl className="flex flex-col">
+            {faqs.map((faq) => (
+              <div
+                className="flex flex-col gap-2 border-b py-6 first:border-t"
+                key={faq.question}
+              >
+                <dt className="font-medium text-lg tracking-tight">
+                  {faq.question}
+                </dt>
+                <dd className="text-pretty text-muted-foreground">
+                  {faq.answer}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </section>
       </div>
     </PageLayout>
+  )
+}
+
+function Step({
+  children,
+  index,
+}: {
+  children: React.ReactNode
+  index: number
+}) {
+  return (
+    <li className="flex gap-5 border-b py-5 first:border-t">
+      <span className="eyebrow mt-1.5 tabular-nums">
+        {String(index).padStart(2, '0')}
+      </span>
+      <span className="text-pretty">{children}</span>
+    </li>
   )
 }

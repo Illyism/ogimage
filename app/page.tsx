@@ -1,14 +1,18 @@
+import { Bento } from '@/components/home/bento'
 import { Faq } from '@/components/home/faq'
 import { GalleryPreview } from '@/components/home/gallery-preview'
 import { GetAccess } from '@/components/home/get-access'
 import { Hero } from '@/components/home/hero'
 import { Learn } from '@/components/home/learn'
-import { ProblemSolution } from '@/components/home/problem-solution'
+import { TemplateGrid } from '@/components/home/template-grid'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { TestimonialMarquee } from '@/components/reviews/testimonial-marquee'
 import { generatePageMeta } from '@/core/seo'
-import { getLatestInspiration, getUniqueCategories } from '@/lib/gallery'
-import { TemplatePreview } from './og/components/TemplatePreview'
+import {
+  getLatestInspiration,
+  getUniqueCategories,
+  type Inspiration,
+} from '@/lib/gallery'
 
 export const metadata = generatePageMeta({
   description:
@@ -17,18 +21,34 @@ export const metadata = generatePageMeta({
   url: '/',
 })
 
+// The hero stack sits on a dark page. Dark cards disappear behind the live
+// card, so the two cards behind it must have a light dominant color.
+function isLight(item: Inspiration) {
+  const [hex] = item.color
+  if (hex?.length !== 7) {
+    return false
+  }
+  const [r, g, b] = [1, 3, 5].map((start) =>
+    Number.parseInt(hex.slice(start, start + 2), 16),
+  ) as [number, number, number]
+  return (r * 299 + g * 587 + b * 114) / 1000 > 140
+}
+
 export default function Page() {
   const all = getLatestInspiration()
-  const gallery = all.slice(0, 9)
   const categories = getUniqueCategories(all).filter((item) => item.count > 10)
 
   return (
     <PageLayout>
-      <Hero />
-      <GalleryPreview categories={categories} items={gallery} />
-      <ProblemSolution />
+      <Hero cards={all.filter(isLight).slice(0, 2)} count={all.length} />
+      <GalleryPreview
+        categories={categories}
+        count={all.length}
+        items={all.slice(2, 26)}
+      />
+      <Bento items={all.slice(26, 34)} />
+      <TemplateGrid />
       <TestimonialMarquee />
-      <TemplatePreview />
       <Learn />
       <GetAccess />
       <Faq />

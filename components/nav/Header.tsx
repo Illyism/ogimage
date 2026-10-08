@@ -12,6 +12,7 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { cn } from '@/lib/utils'
+import { GitHubIcon } from '../icons/SocialIcons'
 import { Logo } from '../ui/logo'
 import { headerLinks } from './nav'
 
@@ -19,11 +20,14 @@ const GITHUB_URL = 'https://github.com/Illyism/ogimage'
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-10 border-b bg-background/95 backdrop-blur-lg supports-backdrop-filter:bg-background/80">
-      <div className="container flex h-14 items-center gap-4">
-        <Link className="flex items-center gap-2 font-semibold" href="/">
+    <header className="sticky top-0 z-20 border-b bg-background/75 backdrop-blur-xl">
+      <div className="container flex h-16 items-center gap-6">
+        <Link
+          className="flex items-center gap-2 font-semibold tracking-tight"
+          href="/"
+        >
           <Logo className="size-6 text-primary" />
-          ogimage.org
+          ogimage<span className="-ml-2 text-muted-foreground">.org</span>
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
           <NavLinks />
@@ -31,11 +35,12 @@ export function Header() {
         <div className="ml-auto flex items-center gap-2">
           <Button asChild className="hidden sm:inline-flex" variant="ghost">
             <a href={GITHUB_URL} rel="noreferrer" target="_blank">
+              <GitHubIcon className="fill-current" />
               GitHub
             </a>
           </Button>
           <Button asChild>
-            <Link href="/#get-access">Get the kit</Link>
+            <Link href="/generator">Make an OG image</Link>
           </Button>
           <Sheet>
             <SheetTrigger asChild>
@@ -76,9 +81,10 @@ function NavLinks({ stacked = false }: { stacked?: boolean }) {
         return (
           <Link
             className={cn(
-              'rounded-md px-3 py-2 text-muted-foreground text-sm transition-colors hover:text-foreground',
-              stacked && 'px-0',
-              isActive && 'text-foreground',
+              'rounded-full px-3 py-1.5 text-muted-foreground text-sm transition-colors hover:text-foreground',
+              stacked && 'px-0 py-2',
+              isActive && !stacked && 'bg-accent text-foreground',
+              isActive && stacked && 'text-foreground',
             )}
             href={link.href}
             key={link.href}

@@ -1,3 +1,4 @@
+import { PageHeader } from '@/components/nav/PageHeader'
 import { PageLayout } from '@/components/nav/PageLayout'
 import {
   Card,
@@ -20,17 +21,16 @@ export const metadata = generatePageMeta({
 export default function Page() {
   return (
     <PageLayout>
-      <div className="container flex max-w-3xl flex-col gap-8 py-12">
-        <header className="flex flex-col gap-2 text-center">
-          <h1 className="text-balance font-semibold text-3xl tracking-tight md:text-4xl">
-            Add a site to the gallery
-          </h1>
-          <p className="text-muted-foreground">
-            Run one command, open a pull request. Featured cards get a follow
-            link.
-          </p>
-        </header>
-
+      <PageHeader
+        description="Run one command and open a pull request. Featured cards get a follow link."
+        eyebrow="Gallery"
+        title={
+          <>
+            Add a site to the <span className="accent-serif">gallery</span>
+          </>
+        }
+      />
+      <div className="container grid grid-cols-1 gap-6 pb-12 lg:grid-cols-2">
         <Card>
           <CardHeader>
             <CardTitle>From a fork</CardTitle>
@@ -48,7 +48,7 @@ export default function Page() {
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <pre className="overflow-x-auto rounded-lg bg-muted p-4 text-xs">
+            <pre className="overflow-x-auto rounded-xl bg-background/60 p-4 font-mono text-xs leading-relaxed">
               {`bun scripts/add-og.ts https://example.com saas
 git checkout -b gallery/example.com
 git add content/gallery/example.com.json public/og/example.com.jpg`}
@@ -56,10 +56,17 @@ git add content/gallery/example.com.json public/og/example.com.jpg`}
           </CardContent>
         </Card>
 
-        <p className="text-center text-muted-foreground text-sm">
-          No git? Send the URL.
-        </p>
-        <DomainSubmitForm />
+        <Card>
+          <CardHeader>
+            <CardTitle>No git? Send the URL.</CardTitle>
+            <CardDescription>
+              We look at each card before it goes into the gallery.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <DomainSubmitForm />
+          </CardContent>
+        </Card>
       </div>
     </PageLayout>
   )

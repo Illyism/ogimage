@@ -1,7 +1,10 @@
+import { PlusIcon } from 'lucide-react'
 import Link from 'next/link'
 import { Suspense } from 'react'
 import { GetAccess } from '@/components/home/get-access'
+import { PageHeader } from '@/components/nav/PageHeader'
 import { PageLayout } from '@/components/nav/PageLayout'
+import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { generatePageMeta } from '@/core/seo'
 import {
@@ -53,8 +56,8 @@ export default function Page({ searchParams }: InspirationSearch) {
 
 function GalleryFallback() {
   return (
-    <div className="container flex flex-col gap-8 py-12">
-      <Skeleton className="h-10 w-2/3 max-w-md" />
+    <div className="container flex flex-col gap-8 py-24">
+      <Skeleton className="h-14 w-2/3 max-w-md" />
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {Array.from({ length: 6 }).map((_, index) => (
           <Skeleton className="aspect-1200/630" key={index} />
@@ -81,38 +84,40 @@ async function GallerySection({
   )
 
   return (
-    <div className="container flex flex-col gap-8 py-12">
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-balance font-semibold text-3xl tracking-tight md:text-4xl">
-            OG image gallery
-          </h1>
-          <p className="max-w-2xl text-muted-foreground">
-            {category
-              ? `${total} ${formatCategoryLabel(category)} OG image examples from live sites.`
-              : `${getGalleryCount()} real OG image examples from live startups. Use them as inspiration for your own Open Graph image.`}
-          </p>
-        </div>
-        <Link
-          className="shrink-0 text-sm underline underline-offset-4"
-          href="/inspiration/submit"
-        >
-          Add a site
-        </Link>
+    <>
+      <PageHeader
+        description={
+          category
+            ? `${total} ${formatCategoryLabel(category)} OG image examples from live sites.`
+            : `${getGalleryCount()} real OG image examples from live startups. Use them as inspiration for your own Open Graph image.`
+        }
+        eyebrow="Gallery"
+        title={
+          <>
+            OG image <span className="accent-serif">gallery</span>
+          </>
+        }
+      >
+        <Button asChild variant="outline">
+          <Link href="/inspiration/submit">
+            <PlusIcon />
+            Add a site
+          </Link>
+        </Button>
+      </PageHeader>
+      <div className="container flex flex-col gap-10 pb-12">
+        <CategoryChips
+          active={category}
+          allCount={all.length}
+          categories={chips}
+        />
+        <GalleryGrid items={items} />
+        <GalleryPager
+          hrefFor={(page) => galleryHref({ category, page })}
+          page={current}
+          totalPages={totalPages}
+        />
       </div>
-
-      <CategoryChips
-        active={category}
-        allCount={all.length}
-        categories={chips}
-      />
-
-      <GalleryGrid items={items} />
-      <GalleryPager
-        hrefFor={(page) => galleryHref({ category, page })}
-        page={current}
-        totalPages={totalPages}
-      />
-    </div>
+    </>
   )
 }

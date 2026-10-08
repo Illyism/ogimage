@@ -1,33 +1,39 @@
 import Link from 'next/link'
 import { CategoryChips } from '@/app/inspiration/CategoryChips'
-import { GalleryGrid } from '@/app/inspiration/GalleryGrid'
 import { Button } from '@/components/ui/button'
 import type { Inspiration } from '@/lib/gallery'
+import { CardMarquee } from './card-marquee'
+import { SectionHeading } from './section-heading'
 
 export function GalleryPreview({
   categories,
+  count,
   items,
 }: {
   categories: { category: string; count: number }[]
+  count: number
   items: Inspiration[]
 }) {
   return (
-    <section className="container flex flex-col gap-8 py-16">
-      <div className="flex flex-col gap-2">
-        <h2 className="text-balance font-semibold text-3xl tracking-tight">
-          Real OG images from live startups
-        </h2>
-        <p className="max-w-2xl text-muted-foreground">
-          SaaS, design, ecommerce, productivity. A swipe file of cards from
-          sites that already rank.
-        </p>
-      </div>
-      <CategoryChips categories={categories} />
-      <GalleryGrid eagerCount={3} items={items} />
-      <div>
-        <Button asChild variant="outline">
+    <section className="flex flex-col gap-10 py-20">
+      <div className="container flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <SectionHeading
+          description="A swipe file of cards that designers made on purpose. Sorted by category, with the colors of each card."
+          eyebrow="Gallery"
+          title={
+            <>
+              <span className="tabular-nums">{count}</span> real OG images from{' '}
+              <span className="accent-serif">live</span> startups
+            </>
+          }
+        />
+        <Button asChild className="shrink-0" variant="outline">
           <Link href="/inspiration">Browse the gallery</Link>
         </Button>
+      </div>
+      <CardMarquee items={items} />
+      <div className="container">
+        <CategoryChips categories={categories} />
       </div>
     </section>
   )

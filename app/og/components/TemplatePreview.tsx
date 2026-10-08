@@ -235,13 +235,11 @@ export const TemplatePreview = ({
   }
 
   return (
-    <div className="container grid grid-cols-1 gap-8 py-16 md:grid-cols-3">
+    <div className="container grid grid-cols-1 gap-8 pb-16 md:grid-cols-3">
       <div className="flex flex-col gap-4">
         {hideIntro ? null : (
           <>
-            <h2 className="text-balance font-semibold text-3xl tracking-tight">
-              OG image templates
-            </h2>
+            <h2 className="display text-3xl md:text-4xl">OG image templates</h2>
             <p className="max-w-2xl text-muted-foreground">
               Every template is in the kit. You get the route source. Change it.
             </p>

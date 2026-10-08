@@ -15,9 +15,9 @@ export function GalleryPager({
   }
 
   return (
-    <nav className="mt-8 flex items-center justify-between gap-4 text-sm">
+    <nav className="flex items-center justify-between gap-4 border-t pt-8 text-sm">
       {page > 1 ? (
-        <Button asChild variant="secondary">
+        <Button asChild variant="outline">
           <Link href={hrefFor(page - 1)} scroll={false}>
             Previous
           </Link>
@@ -25,11 +25,11 @@ export function GalleryPager({
       ) : (
         <span />
       )}
-      <span className="text-muted-foreground tabular-nums">
+      <span className="font-mono text-muted-foreground text-xs tabular-nums">
         Page {page} of {totalPages}
       </span>
       {page < totalPages ? (
-        <Button asChild variant="secondary">
+        <Button asChild variant="outline">
           <Link href={hrefFor(page + 1)} scroll={false}>
             Next
           </Link>

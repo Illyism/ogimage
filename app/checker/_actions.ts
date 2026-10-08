@@ -285,7 +285,8 @@ export async function checkPage(
   _prevState: CheckState,
   formData: FormData,
 ): Promise<CheckState> {
-  const value = formData.get('url')
+  // An example chip submits the form with its own value.
+  const value = formData.get('example') || formData.get('url')
   const pageUrl = typeof value === 'string' ? normalizeUrl(value) : null
   if (!pageUrl) {
     return { error: 'Enter a valid website URL.', status: 'error' }

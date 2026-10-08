@@ -2,7 +2,20 @@ import { generatePageMeta } from '@/core/seo'
 import { StructuredData } from '@/core/structured'
 import '@/app/globals.css'
 import type { Viewport } from 'next'
+import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google'
 import Script from 'next/script'
+
+const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
+const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+})
+const instrumentSerif = Instrument_Serif({
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-instrument-serif',
+  weight: '400',
+})
 
 export const metadata = generatePageMeta()
 
@@ -36,7 +49,11 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      className={`${geist.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
+      lang="en"
+      suppressHydrationWarning
+    >
       <body className="dark h-full font-sans antialiased">
         <StructuredData />
         {children}

@@ -3,6 +3,7 @@
 import {
   CircleCheckIcon,
   CircleXIcon,
+  GlobeIcon,
   SearchIcon,
   TriangleAlertIcon,
 } from 'lucide-react'
@@ -17,7 +18,6 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Field, FieldError, FieldLabel } from '@/components/ui/field'
-import { Input } from '@/components/ui/input'
 import { Spinner } from '@/components/ui/spinner'
 import { cn } from '@/lib/utils'
 import {
@@ -28,6 +28,7 @@ import {
 } from './_actions'
 
 const initialState: CheckState = { status: 'idle' }
+const EXAMPLES = ['github.com', 'linear.app', 'vercel.com', 'stripe.com']
 
 export function CheckerForm() {
   const [state, formAction, pending] = useActionState(checkPage, initialState)
@@ -39,34 +40,56 @@ export function CheckerForm() {
   }, [state])
 
   return (
-    <div className="flex flex-col gap-10">
-      <form action={formAction} className="flex max-w-2xl flex-col gap-3">
+    <div className="flex flex-col gap-12">
+      <form action={formAction} className="flex max-w-3xl flex-col gap-4">
         <Field data-invalid={state.status === 'error' || undefined}>
-          <FieldLabel htmlFor="checker-url">Page URL</FieldLabel>
-          <div className="flex flex-col gap-2 sm:flex-row">
-            <Input
+          <FieldLabel className="sr-only" htmlFor="checker-url">
+            Page URL
+          </FieldLabel>
+          <div className="surface flex items-center gap-2 rounded-2xl p-2 pl-5 focus-within:ring-2 focus-within:ring-ring/60">
+            <GlobeIcon className="size-5 shrink-0 text-muted-foreground" />
+            <input
               aria-invalid={state.status === 'error'}
               autoComplete="url"
+              className="h-12 min-w-0 flex-1 bg-transparent text-lg outline-none placeholder:text-muted-foreground"
               defaultValue={state.report?.url}
               id="checker-url"
               inputMode="url"
+              key={state.report?.url}
               name="url"
               placeholder="https://example.com/blog/post"
               required
             />
-            <Button disabled={pending} type="submit">
+            <Button disabled={pending} size="lg" type="submit">
               {pending ? (
                 <Spinner data-icon="inline-start" />
               ) : (
                 <SearchIcon data-icon="inline-start" />
               )}
-              {pending ? 'Checking…' : 'Check OG image'}
+              {pending ? 'Checking…' : 'Check'}
             </Button>
           </div>
           {state.status === 'error' && state.error ? (
             <FieldError>{state.error}</FieldError>
           ) : null}
         </Field>
+        <div className="flex flex-wrap items-center gap-2 text-sm">
+          <span className="text-muted-foreground">Try</span>
+          {EXAMPLES.map((example) => (
+            <button
+              className="rounded-full bg-secondary px-3 py-1 font-mono text-xs transition-[background-color,scale] duration-150 ease-out hover:bg-secondary/70 active:scale-[0.96] disabled:opacity-50"
+              disabled={pending}
+              // The URL field is empty when a chip is used.
+              formNoValidate
+              key={example}
+              name="example"
+              type="submit"
+              value={example}
+            >
+              {example}
+            </button>
+          ))}
+        </div>
       </form>
 
       {state.report ? <Report report={state.report} /> : null}
@@ -79,18 +102,25 @@ function Report({ report }: { report: CheckReport }) {
   const warnings = report.issues.filter((issue) => issue.level === 'warning')
 
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex animate-enter flex-col gap-12">
       <Card>
         <CardHeader>
-          <CardTitle>
-            {errors.length === 0 && warnings.length === 0
-              ? 'No problems found'
-              : `${errors.length} errors, ${warnings.length} warnings`}
+          <CardDescription className="break-all font-mono text-xs">
+            {report.url}
+          </CardDescription>
+          <CardTitle className="display text-2xl md:text-3xl">
+            {errors.length === 0 && warnings.length === 0 ? (
+              'No problems found'
+            ) : (
+              <span className="tabular-nums">
+                {plural(errors.length, 'error')},{' '}
+                {plural(warnings.length, 'warning')}
+              </span>
+            )}
           </CardTitle>
-          <CardDescription className="break-all">{report.url}</CardDescription>
         </CardHeader>
         <CardContent>
-          <ul className="flex flex-col gap-2 text-sm">
+          <ul className="flex flex-col gap-2.5">
             {report.issues.map((issue) => (
               <IssueRow issue={issue} key={issue.text} />
             ))}
@@ -108,8 +138,8 @@ function Report({ report }: { report: CheckReport }) {
       </Card>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-semibold text-2xl tracking-tight">Link preview</h2>
-        <div className="grid items-start gap-6 md:grid-cols-2">
+        <h2 className="display text-2xl md:text-3xl">Link preview</h2>
+        <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2">
           <Preview label="X (Twitter)">
             <div className="relative overflow-hidden rounded-2xl border">
               <PreviewImage report={report} />
@@ -171,7 +201,7 @@ function Report({ report }: { report: CheckReport }) {
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="font-semibold text-2xl tracking-tight">
+        <h2 className="display text-2xl md:text-3xl">
           Open Graph tags on this page
         </h2>
         {report.tags.length === 0 ? (
@@ -179,7 +209,7 @@ function Report({ report }: { report: CheckReport }) {
             This page has no Open Graph or Twitter card tags.
           </p>
         ) : (
-          <div className="overflow-x-auto rounded-lg border">
+          <div className="surface overflow-x-auto rounded-2xl">
             <table className="w-full text-left text-sm">
               <tbody>
                 {report.tags.map((tag) => (
@@ -201,17 +231,21 @@ function Report({ report }: { report: CheckReport }) {
   )
 }
 
+function plural(count: number, word: string) {
+  return `${count} ${word}${count === 1 ? '' : 's'}`
+}
+
 const ISSUE_STYLE = {
   error: { className: 'text-destructive', icon: CircleXIcon },
-  pass: { className: 'text-emerald-500', icon: CircleCheckIcon },
-  warning: { className: 'text-amber-500', icon: TriangleAlertIcon },
+  pass: { className: 'text-emerald-400', icon: CircleCheckIcon },
+  warning: { className: 'text-amber-400', icon: TriangleAlertIcon },
 }
 
 function IssueRow({ issue }: { issue: CheckIssue }) {
   const style = ISSUE_STYLE[issue.level]
   return (
     <li className="flex items-start gap-2">
-      <style.icon className={cn('mt-0.5 size-4 shrink-0', style.className)} />
+      <style.icon className={cn('mt-1 size-4 shrink-0', style.className)} />
       <span>{issue.text}</span>
     </li>
   )
@@ -226,7 +260,7 @@ function Preview({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <h3 className="font-medium text-muted-foreground text-sm">{label}</h3>
+      <h3 className="eyebrow">{label}</h3>
       <div>{children}</div>
     </div>
   )
