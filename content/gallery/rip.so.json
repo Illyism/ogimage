@@ -1,0 +1,20 @@
+{
+  "category": [
+    "technology",
+    "community",
+    "blog"
+  ],
+  "color": [
+    "#1a1a1a",
+    "#e6e6dc"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:41:39.760Z",
+  "date_updated": "2026-10-08T08:41:39.760Z",
+  "description": "rip.so is a memorial website that lists messengers, social networks, browsers and websites that have shut down.",
+  "domain": "rip.so",
+  "image": "/og/rip.so.png",
+  "name": "rip.so",
+  "slug": "rip.so",
+  "URL": "https://rip.so"
+}

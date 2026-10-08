@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "fintech",
+    "security"
+  ],
+  "color": [
+    "#f7f5f0",
+    "#1a1915"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:38:58.687Z",
+  "date_updated": "2026-10-08T08:38:58.687Z",
+  "description": "Zomma builds computer-use AI agents that do financial back-office work, starting with compliance screening for payment companies, and return a finished case file.",
+  "domain": "zommalabs.com",
+  "image": "/og/zommalabs.com.jpg",
+  "name": "Zomma",
+  "slug": "zommalabs.com",
+  "URL": "https://zommalabs.com"
+}

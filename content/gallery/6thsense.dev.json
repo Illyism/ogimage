@@ -1,0 +1,20 @@
+{
+  "category": [
+    "hardware",
+    "ai",
+    "technology"
+  ],
+  "color": [
+    "#141210",
+    "#e8e4dc"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:39:36.474Z",
+  "date_updated": "2026-10-08T08:39:36.474Z",
+  "description": "6thSense makes tactile sensing hardware for robot learning, including sensor gloves for capturing human touch data and custom tactile skin for robot hands.",
+  "domain": "6thsense.dev",
+  "image": "/og/6thsense.dev.jpg",
+  "name": "6thSense",
+  "slug": "6thsense.dev",
+  "URL": "https://6thsense.dev"
+}

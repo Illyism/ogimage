@@ -1,0 +1,20 @@
+{
+  "category": [
+    "business",
+    "marketplace",
+    "transportation"
+  ],
+  "color": [
+    "#f0ede6",
+    "#1a4d2e"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:38:33.349Z",
+  "date_updated": "2026-10-08T08:38:33.349Z",
+  "description": "Donkey is a sourcing service that takes a buyer's product list and returns landed factory prices with tariffs and delivery included, so importers can buy containers of goods at one total price.",
+  "domain": "donkey.trade",
+  "image": "/og/donkey.trade.png",
+  "name": "Donkey",
+  "slug": "donkey.trade",
+  "URL": "https://donkey.trade"
+}

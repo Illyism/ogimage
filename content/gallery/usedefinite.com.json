@@ -1,0 +1,20 @@
+{
+  "category": [
+    "finance",
+    "data",
+    "ai"
+  ],
+  "color": [
+    "#0d0e12",
+    "#8fb4d9"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:39:32.216Z",
+  "date_updated": "2026-10-08T08:39:32.216Z",
+  "description": "Definite connects finance systems such as ERP, CRM, and data warehouses, maps their shared data, and gives finance teams one context layer for reconciliation, dashboards, chat, and agents.",
+  "domain": "usedefinite.com",
+  "image": "/og/usedefinite.com.png",
+  "name": "Definite",
+  "slug": "usedefinite.com",
+  "URL": "https://www.usedefinite.com"
+}

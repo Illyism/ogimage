@@ -1,0 +1,20 @@
+{
+  "category": [
+    "developer-tools",
+    "ai",
+    "software"
+  ],
+  "color": [
+    "#e8e8e8",
+    "#111111"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:39:49.501Z",
+  "date_updated": "2026-10-08T08:39:49.501Z",
+  "description": "Hoplite is a platform for deploying cloud-based coding agents powered by LLMs.",
+  "domain": "hoplite.sh",
+  "image": "/og/hoplite.sh.png",
+  "name": "Hoplite",
+  "slug": "hoplite.sh",
+  "URL": "https://hoplite.sh"
+}

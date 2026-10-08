@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "developer-tools"
+  ],
+  "color": [
+    "#f9f8f5",
+    "#7f9ce0"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:39:12.357Z",
+  "date_updated": "2026-10-08T08:39:12.357Z",
+  "description": "Speko is an API that routes requests across speech AI models, benchmarking each model by language.",
+  "domain": "speko.ai",
+  "image": "/og/speko.ai.png",
+  "name": "Speko",
+  "slug": "speko.ai",
+  "URL": "https://speko.ai/?utm_source=ycombinator&utm_medium=profile"
+}

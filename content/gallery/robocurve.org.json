@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "research"
+  ],
+  "color": [
+    "#faf9f6",
+    "#5fb3c4"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:39:18.338Z",
+  "date_updated": "2026-10-08T08:39:18.338Z",
+  "description": "Robocurve is a public benefit corporation that builds open-source tools and independent benchmarks to evaluate robot and physical AI capabilities in the real world.",
+  "domain": "robocurve.org",
+  "image": "/og/robocurve.org.jpg",
+  "name": "Robocurve",
+  "slug": "robocurve.org",
+  "URL": "https://robocurve.org"
+}

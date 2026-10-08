@@ -1,0 +1,19 @@
+{
+  "category": [
+    "education",
+    "research"
+  ],
+  "color": [
+    "#f5f1ec",
+    "#8e3426"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:40:44.727Z",
+  "date_updated": "2026-10-08T08:40:44.727Z",
+  "description": "Cross Canon is a website for searching Scripture by theme and finding related Bible passages without commentary.",
+  "domain": "crosscanon.com",
+  "image": "/og/crosscanon.com.png",
+  "name": "Cross Canon",
+  "slug": "crosscanon.com",
+  "URL": "https://www.crosscanon.com"
+}

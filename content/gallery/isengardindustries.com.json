@@ -1,0 +1,20 @@
+{
+  "category": [
+    "hardware",
+    "technology",
+    "ai"
+  ],
+  "color": [
+    "#1a1a1a",
+    "#e8620c"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:39:37.975Z",
+  "date_updated": "2026-10-08T08:39:37.975Z",
+  "description": "Isengard Industries builds mass-produced, AI-guided precision munitions and unmanned aircraft, manufactured in the US and Poland.",
+  "domain": "isengardindustries.com",
+  "image": "/og/isengardindustries.com.png",
+  "name": "Isengard Industries",
+  "slug": "isengardindustries.com",
+  "URL": "http://isengardindustries.com/"
+}

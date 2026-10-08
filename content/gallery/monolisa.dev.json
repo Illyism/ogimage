@@ -1,0 +1,19 @@
+{
+  "category": [
+    "developer-tools",
+    "design"
+  ],
+  "color": [
+    "#1b3a5c",
+    "#e8c955"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:40:51.642Z",
+  "date_updated": "2026-10-08T08:40:51.642Z",
+  "description": "MonoLisa is a monospaced font family made for software developers to use in code editors and terminals.",
+  "domain": "monolisa.dev",
+  "image": "/og/monolisa.dev.png",
+  "name": "MonoLisa",
+  "slug": "monolisa.dev",
+  "URL": "https://www.monolisa.dev"
+}

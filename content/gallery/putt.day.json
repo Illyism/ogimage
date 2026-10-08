@@ -1,0 +1,19 @@
+{
+  "category": [
+    "gaming",
+    "entertainment"
+  ],
+  "color": [
+    "#1a2f2a",
+    "#4caf72"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:41:04.353Z",
+  "date_updated": "2026-10-08T08:41:04.353Z",
+  "description": "putt.day is a daily browser mini golf game where everyone plays the same hole each day.",
+  "domain": "putt.day",
+  "image": "/og/putt.day.png",
+  "name": "putt.day",
+  "slug": "putt.day",
+  "URL": "https://putt.day"
+}

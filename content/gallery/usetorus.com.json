@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "software"
+  ],
+  "color": [
+    "#8a6a4e",
+    "#f0a04b"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:38:56.959Z",
+  "date_updated": "2026-10-08T08:38:56.959Z",
+  "description": "Torus builds AI agents for engineering teams on capital projects. The agents read specs, drawings, and datasheets, find conflicts between disciplines, and draft follow-up documents.",
+  "domain": "usetorus.com",
+  "image": "/og/usetorus.com.jpg",
+  "name": "Torus",
+  "slug": "usetorus.com",
+  "URL": "https://www.usetorus.com"
+}

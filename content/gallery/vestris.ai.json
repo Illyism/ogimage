@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "real-estate",
+    "saas"
+  ],
+  "color": [
+    "#f3f0e4",
+    "#4a6b2e"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:39:08.890Z",
+  "date_updated": "2026-10-08T08:39:08.890Z",
+  "description": "Vestris is AI software that runs the real estate settlement process, automating document collection, title clearing, and closing coordination for title teams.",
+  "domain": "vestris.ai",
+  "image": "/og/vestris.ai.png",
+  "name": "Vestris",
+  "slug": "vestris.ai",
+  "URL": "https://vestris.ai/"
+}

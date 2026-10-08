@@ -1,0 +1,19 @@
+{
+  "category": [
+    "developer-tools",
+    "software"
+  ],
+  "color": [
+    "#0b0b0b",
+    "#ffffff"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:39:27.480Z",
+  "date_updated": "2026-10-08T08:39:27.480Z",
+  "description": "Prized offers always-on cloud development machines that sync with your local setup and mirror ports to localhost. Plans are billed monthly or by the hour.",
+  "domain": "prized.dev",
+  "image": "/og/prized.dev.png",
+  "name": "Prized",
+  "slug": "prized.dev",
+  "URL": "https://prized.dev"
+}

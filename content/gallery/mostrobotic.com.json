@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "research",
+    "hardware"
+  ],
+  "color": [
+    "#0c1838",
+    "#ff6f61"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:39:29.774Z",
+  "date_updated": "2026-10-08T08:39:29.774Z",
+  "description": "Most Robotic is a robotics research lab working on physical AI.",
+  "domain": "mostrobotic.com",
+  "image": "/og/mostrobotic.com.png",
+  "name": "Most Robotic",
+  "slug": "mostrobotic.com",
+  "URL": "https://mostrobotic.com/"
+}

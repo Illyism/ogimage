@@ -1,0 +1,20 @@
+{
+  "category": [
+    "productivity",
+    "collaboration",
+    "software"
+  ],
+  "color": [
+    "#0f1a2c",
+    "#f4a08c"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:40:24.248Z",
+  "date_updated": "2026-10-08T08:40:24.248Z",
+  "description": "Bento is an office suite where a single HTML file holds the document, the editor and the player. It is local-first, works offline, and offers end-to-end-encrypted live collaboration with AI features.",
+  "domain": "bento.page",
+  "image": "/og/bento.page.png",
+  "name": "bento",
+  "slug": "bento.page",
+  "URL": "https://bento.page"
+}

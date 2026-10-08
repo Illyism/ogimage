@@ -1,0 +1,20 @@
+{
+  "category": [
+    "developer-tools",
+    "design",
+    "education"
+  ],
+  "color": [
+    "#9a9abf",
+    "#dce8dc"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:40:48.031Z",
+  "date_updated": "2026-10-08T08:40:48.031Z",
+  "description": "tikz.dev hosts the full online manual for PGF/TikZ, a TeX package for making graphics. It documents the commands and libraries used to draw diagrams in LaTeX.",
+  "domain": "tikz.dev",
+  "image": "/og/tikz.dev.png",
+  "name": "TikZ & PGF",
+  "slug": "tikz.dev",
+  "URL": "https://tikz.dev"
+}

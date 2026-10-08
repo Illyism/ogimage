@@ -1,0 +1,20 @@
+{
+  "category": [
+    "sports",
+    "entertainment",
+    "gaming"
+  ],
+  "color": [
+    "#0f1a2e",
+    "#3a7a2e"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:41:05.871Z",
+  "date_updated": "2026-10-08T08:41:05.871Z",
+  "description": "Ribbie shows live baseball games as an 8-bit pixel art view, updated pitch by pitch as the real games happen.",
+  "domain": "ribbie.tv",
+  "image": "/og/ribbie.tv.jpg",
+  "name": "Ribbie",
+  "slug": "ribbie.tv",
+  "URL": "https://ribbie.tv"
+}
