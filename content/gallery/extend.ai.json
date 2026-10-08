@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "developer-tools",
+    "saas"
+  ],
+  "color": [
+    "#f7f7f5",
+    "#a9c8f2"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:41:12.727Z",
+  "date_updated": "2026-10-08T08:41:12.727Z",
+  "description": "Extend provides AI models and APIs that parse, extract data from, and split documents for production pipelines.",
+  "domain": "extend.ai",
+  "image": "/og/extend.ai.png",
+  "name": "Extend",
+  "slug": "extend.ai",
+  "URL": "https://www.extend.ai"
+}

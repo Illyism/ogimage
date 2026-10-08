@@ -1,0 +1,18 @@
+{
+  "category": [
+    "health"
+  ],
+  "color": [
+    "#0f4a4a",
+    "#2a7a7a"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:38:11.822Z",
+  "date_updated": "2026-10-08T08:38:11.822Z",
+  "description": "RonanRx is a pharmacy service that provides doctor-prescribed, personalized medication doses, manufactures and lab-tests them, and delivers them directly to patients.",
+  "domain": "ronanrx.com",
+  "image": "/og/ronanrx.com.jpg",
+  "name": "RonanRx",
+  "slug": "ronanrx.com",
+  "URL": "https://ronanrx.com/"
+}

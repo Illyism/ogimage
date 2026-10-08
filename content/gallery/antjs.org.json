@@ -1,0 +1,19 @@
+{
+  "category": [
+    "developer-tools",
+    "software"
+  ],
+  "color": [
+    "#f2f2f2",
+    "#d63f3f"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:40:27.799Z",
+  "date_updated": "2026-10-08T08:40:27.799Z",
+  "description": "Ant is a lightweight JavaScript runtime built on its own engine. It ships as a single 9 MB binary with a Node-compatible API, a sandbox, TypeScript support, and Wasm support.",
+  "domain": "antjs.org",
+  "image": "/og/antjs.org.jpg",
+  "name": "Ant",
+  "slug": "antjs.org",
+  "URL": "https://antjs.org"
+}

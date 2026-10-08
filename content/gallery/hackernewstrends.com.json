@@ -1,0 +1,20 @@
+{
+  "category": [
+    "analytics",
+    "data",
+    "developer-tools"
+  ],
+  "color": [
+    "#f6f5ef",
+    "#ff6600"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:40:42.513Z",
+  "date_updated": "2026-10-08T08:40:42.513Z",
+  "description": "Hacker Trends searches 18 years of Hacker News posts and comments and charts how often a topic, tool, or person was mentioned over time. Users can overlay terms to compare them.",
+  "domain": "hackernewstrends.com",
+  "image": "/og/hackernewstrends.com.png",
+  "name": "Hacker Trends",
+  "slug": "hackernewstrends.com",
+  "URL": "https://hackernewstrends.com"
+}

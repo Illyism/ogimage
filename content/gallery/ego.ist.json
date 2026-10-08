@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "software"
+  ],
+  "color": [
+    "#f8f9fb",
+    "#111111"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:38:20.439Z",
+  "date_updated": "2026-10-08T08:38:20.439Z",
+  "description": "Egoist AI Passport is a personal context layer that carries a user's preferences, history, and identity across different AI apps.",
+  "domain": "ego.ist",
+  "image": "/og/ego.ist.png",
+  "name": "Egoist",
+  "slug": "ego.ist",
+  "URL": "https://ego.ist/"
+}

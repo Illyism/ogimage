@@ -1,0 +1,20 @@
+{
+  "category": [
+    "developer-tools",
+    "ai",
+    "collaboration"
+  ],
+  "color": [
+    "#f9f6f0",
+    "#13525e"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:40:06.150Z",
+  "date_updated": "2026-10-08T08:40:06.150Z",
+  "description": "Linzumi is a team chat app with coding agents inside each channel, so teams can direct agents and work on code together in threads.",
+  "domain": "linzumi.com",
+  "image": "/og/linzumi.com.jpg",
+  "name": "Linzumi",
+  "slug": "linzumi.com",
+  "URL": "https://linzumi.com"
+}

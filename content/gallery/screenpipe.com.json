@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "productivity",
+    "collaboration"
+  ],
+  "color": [
+    "#f0efeb",
+    "#111111"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:39:10.828Z",
+  "date_updated": "2026-10-08T08:39:10.828Z",
+  "description": "Screenpipe captures daily work to create a searchable long-term memory for teams and AI agents, with reusable workflows and enterprise controls.",
+  "domain": "screenpipe.com",
+  "image": "/og/screenpipe.com.jpg",
+  "name": "screenpipe",
+  "slug": "screenpipe.com",
+  "URL": "https://screenpipe.com"
+}

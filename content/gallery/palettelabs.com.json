@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "creativity",
+    "video"
+  ],
+  "color": [
+    "#0a0a0c",
+    "#6a5acd"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:38:46.463Z",
+  "date_updated": "2026-10-08T08:38:46.463Z",
+  "description": "Palette is an AI tool that generates images, video, and music and builds creative workflows from a single conversation on one canvas.",
+  "domain": "palettelabs.com",
+  "image": "/og/palettelabs.com.jpg",
+  "name": "Palette",
+  "slug": "palettelabs.com",
+  "URL": "https://palettelabs.com/"
+}

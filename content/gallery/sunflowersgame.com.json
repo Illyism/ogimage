@@ -1,0 +1,19 @@
+{
+  "category": [
+    "gaming",
+    "entertainment"
+  ],
+  "color": [
+    "#ffffff",
+    "#4a3b2f"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:40:19.130Z",
+  "date_updated": "2026-10-08T08:40:19.130Z",
+  "description": "Sunflowers is a free logic puzzle game where players use number clues to place sunflowers on a grid, with unlimited puzzles across six difficulty levels.",
+  "domain": "sunflowersgame.com",
+  "image": "/og/sunflowersgame.com.png",
+  "name": "Sunflowers",
+  "slug": "sunflowersgame.com",
+  "URL": "https://sunflowersgame.com"
+}

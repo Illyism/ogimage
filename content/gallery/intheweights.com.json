@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "entertainment"
+  ],
+  "color": [
+    "#4a54d6",
+    "#e8500a"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:40:57.922Z",
+  "date_updated": "2026-10-08T08:40:57.922Z",
+  "description": "In the Weights is a web tool where you type a name and see how strongly leading AI models recognize it.",
+  "domain": "intheweights.com",
+  "image": "/og/intheweights.com.png",
+  "name": "In The Weights",
+  "slug": "intheweights.com",
+  "URL": "https://www.intheweights.com"
+}

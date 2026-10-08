@@ -1,0 +1,20 @@
+{
+  "category": [
+    "hardware",
+    "software",
+    "data"
+  ],
+  "color": [
+    "#0a0a0a",
+    "#22c55e"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:38:40.697Z",
+  "date_updated": "2026-10-08T08:38:40.697Z",
+  "description": "Aktoria Robotics provides teleoperation software for robots, a 24/7 operations center of human robot operators in India and Mexico, and robot training data.",
+  "domain": "aktoria.com",
+  "image": "/og/aktoria.com.png",
+  "name": "Aktoria Robotics",
+  "slug": "aktoria.com",
+  "URL": "https://aktoria.com/"
+}

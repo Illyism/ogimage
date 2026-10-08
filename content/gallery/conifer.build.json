@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "developer-tools"
+  ],
+  "color": [
+    "#0b140f",
+    "#5bc4e6"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:39:05.679Z",
+  "date_updated": "2026-10-08T08:39:05.679Z",
+  "description": "Conifer is an AI inference router that sends each request to the cheapest model that can handle it, across local and cloud providers, with one bill.",
+  "domain": "conifer.build",
+  "image": "/og/conifer.build.png",
+  "name": "Conifer",
+  "slug": "conifer.build",
+  "URL": "https://www.conifer.build"
+}

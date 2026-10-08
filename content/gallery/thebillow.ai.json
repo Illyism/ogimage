@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "finance",
+    "software"
+  ],
+  "color": [
+    "#f7f7f4",
+    "#1a1a1a"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T08:38:33.137Z",
+  "date_updated": "2026-10-08T08:38:33.137Z",
+  "description": "Billow AI is an AI bookkeeping service that connects to a company's existing accounting tools and handles bookkeeping, starting at $1,000 per month.",
+  "domain": "thebillow.ai",
+  "image": "/og/thebillow.ai.jpg",
+  "name": "Billow AI",
+  "slug": "thebillow.ai",
+  "URL": "https://thebillow.ai/"
+}
