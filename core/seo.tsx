@@ -64,6 +64,22 @@ export const rootMetadata: Metadata = {
   twitter: rootTwitter,
 }
 
+// The preview card has room for two lines of subtitle. A cut in the middle
+// of a word looks broken, so cut at a sentence, then a comma, then a word.
+export function cardSubtitle(text: string, max = 110) {
+  if (text.length <= max) {
+    return text
+  }
+  const sentence = text.slice(0, text.indexOf('. ') + 1)
+  if (sentence && sentence.length <= max) {
+    return sentence
+  }
+  const head = text.slice(0, max)
+  const comma = head.lastIndexOf(',')
+  const cut = comma > max * 0.6 ? comma : head.lastIndexOf(' ')
+  return `${head.slice(0, cut)}…`
+}
+
 function getImage(
   image?: StaticImageData | string,
   alt?: string,
@@ -160,7 +176,7 @@ export function generatePageMeta({
     bg: '#0b090c',
     layout: 'left',
     site: 'ogimage.org',
-    subtitle: description.slice(0, 140),
+    subtitle: cardSubtitle(description),
     title,
   })
   const screenshot = {
