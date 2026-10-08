@@ -1,0 +1,19 @@
+{
+  "category": [
+    "security",
+    "ai"
+  ],
+  "color": [
+    "#a7b9c7",
+    "#2f3d47"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:54:54.651Z",
+  "date_updated": "2026-10-08T05:54:54.651Z",
+  "description": "Verdict Machine uses AI to map an institution's on-chain environment, assess its cyber risk, and generate controls to prevent hacks.",
+  "domain": "verdictmachine.com",
+  "image": "/og/verdictmachine.com.png",
+  "name": "Verdict Machine",
+  "slug": "verdictmachine.com",
+  "URL": "https://verdictmachine.com"
+}

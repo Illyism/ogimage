@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "research"
+  ],
+  "color": [
+    "#f5efe5",
+    "#c4532e"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:55:38.779Z",
+  "date_updated": "2026-10-08T05:55:38.779Z",
+  "description": "Hiloop runs automated research for clients. It turns a measurable target into many directed experiments and returns an improved model or algorithm.",
+  "domain": "hiloop.ai",
+  "image": "/og/hiloop.ai.png",
+  "name": "hiloop",
+  "slug": "hiloop.ai",
+  "URL": "https://hiloop.ai"
+}

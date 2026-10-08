@@ -1,0 +1,20 @@
+{
+  "category": [
+    "security",
+    "developer-tools",
+    "software"
+  ],
+  "color": [
+    "#eef2f8",
+    "#111418"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:55:25.225Z",
+  "date_updated": "2026-10-08T05:55:25.225Z",
+  "description": "Caution is a verifiable compute platform that deploys applications to trusted execution environments and lets anyone verify what code is running on a server.",
+  "domain": "caution.co",
+  "image": "/og/caution.co.png",
+  "name": "Caution",
+  "slug": "caution.co",
+  "URL": "https://caution.co"
+}

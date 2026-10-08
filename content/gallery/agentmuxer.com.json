@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "developer-tools",
+    "payments"
+  ],
+  "color": [
+    "#f4f8f5",
+    "#0a7a4f"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:55:30.987Z",
+  "date_updated": "2026-10-08T05:55:30.987Z",
+  "description": "AgentMuxer lets an AI agent connect once and then find, pay for, and use tools for tasks from a single balance.",
+  "domain": "agentmuxer.com",
+  "image": "/og/agentmuxer.com.png",
+  "name": "AgentMuxer",
+  "slug": "agentmuxer.com",
+  "URL": "https://www.agentmuxer.com"
+}

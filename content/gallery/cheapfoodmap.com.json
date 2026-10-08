@@ -1,0 +1,19 @@
+{
+  "category": [
+    "food",
+    "community"
+  ],
+  "color": [
+    "#fdf5e8",
+    "#e5583b"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:56:42.265Z",
+  "date_updated": "2026-10-08T05:56:42.265Z",
+  "description": "CheapFoodMap is a crowdsourced map of meals under $10 across the US. Users post prices, vote, and comment on finds.",
+  "domain": "cheapfoodmap.com",
+  "image": "/og/cheapfoodmap.com.png",
+  "name": "CheapFoodMap",
+  "slug": "cheapfoodmap.com",
+  "URL": "https://cheapfoodmap.com"
+}

@@ -1,0 +1,20 @@
+{
+  "category": [
+    "ai",
+    "software",
+    "productivity"
+  ],
+  "color": [
+    "#0a0810",
+    "#e05cc8"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:54:09.072Z",
+  "date_updated": "2026-10-08T05:54:09.072Z",
+  "description": "Sentient OS is on-device AI software for the Mac that indexes your files and activity, performs tasks on your computer with its own cursor, and drafts replies in your voice.",
+  "domain": "sentient-os.ai",
+  "image": "/og/sentient-os.ai.jpg",
+  "name": "Sentient OS",
+  "slug": "sentient-os.ai",
+  "URL": "https://sentient-os.ai"
+}

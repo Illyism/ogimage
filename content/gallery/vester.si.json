@@ -1,0 +1,19 @@
+{
+  "category": [
+    "blog",
+    "development"
+  ],
+  "color": [
+    "#f9f8f3",
+    "#c2410c"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:56:25.883Z",
+  "date_updated": "2026-10-08T05:56:25.883Z",
+  "description": "The personal blog of Demjan Vester, who writes about code, AI, dance, and the tools that connect them.",
+  "domain": "vester.si",
+  "image": "/og/vester.si.png",
+  "name": "Demjan Vester",
+  "slug": "vester.si",
+  "URL": "https://vester.si"
+}

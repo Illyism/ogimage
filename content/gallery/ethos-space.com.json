@@ -1,0 +1,20 @@
+{
+  "category": [
+    "technology",
+    "hardware",
+    "sustainability"
+  ],
+  "color": [
+    "#151a22",
+    "#5f6b70"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:54:15.523Z",
+  "date_updated": "2026-10-08T05:54:15.523Z",
+  "description": "Ethos Space Resources melts and electrolyzes lunar regolith to produce solar-grade silicon, propellant and landing pads for space infrastructure.",
+  "domain": "ethos-space.com",
+  "image": "/og/ethos-space.com.jpg",
+  "name": "Ethos",
+  "slug": "ethos-space.com",
+  "URL": "https://ethos-space.com"
+}

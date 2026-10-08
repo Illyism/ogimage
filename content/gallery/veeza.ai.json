@@ -1,0 +1,19 @@
+{
+  "category": [
+    "travel",
+    "ai"
+  ],
+  "color": [
+    "#ffffff",
+    "#2563eb"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:54:25.426Z",
+  "date_updated": "2026-10-08T05:54:25.426Z",
+  "description": "Veeza AI prepares tourist visa applications for Schengen, UK, and US travel. It fills forms, prepares documents, and books appointments, with human expert review.",
+  "domain": "veeza.ai",
+  "image": "/og/veeza.ai.png",
+  "name": "Veeza AI",
+  "slug": "veeza.ai",
+  "URL": "https://veeza.ai"
+}

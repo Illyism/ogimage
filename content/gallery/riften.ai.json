@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "developer-tools"
+  ],
+  "color": [
+    "#1b1b1b",
+    "#efeadb"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:55:20.714Z",
+  "date_updated": "2026-10-08T05:55:20.714Z",
+  "description": "Riften builds model routing, evaluations, private models, and training environments where AI agents learn through real work.",
+  "domain": "riften.ai",
+  "image": "/og/riften.ai.png",
+  "name": "Riften",
+  "slug": "riften.ai",
+  "URL": "https://riften.ai"
+}

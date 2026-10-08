@@ -1,0 +1,20 @@
+{
+  "category": [
+    "hardware",
+    "security",
+    "technology"
+  ],
+  "color": [
+    "#d9c7b0",
+    "#1e1e1e"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:55:27.104Z",
+  "date_updated": "2026-10-08T05:55:27.104Z",
+  "description": "Impact builds containerized infrastructure for drone defense that can launch and support different interceptor drones.",
+  "domain": "impact-drones.com",
+  "image": "/og/impact-drones.com.jpg",
+  "name": "Impact",
+  "slug": "impact-drones.com",
+  "URL": "https://www.impact-drones.com"
+}

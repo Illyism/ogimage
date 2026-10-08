@@ -1,0 +1,20 @@
+{
+  "category": [
+    "marketplace",
+    "hardware",
+    "fintech"
+  ],
+  "color": [
+    "#e0d8cc",
+    "#222222"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:55:34.467Z",
+  "date_updated": "2026-10-08T05:55:34.467Z",
+  "description": "Stoa is a marketplace where institutions buy and sell GPUs and AI hardware, with verified counterparties and price discovery.",
+  "domain": "stoaexchange.com",
+  "image": "/og/stoaexchange.com.png",
+  "name": "Stoa",
+  "slug": "stoaexchange.com",
+  "URL": "https://www.stoaexchange.com"
+}

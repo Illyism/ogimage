@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "developer-tools"
+  ],
+  "color": [
+    "#1a1c1c",
+    "#5a5f5c"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:55:17.404Z",
+  "date_updated": "2026-10-08T05:55:17.404Z",
+  "description": "Isoquant provides an inference API for running open AI models at low cost and latency, compatible with existing developer stacks.",
+  "domain": "isoquant.ai",
+  "image": "/og/isoquant.ai.png",
+  "name": "isoquant",
+  "slug": "isoquant.ai",
+  "URL": "https://isoquant.ai/"
+}

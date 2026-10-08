@@ -1,0 +1,20 @@
+{
+  "category": [
+    "art",
+    "entertainment",
+    "travel"
+  ],
+  "color": [
+    "#f1e6cc",
+    "#1f3a5c"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:56:37.856Z",
+  "date_updated": "2026-10-08T05:56:37.856Z",
+  "description": "Isopolis is an interactive isometric pixel-art map of San Francisco that you can pan, tour, and send as postcards.",
+  "domain": "sf.isopolis.city",
+  "image": "/og/sf.isopolis.city.jpg",
+  "name": "Isopolis",
+  "slug": "sf.isopolis.city",
+  "URL": "https://sf.isopolis.city"
+}

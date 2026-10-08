@@ -1,0 +1,20 @@
+{
+  "category": [
+    "developer-tools",
+    "ai",
+    "software"
+  ],
+  "color": [
+    "#000000",
+    "#ffffff"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:54:01.685Z",
+  "date_updated": "2026-10-08T05:54:01.685Z",
+  "description": "Maritime provides persistent virtual machines for each user or AI agent, with sleep and wake in about a second and flat pricing plans.",
+  "domain": "maritime.sh",
+  "image": "/og/maritime.sh.jpg",
+  "name": "Maritime",
+  "slug": "maritime.sh",
+  "URL": "https://maritime.sh/"
+}

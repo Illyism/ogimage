@@ -1,0 +1,19 @@
+{
+  "category": [
+    "ai",
+    "health"
+  ],
+  "color": [
+    "#f3e6d3",
+    "#9ccbe0"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:55:35.365Z",
+  "date_updated": "2026-10-08T05:55:35.365Z",
+  "description": "Elite builds AI voice agents that answer calls and book appointments for healthcare practices, working inside their EHR.",
+  "domain": "elitehq.ai",
+  "image": "/og/elitehq.ai.png",
+  "name": "Elite",
+  "slug": "elitehq.ai",
+  "URL": "https://elitehq.ai/"
+}

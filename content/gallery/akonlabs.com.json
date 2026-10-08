@@ -1,0 +1,19 @@
+{
+  "category": [
+    "developer-tools",
+    "ai"
+  ],
+  "color": [
+    "#1e1c19",
+    "#ffcc00"
+  ],
+  "content": null,
+  "date_created": "2026-10-08T05:54:28.850Z",
+  "date_updated": "2026-10-08T05:54:28.850Z",
+  "description": "Akon Labs makes GitNexus, a tool that indexes a codebase into a knowledge graph of dependencies, call chains, and execution flows so AI agents can use that context.",
+  "domain": "akonlabs.com",
+  "image": "/og/akonlabs.com.png",
+  "name": "GitNexus",
+  "slug": "akonlabs.com",
+  "URL": "https://akonlabs.com"
+}
