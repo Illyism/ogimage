@@ -92,6 +92,19 @@ Keep Coolify Advanced **Inject Build Args**, **Include Source Commit**, and
 Do not add a `.next/cache` mount. Webpack persistent cache poisoned a deploy
 after the Next 16.3 upgrade.
 
+## Cursor Cloud specific instructions
+
+Do not depend on a saved environment snapshot. Snapshots expire after inactivity.
+When that happens, `bun` and `node` are missing and `bun run check` exits 127.
+
+Use the committed `.cursor/environment.json`. It uses Cursor's default image and
+`.cursor/install.sh` (no snapshot id). That script pins Bun, installs Node 24
+with nvm so it shadows the image Node 22, and symlinks both onto PATH for
+non-interactive login shells. After checkout it runs `bun install --frozen-lockfile`.
+Do not rewrite `bun.lock`.
+
+Reuse an existing Next.js server. Do not start a second `bun run dev`.
+
 ## Ultracite
 
 This project uses Ultracite with Biome.
