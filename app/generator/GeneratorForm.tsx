@@ -1,6 +1,7 @@
 'use client'
 
 import { CheckIcon, CopyIcon, DownloadIcon } from 'lucide-react'
+import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
@@ -38,6 +39,13 @@ type Card = typeof initial
 
 const HEX = /^#[0-9a-f]{6}$/i
 
+const PLATFORMS = [
+  { label: 'X', value: 'x' },
+  { label: 'LinkedIn', value: 'linkedin' },
+  { label: 'Facebook', value: 'facebook' },
+  { label: 'Slack', value: 'slack' },
+]
+
 // The home page and the gallery link here with a card in the query string.
 function fromSearch(search: URLSearchParams): Card {
   const text = (key: keyof Card, max: number) =>
@@ -68,6 +76,8 @@ export function GeneratorForm() {
   const [card, setCard] = useState(() => fromSearch(search))
   const [src, setSrc] = useState(() => imageUrl(card))
   const [copied, setCopied] = useState(false)
+  const [platform, setPlatform] = useState('x')
+  const [format, setFormat] = useState<'html' | 'nextjs'>('html')
 
   // Each new src renders an image on the server. Wait until typing stops.
   useEffect(() => {
@@ -78,11 +88,31 @@ export function GeneratorForm() {
   const set = (field: keyof Card) => (value: string) =>
     setCard((current) => ({ ...current, [field]: value }))
 
-  const snippet = `<meta property="og:image" content="https://your-domain.com/og-image.png" />
+  const htmlSnippet = `<meta property="og:title" content="${escapeAttr(card.title)}" />
+<meta property="og:description" content="${escapeAttr(card.subtitle)}" />
+<meta property="og:image" content="https://your-domain.com/og-image.png" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content="${card.title.replace(/"/g, '&quot;')}" />
+<meta property="og:image:alt" content="${escapeAttr(card.title)}" />
 <meta name="twitter:card" content="summary_large_image" />`
+
+  const nextSnippet = `export const metadata = {
+  openGraph: {
+    title: ${JSON.stringify(card.title)},
+    description: ${JSON.stringify(card.subtitle)},
+    images: [
+      {
+        url: 'https://your-domain.com/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: ${JSON.stringify(card.title)},
+      },
+    ],
+  },
+  twitter: { card: 'summary_large_image' },
+}`
+
+  const snippet = format === 'html' ? htmlSnippet : nextSnippet
 
   const copy = async () => {
     await navigator.clipboard.writeText(snippet)
@@ -226,26 +256,49 @@ export function GeneratorForm() {
             1200×630 · PNG · no watermark
           </span>
         </div>
+        <SharePreview
+          card={card}
+          onPlatformChange={setPlatform}
+          platform={platform}
+          src={src}
+        />
         <div className="surface flex flex-col gap-3 rounded-2xl p-4">
           <div className="flex items-center justify-between gap-2">
             <h2 className="eyebrow">Meta tags for your page head</h2>
-            <Button onClick={copy} size="sm" variant="outline">
-              <span className="relative size-4">
-                <CopyIcon
-                  className={cn(
-                    'absolute inset-0 transition-[opacity,scale,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]',
-                    copied && 'scale-25 opacity-0 blur-xs',
-                  )}
-                />
-                <CheckIcon
-                  className={cn(
-                    'absolute inset-0 transition-[opacity,scale,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]',
-                    !copied && 'scale-25 opacity-0 blur-xs',
-                  )}
-                />
-              </span>
-              {copied ? 'Copied' : 'Copy'}
-            </Button>
+            <div className="flex items-center gap-2">
+              <ToggleGroup
+                aria-label="Snippet format"
+                onValueChange={(value) => {
+                  if (value === 'html' || value === 'nextjs') {
+                    setFormat(value)
+                  }
+                }}
+                size="sm"
+                type="single"
+                value={format}
+                variant="outline"
+              >
+                <ToggleGroupItem value="html">HTML</ToggleGroupItem>
+                <ToggleGroupItem value="nextjs">Next.js</ToggleGroupItem>
+              </ToggleGroup>
+              <Button onClick={copy} size="sm" variant="outline">
+                <span className="relative size-4">
+                  <CopyIcon
+                    className={cn(
+                      'absolute inset-0 transition-[opacity,scale,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]',
+                      copied && 'scale-25 opacity-0 blur-xs',
+                    )}
+                  />
+                  <CheckIcon
+                    className={cn(
+                      'absolute inset-0 transition-[opacity,scale,filter] duration-200 ease-[cubic-bezier(0.2,0,0,1)]',
+                      !copied && 'scale-25 opacity-0 blur-xs',
+                    )}
+                  />
+                </span>
+                {copied ? 'Copied' : 'Copy'}
+              </Button>
+            </div>
           </div>
           <pre className="overflow-x-auto font-mono text-muted-foreground text-xs leading-relaxed">
             <code>{snippet}</code>
@@ -253,6 +306,129 @@ export function GeneratorForm() {
         </div>
       </div>
     </div>
+  )
+}
+
+function escapeAttr(value: string) {
+  return value.replace(/&/g, '&amp;').replace(/"/g, '&quot;')
+}
+
+// Searchers compare generators by how the card looks in a real post.
+// These mockups copy the layout of each platform's link card.
+function SharePreview({
+  card,
+  onPlatformChange,
+  platform,
+  src,
+}: {
+  card: Card
+  onPlatformChange: (value: string) => void
+  platform: string
+  src: string
+}) {
+  const host = card.site.trim() || 'example.com'
+  const image = (
+    <img
+      alt=""
+      className="aspect-1200/630 w-full bg-muted object-cover"
+      height={630}
+      src={src}
+      width={1200}
+    />
+  )
+
+  return (
+    <section
+      aria-labelledby="share-preview-heading"
+      className="surface flex flex-col gap-4 rounded-2xl p-4"
+    >
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <h2 className="eyebrow" id="share-preview-heading">
+          How it looks when you share it
+        </h2>
+        <ToggleGroup
+          onValueChange={(value) => {
+            if (value) {
+              onPlatformChange(value)
+            }
+          }}
+          size="sm"
+          type="single"
+          value={platform}
+          variant="outline"
+        >
+          {PLATFORMS.map((item) => (
+            <ToggleGroupItem key={item.value} value={item.value}>
+              {item.label}
+            </ToggleGroupItem>
+          ))}
+        </ToggleGroup>
+      </div>
+
+      <div className="mx-auto w-full max-w-lg">
+        {platform === 'x' ? (
+          <div>
+            <div className="relative overflow-hidden rounded-2xl border">
+              {image}
+              <span className="absolute bottom-2 left-2 max-w-[90%] truncate rounded bg-black/70 px-1.5 py-0.5 text-white text-xs">
+                {host}
+              </span>
+            </div>
+            <p className="mt-1 text-muted-foreground text-xs">From {host}</p>
+          </div>
+        ) : null}
+
+        {platform === 'linkedin' ? (
+          <div className="overflow-hidden rounded-lg border">
+            {image}
+            <div className="flex flex-col gap-0.5 px-3 py-2">
+              <span className="line-clamp-2 font-semibold text-sm">
+                {card.title}
+              </span>
+              <span className="text-muted-foreground text-xs">{host}</span>
+            </div>
+          </div>
+        ) : null}
+
+        {platform === 'facebook' ? (
+          <div className="overflow-hidden border">
+            {image}
+            <div className="flex flex-col gap-0.5 bg-muted px-3 py-2">
+              <span className="text-muted-foreground text-xs uppercase">
+                {host}
+              </span>
+              <span className="line-clamp-2 font-semibold text-sm">
+                {card.title}
+              </span>
+              <span className="line-clamp-1 text-muted-foreground text-xs">
+                {card.subtitle}
+              </span>
+            </div>
+          </div>
+        ) : null}
+
+        {platform === 'slack' ? (
+          <div className="flex flex-col gap-1 border-l-4 pl-3">
+            <span className="font-semibold text-xs">{host}</span>
+            <span className="font-semibold text-blue-500 text-sm">
+              {card.title}
+            </span>
+            <span className="line-clamp-3 text-sm">{card.subtitle}</span>
+            <div className="mt-1 max-w-sm overflow-hidden rounded-lg">
+              {image}
+            </div>
+          </div>
+        ) : null}
+      </div>
+      <p className="text-muted-foreground text-xs">
+        The post text comes from og:title and og:description. Test the live page
+        with the{' '}
+        <Link className="underline underline-offset-4" href="/checker">
+          OG image checker
+        </Link>{' '}
+        after you publish.
+      </p>
+    </section>
   )
 }
 
