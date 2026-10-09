@@ -51,7 +51,7 @@ const items = [
 ]
 
 export const Faq = () => (
-  <section className="container grid grid-cols-1 gap-12 py-20 lg:grid-cols-[1fr_1.3fr]">
+  <section className="defer-paint container grid grid-cols-1 gap-12 py-20 lg:grid-cols-[1fr_1.3fr]">
     <SectionHeading
       description="The kit is public. The gallery is a swipe file. You host the images."
       eyebrow="FAQ"

@@ -64,7 +64,7 @@ function Tile({
 
 export function Bento({ items }: { items: Inspiration[] }) {
   return (
-    <section className="container flex flex-col gap-12 py-20">
+    <section className="defer-paint container flex flex-col gap-12 py-20">
       <SectionHeading
         description="Four tools for one job: a link preview that people click."
         eyebrow="What you get"

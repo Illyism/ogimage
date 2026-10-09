@@ -25,10 +25,9 @@ export function PageHeader({
         <div className="eyebrow animate-enter">{eyebrow}</div>
         <h1
           className={cn(
-            'display max-w-4xl animate-enter',
+            'display max-w-4xl',
             size === 'lg' ? 'text-4xl md:text-6xl' : 'text-3xl md:text-5xl',
           )}
-          style={{ animationDelay: '80ms' }}
         >
           {title}
         </h1>

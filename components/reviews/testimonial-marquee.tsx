@@ -6,7 +6,7 @@ export const TestimonialMarquee = () => {
   const quotes = highlights.slice(0, 3)
 
   return (
-    <section className="container flex flex-col gap-12 py-20">
+    <section className="defer-paint container flex flex-col gap-12 py-20">
       <SectionHeading
         eyebrow="Reviews"
         title={

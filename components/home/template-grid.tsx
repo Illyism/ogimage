@@ -14,7 +14,7 @@ const templates = [
 
 export function TemplateGrid() {
   return (
-    <section className="container flex flex-col gap-12 py-20">
+    <section className="defer-paint container flex flex-col gap-12 py-20">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <SectionHeading
           description="Each template is one Next.js route. Satori renders the JSX, Tailwind styles it, and you own the source."
