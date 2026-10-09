@@ -1,0 +1,4 @@
+{
+  "name": "OG Image",
+  "install": "bash .cursor/install.sh"
+}
