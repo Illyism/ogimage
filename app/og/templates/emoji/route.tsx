@@ -44,5 +44,6 @@ export function GET(request: NextRequest) {
         </div>
       ) : null}
     </div>,
+    params,
   )
 }

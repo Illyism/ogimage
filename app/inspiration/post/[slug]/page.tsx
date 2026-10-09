@@ -1,4 +1,5 @@
 import { ExternalLinkIcon, PaletteIcon } from 'lucide-react'
+import { cacheLife } from 'next/cache'
 import Link from 'next/link'
 import { redirect } from 'next/navigation'
 import { StarCta } from '@/components/home/star-cta'
@@ -58,9 +59,15 @@ export default async function Page(props: {
     return redirect(`/inspiration/post/${params.slug.replace('www.', '')}`)
   }
 
-  const inspiration = getInspiration(params.slug)
+  return <CachedInspirationPost slug={params.slug} />
+}
+
+async function CachedInspirationPost({ slug }: { slug: string }) {
+  'use cache'
+  cacheLife('days')
+  const inspiration = getInspiration(slug)
   if (!inspiration) {
-    return <NotFoundInspiration slug={params.slug} />
+    return <NotFoundInspiration slug={slug} />
   }
 
   const related = getRelatedInspiration(inspiration)

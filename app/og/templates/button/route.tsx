@@ -58,5 +58,6 @@ export function GET(request: NextRequest) {
         {cta}
       </div>
     </div>,
+    params,
   )
 }

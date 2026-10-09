@@ -21,7 +21,8 @@ const sample = publicImage('_static/examples/site-desktop.jpg')
  * `app/og/components/screenshot.ts`.
  */
 export async function GET(request: NextRequest) {
-  const param = request.nextUrl.searchParams.get('path') ?? '/'
+  const params = request.nextUrl.searchParams
+  const param = params.get('path') ?? '/'
   // Only paths of this site. A full URL in the query must not be captured.
   const path = param.startsWith('/') && !param.startsWith('//') ? param : '/'
   const screenshot =
@@ -100,5 +101,6 @@ export async function GET(request: NextRequest) {
         />
       </div>
     </div>,
+    params,
   )
 }

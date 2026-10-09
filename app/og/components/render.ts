@@ -49,18 +49,33 @@ export const SANS = 'Geist'
 export const MONO = 'Geist Mono'
 export const SERIF = 'Instrument Serif'
 
-/** Renders a 1200×630 card with the fonts of the kit. */
+const THUMB_WIDTH = 640
+const THUMB_HEIGHT = 336
+
+const CARD_CACHE = {
+  'Cache-Control': 'public, max-age=86400, stale-while-revalidate=604800',
+}
+
+/** In-page previews use a half-size card. Social crawlers keep 1200×630. */
+function cardSize(searchParams?: URLSearchParams) {
+  if (searchParams?.get('thumb') === '1') {
+    return { height: THUMB_HEIGHT, width: THUMB_WIDTH }
+  }
+  return { height: HEIGHT, width: WIDTH }
+}
+
+/** Renders a card with the fonts of the kit. */
 export async function renderCard(
   element: ReactElement,
-  headers: Record<string, string> = {
-    'Cache-Control': 'public, max-age=3600, immutable',
-  },
+  searchParams?: URLSearchParams,
+  headers: Record<string, string> = CARD_CACHE,
 ) {
+  const { height, width } = cardSize(searchParams)
   return new ImageResponse(element, {
     fonts: await fonts,
     headers,
-    height: HEIGHT,
-    width: WIDTH,
+    height,
+    width,
   })
 }
 

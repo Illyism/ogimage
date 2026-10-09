@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import type { Inspiration } from '@/lib/gallery'
+import { ogPreviewSrc } from '@/lib/og-preview'
 
 const DEFAULT_TITLE = 'Your launch deserves a better link preview'
 
@@ -43,7 +44,7 @@ export function HeroCard({ cards }: { cards: Inspiration[] }) {
             alt=""
             className="image-outline absolute inset-0 aspect-1200/630 w-full origin-bottom -translate-x-6 -translate-y-9 -rotate-6 rounded-2xl object-cover shadow-2xl brightness-75 transition-transform duration-500 ease-out-strong group-hover:-translate-x-12 group-hover:-translate-y-12 group-hover:-rotate-9"
             height={315}
-            loading="eager"
+            loading="lazy"
             sizes="(min-width: 1024px) 36rem, 90vw"
             src={back.image}
             width={600}
@@ -54,7 +55,7 @@ export function HeroCard({ cards }: { cards: Inspiration[] }) {
             alt=""
             className="image-outline absolute inset-0 aspect-1200/630 w-full origin-bottom translate-x-6 -translate-y-5 rotate-4 rounded-2xl object-cover shadow-2xl brightness-90 transition-transform duration-500 ease-out-strong group-hover:translate-x-12 group-hover:-translate-y-8 group-hover:rotate-7"
             height={315}
-            loading="eager"
+            loading="lazy"
             sizes="(min-width: 1024px) 36rem, 90vw"
             src={middle.image}
             width={600}
@@ -63,10 +64,11 @@ export function HeroCard({ cards }: { cards: Inspiration[] }) {
         <img
           alt={`Preview of the card: ${title.trim() || DEFAULT_TITLE}`}
           className="image-outline relative aspect-1200/630 w-full rounded-2xl bg-card shadow-[0_32px_80px_-24px_oklch(0_0_0/0.9)]"
+          decoding="async"
           fetchPriority="high"
-          height={630}
-          src={`/og/generator?${params}`}
-          width={1200}
+          height={336}
+          src={ogPreviewSrc(`/og/generator?${params}`)}
+          width={640}
         />
       </div>
       <div className="surface mx-auto flex w-full max-w-xl items-center gap-3 rounded-2xl p-2 pl-4 focus-within:ring-2 focus-within:ring-ring/60">

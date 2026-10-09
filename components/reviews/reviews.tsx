@@ -35,12 +35,29 @@ export interface Highlight {
 
 import rawReviews from './reviews.json'
 
+/** Avatars show at 36px. Ask imgix for that size so the browser does not download a full photo. */
+function compactAvatar(url: string) {
+  try {
+    const parsed = new URL(url)
+    if (parsed.hostname !== 'ph-avatars.imgix.net') {
+      return url
+    }
+    parsed.searchParams.set('w', '72')
+    parsed.searchParams.set('h', '72')
+    parsed.searchParams.set('fit', 'crop')
+    parsed.searchParams.set('dpr', '2')
+    return parsed.toString()
+  } catch {
+    return url
+  }
+}
+
 export const reviews: Review[] = []
 export const endorsers: Endorser[] = []
 
 for (const review of rawReviews) {
   const endorser: Endorser = {
-    avatar: review.customer_avatar,
+    avatar: compactAvatar(review.customer_avatar),
     company: review.customer_company,
     email: review.customer_email,
     name: review.customer_name,

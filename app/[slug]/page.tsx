@@ -1,3 +1,4 @@
+import { cacheLife } from 'next/cache'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
@@ -47,6 +48,12 @@ export default function CmsPage({
 
 async function Article({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
+  return <CachedArticle slug={slug} />
+}
+
+async function CachedArticle({ slug }: { slug: string }) {
+  'use cache'
+  cacheLife('days')
   const post = getPost(slug)
   if (!post) {
     return notFound()
