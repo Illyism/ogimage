@@ -77,7 +77,7 @@ There is no test runner in `package.json`.
 ## Docker and Coolify
 
 Coolify builds the repo-root `Dockerfile` on deploy. Base image is
-`oven/bun:1` (Debian, not Alpine).
+`oven/bun:1.4.3` (Debian, not Alpine).
 
 | Stage | Purpose |
 | --- | --- |
