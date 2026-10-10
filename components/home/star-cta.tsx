@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils'
  * The funnel of the site: star the repo, then follow the person who made it.
  */
 export const StarCta = ({ compact = false }: { compact?: boolean }) => (
-  <section className={cn('container py-20', compact && 'py-12')}>
+  <section className={cn('defer-paint container py-20', compact && 'py-12')}>
     <div className="surface relative isolate overflow-hidden rounded-3xl p-8 md:p-14">
       <div className="absolute -top-32 -right-24 -z-10 size-96 rounded-full bg-primary/25 blur-3xl" />
       <div className="mask-fade-b absolute inset-0 -z-10 bg-grid" />

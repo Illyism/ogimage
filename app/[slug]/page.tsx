@@ -1,9 +1,8 @@
+import { cacheLife } from 'next/cache'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
 import { PageHeader } from '@/components/nav/PageHeader'
 import { Button } from '@/components/ui/button'
-import { Skeleton } from '@/components/ui/skeleton'
 import { generatePageMeta } from '@/core/seo'
 import { ArticleStructuredData } from '@/core/structured'
 import { getPages, getPost, type Page } from '@/lib/pages'
@@ -33,35 +32,24 @@ export function generateStaticParams() {
   return getPages().map((page) => ({ slug: page.slug }))
 }
 
-export default function CmsPage({
+export default async function CmsPage({
   params,
 }: {
   params: Promise<{ slug: string }>
 }) {
-  return (
-    <Suspense fallback={<ArticleFallback />}>
-      <Article params={params} />
-    </Suspense>
-  )
+  const { slug } = await params
+  return <CachedArticle slug={slug} />
 }
 
-async function Article({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
+async function CachedArticle({ slug }: { slug: string }) {
+  'use cache'
+  cacheLife('days')
   const post = getPost(slug)
   if (!post) {
     return notFound()
   }
 
   return <BlogTemplate post={post} />
-}
-
-function ArticleFallback() {
-  return (
-    <div className="container flex flex-col gap-4 py-24">
-      <Skeleton className="h-14 w-2/3" />
-      <Skeleton className="h-4 w-32" />
-    </div>
-  )
 }
 
 const UTILITY_PAGES = new Set(['about', 'privacy', 'faq'])

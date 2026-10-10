@@ -90,6 +90,7 @@ export async function GET(request: NextRequest) {
         </div>
       </div>
     </div>,
+    params,
     {
       'Cache-Control': 'no-store',
       'Surrogate-Control': 'no-store',

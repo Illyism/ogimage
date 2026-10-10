@@ -27,6 +27,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+import { ogPreviewSrc } from '@/lib/og-preview'
 import { SCREENSHOT_API_URL } from '@/lib/products'
 import { cn } from '@/lib/utils'
 import type { Preview } from './preview'
@@ -379,7 +380,7 @@ const SimplePreview = ({
           loading="lazy"
           onError={() => setLoaded(true)}
           onLoad={() => setLoaded(true)}
-          src={image}
+          src={ogPreviewSrc(image)}
           width={1200}
         />
       </CardContent>
@@ -434,7 +435,7 @@ const TwitterPreview = ({ title, description, image }: TemplateProps) => {
             loading="lazy"
             onError={() => setLoaded(true)}
             onLoad={() => setLoaded(true)}
-            src={image}
+            src={ogPreviewSrc(image)}
             width={490}
           />
           <div className="text-xs opacity-50 hover:underline">
@@ -495,7 +496,7 @@ const LinkedInPreview = ({ title, description, image }: TemplateProps) => {
         loading="lazy"
         onError={() => setLoaded(true)}
         onLoad={() => setLoaded(true)}
-        src={image}
+        src={ogPreviewSrc(image)}
         width={555}
       />
       <div className="bg-gray-100 px-4 pt-3 pb-4 dark:bg-gray-800">
@@ -524,7 +525,7 @@ const SourcePreview = ({
       className="absolute top-2 -right-2 z-10 hidden rotate-12 rounded-lg bg-black object-cover shadow-2xl transition duration-500 sm:block dark:bg-gray-800"
       height={126}
       loading="lazy"
-      src={image}
+      src={ogPreviewSrc(image)}
       width={240}
     />
     <h3 className="font-bold text-sm">{title}</h3>

@@ -1,3 +1,4 @@
+import { cacheLife } from 'next/cache'
 import { Bento } from '@/components/home/bento'
 import { Faq } from '@/components/home/faq'
 import { GalleryPreview } from '@/components/home/gallery-preview'
@@ -34,7 +35,9 @@ function isLight(item: Inspiration) {
   return (r * 299 + g * 587 + b * 114) / 1000 > 140
 }
 
-export default function Page() {
+export default async function Page() {
+  'use cache'
+  cacheLife('hours')
   const all = getLatestInspiration()
   const categories = getUniqueCategories(all).filter((item) => item.count > 10)
 

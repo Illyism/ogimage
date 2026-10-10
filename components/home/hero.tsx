@@ -30,10 +30,7 @@ export const Hero = ({
           <span className="tabular-nums">{count} real examples</span>
           <span aria-hidden="true">→</span>
         </Link>
-        <h1
-          className="display animate-enter text-5xl sm:text-6xl xl:text-7xl"
-          style={{ animationDelay: '80ms' }}
-        >
+        <h1 className="display text-5xl sm:text-6xl xl:text-7xl">
           The free{' '}
           <span className="whitespace-nowrap accent-serif">OG image</span>{' '}
           generator

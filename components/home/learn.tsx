@@ -36,7 +36,7 @@ const links = [
 ]
 
 export const Learn = () => (
-  <section className="container grid grid-cols-1 gap-12 py-20 lg:grid-cols-[1fr_1.3fr]">
+  <section className="defer-paint container grid grid-cols-1 gap-12 py-20 lg:grid-cols-[1fr_1.3fr]">
     <SectionHeading
       className="lg:sticky lg:top-28 lg:self-start"
       description="An OG image is the picture in the preview of a link on X, LinkedIn, Slack, and iMessage. One meta tag, og:image, sets it. The standard size is 1200×630 pixels."

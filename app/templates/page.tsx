@@ -1,3 +1,4 @@
+import { cacheLife } from 'next/cache'
 import { Suspense } from 'react'
 import { PageHeader } from '@/components/nav/PageHeader'
 import { PageLayout } from '@/components/nav/PageLayout'
@@ -19,19 +20,27 @@ export default function Templates({
 }) {
   return (
     <PageLayout>
-      <PageHeader
-        description="Headline, screenshot, blog post, and more. Copy a route, change the text, ship a 1200×630 card."
-        eyebrow="Templates"
-        title={
-          <>
-            <span className="accent-serif">OG image</span> templates
-          </>
-        }
-      />
+      <TemplatesChrome />
       <Suspense fallback={null}>
         <TemplatesView searchParams={searchParams} />
       </Suspense>
     </PageLayout>
+  )
+}
+
+async function TemplatesChrome() {
+  'use cache'
+  cacheLife('days')
+  return (
+    <PageHeader
+      description="Headline, screenshot, blog post, and more. Copy a route, change the text, ship a 1200×630 card."
+      eyebrow="Templates"
+      title={
+        <>
+          <span className="accent-serif">OG image</span> templates
+        </>
+      }
+    />
   )
 }
 

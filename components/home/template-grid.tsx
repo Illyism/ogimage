@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { ogPreviewSrc } from '@/lib/og-preview'
 import { SectionHeading } from './section-heading'
 
 const templates = [
@@ -13,7 +14,7 @@ const templates = [
 
 export function TemplateGrid() {
   return (
-    <section className="container flex flex-col gap-12 py-20">
+    <section className="defer-paint container flex flex-col gap-12 py-20">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <SectionHeading
           description="Each template is one Next.js route. Satori renders the JSX, Tailwind styles it, and you own the source."
@@ -39,10 +40,11 @@ export function TemplateGrid() {
               <img
                 alt={`${template.title} template`}
                 className="image-outline aspect-1200/630 w-full rounded-2xl bg-card object-cover transition-transform duration-500 ease-out-strong group-hover:scale-[1.03]"
-                height={630}
+                decoding="async"
+                height={336}
                 loading="lazy"
-                src={`/og/templates/${template.file}`}
-                width={1200}
+                src={ogPreviewSrc(`/og/templates/${template.file}`)}
+                width={640}
               />
             </div>
             <div className="flex items-center justify-between gap-2 px-1">

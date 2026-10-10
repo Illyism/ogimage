@@ -5,13 +5,25 @@ import type { Viewport } from 'next'
 import { Geist, Geist_Mono, Instrument_Serif } from 'next/font/google'
 import Script from 'next/script'
 
-const geist = Geist({ subsets: ['latin'], variable: '--font-geist' })
+const geist = Geist({
+  adjustFontFallback: true,
+  display: 'swap',
+  preload: true,
+  subsets: ['latin'],
+  variable: '--font-geist',
+})
 const geistMono = Geist_Mono({
+  adjustFontFallback: true,
+  display: 'swap',
+  preload: false,
   subsets: ['latin'],
   variable: '--font-geist-mono',
 })
 const instrumentSerif = Instrument_Serif({
-  style: ['normal', 'italic'],
+  adjustFontFallback: true,
+  display: 'swap',
+  preload: true,
+  style: 'italic',
   subsets: ['latin'],
   variable: '--font-instrument-serif',
   weight: '400',
@@ -54,7 +66,7 @@ export default async function RootLayout({
       lang="en"
       suppressHydrationWarning
     >
-      <body className="dark h-full font-sans antialiased">
+      <body className={`${geist.className} dark h-full font-sans antialiased`}>
         <StructuredData />
         {children}
         <Script id="analytics-loader" strategy="afterInteractive">

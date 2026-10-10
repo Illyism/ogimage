@@ -15,7 +15,7 @@ export function GalleryPreview({
   items: Inspiration[]
 }) {
   return (
-    <section className="flex flex-col gap-10 py-20">
+    <section className="defer-paint flex flex-col gap-10 py-20">
       <div className="container flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <SectionHeading
           description="A swipe file of cards that designers made on purpose. Sorted by category, with the colors of each card."

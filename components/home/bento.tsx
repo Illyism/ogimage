@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type React from 'react'
 import type { Inspiration } from '@/lib/gallery'
+import { ogPreviewSrc } from '@/lib/og-preview'
 import { cn } from '@/lib/utils'
 import { SectionHeading } from './section-heading'
 
@@ -63,7 +64,7 @@ function Tile({
 
 export function Bento({ items }: { items: Inspiration[] }) {
   return (
-    <section className="container flex flex-col gap-12 py-20">
+    <section className="defer-paint container flex flex-col gap-12 py-20">
       <SectionHeading
         description="Four tools for one job: a link preview that people click."
         eyebrow="What you get"
@@ -93,10 +94,11 @@ export function Bento({ items }: { items: Inspiration[] }) {
             <img
               alt="Card made with the generator"
               className="image-outline -mr-10 -mb-10 aspect-1200/630 w-full rounded-tl-2xl object-cover transition-transform duration-500 ease-out-strong group-hover:-translate-x-1 group-hover:-translate-y-1 sm:-mr-12 sm:-mb-12"
-              height={630}
+              decoding="async"
+              height={336}
               loading="lazy"
-              src={GENERATOR_CARD}
-              width={1200}
+              src={ogPreviewSrc(GENERATOR_CARD)}
+              width={640}
             />
           </div>
         </Tile>
@@ -140,11 +142,12 @@ export function Bento({ items }: { items: Inspiration[] }) {
                     '-translate-x-[15%] rotate-8 group-hover:-translate-x-[5%] group-hover:rotate-12',
                   index === 1 && 'z-10',
                 )}
-                height={630}
+                decoding="async"
+                height={336}
                 key={name}
                 loading="lazy"
-                src={`/og/templates/${name}`}
-                width={1200}
+                src={ogPreviewSrc(`/og/templates/${name}`)}
+                width={640}
               />
             ))}
           </div>

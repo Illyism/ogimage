@@ -93,5 +93,6 @@ export async function GET(request: NextRequest) {
         </div>
       </div>
     </div>,
+    params,
   )
 }

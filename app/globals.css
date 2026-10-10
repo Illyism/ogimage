@@ -280,6 +280,12 @@
 }
 
 /* Pure white at low opacity. A tinted outline reads as dirt on the edge. */
+/* Skip style and layout of long sections until they near the viewport. */
+@utility defer-paint {
+  contain-intrinsic-size: auto 900px;
+  content-visibility: auto;
+}
+
 @utility image-outline {
   outline: 1px solid oklch(1 0 0 / 0.1);
   outline-offset: -1px;

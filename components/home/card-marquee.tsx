@@ -32,7 +32,8 @@ function Row({
               alt={`${item.name} Open Graph card`}
               className="image-outline aspect-1200/630 w-72 rounded-xl object-cover sm:w-80"
               height={168}
-              sizes="20rem"
+              quality={65}
+              sizes="18rem"
               src={item.image}
               width={320}
             />
