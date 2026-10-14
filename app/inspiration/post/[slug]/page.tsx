@@ -1,18 +1,11 @@
 import { ExternalLinkIcon, PaletteIcon } from 'lucide-react'
 import { cacheLife } from 'next/cache'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { StarCta } from '@/components/home/star-cta'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import {
-  Empty,
-  EmptyContent,
-  EmptyDescription,
-  EmptyHeader,
-  EmptyTitle,
-} from '@/components/ui/empty'
 import { generatePageMeta } from '@/core/seo'
 import { ArticleStructuredData } from '@/core/structured'
 import {
@@ -33,10 +26,7 @@ export async function generateMetadata({
   const { slug } = await params
   const inspiration = getInspiration(slug)
   if (!inspiration) {
-    return {
-      robots: 'noindex',
-      title: `Add ${slug}?`,
-    }
+    return
   }
 
   return generatePageMeta({
@@ -55,10 +45,6 @@ export default async function Page(props: {
   params: Promise<{ slug: string }>
 }) {
   const params = await props.params
-  if (params.slug.includes('www.')) {
-    return redirect(`/inspiration/post/${params.slug.replace('www.', '')}`)
-  }
-
   return <CachedInspirationPost slug={params.slug} />
 }
 
@@ -67,7 +53,7 @@ async function CachedInspirationPost({ slug }: { slug: string }) {
   cacheLife('days')
   const inspiration = getInspiration(slug)
   if (!inspiration) {
-    return <NotFoundInspiration slug={slug} />
+    notFound()
   }
 
   const related = getRelatedInspiration(inspiration)
@@ -266,23 +252,3 @@ const InspirationPage = ({
     </PageLayout>
   )
 }
-
-const NotFoundInspiration = ({ slug }: { slug: string }) => (
-  <PageLayout>
-    <div className="container py-16">
-      <Empty>
-        <EmptyHeader>
-          <EmptyTitle>Add {slug}?</EmptyTitle>
-          <EmptyDescription>
-            This domain is not in the gallery yet. Send the URL.
-          </EmptyDescription>
-        </EmptyHeader>
-        <EmptyContent>
-          <Button asChild>
-            <Link href="/inspiration/submit">Submit a URL</Link>
-          </Button>
-        </EmptyContent>
-      </Empty>
-    </div>
-  </PageLayout>
-)

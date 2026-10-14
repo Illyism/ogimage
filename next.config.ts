@@ -1,4 +1,13 @@
 import type { NextConfig } from 'next'
+import pages from './content/pages.json'
+
+/** A path segment that is none of `slugs`. */
+function unknownSegment(slugs: string[]) {
+  const known = [...new Set(slugs)]
+    .map((slug) => slug.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+    .join('|')
+  return `((?!(?:${known})$)[^/]+)`
+}
 
 const nextConfig: NextConfig = {
   cacheComponents: true,
@@ -61,7 +70,27 @@ const nextConfig: NextConfig = {
         permanent: true,
         source: '/best-practices',
       },
+      {
+        destination: '/inspiration/post/:slug',
+        permanent: true,
+        source: '/inspiration/post/www.:slug(.+)',
+      },
     ]
+  },
+  // Unknown CMS slugs must not reach app/[slug]. See proxy.ts for why.
+  // proxy.ts cannot check them: it runs before static pages and public
+  // files, which share this path. afterFiles runs after them.
+  async rewrites() {
+    return {
+      afterFiles: [
+        {
+          destination: '/_unknown/:slug',
+          source: `/:slug${unknownSegment(pages.map((page) => page.slug))}`,
+        },
+      ],
+      beforeFiles: [],
+      fallback: [],
+    }
   },
   turbopack: {},
   typescript: {
