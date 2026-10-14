@@ -1,4 +1,19 @@
 {
-  "name": "OG Image",
-  "install": "bash .cursor/install.sh"
+  "name": "ogimage",
+  "install": "bash .cursor/install.sh",
+  "start": ":",
+  "terminals": [
+    {
+      "name": "dev",
+      "command": "bun run dev",
+      "description": "Next.js dev server on http://localhost:3000"
+    }
+  ],
+  "ports": [
+    {
+      "name": "Next.js",
+      "port": 3000
+    }
+  ],
+  "agentCanUpdateSnapshot": true
 }
