@@ -5,7 +5,7 @@
 # that stay on PATH without rc files.
 set -euo pipefail
 
-BUN_VERSION="1.4.2"
+BUN_VERSION="1.4.3"
 BUN_INSTALL="${BUN_INSTALL:-$HOME/.bun}"
 NODE_MAJOR="24"
 export BUN_INSTALL
@@ -86,3 +86,4 @@ hash -r 2>/dev/null || true
 
 cd "${CURSOR_REPO_DIR:-$(git rev-parse --show-toplevel)}"
 bun install --frozen-lockfile
+bun x next typegen
