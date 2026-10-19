@@ -18,18 +18,34 @@ export interface Inspiration {
 
 const GALLERY_DIR = join(process.cwd(), 'content/gallery')
 
+function normalizeSlug(slug: string) {
+  return slug.replace(/^www\./, '')
+}
+
+// next.config.ts redirects /inspiration/post/www.:slug to /inspiration/post/:slug,
+// so gallery slugs must not keep a leading "www.".
 const loadGallery = cache(function loadGallery(): Inspiration[] {
   const files = readdirSync(GALLERY_DIR).filter((file) =>
     file.endsWith('.json'),
   )
-  const rows = files.map((file) => {
-    const raw = readFileSync(join(GALLERY_DIR, file), 'utf8')
-    return JSON.parse(raw) as Inspiration
+  const rows = files
+    .map((file) => {
+      const raw = readFileSync(join(GALLERY_DIR, file), 'utf8')
+      const row = JSON.parse(raw) as Inspiration
+      return { ...row, slug: normalizeSlug(row.slug) }
+    })
+    .sort(
+      (a, b) =>
+        new Date(b.date_created).getTime() - new Date(a.date_created).getTime(),
+    )
+  const seen = new Set<string>()
+  return rows.filter((row) => {
+    if (seen.has(row.slug)) {
+      return false
+    }
+    seen.add(row.slug)
+    return true
   })
-  return rows.sort(
-    (a, b) =>
-      new Date(b.date_created).getTime() - new Date(a.date_created).getTime(),
-  )
 })
 
 const CATEGORY_LABELS: Record<string, string> = {
@@ -54,7 +70,8 @@ export function getLatestInspiration(
 }
 
 export function getInspiration(slug: string): Inspiration | undefined {
-  return loadGallery().find((item) => item.slug === slug)
+  const target = normalizeSlug(slug)
+  return loadGallery().find((item) => item.slug === target)
 }
 
 export function getRelatedInspiration(item: Inspiration, limit = 3) {
