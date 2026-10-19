@@ -12,7 +12,7 @@ const gallery = readdirSync(GALLERY_DIR)
         slug: string
       },
   )
-const posts = new Set(gallery.map((item) => item.slug))
+const posts = new Set(gallery.map((item) => item.slug.replace(/^www\./, '')))
 const categories = new Set(gallery.flatMap((item) => item.category))
 
 // With Cache Components, Next renders each unknown param of a dynamic route
