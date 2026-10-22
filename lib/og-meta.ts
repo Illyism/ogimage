@@ -30,7 +30,11 @@ export function parsePageMeta(html: string): PageMeta {
 
 export function resolveUrl(pageUrl: string, value: string) {
   try {
-    return new URL(value, pageUrl).toString()
+    const url = new URL(value, pageUrl)
+    if (url.protocol !== 'http:' && url.protocol !== 'https:') {
+      return null
+    }
+    return url.toString()
   } catch {
     return null
   }

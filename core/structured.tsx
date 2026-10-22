@@ -74,7 +74,10 @@ export const ArticleStructuredData: React.FC<ArticleProps> = ({
   return (
     <script
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData, null, 2),
+        __html: JSON.stringify(structuredData, null, 2).replace(
+          /</g,
+          '\\u003c',
+        ),
       }}
       type="application/ld+json"
     />
@@ -124,7 +127,9 @@ export const StructuredData: React.FC = () => {
   }
   return (
     <Script
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(graph, null, 2) }}
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(graph, null, 2).replace(/</g, '\\u003c'),
+      }}
       id="structured-data"
       type="application/ld+json"
     />

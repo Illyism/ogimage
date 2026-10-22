@@ -11,13 +11,15 @@
 import { existsSync } from 'node:fs'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
+import { fetchPublic } from '../app/checker/fetch-public'
 import { type ImageSize, readImageSize } from '../lib/image-size'
 import { parsePageMeta, resolveUrl } from '../lib/og-meta'
 
 const ROOT = join(import.meta.dir, '..')
 export const GALLERY_DIR = join(ROOT, 'content/gallery')
 const IMAGE_DIR = join(ROOT, 'public/og')
-const USER_AGENT = 'ogimage.org gallery bot'
+const SLUG_PATTERN =
+  /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)+$/i
 
 export interface OgCard {
   bytes: Buffer
@@ -33,14 +35,18 @@ export interface OgCard {
 
 export function normalizeUrl(raw: string) {
   const trimmed = raw.trim()
-  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+  if (/^https?:\/\//i.test(trimmed)) {
     return trimmed
   }
   return `https://${trimmed}`
 }
 
 export function slugFor(pageUrl: string) {
-  return new URL(pageUrl).hostname.replace(/^www\./, '')
+  const slug = new URL(pageUrl).hostname.replace(/^www\./, '').toLowerCase()
+  if (!SLUG_PATTERN.test(slug)) {
+    throw new Error(`Invalid domain slug: ${slug}`)
+  }
+  return slug
 }
 
 function extFrom(url: string, contentType: string | null) {
@@ -59,33 +65,35 @@ function extFrom(url: string, contentType: string | null) {
 
 /** Fetches the page and its og:image. Throws when either step fails. */
 export async function fetchOgCard(rawUrl: string): Promise<OgCard> {
-  const pageUrl = normalizeUrl(rawUrl)
-  const pageRes = await fetch(pageUrl, {
-    headers: { 'User-Agent': USER_AGENT },
-    redirect: 'follow',
-    signal: AbortSignal.timeout(10_000),
+  const initialUrl = normalizeUrl(rawUrl)
+  const {
+    bytes: pageBytes,
+    res: pageRes,
+    url: pageUrl,
+  } = await fetchPublic(initialUrl, {
+    accept: 'text/html,application/xhtml+xml',
+    maxBytes: 1_000_000,
   })
   if (!pageRes.ok) {
     throw new Error(`Could not fetch ${pageUrl} (${pageRes.status})`)
   }
 
-  const { tags, title } = parsePageMeta(await pageRes.text())
+  const { tags, title } = parsePageMeta(new TextDecoder().decode(pageBytes))
   const imageRaw = tags['og:image'] || tags['twitter:image']
   const imageUrl = imageRaw ? resolveUrl(pageUrl, imageRaw) : null
   if (!imageUrl) {
     throw new Error('No og:image on that page.')
   }
 
-  const imageRes = await fetch(imageUrl, {
-    headers: { 'User-Agent': USER_AGENT },
-    redirect: 'follow',
-    signal: AbortSignal.timeout(15_000),
+  const { bytes: imageBytes, res: imageRes } = await fetchPublic(imageUrl, {
+    accept: 'image/*',
+    maxBytes: 5_000_000,
   })
   if (!imageRes.ok) {
     throw new Error(`Could not download og:image (${imageRes.status})`)
   }
 
-  const bytes = Buffer.from(await imageRes.arrayBuffer())
+  const bytes = Buffer.from(imageBytes)
   const pageTitle = tags['og:title'] || tags['twitter:title'] || title
   return {
     bytes,
