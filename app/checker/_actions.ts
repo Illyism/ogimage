@@ -40,28 +40,44 @@ const RATE_WINDOW_MS = 60_000
 const recentChecks = new Map<string, number[]>()
 
 async function isRateLimited() {
-  const forwarded = (await headers()).get('x-forwarded-for')
-  const ip = forwarded?.split(',')[0]?.trim() || 'unknown'
+  const headersList = await headers()
+  const forwarded = headersList.get('x-forwarded-for')
+  const ip =
+    headersList.get('x-real-ip')?.trim() ||
+    forwarded?.split(',').at(-1)?.trim() ||
+    'unknown'
   const now = Date.now()
   const times = (recentChecks.get(ip) ?? []).filter(
     (time) => now - time < RATE_WINDOW_MS,
   )
   times.push(now)
+  recentChecks.delete(ip)
   recentChecks.set(ip, times)
   if (recentChecks.size > 5000) {
-    recentChecks.clear()
+    const oldest = recentChecks.keys().next().value
+    if (oldest) {
+      recentChecks.delete(oldest)
+    }
   }
   return times.length > RATE_LIMIT
 }
 
 function normalizeUrl(raw: string) {
   const trimmed = raw.trim()
+  if (!trimmed || trimmed.length > 2048) {
+    return null
+  }
   const withProtocol = /^https?:\/\//i.test(trimmed)
     ? trimmed
     : `https://${trimmed}`
   try {
     const url = new URL(withProtocol)
-    return url.hostname.includes('.') ? url.toString() : null
+    if (url.username || url.password) {
+      return null
+    }
+    return url.hostname.includes('.') || url.hostname.startsWith('[')
+      ? url.toString()
+      : null
   } catch {
     return null
   }
@@ -263,7 +279,7 @@ async function buildReport(pageUrl: string): Promise<CheckReport> {
       tags.description ||
       null,
     host: new URL(url).hostname.replace(/^www\./, ''),
-    image,
+    image: imageInfo ? image : null,
     imageInfo,
     issues,
     siteName: tags['og:site_name'] || null,
@@ -285,6 +301,9 @@ export async function checkPage(
   _prevState: CheckState,
   formData: FormData,
 ): Promise<CheckState> {
+  if (!(formData instanceof FormData)) {
+    return { error: 'Enter a valid website URL.', status: 'error' }
+  }
   // An example chip submits the form with its own value.
   const value = formData.get('example') || formData.get('url')
   const pageUrl = typeof value === 'string' ? normalizeUrl(value) : null

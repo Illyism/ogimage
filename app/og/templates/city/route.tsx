@@ -1,6 +1,67 @@
 import { headers } from 'next/headers'
 import type { NextRequest } from 'next/server'
+import { z } from 'zod'
 import { MONO, renderCard, SANS, textParam } from '../../components/render'
+
+const RATE_LIMIT = 12
+const RATE_WINDOW_MS = 60_000
+const CITY_CACHE_TTL_MS = 86_400_000
+const recentCityRenders = new Map<string, number[]>()
+const cityPhotoCache = new Map<
+  string,
+  { expiresAt: number; url: string | undefined }
+>()
+
+const citySchema = z
+  .string()
+  .trim()
+  .min(1)
+  .max(60)
+  .regex(/^[\p{L}\p{M}\s.'-]+$/u)
+
+const unsplashResponseSchema = z.object({
+  results: z.array(
+    z.object({
+      urls: z
+        .object({
+          regular: z.url().optional(),
+        })
+        .optional(),
+    }),
+  ),
+})
+
+function isRateLimited(headersList: Headers) {
+  const forwarded = headersList.get('x-forwarded-for')
+  const ip =
+    headersList.get('x-real-ip')?.trim() ||
+    forwarded?.split(',').at(-1)?.trim() ||
+    'unknown'
+  const now = Date.now()
+  const times = (recentCityRenders.get(ip) ?? []).filter(
+    (time) => now - time < RATE_WINDOW_MS,
+  )
+  times.push(now)
+  recentCityRenders.delete(ip)
+  recentCityRenders.set(ip, times)
+  if (recentCityRenders.size > 5000) {
+    const oldest = recentCityRenders.keys().next().value
+    if (oldest) {
+      recentCityRenders.delete(oldest)
+    }
+  }
+  return times.length > RATE_LIMIT
+}
+
+function parseCityHeader(rawCity: string) {
+  try {
+    const decoded = decodeURIComponent(rawCity)
+    const parsed = citySchema.safeParse(decoded)
+    return parsed.success ? parsed.data : null
+  } catch {
+    return null
+  }
+}
 
 /**
  * @name City template
@@ -13,13 +74,20 @@ export async function GET(request: NextRequest) {
   const brand = textParam(params, 'brand', 'Your Brand', 32)
   const prefix = textParam(params, 'prefix', 'Events in', 24)
   const headersList = await headers()
-  const city =
+  const rawCity =
     headersList.get('cf-ipcity') ??
     headersList.get('x-vercel-ip-city') ??
     'New York'
 
-  const img = await getCityPicture(city)
-  const decodedCity = decodeURIComponent(city)
+  const decodedCity = parseCityHeader(rawCity)
+  if (!decodedCity) {
+    return new Response('Invalid city header.', { status: 400 })
+  }
+  if (isRateLimited(headersList)) {
+    return new Response('Too many requests.', { status: 429 })
+  }
+
+  const img = await getCityPicture(decodedCity)
 
   return renderCard(
     <div
@@ -105,31 +173,55 @@ async function getCityPicture(city: string) {
     return
   }
 
+  const cacheKey = city.toLowerCase()
+  const now = Date.now()
+  const cached = cityPhotoCache.get(cacheKey)
+  if (cached && cached.expiresAt > now) {
+    return cached.url
+  }
+
   try {
     const p = new URLSearchParams()
-    p.append('query', `${city}`)
+    p.append('query', city)
     p.append('per_page', '1')
     p.append('content_filter', 'high')
     p.append('orientation', 'landscape')
     const url = `https://api.unsplash.com/search/photos?${p.toString()}`
     const res = await fetch(url, {
       headers: { Authorization: `Client-ID ${key}` },
+      signal: AbortSignal.timeout(5000),
     })
 
     if (!res.ok) {
       return
     }
 
-    const json = await res.json()
-    const results = json?.results
-
-    if (!(results && Array.isArray(results)) || results.length === 0) {
+    const parsed = unsplashResponseSchema.safeParse(await res.json())
+    if (!parsed.success) {
       return
     }
 
-    for (const result of results) {
-      if (result?.urls?.regular) {
-        return result.urls.regular as string
+    for (const result of parsed.data.results) {
+      const candidate = result.urls?.regular
+      if (!candidate) {
+        continue
+      }
+      const photoUrl = new URL(candidate)
+      if (
+        photoUrl.protocol === 'https:' &&
+        photoUrl.hostname === 'images.unsplash.com'
+      ) {
+        if (cityPhotoCache.size >= 500) {
+          const oldest = cityPhotoCache.keys().next().value
+          if (oldest) {
+            cityPhotoCache.delete(oldest)
+          }
+        }
+        cityPhotoCache.set(cacheKey, {
+          expiresAt: now + CITY_CACHE_TTL_MS,
+          url: photoUrl.toString(),
+        })
+        return photoUrl.toString()
       }
     }
   } catch {

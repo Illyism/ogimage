@@ -1,5 +1,5 @@
 import { lookup } from 'node:dns/promises'
-import { isIP } from 'node:net'
+import { BlockList, isIP } from 'node:net'
 
 const USER_AGENT =
   'Mozilla/5.0 (compatible; ogimage.org checker; +https://ogimage.org/checker)'
@@ -8,46 +8,58 @@ const TIMEOUT_MS = 8000
 
 export class FetchError extends Error {}
 
-function isPrivateV4(ip: string) {
-  const [a = 0, b = 0, c = 0] = ip.split('.').map(Number)
-  return (
-    a === 0 ||
-    a === 10 ||
-    a === 127 ||
-    a >= 224 ||
-    (a === 100 && b >= 64 && b <= 127) ||
-    (a === 169 && b === 254) ||
-    (a === 172 && b >= 16 && b <= 31) ||
-    (a === 192 && b === 0 && c === 0) ||
-    (a === 192 && b === 168) ||
-    (a === 198 && (b === 18 || b === 19))
-  )
-}
+const BLOCKED_V4 = new BlockList()
+BLOCKED_V4.addSubnet('0.0.0.0', 8, 'ipv4')
+BLOCKED_V4.addSubnet('10.0.0.0', 8, 'ipv4')
+BLOCKED_V4.addSubnet('100.64.0.0', 10, 'ipv4')
+BLOCKED_V4.addSubnet('127.0.0.0', 8, 'ipv4')
+BLOCKED_V4.addSubnet('169.254.0.0', 16, 'ipv4')
+BLOCKED_V4.addSubnet('172.16.0.0', 12, 'ipv4')
+BLOCKED_V4.addSubnet('192.0.0.0', 24, 'ipv4')
+BLOCKED_V4.addSubnet('192.0.2.0', 24, 'ipv4')
+BLOCKED_V4.addSubnet('192.88.99.0', 24, 'ipv4')
+BLOCKED_V4.addSubnet('192.168.0.0', 16, 'ipv4')
+BLOCKED_V4.addSubnet('198.18.0.0', 15, 'ipv4')
+BLOCKED_V4.addSubnet('198.51.100.0', 24, 'ipv4')
+BLOCKED_V4.addSubnet('203.0.113.0', 24, 'ipv4')
+BLOCKED_V4.addSubnet('224.0.0.0', 4, 'ipv4')
+BLOCKED_V4.addSubnet('240.0.0.0', 4, 'ipv4')
 
-function isPrivateAddress(ip: string) {
-  if (isIP(ip) === 4) {
-    return isPrivateV4(ip)
+const BLOCKED_V6 = new BlockList()
+BLOCKED_V6.addSubnet('::', 96, 'ipv6')
+BLOCKED_V6.addSubnet('::ffff:0:0', 96, 'ipv6')
+BLOCKED_V6.addSubnet('::ffff:0:0:0', 96, 'ipv6')
+BLOCKED_V6.addSubnet('64:ff9b::', 96, 'ipv6')
+BLOCKED_V6.addSubnet('64:ff9b:1::', 48, 'ipv6')
+BLOCKED_V6.addSubnet('100::', 64, 'ipv6')
+BLOCKED_V6.addSubnet('2001::', 23, 'ipv6')
+BLOCKED_V6.addSubnet('2001:db8::', 32, 'ipv6')
+BLOCKED_V6.addSubnet('2002::', 16, 'ipv6')
+BLOCKED_V6.addSubnet('3fff::', 20, 'ipv6')
+BLOCKED_V6.addSubnet('fc00::', 7, 'ipv6')
+BLOCKED_V6.addSubnet('fe80::', 10, 'ipv6')
+BLOCKED_V6.addSubnet('fec0::', 10, 'ipv6')
+BLOCKED_V6.addSubnet('ff00::', 8, 'ipv6')
+
+export function isPrivateAddress(ip: string) {
+  const family = isIP(ip)
+  if (family === 4) {
+    return BLOCKED_V4.check(ip, 'ipv4')
   }
-  const lower = ip.toLowerCase()
-  const mapped = lower.match(/^::ffff:(\d+\.\d+\.\d+\.\d+)$/)
-  if (mapped) {
-    return isPrivateV4(mapped[1]!)
+  if (family === 6) {
+    return BLOCKED_V6.check(ip, 'ipv6')
   }
-  return (
-    lower === '::' ||
-    lower === '::1' ||
-    lower.startsWith('::ffff:') ||
-    lower.startsWith('64:ff9b:') ||
-    /^f[cd]/.test(lower) ||
-    /^fe[89ab]/.test(lower)
-  )
+  return true
 }
 
 // This server fetches any URL that a visitor enters. Without this check a
 // visitor could read services on the private network of the host (SSRF).
-async function assertPublic(url: URL) {
+export async function assertPublic(url: URL) {
   if (url.protocol !== 'http:' && url.protocol !== 'https:') {
     throw new FetchError('Enter an http or https URL.')
+  }
+  if (url.username || url.password) {
+    throw new FetchError('Credentials in URLs are not supported.')
   }
   if (url.port && url.port !== '80' && url.port !== '443') {
     throw new FetchError('Only standard web ports are supported.')
@@ -64,6 +76,8 @@ async function assertPublic(url: URL) {
   ) {
     throw new FetchError('That address is not on the public internet.')
   }
+  return (addresses.find((entry) => isIP(entry.address) === 4) ?? addresses[0]!)
+    .address
 }
 
 /**
@@ -79,15 +93,30 @@ export async function fetchPublic(
 
   for (let hop = 0; hop <= MAX_REDIRECTS; hop += 1) {
     // biome-ignore lint/performance/noAwaitInLoops: each hop depends on the redirect before it
-    await assertPublic(url)
+    const address = await assertPublic(url)
+    const target = new URL(url)
+    // Pin HTTP requests to the validated IP to prevent DNS rebinding TOCTOU.
+    if (url.protocol === 'http:') {
+      target.hostname = isIP(address) === 6 ? `[${address}]` : address
+    }
     let res: Response
     try {
-      res = await fetch(url, {
-        headers: { Accept: options.accept, 'User-Agent': USER_AGENT },
+      res = await fetch(target, {
+        headers: {
+          Accept: options.accept,
+          Host: url.host,
+          'User-Agent': USER_AGENT,
+        },
         redirect: 'manual',
         signal,
       })
+      if (url.protocol === 'https:') {
+        await assertPublic(url)
+      }
     } catch (cause) {
+      if (cause instanceof FetchError) {
+        throw cause
+      }
       throw new FetchError(`Could not reach ${url.hostname}.`, { cause })
     }
 
