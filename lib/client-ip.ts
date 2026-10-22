@@ -1,9 +1,6 @@
 import { BlockList, isIP } from 'node:net'
 
-// Cloudflare edge ranges from https://www.cloudflare.com/ips-v4 and
-// https://www.cloudflare.com/ips-v6. Traefik sees the Cloudflare edge as the
-// TCP peer, so x-real-ip and the last x-forwarded-for hop change across
-// connections. Trust cf-connecting-ip only when the peer is in these ranges.
+// Cloudflare IP ranges: https://www.cloudflare.com/ips-v4 and https://www.cloudflare.com/ips-v6
 const CLOUDFLARE_IPV4_CIDRS = [
   '173.245.48.0/20',
   '103.21.244.0/22',
@@ -56,6 +53,38 @@ function isCloudflarePeer(rawIp: string) {
   return false
 }
 
+function toRateLimitKey(rawIp: string) {
+  const ip = rawIp.replace(/^::ffff:(?=\d+\.\d+\.\d+\.\d+$)/i, '')
+  if (isIP(ip) !== 6) {
+    return ip
+  }
+  const hexAddr = ip
+    .split('%')[0]!
+    .replace(
+      /:(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/,
+      (_, a, b, c, d) =>
+        `:${(Number(a) * 256 + Number(b)).toString(16)}:${(Number(c) * 256 + Number(d)).toString(16)}`,
+    )
+  const [head = '', tail = ''] = hexAddr.split('::')
+  const headGroups = head ? head.split(':') : []
+  const tailGroups = tail ? tail.split(':') : []
+  const groups = hexAddr.includes('::')
+    ? [
+        ...headGroups,
+        ...Array.from(
+          { length: 8 - headGroups.length - tailGroups.length },
+          () => '0',
+        ),
+        ...tailGroups,
+      ]
+    : headGroups
+  const prefix = groups
+    .slice(0, 4)
+    .map((group) => Number.parseInt(group || '0', 16).toString(16))
+    .join(':')
+  return `${prefix}::/64`
+}
+
 export function getClientIp(headers: Pick<Headers, 'get'>): string {
   const forwarded = headers.get('x-forwarded-for')
   const peer =
@@ -68,8 +97,8 @@ export function getClientIp(headers: Pick<Headers, 'get'>): string {
   if (isCloudflarePeer(peer)) {
     const cfIp = headers.get('cf-connecting-ip')?.trim()
     if (cfIp) {
-      return cfIp
+      return toRateLimitKey(cfIp)
     }
   }
-  return peer
+  return toRateLimitKey(peer)
 }

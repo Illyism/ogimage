@@ -10,7 +10,7 @@ Read [AGENTS.md](../AGENTS.md) and [code-architecture.mdc](rules/code-architectu
 ## Payments and credentials
 
 - Flag any change to payment, checkout, or billing logic that the PR did not explicitly set out to make.
-- Block any committed `.env` file, API key, personal access token, live payment key, or secret value. Only environment variable names belong in `.env.example` and `.cursor/mcp.json`.
+- Block any committed `.env` file, API key, personal access token, live payment key, or secret value. Only environment variable names belong in `.env.example`. Local MCP config is kept outside the repo.
 
 ## Customer contact and external side effects
 
