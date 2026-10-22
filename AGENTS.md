@@ -96,7 +96,7 @@ after the Next 16.3 upgrade.
 
 Use the committed `.cursor/environment.json`. It runs `.cursor/install.sh`, starts
 the `dev` terminal (`bun run dev` on port `3000`), and enables
-`agentCanUpdateSnapshot`.
+`agentCanUpdateSnapshot`. Local MCP config is kept outside the repo.
 
 `.cursor/install.sh` pins Bun `1.4.3`, installs Node 24 with nvm so it shadows
 the image Node 22, and symlinks both onto PATH for non-interactive login shells.
