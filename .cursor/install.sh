@@ -7,7 +7,7 @@ set -euo pipefail
 
 BUN_VERSION="1.4.3"
 BUN_INSTALL="${BUN_INSTALL:-$HOME/.bun}"
-NODE_MAJOR="24"
+NODE_VERSION="24.22.1"
 export BUN_INSTALL
 export HUSKY=0
 
@@ -29,19 +29,18 @@ install_node24() {
   # nvm is a shell function; it is not on PATH.
   # shellcheck disable=SC1091
   . "$NVM_DIR/nvm.sh"
-  nvm install "$NODE_MAJOR"
-  nvm alias default "$NODE_MAJOR"
-  nvm use "$NODE_MAJOR"
+  nvm install "$NODE_VERSION"
+  nvm alias default "$NODE_VERSION"
+  nvm use "$NODE_VERSION"
 }
 
 # Resolve the on-disk nvm binary. `nvm which current` can return the image
 # Node 22 when /exec-daemon or /usr/local/cargo/bin sits earlier on PATH.
 node24_bin() {
   local prefix="$NVM_DIR/versions/node"
-  local dir
-  dir="$(find "$prefix" -maxdepth 1 -type d -name "v${NODE_MAJOR}.*" | sort -V | tail -1)"
-  if [ -z "$dir" ] || [ ! -x "$dir/bin/node" ]; then
-    echo "Node ${NODE_MAJOR} is not installed under ${prefix}" >&2
+  local dir="$prefix/v${NODE_VERSION}"
+  if [ ! -x "$dir/bin/node" ]; then
+    echo "Node ${NODE_VERSION} is not installed under ${prefix}" >&2
     exit 1
   fi
   readlink -f "$dir/bin/node"
