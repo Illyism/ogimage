@@ -4,6 +4,7 @@ import { headers } from 'next/headers'
 import { Resend } from 'resend'
 import { z } from 'zod'
 import { assertPublic } from '@/app/checker/fetch-public'
+import { getClientIp } from '@/lib/client-ip'
 
 const CONTACT_EMAIL = process.env.CONTACT_EMAIL ?? 'contact@ogimage.org'
 const RATE_LIMIT = 5
@@ -20,12 +21,7 @@ const suggestSchema = z.object({
 })
 
 async function isRateLimited() {
-  const headersList = await headers()
-  const forwarded = headersList.get('x-forwarded-for')
-  const ip =
-    headersList.get('x-real-ip')?.trim() ||
-    forwarded?.split(',').at(-1)?.trim() ||
-    'unknown'
+  const ip = getClientIp(await headers())
   const now = Date.now()
   const times = (recentSuggestions.get(ip) ?? []).filter(
     (time) => now - time < RATE_WINDOW_MS,

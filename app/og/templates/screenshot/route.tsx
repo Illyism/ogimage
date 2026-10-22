@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import type { NextRequest } from 'next/server'
 import { z } from 'zod'
+import { getClientIp } from '@/lib/client-ip'
 import { MONO, publicImage, renderCard } from '../../components/render'
 import { getScreenshotURL } from '../../components/screenshot'
 
@@ -29,11 +30,7 @@ const pathSchema = z
 const sample = publicImage('_static/examples/site-desktop.jpg')
 
 function isRateLimited(request: NextRequest) {
-  const forwarded = request.headers.get('x-forwarded-for')
-  const ip =
-    request.headers.get('x-real-ip')?.trim() ||
-    forwarded?.split(',').at(-1)?.trim() ||
-    'unknown'
+  const ip = getClientIp(request.headers)
   const now = Date.now()
   const times = (recentCaptures.get(ip) ?? []).filter(
     (time) => now - time < RATE_WINDOW_MS,
