@@ -34,9 +34,8 @@ const unsplashResponseSchema = z.object({
 function isRateLimited(headersList: Headers) {
   const forwarded = headersList.get('x-forwarded-for')
   const ip =
-    headersList.get('cf-connecting-ip')?.trim() ||
     headersList.get('x-real-ip')?.trim() ||
-    forwarded?.split(',')[0]?.trim() ||
+    forwarded?.split(',').at(-1)?.trim() ||
     'unknown'
   const now = Date.now()
   const times = (recentCityRenders.get(ip) ?? []).filter(

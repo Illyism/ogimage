@@ -15,24 +15,24 @@ const recentCaptures = new Map<string, number[]>()
 const pathSchema = z
   .string()
   .regex(/^\/[a-z0-9/_-]{0,60}$/i)
-  .refine(
-    (value) =>
-      !(
-        value.includes('//') ||
-        value.includes('..') ||
-        value.startsWith('/og') ||
-        value.startsWith('/_')
-      ),
-  )
+  .refine((value) => {
+    const lower = value.toLowerCase()
+    return !(
+      value.includes('//') ||
+      value.includes('..') ||
+      lower === '/og' ||
+      lower.startsWith('/og/') ||
+      value.startsWith('/_')
+    )
+  })
 
 const sample = publicImage('_static/examples/site-desktop.jpg')
 
 function isRateLimited(request: NextRequest) {
   const forwarded = request.headers.get('x-forwarded-for')
   const ip =
-    request.headers.get('cf-connecting-ip')?.trim() ||
     request.headers.get('x-real-ip')?.trim() ||
-    forwarded?.split(',')[0]?.trim() ||
+    forwarded?.split(',').at(-1)?.trim() ||
     'unknown'
   const now = Date.now()
   const times = (recentCaptures.get(ip) ?? []).filter(

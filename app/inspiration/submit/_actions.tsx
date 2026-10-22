@@ -23,9 +23,8 @@ async function isRateLimited() {
   const headersList = await headers()
   const forwarded = headersList.get('x-forwarded-for')
   const ip =
-    headersList.get('cf-connecting-ip')?.trim() ||
     headersList.get('x-real-ip')?.trim() ||
-    forwarded?.split(',')[0]?.trim() ||
+    forwarded?.split(',').at(-1)?.trim() ||
     'unknown'
   const now = Date.now()
   const times = (recentSuggestions.get(ip) ?? []).filter(
