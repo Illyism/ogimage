@@ -1,6 +1,7 @@
 import { headers } from 'next/headers'
 import type { NextRequest } from 'next/server'
 import { z } from 'zod'
+import { getClientIp } from '@/lib/client-ip'
 import { MONO, renderCard, SANS, textParam } from '../../components/render'
 
 const RATE_LIMIT = 12
@@ -32,11 +33,7 @@ const unsplashResponseSchema = z.object({
 })
 
 function isRateLimited(headersList: Headers) {
-  const forwarded = headersList.get('x-forwarded-for')
-  const ip =
-    headersList.get('x-real-ip')?.trim() ||
-    forwarded?.split(',').at(-1)?.trim() ||
-    'unknown'
+  const ip = getClientIp(headersList)
   const now = Date.now()
   const times = (recentCityRenders.get(ip) ?? []).filter(
     (time) => now - time < RATE_WINDOW_MS,

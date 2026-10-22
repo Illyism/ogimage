@@ -1,6 +1,7 @@
 'use server'
 
 import { headers } from 'next/headers'
+import { getClientIp } from '@/lib/client-ip'
 import { readImageSize } from '@/lib/image-size'
 import { parsePageMeta, resolveUrl } from '@/lib/og-meta'
 import { FetchError, fetchPublic } from './fetch-public'
@@ -40,12 +41,7 @@ const RATE_WINDOW_MS = 60_000
 const recentChecks = new Map<string, number[]>()
 
 async function isRateLimited() {
-  const headersList = await headers()
-  const forwarded = headersList.get('x-forwarded-for')
-  const ip =
-    headersList.get('x-real-ip')?.trim() ||
-    forwarded?.split(',').at(-1)?.trim() ||
-    'unknown'
+  const ip = getClientIp(await headers())
   const now = Date.now()
   const times = (recentChecks.get(ip) ?? []).filter(
     (time) => now - time < RATE_WINDOW_MS,
