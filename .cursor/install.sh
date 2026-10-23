@@ -5,7 +5,7 @@
 # that stay on PATH without rc files.
 set -euo pipefail
 
-BUN_VERSION="1.4.3"
+BUN_VERSION="1.4.4"
 BUN_INSTALL="${BUN_INSTALL:-$HOME/.bun}"
 NODE_VERSION="24.22.1"
 export BUN_INSTALL

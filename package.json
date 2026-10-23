@@ -18,26 +18,26 @@
     "@tailwindcss/postcss": "^4.3.3",
     "@tailwindcss/typography": "^0.5.20",
     "class-variance-authority": "^0.7.1",
-    "cn": "^0.2.5",
+    "cn": "^0.2.6",
     "date-fns": "^4.4.0",
-    "lucide-react": "^1.33.0",
+    "lucide-react": "^1.61.0",
     "next": "^16.4.2",
-    "node-html-parser": "^9.0.1",
-    "posthog-js": "^1.418.6",
-    "radix-ui": "^1.6.7",
+    "node-html-parser": "^9.0.5",
+    "posthog-js": "^1.438.19",
+    "radix-ui": "^1.8.1",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
-    "resend": "^6.21.0",
-    "schema-dts": "^2.0.0",
+    "resend": "^6.34.1",
+    "schema-dts": "^2.1.0",
     "tailwindcss": "^4.3.3",
     "uuidv7": "^1.2.1",
-    "zod": "^4.4.3",
-    "zustand": "^5.0.15"
+    "zod": "^4.6.7",
+    "zustand": "^5.0.16"
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.132.1",
-    "@biomejs/biome": "2.5.9",
-    "@types/node": "^26.2.0",
+    "@biomejs/biome": "2.5.15",
+    "@types/node": "^24.19.2",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@typescript/native": "npm:typescript@7.0.2",
@@ -46,9 +46,9 @@
     "typescript": "7.0.2",
     "ultracite": "7.10.6"
   },
-  "packageManager": "bun@1.4.3",
+  "packageManager": "bun@1.4.4",
   "engines": {
-    "bun": ">=1.4.3",
+    "bun": ">=1.4.4",
     "node": ">=24.22.1"
   }
 }
