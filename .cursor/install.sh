@@ -7,7 +7,7 @@ set -euo pipefail
 
 BUN_VERSION="1.4.4"
 BUN_INSTALL="${BUN_INSTALL:-$HOME/.bun}"
-NODE_VERSION="24.22.1"
+NODE_VERSION="26.12.1"
 export BUN_INSTALL
 export HUSKY=0
 
@@ -20,7 +20,7 @@ install_bun() {
   curl -fsSL https://bun.sh/install | bash -s -- "bun-v${BUN_VERSION}"
 }
 
-install_node24() {
+install_node() {
   export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
   if [ ! -s "$NVM_DIR/nvm.sh" ]; then
     echo "nvm is missing; Cursor's default image is expected to provide it" >&2
@@ -36,7 +36,7 @@ install_node24() {
 
 # Resolve the on-disk nvm binary. `nvm which current` can return the image
 # Node 22 when /exec-daemon or /usr/local/cargo/bin sits earlier on PATH.
-node24_bin() {
+node_bin() {
   local prefix="$NVM_DIR/versions/node"
   local dir="$prefix/v${NODE_VERSION}"
   if [ ! -x "$dir/bin/node" ]; then
@@ -61,9 +61,9 @@ link_on_path() {
 }
 
 install_bun
-install_node24
+install_node
 
-NODE_BIN="$(node24_bin)"
+NODE_BIN="$(node_bin)"
 BUN_BIN="$(readlink -f "$BUN_INSTALL/bin/bun")"
 
 # /usr/local/bin is on the default PATH. ~/.local/bin is prepended by ~/.profile.
