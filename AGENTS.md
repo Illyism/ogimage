@@ -77,7 +77,7 @@ There is no test runner in `package.json`.
 ## Docker and Coolify
 
 Coolify builds the repo-root `Dockerfile` on deploy. Base image is
-`oven/bun:1.4.3` (Debian, not Alpine).
+`oven/bun:1.4.4` (Debian, not Alpine).
 
 | Stage | Purpose |
 | --- | --- |
@@ -98,7 +98,7 @@ Use the committed `.cursor/environment.json`. It runs `.cursor/install.sh`, star
 the `dev` terminal (`bun run dev` on port `3000`), and enables
 `agentCanUpdateSnapshot`. Local MCP config is kept outside the repo.
 
-`.cursor/install.sh` pins Bun `1.4.3`, installs Node 24 with nvm so it shadows
+`.cursor/install.sh` pins Bun `1.4.4`, installs Node 26.12.1 with nvm so it shadows
 the image Node 22, and symlinks both onto PATH for non-interactive login shells.
 After checkout it runs `bun install --frozen-lockfile` and `bun x next typegen`.
 Do not rewrite `bun.lock`.

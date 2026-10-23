@@ -62,6 +62,17 @@
       }
     },
     {
+      // FieldLabel only forwards props (htmlFor) to Label, so it holds no control.
+      "includes": ["components/ui/field.tsx"],
+      "linter": {
+        "rules": {
+          "a11y": {
+            "noLabelWithoutControl": "off"
+          }
+        }
+      }
+    },
+    {
       "includes": ["app/og/components/TemplatePreview.tsx"],
       "linter": {
         "rules": {
