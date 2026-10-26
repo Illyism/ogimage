@@ -36,7 +36,7 @@ const initial = {
   title: 'Your page title goes here',
 }
 
-type Card = typeof initial
+export type Card = typeof initial
 
 const HEX = /^#[0-9a-f]{6}$/i
 
@@ -48,14 +48,20 @@ const PLATFORMS = [
 ]
 
 // The home page and the gallery link here with a card in the query string.
-function fromSearch(search: URLSearchParams): Card {
+function fromSearch(
+  search?: URLSearchParams | Partial<Record<keyof Card, string>>,
+): Card {
+  const get = (key: keyof Card) =>
+    search instanceof URLSearchParams
+      ? (search.get(key) ?? undefined)
+      : search?.[key]
   const text = (key: keyof Card, max: number) =>
-    search.get(key)?.slice(0, max) ?? initial[key]
+    get(key)?.slice(0, max) ?? initial[key]
   const color = (key: 'accent' | 'bg') => {
-    const value = search.get(key)
+    const value = get(key)
     return value && HEX.test(value) ? value.toLowerCase() : initial[key]
   }
-  const layout = search.get('layout')
+  const layout = get('layout')
   return {
     accent: color('accent'),
     bg: color('bg'),
@@ -72,25 +78,34 @@ function imageUrl(card: Card) {
   return `/og/generator?${new URLSearchParams(card)}`
 }
 
-// Keep useSearchParams inside its own Suspense boundary so the form shell
-// renders in the initial HTML instead of waiting for client hydration.
 function SearchParamsSync({ onSync }: { onSync: (card: Card) => void }) {
   const search = useSearchParams()
   const query = search.toString()
+  const lastQuery = useRef<string | null>(null)
 
   useEffect(() => {
-    if (!query) {
+    if (lastQuery.current === null) {
+      lastQuery.current = query
+      if (!query) {
+        return
+      }
+    } else if (lastQuery.current === query) {
       return
     }
+    lastQuery.current = query
     onSync(fromSearch(new URLSearchParams(query)))
   }, [onSync, query])
 
   return null
 }
 
-export function GeneratorForm() {
-  const [card, setCard] = useState<Card>(initial)
-  const [src, setSrc] = useState(() => imageUrl(initial))
+export function GeneratorForm({
+  initialCard,
+}: {
+  initialCard?: Partial<Record<keyof Card, string>>
+}) {
+  const [card, setCard] = useState(() => fromSearch(initialCard))
+  const [src, setSrc] = useState(() => imageUrl(card))
   const [loadedSrc, setLoadedSrc] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const [platform, setPlatform] = useState('x')
@@ -98,8 +113,9 @@ export function GeneratorForm() {
   const imgRef = useRef<HTMLImageElement>(null)
 
   const syncFromSearch = useCallback((next: Card) => {
-    setCard(next)
-    setSrc(imageUrl(next))
+    const nextUrl = imageUrl(next)
+    setCard((current) => (imageUrl(current) === nextUrl ? current : next))
+    setSrc((current) => (current === nextUrl ? current : nextUrl))
   }, [])
 
   // Each new src renders an image on the server. Wait until typing stops.
