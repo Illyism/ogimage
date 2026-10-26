@@ -1,8 +1,6 @@
 import Link from 'next/link'
-import { Suspense } from 'react'
 import { PageHeader } from '@/components/nav/PageHeader'
 import { PageLayout } from '@/components/nav/PageLayout'
-import { Skeleton } from '@/components/ui/skeleton'
 import { generatePageMeta } from '@/core/seo'
 import { GeneratorForm } from './GeneratorForm'
 
@@ -95,9 +93,7 @@ export default function Page() {
         }
       />
       <div className="container flex flex-col gap-24 pb-12">
-        <Suspense fallback={<Skeleton className="h-[36rem] rounded-3xl" />}>
-          <GeneratorForm />
-        </Suspense>
+        <GeneratorForm />
 
         <section className="flex flex-col gap-10">
           <h2 className="display text-2xl md:text-4xl">

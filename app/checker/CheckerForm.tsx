@@ -125,15 +125,13 @@ function Report({ report }: { report: CheckReport }) {
               <IssueRow issue={issue} key={issue.text} />
             ))}
           </ul>
-          {report.image && errors.length === 0 ? null : (
-            <p className="mt-4 text-muted-foreground text-sm">
-              Need a new image?{' '}
-              <Link className="underline underline-offset-4" href="/generator">
-                Make one with the OG image generator
-              </Link>
-              .
-            </p>
-          )}
+          <p className="mt-4 text-muted-foreground text-sm">
+            Need a new image?{' '}
+            <Link className="underline underline-offset-4" href="/generator">
+              Make one with the OG image generator
+            </Link>
+            .
+          </p>
         </CardContent>
       </Card>
 

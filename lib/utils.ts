@@ -1,8 +1,14 @@
 import { type ClassValue, cn as mergeClassNames } from 'cn'
-import { format, parseISO } from 'date-fns'
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  day: 'numeric',
+  month: 'long',
+  timeZone: 'UTC',
+  year: 'numeric',
+})
 
 export function formatDate(dateString: string) {
-  return format(parseISO(dateString), 'LLLL d, yyyy')
+  return dateFormatter.format(new Date(dateString))
 }
 
 export function cn(...inputs: ClassValue[]) {

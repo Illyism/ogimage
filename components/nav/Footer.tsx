@@ -27,7 +27,7 @@ const moreLinks = [
   { href: '/privacy', label: 'Privacy' },
   { href: GITHUB_URL, label: 'GitHub' },
   { href: 'https://linkdr.com', label: 'LinkDR' },
-  { href: 'https://seoroast.co', label: 'SEO Roast' },
+  { href: 'https://seoroast.com', label: 'SEO Roast' },
 ]
 
 const learnLinks = [
@@ -40,10 +40,10 @@ const learnLinks = [
     label: 'Open Graph meta tags',
   },
   {
-    href: 'https://seoroast.co/tools/open-graph-validator',
+    href: 'https://seoroast.com/tools/open-graph-validator',
     label: 'Open Graph validator',
   },
-  { href: 'https://seoroast.co', label: 'SEO audit' },
+  { href: 'https://seoroast.com', label: 'SEO audit' },
 ]
 
 export const Footer = () => (
