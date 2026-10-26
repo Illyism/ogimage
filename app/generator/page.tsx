@@ -4,7 +4,7 @@ import { PageHeader } from '@/components/nav/PageHeader'
 import { PageLayout } from '@/components/nav/PageLayout'
 import { Skeleton } from '@/components/ui/skeleton'
 import { generatePageMeta } from '@/core/seo'
-import { GeneratorForm } from './GeneratorForm'
+import { type Card, GeneratorForm } from './GeneratorForm'
 
 export const metadata = generatePageMeta({
   description:
@@ -76,7 +76,11 @@ const jsonLd = {
   ],
 }
 
-export default function Page() {
+interface GeneratorSearch {
+  searchParams: Promise<Record<string, string | string[] | undefined>>
+}
+
+export default function Page({ searchParams }: GeneratorSearch) {
   return (
     <PageLayout>
       <script
@@ -95,8 +99,8 @@ export default function Page() {
         }
       />
       <div className="container flex flex-col gap-24 pb-12">
-        <Suspense fallback={<Skeleton className="h-[36rem] rounded-3xl" />}>
-          <GeneratorForm />
+        <Suspense fallback={<GeneratorSkeleton />}>
+          <GeneratorSection searchParams={searchParams} />
         </Suspense>
 
         <section className="flex flex-col gap-10">
@@ -182,5 +186,79 @@ export default function Page() {
         </section>
       </div>
     </PageLayout>
+  )
+}
+
+async function GeneratorSection({ searchParams }: GeneratorSearch) {
+  const params = await searchParams
+  const pick = (key: keyof Card) => {
+    const value = params[key]
+    return Array.isArray(value) ? value[0] : value
+  }
+  return (
+    <GeneratorForm
+      initialCard={{
+        accent: pick('accent'),
+        bg: pick('bg'),
+        layout: pick('layout'),
+        site: pick('site'),
+        subtitle: pick('subtitle'),
+        title: pick('title'),
+      }}
+    />
+  )
+}
+
+function GeneratorSkeleton() {
+  return (
+    <output
+      aria-busy="true"
+      aria-label="Loading OG image generator"
+      className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)]"
+    >
+      <div className="surface flex flex-col gap-7 rounded-3xl p-6">
+        <div className="flex flex-col gap-3">
+          <Skeleton className="h-4 w-12" />
+          <Skeleton className="h-16 w-full" />
+        </div>
+        <div className="flex flex-col gap-3">
+          <Skeleton className="h-4 w-16" />
+          <Skeleton className="h-16 w-full" />
+        </div>
+        <div className="flex flex-col gap-3">
+          <Skeleton className="h-4 w-24" />
+          <Skeleton className="h-9 w-full" />
+        </div>
+        <div className="flex flex-col gap-3">
+          <Skeleton className="h-4 w-14" />
+          <Skeleton className="h-9 w-full" />
+        </div>
+        <div className="flex flex-col gap-3">
+          <Skeleton className="h-4 w-14" />
+          <div className="flex gap-2.5">
+            {Array.from({ length: 6 }).map((_, index) => (
+              <Skeleton className="size-9 rounded-full" key={index} />
+            ))}
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <Skeleton className="h-10 w-full rounded-lg" />
+            <Skeleton className="h-10 w-full rounded-lg" />
+          </div>
+        </div>
+      </div>
+      <div className="flex min-w-0 flex-col gap-6">
+        <div className="relative flex aspect-1200/630 w-full items-center justify-center overflow-hidden rounded-3xl bg-card">
+          <Skeleton className="absolute inset-0 rounded-3xl" />
+          <span className="relative rounded-full bg-background/80 px-3 py-1.5 font-mono text-muted-foreground text-xs">
+            Loading generator…
+          </span>
+        </div>
+        <div className="flex items-center gap-3">
+          <Skeleton className="h-11 w-40 rounded-lg" />
+          <Skeleton className="h-4 w-44" />
+        </div>
+        <Skeleton className="h-72 w-full rounded-2xl" />
+      </div>
+    </output>
   )
 }

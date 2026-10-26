@@ -2,6 +2,7 @@ import Link from 'next/link'
 import type React from 'react'
 import { PageHeader } from '@/components/nav/PageHeader'
 import { PageLayout } from '@/components/nav/PageLayout'
+import { Button } from '@/components/ui/button'
 import { generatePageMeta } from '@/core/seo'
 import { CheckerForm } from './CheckerForm'
 
@@ -112,6 +113,21 @@ export default function Page() {
       />
       <div className="container flex flex-col gap-24 pb-12">
         <CheckerForm />
+
+        <div className="surface flex flex-col items-start justify-between gap-4 rounded-3xl p-6 sm:flex-row sm:items-center">
+          <div className="flex flex-col gap-1">
+            <h2 className="font-semibold text-lg tracking-tight">
+              Need a new OG image?
+            </h2>
+            <p className="text-pretty text-muted-foreground text-sm">
+              Make a 1200×630 Open Graph image in your browser and copy the meta
+              tags. Free, no sign-up, no watermark.
+            </p>
+          </div>
+          <Button asChild className="shrink-0">
+            <Link href="/generator">Make an OG image</Link>
+          </Button>
+        </div>
 
         <section className="flex flex-col gap-10">
           <h2 className="display text-2xl md:text-4xl">

@@ -20,30 +20,40 @@ import { headerLinks } from './nav'
 export function Header() {
   return (
     <header className="sticky top-0 z-20 border-b bg-background/75 backdrop-blur-xl">
-      <div className="container flex h-16 items-center gap-6">
+      <div className="container flex h-16 items-center gap-2 px-3 sm:gap-4 sm:px-5 md:px-8 lg:gap-6">
         <Link
-          className="flex items-center gap-2 font-semibold tracking-tight"
+          className="flex shrink-0 items-center gap-1.5 font-semibold text-sm tracking-tight sm:gap-2 sm:text-base"
           href="/"
         >
-          <Logo className="size-6 text-primary" />
-          ogimage<span className="-ml-2 text-muted-foreground">.org</span>
+          <Logo className="size-5 shrink-0 text-primary sm:size-6" />
+          <span>
+            ogimage<span className="text-muted-foreground">.org</span>
+          </span>
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
           <NavLinks />
         </nav>
-        <div className="ml-auto flex items-center gap-2">
-          <Button asChild className="hidden sm:inline-flex" variant="ghost">
+        <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <Button asChild className="hidden lg:inline-flex" variant="ghost">
             <a href={GITHUB_URL} rel="noreferrer" target="_blank">
               <GitHubIcon className="fill-current" />
               Star
             </a>
           </Button>
-          <Button asChild>
+          <Button
+            asChild
+            className="h-8 px-2.5 text-xs sm:h-9 sm:px-4 sm:text-sm"
+            size="sm"
+          >
             <Link href="/generator">Make an OG image</Link>
           </Button>
           <Sheet>
             <SheetTrigger asChild>
-              <Button className="md:hidden" size="icon" variant="ghost">
+              <Button
+                className="size-8 sm:size-9 md:hidden"
+                size="icon-sm"
+                variant="ghost"
+              >
                 <MenuIcon />
                 <span className="sr-only">Open menu</span>
               </Button>

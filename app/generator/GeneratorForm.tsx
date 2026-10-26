@@ -3,10 +3,11 @@
 import { CheckIcon, CopyIcon, DownloadIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Field, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
+import { Spinner } from '@/components/ui/spinner'
 import { Textarea } from '@/components/ui/textarea'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { cn } from '@/lib/utils'
@@ -35,7 +36,7 @@ const initial = {
   title: 'Your page title goes here',
 }
 
-type Card = typeof initial
+export type Card = typeof initial
 
 const HEX = /^#[0-9a-f]{6}$/i
 
@@ -47,14 +48,20 @@ const PLATFORMS = [
 ]
 
 // The home page and the gallery link here with a card in the query string.
-function fromSearch(search: URLSearchParams): Card {
+function fromSearch(
+  search?: URLSearchParams | Partial<Record<keyof Card, string>>,
+): Card {
+  const get = (key: keyof Card) =>
+    search instanceof URLSearchParams
+      ? (search.get(key) ?? undefined)
+      : search?.[key]
   const text = (key: keyof Card, max: number) =>
-    search.get(key)?.slice(0, max) ?? initial[key]
+    get(key)?.slice(0, max) ?? initial[key]
   const color = (key: 'accent' | 'bg') => {
-    const value = search.get(key)
+    const value = get(key)
     return value && HEX.test(value) ? value.toLowerCase() : initial[key]
   }
-  const layout = search.get('layout')
+  const layout = get('layout')
   return {
     accent: color('accent'),
     bg: color('bg'),
@@ -71,22 +78,81 @@ function imageUrl(card: Card) {
   return `/og/generator?${new URLSearchParams(card)}`
 }
 
-export function GeneratorForm() {
+function SearchParamsSync({ onSync }: { onSync: (card: Card) => void }) {
   const search = useSearchParams()
-  const [card, setCard] = useState(() => fromSearch(search))
+  const query = search.toString()
+  const lastQuery = useRef<string | null>(null)
+
+  useEffect(() => {
+    if (lastQuery.current === null) {
+      lastQuery.current = query
+      if (!query) {
+        return
+      }
+    } else if (lastQuery.current === query) {
+      return
+    }
+    lastQuery.current = query
+    onSync(fromSearch(new URLSearchParams(query)))
+  }, [onSync, query])
+
+  return null
+}
+
+export function GeneratorForm({
+  initialCard,
+}: {
+  initialCard?: Partial<Record<keyof Card, string>>
+}) {
+  const [card, setCard] = useState(() => fromSearch(initialCard))
   const [src, setSrc] = useState(() => imageUrl(card))
+  const [loadedSrc, setLoadedSrc] = useState<string | null>(null)
   const [copied, setCopied] = useState(false)
   const [platform, setPlatform] = useState('x')
   const [format, setFormat] = useState<'html' | 'nextjs'>('html')
+  const imgRef = useRef<HTMLImageElement>(null)
+
+  const syncFromSearch = useCallback((next: Card) => {
+    const nextUrl = imageUrl(next)
+    setCard((current) => (imageUrl(current) === nextUrl ? current : next))
+    setSrc((current) => (current === nextUrl ? current : nextUrl))
+  }, [])
 
   // Each new src renders an image on the server. Wait until typing stops.
   useEffect(() => {
-    const timer = setTimeout(() => setSrc(imageUrl(card)), 350)
+    const next = imageUrl(card)
+    if (next === src) {
+      return
+    }
+    const timer = setTimeout(() => {
+      setSrc(next)
+      window.plausible?.('Generate', { props: { layout: card.layout } })
+    }, 350)
     return () => clearTimeout(timer)
-  }, [card])
+  }, [card, src])
+
+  useEffect(() => {
+    const img = imgRef.current
+    if (!img) {
+      return
+    }
+    const markLoaded = () => setLoadedSrc(src)
+    if (img.complete && img.naturalWidth > 0) {
+      markLoaded()
+      return
+    }
+    img.addEventListener('load', markLoaded, { once: true })
+    img.addEventListener('error', markLoaded, { once: true })
+    return () => {
+      img.removeEventListener('load', markLoaded)
+      img.removeEventListener('error', markLoaded)
+    }
+  }, [src])
 
   const set = (field: keyof Card) => (value: string) =>
     setCard((current) => ({ ...current, [field]: value }))
+
+  const isRendering = loadedSrc !== src || imageUrl(card) !== src
 
   const htmlSnippet = `<meta property="og:title" content="${escapeAttr(card.title)}" />
 <meta property="og:description" content="${escapeAttr(card.subtitle)}" />
@@ -121,7 +187,10 @@ export function GeneratorForm() {
   }
 
   return (
-    <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,24rem)_1fr]">
+    <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,24rem)_minmax(0,1fr)]">
+      <Suspense fallback={null}>
+        <SearchParamsSync onSync={syncFromSearch} />
+      </Suspense>
       <FieldGroup className="surface rounded-3xl p-6">
         <Field>
           <FieldLabel htmlFor="og-title">Title</FieldLabel>
@@ -224,7 +293,7 @@ export function GeneratorForm() {
         </Field>
       </FieldGroup>
 
-      <div className="flex flex-col gap-6 lg:sticky lg:top-24">
+      <div className="flex min-w-0 flex-col gap-6 lg:sticky lg:top-24">
         <div className="relative isolate">
           {/* The glow takes the colors of the card. */}
           <div
@@ -235,18 +304,37 @@ export function GeneratorForm() {
           />
           <img
             alt={`Preview of the card: ${card.title}`}
-            className="image-outline aspect-1200/630 w-full rounded-3xl bg-card shadow-[0_40px_100px_-30px_oklch(0_0_0/0.9)]"
+            className={cn(
+              'image-outline aspect-1200/630 w-full rounded-3xl bg-card shadow-[0_40px_100px_-30px_oklch(0_0_0/0.9)] transition-opacity duration-200',
+              loadedSrc === null && 'animate-pulse',
+            )}
+            decoding="async"
+            fetchPriority="high"
             height={630}
+            ref={imgRef}
             src={src}
             width={1200}
           />
+          {isRendering ? (
+            <output
+              aria-live="polite"
+              className="pointer-events-none absolute top-4 right-4 flex items-center gap-2 rounded-full border border-white/10 bg-background/85 px-3 py-1.5 font-mono text-muted-foreground text-xs backdrop-blur-md"
+            >
+              <Spinner className="size-3.5" />
+              Rendering preview…
+            </output>
+          ) : null}
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <Button asChild size="lg">
             <a
               download="og-image.png"
               href={src}
-              onClick={() => window.plausible?.('Download')}
+              onClick={() =>
+                window.plausible?.('Download', {
+                  props: { layout: card.layout },
+                })
+              }
             >
               <DownloadIcon data-icon="inline-start" />
               Download PNG
