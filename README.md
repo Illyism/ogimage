@@ -154,7 +154,7 @@ docker build -t ogimage .
 docker run -p 3000:3000 --env-file .env ogimage
 ```
 
-Coolify and other hosts can build from the root [`Dockerfile`](./Dockerfile). The image uses Next.js `output: 'standalone'`.
+Any Docker host can build from the root [`Dockerfile`](./Dockerfile). The image uses Next.js `output: 'standalone'`.
 
 ### Checks before you ship
 

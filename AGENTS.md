@@ -1,7 +1,8 @@
 # OG Image Agent Rules
 
 OG Image (`ogimage.org`) is an Open Graph image generator. Users create
-social preview images from templates. Production runs on Coolify/Docker.
+social preview images from templates. Production runs on Docker on `cooler`,
+managed by Minilytics (`https://fast.il.ly`).
 
 ## Next.js
 
@@ -72,12 +73,18 @@ There is no test runner in `package.json`.
 - Never commit `.env` files, credentials, PATs, or generated secrets.
 - There is no application database. Gallery and CMS pages are JSON in
   `content/`.
-- Production is Coolify/Docker on `ogimage.org`.
+- Production runs on Docker on `cooler` (`ogimage.org`), managed by Minilytics (`https://fast.il.ly`).
 
-## Docker and Coolify
+## Docker and Minilytics
 
-Coolify builds the repo-root `Dockerfile` on deploy. Base image is
-`oven/bun:1.4.4` (Debian, not Alpine).
+Coolify (`cooler.il.ly` and `app.coolify.io`) is retired. Production runs on
+Docker managed by the in-house Control & Deploy Plane in **Minilytics
+(`https://fast.il.ly`)** via the `minilytics` MCP (`/minilytics`).
+
+Pushing to `main` triggers the GitHub App webhook
+(`POST https://fast.il.ly/api/webhooks/github`), which builds the repo-root
+`Dockerfile` on `cooler` and swaps the container with zero downtime. Base image
+is `oven/bun:1.4.4` (Debian, not Alpine).
 
 | Stage | Purpose |
 | --- | --- |
@@ -85,9 +92,16 @@ Coolify builds the repo-root `Dockerfile` on deploy. Base image is
 | `builder` | `bun run build`; `DOCKER_BUILD=true` skips Next tsc |
 | `runner` | Copies `.next/standalone`, `.next/static`, and `public`; `CMD ["bun", "server.js"]` |
 
-Keep Coolify Advanced **Inject Build Args**, **Include Source Commit**, and
-**Disable Build Cache** **OFF**. Mark only import-time keys as build-time
-(`NEXT_PUBLIC_*`).
+The Docker builder only passes `NEXT_PUBLIC_*`,
+`NEXT_SERVER_ACTIONS_ENCRYPTION_KEY`, and `SOURCE_COMMIT` at build time —
+runtime secrets must never be read eagerly at module-import top-level during
+`next build`.
+
+Use `minilytics` MCP tools:
+- `minilytics_list_apps` — check live container status, `current_commit`, and recent `deployments` (with build logs).
+- `minilytics_deploy_app` — `{ "app": "ogimage", "action": "deploy" | "restart" | "rollback" }`.
+- `minilytics_app_envs` — `{ "app": "ogimage", "action": "list" | "set" | "delete", "reveal": true, "set": { ... }, "restart": true }`.
+- `minilytics_security_radar`, `minilytics_logs_search`, `minilytics_logs_sql` — query 30-day ClickHouse `edge_logs` (Traefik HTTP) and `app_logs` (persistent container stdout/stderr across deploys).
 
 Do not add a `.next/cache` mount. Webpack persistent cache poisoned a deploy
 after the Next 16.3 upgrade.
