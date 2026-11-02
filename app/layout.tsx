@@ -32,11 +32,11 @@ const instrumentSerif = Instrument_Serif({
 export const metadata = generatePageMeta()
 
 // Forks and previews run on other hosts. The host check stops them from
-// writing page views into the ogimage.org Plausible site.
+// writing page views into the ogimage.org Plausible and Minilytics sites.
 // The queue stub lets pages call window.plausible() before the script loads.
 // Do not give the <Script> the id "plausible": an element id becomes a
 // property of window and hides the function.
-const PLAUSIBLE_LOADER = `
+const ANALYTICS_LOADER = `
 window.plausible = window.plausible || function () { (window.plausible.q = window.plausible.q || []).push(arguments) };
 if (/^(www\\.)?ogimage\\.org$/.test(location.hostname)) {
   var s = document.createElement('script');
@@ -45,6 +45,12 @@ if (/^(www\\.)?ogimage\\.org$/.test(location.hostname)) {
   s.setAttribute('data-api', 'https://p.il.ly/api/event');
   s.src = 'https://p.il.ly/js/script.outbound-links.js';
   document.head.appendChild(s);
+  var m = document.createElement('script');
+  m.defer = true;
+  m.setAttribute('data-domain', 'ogimage.org');
+  m.setAttribute('data-website-id', '6p614x565u1k5i50');
+  m.src = 'https://fast.il.ly/js/script.js';
+  document.head.appendChild(m);
 }
 `
 
@@ -70,7 +76,7 @@ export default async function RootLayout({
         <StructuredData />
         {children}
         <Script id="analytics-loader" strategy="afterInteractive">
-          {PLAUSIBLE_LOADER}
+          {ANALYTICS_LOADER}
         </Script>
       </body>
     </html>
