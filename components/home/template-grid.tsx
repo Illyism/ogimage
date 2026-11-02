@@ -41,10 +41,10 @@ export function TemplateGrid() {
                 alt={`${template.title} template`}
                 className="image-outline aspect-1200/630 w-full rounded-2xl bg-card object-cover transition-transform duration-500 ease-out-strong group-hover:scale-[1.03]"
                 decoding="async"
-                height={336}
+                height={315}
                 loading="lazy"
                 src={ogPreviewSrc(`/og/templates/${template.file}`)}
-                width={640}
+                width={600}
               />
             </div>
             <div className="flex items-center justify-between gap-2 px-1">

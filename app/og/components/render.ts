@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { ImageResponse } from 'next/og'
-import type { ReactElement } from 'react'
+import { createElement, type ReactElement } from 'react'
 
 export const WIDTH = 1200
 export const HEIGHT = 630
@@ -49,8 +49,8 @@ export const SANS = 'Geist'
 export const MONO = 'Geist Mono'
 export const SERIF = 'Instrument Serif'
 
-const THUMB_WIDTH = 640
-const THUMB_HEIGHT = 336
+const THUMB_WIDTH = 600
+const THUMB_HEIGHT = 315
 
 const CARD_CACHE = {
   'Cache-Control': 'public, max-age=86400, stale-while-revalidate=604800',
@@ -70,8 +70,27 @@ export async function renderCard(
   searchParams?: URLSearchParams,
   headers: Record<string, string> = CARD_CACHE,
 ) {
+  const isThumb = searchParams?.get('thumb') === '1'
   const { height, width } = cardSize(searchParams)
-  return new ImageResponse(element, {
+  const node = isThumb
+    ? createElement(
+        'div',
+        {
+          style: {
+            display: 'flex',
+            height: HEIGHT,
+            left: 0,
+            position: 'absolute',
+            top: 0,
+            transform: `scale(${THUMB_WIDTH / WIDTH})`,
+            transformOrigin: 'top left',
+            width: WIDTH,
+          },
+        },
+        element,
+      )
+    : element
+  return new ImageResponse(node, {
     fonts: await fonts,
     headers,
     height,

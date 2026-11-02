@@ -93,12 +93,12 @@ export function Bento({ items }: { items: Inspiration[] }) {
             </div>
             <img
               alt="Card made with the generator"
-              className="image-outline -mr-10 -mb-10 aspect-1200/630 w-full rounded-tl-2xl object-cover transition-transform duration-500 ease-out-strong group-hover:-translate-x-1 group-hover:-translate-y-1 sm:-mr-12 sm:-mb-12"
+              className="image-outline -mb-6 aspect-1200/630 w-full origin-bottom rounded-t-2xl object-cover transition-transform duration-500 ease-out-strong group-hover:scale-[1.02] sm:-mr-6 sm:origin-bottom-right sm:rounded-tl-2xl sm:rounded-tr-none md:-mr-8 md:-mb-8"
               decoding="async"
-              height={336}
+              height={315}
               loading="lazy"
               src={ogPreviewSrc(GENERATOR_CARD)}
-              width={640}
+              width={600}
             />
           </div>
         </Tile>
@@ -143,11 +143,11 @@ export function Bento({ items }: { items: Inspiration[] }) {
                   index === 1 && 'z-10',
                 )}
                 decoding="async"
-                height={336}
+                height={315}
                 key={name}
                 loading="lazy"
                 src={ogPreviewSrc(`/og/templates/${name}`)}
-                width={640}
+                width={600}
               />
             ))}
           </div>

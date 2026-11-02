@@ -42,7 +42,7 @@ export function HeroCard({ cards }: { cards: Inspiration[] }) {
         {back ? (
           <Image
             alt=""
-            className="image-outline absolute inset-0 aspect-1200/630 w-full origin-bottom -translate-x-6 -translate-y-9 -rotate-6 rounded-2xl object-cover shadow-2xl brightness-75 transition-transform duration-500 ease-out-strong group-hover:-translate-x-12 group-hover:-translate-y-12 group-hover:-rotate-9"
+            className="image-outline absolute inset-0 aspect-1200/630 w-full origin-bottom -translate-x-2 -translate-y-6 -rotate-3 rounded-2xl object-cover shadow-2xl brightness-75 transition-transform duration-500 ease-out-strong group-hover:-translate-x-12 group-hover:-translate-y-12 group-hover:-rotate-9 sm:-translate-x-6 sm:-translate-y-9 sm:-rotate-6"
             height={315}
             loading="lazy"
             sizes="(min-width: 1024px) 36rem, 90vw"
@@ -53,7 +53,7 @@ export function HeroCard({ cards }: { cards: Inspiration[] }) {
         {middle ? (
           <Image
             alt=""
-            className="image-outline absolute inset-0 aspect-1200/630 w-full origin-bottom translate-x-6 -translate-y-5 rotate-4 rounded-2xl object-cover shadow-2xl brightness-90 transition-transform duration-500 ease-out-strong group-hover:translate-x-12 group-hover:-translate-y-8 group-hover:rotate-7"
+            className="image-outline absolute inset-0 aspect-1200/630 w-full origin-bottom translate-x-2 -translate-y-3 rotate-2 rounded-2xl object-cover shadow-2xl brightness-90 transition-transform duration-500 ease-out-strong group-hover:translate-x-12 group-hover:-translate-y-8 group-hover:rotate-7 sm:translate-x-6 sm:-translate-y-5 sm:rotate-4"
             height={315}
             loading="lazy"
             sizes="(min-width: 1024px) 36rem, 90vw"
@@ -66,19 +66,19 @@ export function HeroCard({ cards }: { cards: Inspiration[] }) {
           className="image-outline relative aspect-1200/630 w-full rounded-2xl bg-card shadow-[0_32px_80px_-24px_oklch(0_0_0/0.9)]"
           decoding="async"
           fetchPriority="high"
-          height={336}
+          height={315}
           src={ogPreviewSrc(`/og/generator?${params}`)}
-          width={640}
+          width={600}
         />
       </div>
-      <div className="surface mx-auto flex w-full max-w-xl items-center gap-3 rounded-2xl p-2 pl-4 focus-within:ring-2 focus-within:ring-ring/60">
-        <PencilLineIcon className="size-4 shrink-0 text-muted-foreground" />
+      <div className="surface mx-auto flex w-full max-w-xl flex-wrap items-center gap-2 rounded-2xl p-2 focus-within:ring-2 focus-within:ring-ring/60 sm:flex-nowrap sm:gap-3">
+        <PencilLineIcon className="ml-2 size-4 shrink-0 text-muted-foreground" />
         <label className="sr-only" htmlFor="hero-title">
           Type a title to see it on the card
         </label>
         <input
           autoComplete="off"
-          className="h-10 min-w-0 flex-1 bg-transparent outline-none placeholder:text-muted-foreground"
+          className="h-10 min-w-0 flex-1 bg-transparent pr-2 outline-none placeholder:text-muted-foreground sm:pr-0"
           id="hero-title"
           maxLength={110}
           onChange={(event) => setTitle(event.target.value)}
@@ -86,7 +86,7 @@ export function HeroCard({ cards }: { cards: Inspiration[] }) {
           value={title}
         />
         <Link
-          className="flex h-10 shrink-0 items-center gap-1.5 rounded-xl bg-secondary px-3 font-medium text-sm transition-[background-color,scale] duration-150 ease-out hover:bg-secondary/70 active:scale-[0.96]"
+          className="flex h-10 w-full shrink-0 items-center justify-center gap-1.5 rounded-xl bg-secondary px-3 font-medium text-sm transition-[background-color,scale] duration-150 ease-out hover:bg-secondary/70 active:scale-[0.96] sm:w-auto"
           href={`/generator?${params}`}
         >
           Customize
