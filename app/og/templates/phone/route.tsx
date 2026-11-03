@@ -122,7 +122,6 @@ export async function GET(request: NextRequest) {
           display: 'flex',
           height: PHONE_HEIGHT,
           marginTop: 56,
-          overflow: 'hidden',
           transform: 'rotate(4deg)',
           width: PHONE_WIDTH,
         }}
